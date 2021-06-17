@@ -73,19 +73,15 @@
     
 - **GET** - [/experiences/:idExp] - Obtener los datos de una experiencia concreta
 
-- **GET** - [/experiences/:idExp/rating] - Obtener el rating de una exp
-
 - **PUT** - [/experiences/:idExp] - Editar la experiencia
 
--**PUT** - [/experiences/:idExp/img] - Actualizar las fotos
+- **DELETE** - [/experiences/:idExp] - Elimina la experiencia
 
--**DELETE** - [/experiences/:idExp] - Elimina la experiencia
-
--**DELETE** - [/experiences/:idExp/img] - Elimina la img
+- **DELETE** - [/experiences/:idExp/photo] - Elimina la img
 
 - **POST** - [/experiences] - Crea una nueva esperiencia
 
-- **POST** - [/experiences/:idExp/img] - Añade una nueva img
+- **POST** - [/experiences/:idExp/photo] - Añade una nueva img
 
 ### Endpoints del usuario.
 
@@ -95,26 +91,24 @@
 
 - **POST** - [/users] - Crear un usuario
 
-- **POST** - [/users/login] - Logea el usuario restornando un tokent
+- **POST** - [/users/login] - Logea el usuario restornando un tokent.
+
+- **POST** - [/users/:idUser/avatar] - Crear el avatar del usuario.
 
 - **DELETE** - [/users/:idUser] - Elimina la cuenta de un usuario.
+
+- **DELETE** - [/users/:idUser/avatar] - Eliminar el avatar del usuario.
 
 - **PUT** - [/users/:idUser] - Editar los datos de un usuario
 
 - **PUT** - [/users/:idUser/pwd] - Editar la contraseña de un usuario
 
-- **PUT** - [/users/recover-pwd] - Recuperar contraseña de un usuario
+- **PUT** - [/users/recover/pwd] - Recuperar contraseña de un usuario
 
-- **PUT** - [/users/reset-pwd] - Modifica la contraseña de un usuario
+- **PUT** - [/users/reset/pwd] - Modifica la contraseña de un usuario
 
 
 ### Endpoints de reservas.
-
-- **GET** - [/booking/coments] - Obtener todos los comentarios de las reservas 
-
-- **GET** - [/booking/coments/:idComent] - Obtener un comentario cbooking
-
-- **GET** - [/booking/:idBooking/rating] - Obtener una valoraciones de una reserva 
 
 - **GET** - [/booking] - Obtener todas las reservas
 
@@ -122,10 +116,11 @@
 
 - **POST** - [/booking/coments/:idComent] - Crear un comentario
 
+- **POST** - [/booking/:idBooking/rating] - Agregar una Valoración
+
+
+### Endpoints Opcionales de reservas.
+
 - **PUT** - [/booking/coments/:idComent] - Editar un comentario
 
-- **PUT** - [/booking/:idBooking/rating] - Editar una Valoracción
-
-
-
-
+- **PUT** - [/booking/:idBooking/rating] - Editar una Valoración

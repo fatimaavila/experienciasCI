@@ -18,7 +18,9 @@ CREATE TABLE IF NOT EXISTS users(
     apellidos VARCHAR(50) NOT NULL,
     cp VARCHAR(20),
     valoracion TINYINT,
-    foto_usuario VARCHAR(200)
+    avatar VARCHAR(200),
+    resgistrationCode VARCHAR(100),
+    recoverCode VARCHAR(100)
 );
 
 
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS reservas(
     precio_total DECIMAL(5,2) NOT NULL,
     estado BOOLEAN NOT NULL,
     valoracion TINYINT,
+    comentario TEXT,
 	id_user INT UNSIGNED,
         FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     id_experience INT UNSIGNED,
@@ -59,7 +62,7 @@ CREATE TABLE IF NOT EXISTS reservas(
 
 CREATE TABLE IF NOT EXISTS fotos(
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	alt VARCHAR(50),
+	alt VARCHAR(100),
     url VARCHAR(200),
 	id_experience INT UNSIGNED,
-    FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE);      
+        FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE);      
