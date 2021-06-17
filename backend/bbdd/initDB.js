@@ -21,7 +21,7 @@ const main = async () => {
         CREATE TABLE IF NOT EXISTS users(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
             username VARCHAR(30) NOT NULL UNIQUE,
-            pwd VARCHAR(75) NOT NULL,
+            pwd VARCHAR(200) NOT NULL,
             rol ENUM('regular', 'admin') NOT NULL,
             email VARCHAR(75) NOT NULL UNIQUE,
             dni VARCHAR(15) NOT NULL UNIQUE,
@@ -35,8 +35,7 @@ const main = async () => {
             valoracion TINYINT,
             avatar VARCHAR(200),
             resgistrationCode VARCHAR(100),
-            recoverCode VARCHAR(100),
-            createdAt DATETIME NOT NULL
+            recoverCode VARCHAR(100)
         );
         `);
 
@@ -89,35 +88,10 @@ const main = async () => {
 
         // Insertamos usuario administrador.
         await connection.query(`
-            INSERT INTO users (createdAt, email, password, name, active, role)
-            VALUES (
-                "${formatDate(new Date())}", 
-                "proyectovanexperiences@gmail.com", 
-                SHA2("${process.env.ADMIN_PASSWORD}", 512), 
-                "Administrador",                
-                "admin"
-            ),
-            (
-                "${formatDate(new Date())}", 
-                "alejandromf_199@hotmail.com", 
-                SHA2("${process.env.ADMIN_PASSWORD}", 512), 
-                "Alejandro",            
-                "admin"
-            ),
-            (
-                "${formatDate(new Date())}", 
-                "vaszm1996@gmail.com", 
-                SHA2("${process.env.ADMIN_PASSWORD}", 512), 
-                "Vicente",                
-                "admin"
-            ),
-            (
-                "${formatDate(new Date())}", 
-                "nachorsanz@gmail.com", 
-                SHA2("${process.env.ADMIN_PASSWORD}", 512), 
-                "Nacho",                
-                "admin"
-            );
+        INSERT INTO users (id, username, pwd,rol, email, dni, ccc, direccion, telefono, bio, nombre, apellidos, cp) VALUES 
+        (1, 'hatashi199', '123456','admin',  'alejandromf_199@hotmail.com', '90-5359970', 'DE64 7032 9119 6174 2043 34', '71 Doe Crossing Avenue', '9213721676', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Alejandro', 'Mariño', null),
+        (2, 'vaszm', '123456','admin',  'vaszm1996@gmail.com', '12-5950886', 'LI23 7479 62SC RO3M FPZW M', '52 Raven Park', '1647303010', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Vicente', 'Aleixandre', '3246'),
+        (3, 'nachors', '123456','admin', 'nachorsanz@gmail.com', '62-6494739', 'IE46 BCHL 2574 9664 4665 62', '7029 Grasskamp Point', '2798027245', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Nacho', 'Rodriguez', null);
         `);
 
         console.log('Usuarios administradores insertados');
@@ -522,12 +496,12 @@ const main = async () => {
         // Insertamos las reservas.
         await connection.query(`
           INSERT INTO reservas (id, cantidad, fecha_reserva,fecha_compra, precio_total, estado, valoracion, comentario, id_user, id_experience) VALUES 
-          (1,1,'2021-07-16','2021-03-25',108.00,true,4,'Muy malo',4,16),
-          (2,2,'2021-08-10','2021-02-25',170.00,true,4,'Me ha encantado',6,1),
-          (3,1,'2021-07-16','2021-01-20',179.00,true,5,'Estupendo, buen trato, repetiría',4,26),
-          (4,2,'2021-08-15','2021-05-14',120.00,true,3,'Una pasada, pero se quedo un poco corto',7,7),
-          (5,1,'2021-06-10','2021-05-25',179.00,false,5,'Con ganas de repetir',9,27),
-          (6,2,'2021-04-16','2021-03-25',90.00,false,4,'Una autentica vergüenza',8,20);
+          (1,1,'2021-07-16','2021-03-25',108.00,true,4,'Muy malo',3,16),
+          (2,2,'2021-08-10','2021-02-25',170.00,true,4,'Me ha encantado',2,1),
+          (3,1,'2021-07-16','2021-01-20',179.00,true,5,'Estupendo, buen trato, repetiría',2,26),
+          (4,2,'2021-08-15','2021-05-14',120.00,true,3,'Una pasada, pero se quedo un poco corto',1,7),
+          (5,1,'2021-06-10','2021-05-25',179.00,false,5,'Con ganas de repetir',3,27),
+          (6,2,'2021-04-16','2021-03-25',90.00,false,4,'Una autentica vergüenza',1,20);
       `);
 
         console.log('reservas insertadas');
