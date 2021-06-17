@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const { formatDate } = require('../helpers');
 const getDB = require('./db');
 
 let connection;
@@ -8,7 +8,7 @@ const main = async () => {
     try {
         connection = await getDB();
 
-        await connection.query('CREATE DATABASE VAN_Experience;');
+        // await connection.query('CREATE DATABASE VAN_Experience;');
         await connection.query('DROP TABLE IF EXISTS users;');
         await connection.query('DROP TABLE IF EXISTS experiences;');
         await connection.query('DROP TABLE IF EXISTS reservas;');
