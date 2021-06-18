@@ -5,6 +5,7 @@ const fileUpload = require('express-fileupload');
 const app = express();
 
 const { PORT } = process.env;
+// Ejecutamos poll a mysql e iniciamos
 
 // Logger.
 app.use(morgan('dev'));

@@ -5,7 +5,8 @@
   "main": "helpers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "sql": "node ./bbdd/initDB.js"
   },
   "keywords": [],
   "author": "",
