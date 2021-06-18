@@ -1,17 +1,17 @@
 'use stric';
 
-const { getDB } = require('../bbdd/db.js');
+const getDB = require('../bbdd/db');
 const jwt = require('jsonwebtoken');
 
 let connection;
 
-const authUser = (req,res,next) => {
+const authUser = async (req, res, next) => {
     try {
         connection = await getDB();
 
         const { authorization } = req.headers;
 
-        if(!authorization) {
+        if (!authorization) {
             const error = new Error('Faltan la autorización en la cabecera');
             error.httpStatus = 401;
             throw error;
@@ -22,7 +22,7 @@ const authUser = (req,res,next) => {
 
         // Verificamos si el token es válido.
         try {
-            tokenInfo = jwt.verify(authorization,process.env.SECRET);
+            tokenInfo = jwt.verify(authorization, process.env.SECRET);
         } catch (error) {
             const err2 = new Error('Faltan la autorización en la cabecera');
             err2.httpStatus = 401;
@@ -36,8 +36,8 @@ const authUser = (req,res,next) => {
     } catch (error) {
         next(error);
     } finally {
-        if(connection) connection.release();
+        if (connection) connection.release();
     }
-}
+};
 
 module.exports = authUser;

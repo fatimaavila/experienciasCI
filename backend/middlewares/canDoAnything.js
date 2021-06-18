@@ -1,4 +1,4 @@
-const getDB = require('../../bbdd/db');
+const getDB = require('../bbdd/db');
 
 //Creamos la funcion que nos permita editar y modificar los campos
 

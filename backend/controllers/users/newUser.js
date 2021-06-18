@@ -1,6 +1,6 @@
 'use strict';
 
-const { getDB } = require('../bbdd/db.js');
+const getDB = require('../../bbdd/db');
 const {
     //validate,
     generateRandomString,
@@ -10,7 +10,7 @@ const {
 //const { newUserSchema } = require('../../schemas');
 let connection;
 
-const newUser = (req, res, next) => {
+const newUser = async (req, res, next) => {
     try {
         connection = await getDB();
         // await validate(newUserSchema, req.body);
@@ -37,9 +37,9 @@ const newUser = (req, res, next) => {
             `SELECT id FROM users WHERE email = ?;`,
             [email]
         );
-        const [username] = await connection.query(
+        const [usern] = await connection.query(
             `SELECT id FROM users WHERE username = ?;`,
-            [username]
+            [usern]
         );
 
         if (user.length > 0) {

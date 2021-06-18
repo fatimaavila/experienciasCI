@@ -394,7 +394,7 @@ const initDB = async () => {
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.',
     'Ferrari F430 F1 y Formula 2.0',
-    'Valencia - Circuito Ricardo Tormo: El recorrido por vuelta es de 3,1km',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Valencia',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (27, 
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Lamborghini Gallardo.
 
@@ -407,7 +407,7 @@ const initDB = async () => {
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.', 
     'Ferrari F430 F1 y Lamborghini Gallardo ', 
-    'Navarra - Circuito de Los Arcos (trazado completo): El recorrido por vuelta es de 3,9km',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Navarra',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (28,
     '¡Conduce tres coches! Ponte a los mandos de un Ferrari, un Lamborghini y un Porsche en esta experiencia sin igual.
 
@@ -418,7 +418,7 @@ const initDB = async () => {
   
     Adrenalina en estado puro. ¿¡Te quedarás sin probarlo!?',
     'Trío de Coches: Ferrari, Lamborghini y Porsche',
-    'Madrid - Circuito de Jarama: El recorrido por vuelta es de 3,8km',249.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Madrid',249.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (29,
     'Déjate sorprender por un día lleno de emoción y adrenalina. Disfruta de un Vuelo en Avioneta y conduce un Ferrari en Carretera por Barcelona.
 
@@ -428,7 +428,7 @@ const initDB = async () => {
 
     ¿Te vas a perder vivir el día con el que todo el mundo sueña?',
     'Vuelo en Avioneta y Conducción de Ferrari en Carretera',
-    'Sabadell y Montmeló (Barcelona)',119.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Sabadell',119.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (30,
     'Si te gustan las emociones fuertes y los deportes de riesgo, libera toda tu adrenalina aprendiendo a derrapar con este Curso de Drift en Madrid.
 
