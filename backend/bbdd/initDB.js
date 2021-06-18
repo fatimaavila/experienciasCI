@@ -517,7 +517,7 @@ const initDB = async () => {
           (6,2,'2021-04-16','2021-03-25',90.00,false,4,'Una autentica vergüenza',1,20);
       `);
 
-        console.log('reservas insertadas');
+        console.log('Reservas insertadas');
     } catch (error) {
         console.error(error);
     } finally {
