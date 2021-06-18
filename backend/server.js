@@ -6,15 +6,13 @@ const app = express();
 
 const { PORT } = process.env;
 
-
-
-const { authUser } = require('./middlewares/authUser');
+const authUser = require('./middlewares/authUser');
 
 
 // ###############################################
 // ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
 // ###############################################
-=======
+
 const {
     deleteUser,
     editUser,

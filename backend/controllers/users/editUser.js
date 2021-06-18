@@ -85,4 +85,4 @@ const editUser = (req,res,next) => {
     }
 }
 
-module.exports = { editUser };
+module.exports = editUser;
