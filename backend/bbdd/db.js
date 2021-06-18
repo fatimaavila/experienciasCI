@@ -1,5 +1,5 @@
 'use strict';
-console.log(require('dotenv').config());
+require('dotenv').config();
 
 const mysql = require('mysql2/promise');
 
@@ -22,4 +22,4 @@ const getDB = async () => {
     return await pool.getConnection();
 };
 
-module.exports = getDB;
+module.exports = { getDB };

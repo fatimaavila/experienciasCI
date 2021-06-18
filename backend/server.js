@@ -3,9 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
 const app = express();
-
+const { initDB } = require('./bbdd/initDB');
 const { PORT } = process.env;
-
+initDB();
 // Logger.
 app.use(morgan('dev'));
 
