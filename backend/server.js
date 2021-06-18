@@ -6,7 +6,7 @@ const app = express();
 
 const { PORT } = process.env;
 
-const { loginUser, editUser } = require('./controllers/users');
+
 
 const { authUser } = require('./middlewares/authUser');
 
@@ -14,6 +14,19 @@ const { authUser } = require('./middlewares/authUser');
 // ###############################################
 // ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
 // ###############################################
+=======
+const {
+    deleteUser,
+    editUser,
+    editUserPassword,
+    getUser,
+    loginUser,
+    newUser,
+    recoverUserPassword,
+    resetUserPassword,
+    validateUser,
+} = require('./controllers/users');
+
 
 // Logger.
 app.use(morgan('dev'));
