@@ -1,11 +1,11 @@
 'use strict';
 require('dotenv').config();
 
-const getDB = require('./db');
+const { getDB } = require('./db');
 
 let connection;
 
-const main = async () => {
+const initDB = async () => {
     try {
         connection = await getDB();
         await connection.query('DROP DATABASE IF EXISTS VAN_Experience');
@@ -14,8 +14,8 @@ const main = async () => {
         await connection.query('SET FOREIGN_KEY_CHECKS = 1;');
         await connection.query('DROP TABLE IF EXISTS users;');
         await connection.query('DROP TABLE IF EXISTS experiences;');
-        await connection.query('DROP TABLE IF EXISTS reservas;');
-        await connection.query('DROP TABLE IF EXISTS fotos;');
+        await connection.query('DROP TABLE IF EXISTS bookings;');
+        await connection.query('DROP TABLE IF EXISTS photos;');
         await connection.query('SET FOREIGN_KEY_CHECKS = 0;');
 
         console.log('Tablas eliminadas');
@@ -60,7 +60,7 @@ const main = async () => {
 
         // Crear tabla de reservas.
         await connection.query(`
-        CREATE TABLE IF NOT EXISTS reservas(
+        CREATE TABLE IF NOT EXISTS bookings(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
             cantidad TINYINT NOT NULL,
             fecha_reserva DATE NOT NULL,
@@ -78,7 +78,7 @@ const main = async () => {
 
         // Crear tabla de fotos.
         await connection.query(`
-        CREATE TABLE IF NOT EXISTS fotos(
+        CREATE TABLE IF NOT EXISTS photos(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
             alt VARCHAR(100),
             url VARCHAR(200),
@@ -508,7 +508,7 @@ const main = async () => {
 
         // Insertamos las reservas.
         await connection.query(`
-          INSERT INTO reservas (id, cantidad, fecha_reserva,fecha_compra, precio_total, estado, valoracion, comentario, id_user, id_experience) VALUES 
+          INSERT INTO bookings (id, cantidad, fecha_reserva,fecha_compra, precio_total, estado, valoracion, comentario, id_user, id_experience) VALUES 
           (1,1,'2021-07-16','2021-03-25',108.00,true,4,'Muy malo',3,16),
           (2,2,'2021-08-10','2021-02-25',170.00,true,4,'Me ha encantado',2,1),
           (3,1,'2021-07-16','2021-01-20',179.00,true,5,'Estupendo, buen trato, repetiría',2,26),
@@ -527,4 +527,4 @@ const main = async () => {
     }
 };
 
-main();
+initDB();
