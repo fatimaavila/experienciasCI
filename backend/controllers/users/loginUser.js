@@ -4,7 +4,7 @@ const { getDB } = require('../../bbdd/db.js');
 
 let connection;
 
-const loginUser = (req, res, next) => {
+const loginUser = async (req, res, next) => {
     try {
         connection = await getDB();
 

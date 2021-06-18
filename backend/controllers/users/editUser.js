@@ -1,11 +1,11 @@
 'use strict';
 
-const { getDB } = require('../../bbdd/db');
+const getDB = require('../../bbdd/db');
 const { formatDate } = require('../../helpers');
 
 let connection;
 
-const editUser = (req, res, next) => {
+const editUser = async (req, res, next) => {
     try {
         connection = await getDB();
 

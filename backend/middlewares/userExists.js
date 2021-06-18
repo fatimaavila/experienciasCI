@@ -1,6 +1,6 @@
 'use strict';
 
-const { getDB } = require('../bbdd/db.js');
+const getDB = require('../bbdd/db');
 
 let connection;
 

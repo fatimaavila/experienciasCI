@@ -1,11 +1,11 @@
 'use stric';
 
-const { getDB } = require('../bbdd/db.js');
+const getDB = require('../bbdd/db');
 const jwt = require('jsonwebtoken');
 
 let connection;
 
-const authUser = (req, res, next) => {
+const authUser = async (req, res, next) => {
     try {
         connection = await getDB();
 
