@@ -31,14 +31,15 @@ const initDB = async () => {
             dni VARCHAR(15) NOT NULL UNIQUE,
             ccc VARCHAR(40) NOT NULL,
             direccion VARCHAR(50) NOT NULL,
-            telefono VARCHAR(20) NOT NULL,
+            telefono VARCHAR(20) UNIQUE NOT NULL,
             bio TEXT NOT NULL,
             nombre VARCHAR(30) NOT NULL,
             apellidos VARCHAR(50) NOT NULL,
             cp VARCHAR(20),
             avatar VARCHAR(200),
             resgistrationCode VARCHAR(100),
-            recoverCode VARCHAR(100)
+            recoverCode VARCHAR(100),
+            active BOOLEAN DEFAULT false
         );
         `);
 
