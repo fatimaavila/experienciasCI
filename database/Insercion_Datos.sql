@@ -287,16 +287,10 @@ INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categorias, num
 
     En todo momento el instructor te guiará para realizar tu sueño de la forma más especial y segura.
 
-    Podrás elegir entre los siguientes circuitos:
-    - Barcelona - Circuit de Catalunya (trazado nacional): El recorrido por vuelta es de 3km
-    - Huelva - Circuito de Monteblanco: El recorrido por vuelta es de 3,9 km
-    - Madrid - Circuito de Jarama: El recorrido por vuelta es de 3,8km
-    - Navarra - Circuito de Los Arcos (trazado completo): El recorrido por vuelta es de 3,9km
-    - Valencia - Circuito Ricardo Tormo: El recorrido por vuelta es de 3,1km
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.',
     'Ferrari F430 F1 y Formula 2.0',
-    '5 Localizaciones',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Valencia - Circuito Ricardo Tormo: El recorrido por vuelta es de 3,1km',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (27, 
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Lamborghini Gallardo.
 
@@ -306,16 +300,11 @@ INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categorias, num
 
     En todo momento el instructor te guiará para realizar tu sueño de la forma más especial y segura.
 
-    Podrás elegir entre los siguientes circuitos:
-    - Barcelona - Circuit de Catalunya (trazado nacional): El recorrido por vuelta es de 3km
-    - Huelva - Circuito de Monteblanco: El recorrido por vuelta es de 3,9 km
-    - Madrid - Circuito de Jarama: El recorrido por vuelta es de 3,8km
-    - Navarra - Circuito de Los Arcos (trazado completo): El recorrido por vuelta es de 3,9km
-    - Valencia - Circuito Ricardo Tormo: El recorrido por vuelta es de 3,1km
+    
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.', 
     'Ferrari F430 F1 y Lamborghini Gallardo ', 
-    '5 Localizaciones',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Navarra - Circuito de Los Arcos (trazado completo): El recorrido por vuelta es de 3,9km',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (28,
     '¡Conduce tres coches! Ponte a los mandos de un Ferrari, un Lamborghini y un Porsche en esta experiencia sin igual.
 
@@ -323,16 +312,10 @@ INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categorias, num
 
     A la llegada se llevará a cabo un briefing, donde se darán unas nociones prácticas para que aprendas a manejarlos. A continuación, ¡Empieza lo realmente divertido! Conduce un Ferrari, un Lamborghini y un Porsche en circuito, pisando a fondo el acelerador y disfrutando al máximo de un sinfín de sensaciones.
 
-    Podrás elegir entre los siguientes circuitos:
-    - Barcelona - Circuit de Catalunya (trazado nacional): El recorrido por vuelta es de 3km
-    - Huelva - Circuito de Monteblanco: El recorrido por vuelta es de 3,9 km
-    - Madrid - Circuito de Jarama: El recorrido por vuelta es de 3,8km
-    - Navarra - Circuito de Los Arcos (trazado completo): El recorrido por vuelta es de 3,9km
-    - Valencia - Circuito Ricardo Tormo: El recorrido por vuelta es de 3,1km
 
     Adrenalina en estado puro. ¿¡Te quedarás sin probarlo!?',
     'Trío de Coches: Ferrari, Lamborghini y Porsche',
-    '5 Localizaciones',249.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Madrid - Circuito de Jarama: El recorrido por vuelta es de 3,8km',249.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
     (29,
     'Déjate sorprender por un día lleno de emoción y adrenalina. Disfruta de un Vuelo en Avioneta y conduce un Ferrari en Carretera por Barcelona.
 
