@@ -47,4 +47,4 @@ const resetUserPassword = async (req, res, next) => {
     }
 };
 
-module.exports = resetUserPass;
+module.exports = resetUserPassword;
