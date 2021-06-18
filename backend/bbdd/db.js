@@ -1,4 +1,5 @@
-require('dotenv').config();
+'use strict';
+console.log(require('dotenv').config());
 
 const mysql = require('mysql2/promise');
 
