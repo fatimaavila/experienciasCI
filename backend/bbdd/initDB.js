@@ -32,7 +32,7 @@ const initDB = async () => {
             dni VARCHAR(15) NOT NULL UNIQUE,
             ccc VARCHAR(40),
             direccion VARCHAR(50) NOT NULL,
-            telefono VARCHAR(20),
+            telefono VARCHAR(20) UNIQUE NOT NULL,
             bio TEXT NOT NULL,
             nombre VARCHAR(30) NOT NULL,
             apellidos VARCHAR(50) NOT NULL,
@@ -43,7 +43,7 @@ const initDB = async () => {
             active BOOLEAN default 0,
             createdAt DATETIME,
             modifiedAt DATETIME
-         
+
         );
         `);
 
@@ -522,7 +522,7 @@ const initDB = async () => {
           (6,2,'2021-04-16','2021-03-25',90.00,false,4,'Una autentica vergüenza',1,20);
       `);
 
-        console.log('reservas insertadas');
+        console.log('Reservas insertadas');
     } catch (error) {
         console.error(error);
     } finally {

@@ -1,3 +1,6 @@
+
+'use strict';
+
 const deleteUser = require('./deleteUser');
 const editUser = require('./editUser');
 const editUserPassword = require('./editUserPassword');
@@ -19,3 +22,4 @@ module.exports = {
     resetUserPassword,
     validateUser,
 };
+
