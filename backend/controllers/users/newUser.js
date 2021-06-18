@@ -1,12 +1,19 @@
 'use strict';
 
 const { getDB } = require('../bbdd/db.js');
-
+const {
+    //validate,
+    generateRandomString,
+    sendMail,
+    formatDate,
+} = require('../../helpers');
+//const { newUserSchema } = require('../../schemas');
 let connection;
 
 const newUser = (req, res, next) => {
     try {
         connection = await getDB();
+        // await validate(newUserSchema, req.body);
         const { username, email, password, dni, cp, address, last, name, bio } =
             req.body;
 
@@ -26,7 +33,6 @@ const newUser = (req, res, next) => {
             throw error;
         }
 
-        // Comprobamos si existe en la base de datos un usuario con ese email.
         const [user] = await connection.query(
             `SELECT id FROM users WHERE email = ?;`,
             [email]
@@ -44,41 +50,67 @@ const newUser = (req, res, next) => {
             throw error;
         }
 
-        // Creamos un código de registro (de un solo uso).
         const registrationCode = generateRandomString(40);
 
-        // Mensaje que enviaremos al usuario.
         const emailBody = `
             Te acabas de registrar en Van Experiences.
             Pulsa en este link para verificar tu cuenta: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode}
         `;
 
-        // Enviamos el mensaje.
         await sendMail({
             to: email,
             subject: 'Activa tu cuenta en Van Experiences',
             body: emailBody,
         });
 
-        // Guardamos al usuario en la base de datos junto al código de registro.
-        await connection.query(
-            `INSERT INTO users 
-            ( username, pwd, email, dni, direccion, bio, nombre, apellidos, cp, registrationCode)
-             VALUES 
-             (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?);`,
-            [
-                username,
-                password,
-                email,
-                dni,
-                address,
-                bio,
-                name,
-                last,
-                cp,
-                registrationCode,
-            ]
-        );
+        if (req.files && req.files.avatar) {
+            if (user[0].avatar) {
+                await deletePhoto(user[0].avatar);
+            }
+
+            const avatarName = await savePhoto(req.files.avatar);
+
+            await connection.query(
+                `INSERT INTO users 
+                ( username, pwd, email, dni, direccion, bio, nombre, apellidos, cp, registrationCode, createdAt, avatar)
+                 VALUES 
+                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                [
+                    username,
+                    password,
+                    email,
+                    dni,
+                    address,
+                    bio,
+                    name,
+                    last,
+                    cp,
+                    registrationCode,
+                    formatDate(new Date()),
+                    avatarName,
+                ]
+            );
+        } else {
+            await connection.query(
+                `INSERT INTO users 
+                ( username, pwd, email, dni, direccion, bio, nombre, apellidos, cp, registrationCode, createdAt)
+                 VALUES 
+                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                [
+                    username,
+                    password,
+                    email,
+                    dni,
+                    address,
+                    bio,
+                    name,
+                    last,
+                    cp,
+                    registrationCode,
+                    formatDate(new Date()),
+                ]
+            );
+        }
 
         res.send({
             status: 'ok',

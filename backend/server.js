@@ -5,7 +5,18 @@ const fileUpload = require('express-fileupload');
 const app = express();
 
 const { PORT } = process.env;
-// Ejecutamos poll a mysql e iniciamos
+
+const {
+    deleteUser,
+    editUser,
+    editUserPassword,
+    getUser,
+    loginUser,
+    newUser,
+    recoverUserPassword,
+    resetUserPassword,
+    validateUser,
+} = require('./controllers/users');
 
 // Logger.
 app.use(morgan('dev'));

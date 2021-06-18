@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 const { getDB } = require('./db');
+const { formatDate } = require('../helpers');
 
 let connection;
 
@@ -38,8 +39,11 @@ const initDB = async () => {
             cp VARCHAR(20),
             avatar VARCHAR(200),
             resgistrationCode VARCHAR(100),
-            recoverCode VARCHAR(100).
-            acvite BOOLEAN default false
+            recoverCode VARCHAR(100),
+            active BOOLEAN default 0,
+            createdAt DATETIME,
+            modifiedAt DATETIME
+         
         );
         `);
 
