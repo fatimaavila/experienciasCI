@@ -3,9 +3,10 @@ const express = require('express');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
 const app = express();
-const { initDB } = require('./bbdd/initDB');
+
 const { PORT } = process.env;
-initDB();
+// Ejecutamos poll a mysql e iniciamos
+
 // Logger.
 app.use(morgan('dev'));
 
