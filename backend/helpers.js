@@ -5,4 +5,9 @@ const { format } = require('date-fns');
 function formatDate(date) {
     return format(date, 'yyyy-MM-dd HH:mm:ss');
 }
+
+async function deletePhoto(photoName) {
+    const photoPath = path.join(uploadsDir, photoName);
+    await unlink(photoPath);
+}
 module.exports = { formatDate };
