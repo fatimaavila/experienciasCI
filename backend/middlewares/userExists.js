@@ -29,4 +29,4 @@ const userExists = (req, res, next) => {
     }
 };
 
-module.exports = { userExists };
+module.exports = userExists;

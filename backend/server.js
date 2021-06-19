@@ -7,6 +7,8 @@ const app = express();
 const { PORT } = process.env;
 
 const authUser = require('./middlewares/authUser');
+const canDoAnything = require('./middlewares/canDoAnything');
+const userExists = require('./middlewares/userExists');
 
 // ###############################################
 // ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
@@ -41,8 +43,15 @@ app.use(fileUpload());
 // ## MIDDLEWARES DE USUARIOS ##
 // #############################
 
-app.post('/users/login', loginUser);
-app.put('/users/:idUser', authUser, editUser);
+app.get('/users/:idUser', authUser, userExists, getUser);                       // getUser
+app.get('/users/validate/:registrationCode', validateUser);                     // validateUser
+app.post('/users', newUser);                                                    // newUser
+app.post('/users/login', loginUser);                                            // loginUser
+app.put('/users/:idUser', authUser, userExists, editUser);                      // editUser
+app.put('/users/:idUser/password', authUser, userExists, editUserPassword);     // editUserPassword
+app.put('/users/paswword/recover', recoverUserPassword);                        // recoverUserPassword
+app.put('/users/password/reset', resetUserPassword);                            // resetUserPassword
+app.delete('/users/:idUser', authUser, userExists, deleteUser);                 // deleteUser
 
 // #############################
 // ## MIDDLEWARES DE RESERVAS ##
