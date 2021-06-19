@@ -75,7 +75,7 @@ const newUser = async (req, res, next) => {
 
             await connection.query(
                 `INSERT INTO users 
-                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, resgistrationCode, createdAt, avatar)
+                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, registrationCode, createdAt, avatar)
                  VALUES 
                  (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
                 [
@@ -97,7 +97,7 @@ const newUser = async (req, res, next) => {
         } else {
             await connection.query(
                 `INSERT INTO users 
-                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, resgistrationCode, createdAt)
+                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, registrationCode, createdAt)
                  VALUES 
                  (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
                 [
