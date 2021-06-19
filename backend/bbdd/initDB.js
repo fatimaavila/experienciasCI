@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv').config();
 
-const { getDB } = require('./db');
+const getDB = require('./db');
 const { formatDate } = require('../helpers');
 
 let connection;
@@ -32,13 +32,13 @@ const initDB = async () => {
             dni VARCHAR(15) NOT NULL UNIQUE,
             ccc VARCHAR(40),
             direccion VARCHAR(50) NOT NULL,
-            telefono VARCHAR(20) UNIQUE NOT NULL,
+            telefono VARCHAR(20) UNIQUE ,
             bio TEXT NOT NULL,
             nombre VARCHAR(30) NOT NULL,
             apellidos VARCHAR(50) NOT NULL,
             cp VARCHAR(20),
             avatar VARCHAR(200),
-            resgistrationCode VARCHAR(100),
+            registrationCode VARCHAR(100),
             recoverCode VARCHAR(100),
             active BOOLEAN default 0,
             deleted BOOLEAN default 0,

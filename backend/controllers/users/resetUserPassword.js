@@ -16,7 +16,6 @@ const resetUserPassword = async (req, res, next) => {
             throw error;
         }
 
-        // Obtenemos el usuario que tenga ese código de recuperación.
         const [user] = await connection.query(
             `SELECT id FROM users WHERE recoverCode = ?;`,
             [recoverCode]
@@ -30,7 +29,6 @@ const resetUserPassword = async (req, res, next) => {
             throw error;
         }
 
-        // Actualizamos la contraseña del usuario que tenga ese código de recuperación.
         await connection.query(
             `UPDATE users SET password = SHA2(?, 512), recoverCode = NULL, modifiedAt = ? WHERE id = ?;`,
             [newPassword, formatDate(new Date()), user[0].id]

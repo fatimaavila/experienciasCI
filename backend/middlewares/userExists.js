@@ -4,7 +4,7 @@ const getDB = require('../bbdd/db');
 
 let connection;
 
-const userExists = (req, res, next) => {
+const userExists = async (req, res, next) => {
     try {
         connection = await getDB();
 
