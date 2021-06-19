@@ -4,13 +4,12 @@ const canDoAnything = async (req, res, next) => {
     let connection;
 
     try {
-
         connection = await getDB();
 
         const { idExp } = req.params;
 
         const [userExp] = await connection.query(
-            `SELECT idUser FROM experiences WHERE id = ?;`,
+            `SELECT id_user FROM bookings WHERE id = ?;`,
             [idExp]
         );
 
@@ -19,7 +18,7 @@ const canDoAnything = async (req, res, next) => {
             req.userAuth.role !== 'admin'
         ) {
             const error = new Error(
-                'No tienes permisos para editar esta entrada'
+                'No tienes permisos para editar esta experiencia'
             );
             error.httpStatus = 401;
             throw error;
