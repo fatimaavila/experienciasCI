@@ -19,7 +19,7 @@ const editUserPassword = async(req,res,next) => {
         }
 
         const [user] = await connection.query(`
-            SELECT id FROM users WHERE id = ? AND password = SHA2(?, 512);
+            SELECT id FROM users WHERE id = ? AND pwd = SHA2(?, 512);
         `,[idUser,oldPassword]);
 
         if(user[0].length < 1) {
@@ -29,7 +29,7 @@ const editUserPassword = async(req,res,next) => {
         }
 
         await connection.query(`
-            UPDATE users SET password = SHA2(?, 512), modifiedAt = ? WHERE id = ?;
+            UPDATE users SET pwd = SHA2(?, 512), modifiedAt = ? WHERE id = ?;
         `,[newPassword,formatDate(new Date()),idUser]);
 
         res.status(200).send({
