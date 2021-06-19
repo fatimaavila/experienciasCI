@@ -6,8 +6,8 @@ const sgMail = require('@sendgrid/mail');
 const { ensureDir, unlink } = require('fs-extra');
 const path = require('path');
 
-const { UPLOADS_EXP } = process.env;
-const uploadsDir = path.join(__dirname, UPLOADS_EXP);
+const { UPLOADS } = process.env;
+const uploadsDir = path.join(__dirname, UPLOADS);
 sgMail.setApiKey(process.env.SG_API_KEY);
 
 function formatDate(date) {
