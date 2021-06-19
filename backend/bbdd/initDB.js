@@ -41,6 +41,7 @@ const initDB = async () => {
             resgistrationCode VARCHAR(100),
             recoverCode VARCHAR(100),
             active BOOLEAN default 0,
+            deleted BOOLEAN default 0,
             createdAt DATETIME,
             modifiedAt DATETIME
 
@@ -75,9 +76,9 @@ const initDB = async () => {
             valoracion TINYINT,
             comentario TEXT,
             id_user INT UNSIGNED,
-            FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (id_user) REFERENCES users (id) ,
             id_experience INT UNSIGNED,
-            FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
+            FOREIGN KEY (id_experience) REFERENCES experiences (id) 
         );
         `);
 
@@ -88,7 +89,7 @@ const initDB = async () => {
             alt VARCHAR(100),
             url VARCHAR(200),
             id_experience INT UNSIGNED,
-            FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
+            FOREIGN KEY (id_experience) REFERENCES experiences (id) 
         );
         `);
 

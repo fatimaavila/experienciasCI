@@ -15,7 +15,6 @@ const recoverUserPassword = async (req, res, next) => {
             throw error;
         }
 
-        // Comrpobamos si existe el email.
         const [user] = await connection.query(
             `SELECT id FROM users WHERE email = ?;`,
             [email]
@@ -29,10 +28,8 @@ const recoverUserPassword = async (req, res, next) => {
             throw error;
         }
 
-        // Generamos un código de recuperación.
         const recoverCode = generateRandomString(20);
 
-        // Creamos el body con el mensaje.
         const emailBody = `
             
             Se solicitó un cambio de contraseña para el usuario registrado con este email en la plataforma VAN Experiences.
@@ -44,14 +41,12 @@ const recoverUserPassword = async (req, res, next) => {
             ¡Gracias!
         `;
 
-        // Enviamos el email.
         await sendMail({
             to: email,
             subject: 'Cambio de contraseña VAN Experiences',
             body: emailBody,
         });
 
-        // Agregamos el código de recuperación al usuario con dicho email.
         await connection.query(
             `UPDATE users SET recoverCode = ? WHERE email = ?;`,
             [recoverCode, email]
