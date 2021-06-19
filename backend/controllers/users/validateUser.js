@@ -1,4 +1,4 @@
-const { getDB } = require('../../bbdd/db');
+const getDB = require('../../bbdd/db');
 
 const validateUser = async (req, res, next) => {
     let connection;

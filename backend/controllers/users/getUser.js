@@ -9,7 +9,7 @@ const getUser = async (req, res, next) => {
         const { idUser } = req.params;
 
         const [user] = await connection.query(
-            `SELECT id, username, email, avatar, rol, FROM users WHERE id = ?;`,
+            `SELECT id, username, email, avatar, rol FROM users WHERE id = ?;`,
             [idUser]
         );
 
@@ -20,7 +20,7 @@ const getUser = async (req, res, next) => {
 
         if (
             user[0].id === req.userAuth.idUser ||
-            req.userAuth.role === 'admin'
+            req.userAuth.rol === 'admin'
         ) {
             userInfo.email = user[0].email;
             userInfo.rol = user[0].rol;

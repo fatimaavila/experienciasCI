@@ -1,4 +1,3 @@
-
 const { format } = require('date-fns');
 const sharp = require('sharp');
 const uuid = require('uuid');
@@ -9,7 +8,7 @@ const path = require('path');
 
 const { UPLOADS_EXP } = process.env;
 const uploadsDir = path.join(__dirname, UPLOADS_EXP);
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.SG_API_KEY);
 
 function formatDate(date) {
     return format(date, 'yyyy-MM-dd HH:mm:ss');
@@ -81,4 +80,3 @@ module.exports = {
     sendMail,
     validate,
 };
-

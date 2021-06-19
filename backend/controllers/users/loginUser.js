@@ -1,6 +1,7 @@
 'use strict';
 
-const { getDB } = require('../../bbdd/db.js');
+const getDB = require('../../bbdd/db.js');
+const jwt = require('jsonwebtoken');
 
 let connection;
 
@@ -9,23 +10,22 @@ const loginUser = async (req, res, next) => {
         connection = await getDB();
 
         const { email, username, password } = req.body;
-
-        if (!email || !username || !password) {
-            const error = new Error('Faltan campos');
+        if ((!email && !username) || !password) {
+            const error = new Error('Debes rellenar tu usuario');
             error.httpStatus = 400;
             throw error;
         }
 
         const [userEmail] = await connection.query(
             `
-            SELECT id, rol FROM users WHERE email = ? AND pwd = ?;
+            SELECT id, rol FROM users WHERE email = ? AND pwd = SHA2(?,512);
         `,
             [email, password]
         );
 
         const [userName] = await connection.query(
             `
-            SELECT id, rol FROM users WHERE username = ? AND pwd = ?;
+            SELECT id, rol FROM users WHERE username = ? AND pwd = SHA2(?,512);
         `,
             [username, password]
         );
@@ -36,12 +36,16 @@ const loginUser = async (req, res, next) => {
             throw error;
         }
 
-        const tokenInfo = {
-            idUser: userEmail[0].id,
-            rol: userEmail[0].rol,
-        };
+        let tokenInfo;
+        if (userName[0]) {
+            tokenInfo = { idUser: userName[0].id, rol: userName[0].rol };
+        } else if (userEmail[0]) {
+            tokenInfo = { idUser: userEmail[0].id, rol: userEmail[0].rol };
+        }
 
-        const token = jwt.sign(tokenInfo, process.env.SECRET);
+        const token = jwt.sign(tokenInfo, process.env.SECRET, {
+            expiresIn: '1d',
+        });
 
         res.status(200).send({
             status: 'ok',

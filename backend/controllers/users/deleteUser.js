@@ -14,8 +14,6 @@ const deleteUser = async (req, res, next) => {
 
         const { idUser } = req.params;
 
-        // Comprobamos si el usuario que intenta borrar no es el propio usuario
-        // y además no es un administrador.
         if (
             req.userAuth.idUser !== Number(idUser) &&
             req.userAuth.role !== 'admin'
@@ -27,18 +25,15 @@ const deleteUser = async (req, res, next) => {
             throw error;
         }
 
-        // Obtenemos el nombre del avatar.
         const [user] = await connection.query(
             `SELECT avatar FROM users WHERE id = ?;`,
             [idUser]
         );
 
-        // Si el usuario tiene avatar se elimina.
         if (user[0].avatar) {
             await deletePhoto(user[0].avatar);
         }
 
-        // Hacemos un update en la tabla de usuarios .
         await connection.query(
             `
                 UPDATE users 

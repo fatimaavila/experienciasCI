@@ -6,6 +6,7 @@ const {
     generateRandomString,
     sendMail,
     formatDate,
+    savePhoto,
 } = require('../../helpers');
 //const { newUserSchema } = require('../../schemas');
 let connection;
@@ -14,8 +15,18 @@ const newUser = async (req, res, next) => {
     try {
         connection = await getDB();
         // await validate(newUserSchema, req.body);
-        const { username, email, password, dni, cp, address, last, name, bio } =
-            req.body;
+        const {
+            username,
+            email,
+            password,
+            dni,
+            cp,
+            address,
+            last,
+            name,
+            bio,
+            phone,
+        } = req.body;
 
         if (
             !email ||
@@ -34,17 +45,13 @@ const newUser = async (req, res, next) => {
         }
 
         const [user] = await connection.query(
-            `SELECT id FROM users WHERE email = ?;`,
-            [email]
-        );
-        const [usern] = await connection.query(
-            `SELECT id FROM users WHERE username = ?;`,
-            [usern]
+            `SELECT id FROM users WHERE email = ? OR username = ?;`,
+            [email, username]
         );
 
         if (user.length > 0) {
             const error = new Error(
-                'Ya existe un usuario con ese email en la base de datos'
+                'Ya existe un usuario con ese email/usuario en la base de datos'
             );
             error.httpStatus = 409;
             throw error;
@@ -62,19 +69,15 @@ const newUser = async (req, res, next) => {
             subject: 'Activa tu cuenta en Van Experiences',
             body: emailBody,
         });
-
+        console.log(req.files);
         if (req.files && req.files.avatar) {
-            if (user[0].avatar) {
-                await deletePhoto(user[0].avatar);
-            }
-
             const avatarName = await savePhoto(req.files.avatar);
 
             await connection.query(
                 `INSERT INTO users 
-                ( username, pwd, email, dni, direccion, bio, nombre, apellidos, cp, registrationCode, createdAt, avatar)
+                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, resgistrationCode, createdAt, avatar)
                  VALUES 
-                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
                 [
                     username,
                     password,
@@ -82,6 +85,7 @@ const newUser = async (req, res, next) => {
                     dni,
                     address,
                     bio,
+                    phone,
                     name,
                     last,
                     cp,
@@ -93,9 +97,9 @@ const newUser = async (req, res, next) => {
         } else {
             await connection.query(
                 `INSERT INTO users 
-                ( username, pwd, email, dni, direccion, bio, nombre, apellidos, cp, registrationCode, createdAt)
+                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, resgistrationCode, createdAt)
                  VALUES 
-                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
                 [
                     username,
                     password,
@@ -103,6 +107,7 @@ const newUser = async (req, res, next) => {
                     dni,
                     address,
                     bio,
+                    phone,
                     name,
                     last,
                     cp,
