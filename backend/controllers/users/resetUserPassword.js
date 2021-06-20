@@ -30,7 +30,7 @@ const resetUserPassword = async (req, res, next) => {
         }
 
         await connection.query(
-            `UPDATE users SET password = SHA2(?, 512), recoverCode = NULL, modifiedAt = ? WHERE id = ?;`,
+            `UPDATE users SET pwd = SHA2(?, 512), recoverCode = NULL, modifiedAt = ? WHERE id = ?;`,
             [newPassword, formatDate(new Date()), user[0].id]
         );
 
