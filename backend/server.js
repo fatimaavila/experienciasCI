@@ -43,15 +43,15 @@ app.use(fileUpload());
 // ## MIDDLEWARES DE USUARIOS ##
 // #############################
 
-app.get('/users/:idUser', authUser, userExists, getUser);                       // getUser
-app.get('/users/validate/:registrationCode', validateUser);                     // validateUser
-app.post('/users', newUser);                                                    // newUser
-app.post('/users/login', loginUser);                                            // loginUser
-app.put('/users/:idUser', authUser, userExists, editUser);                      // editUser
-app.put('/users/:idUser/password', authUser, userExists, editUserPassword);     // editUserPassword
-app.put('/users/paswword/recover', recoverUserPassword);                        // recoverUserPassword
-app.put('/users/password/reset', resetUserPassword);                            // resetUserPassword
-app.delete('/users/:idUser', authUser, userExists, deleteUser);                 // deleteUser
+app.get('/users/:idUser', authUser, userExists, getUser); // getUser
+app.get('/users/validate/:registrationCode', validateUser); // validateUser
+app.post('/users', newUser); // newUser
+app.post('/users/login', loginUser); // loginUser
+app.put('/users/:idUser', authUser, userExists, editUser); // editUser
+app.put('/users/:idUser/password', authUser, userExists, editUserPassword); // editUserPassword
+app.put('/users/password/recover', recoverUserPassword); // recoverUserPassword
+app.put('/users/password/reset', resetUserPassword); // resetUserPassword
+app.delete('/users/:idUser', authUser, userExists, deleteUser); // deleteUser
 
 // #############################
 // ## MIDDLEWARES DE RESERVAS ##

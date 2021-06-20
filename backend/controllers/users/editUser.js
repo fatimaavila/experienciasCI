@@ -10,16 +10,16 @@ const editUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
-        const { email, ccc, direccion, telefono, bio, cp } = req.body;
-        const { avatar } = req.files;
+        const { email, ccc, address, phone, bio, cp } = req.body;
+        const avatar = req.files;
 
         const now = new Date();
 
         if (
             !email &&
             !ccc &&
-            !direccion &&
-            !telefono &&
+            !address &&
+            !phone &&
             !bio &&
             !cp &&
             !(req.files && req.files.avatar)
@@ -52,7 +52,7 @@ const editUser = async (req, res, next) => {
 
         const [userTel] = await connection.query(
             `
-            SELECT id FROM users WHERE email = ?;
+            SELECT telefono FROM users WHERE email = ?;
         `,
             [email]
         );
@@ -87,11 +87,11 @@ const editUser = async (req, res, next) => {
 
         await connection.query(
             `
-            UPDATE users SET email = ?, ccc = ?, direccion = ?, 
-                telefono = ?, bio = ?, cp = ?,modifiedAt = ?
+            UPDATE users SET email = ? OR ccc = ? OR direccion = ? OR 
+                telefono = ? OR bio = ? OR cp = ? OR modifiedAt = ?
                 WHERE id = ?;
         `,
-            [email, ccc, direccion, telefono, bio, cp, formatDate(now), idUser]
+            [email, ccc, address, phone, bio, cp, formatDate(now), idUser]
         );
 
         res.status(200).send({
