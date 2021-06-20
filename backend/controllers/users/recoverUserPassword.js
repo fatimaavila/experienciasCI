@@ -19,7 +19,7 @@ const recoverUserPassword = async (req, res, next) => {
             `SELECT id FROM users WHERE email = ?;`,
             [email]
         );
-
+        console.log(user);
         if (user.length < 1) {
             const error = new Error(
                 `El correo no corresponde con ninguna cuenta`
