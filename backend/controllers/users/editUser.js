@@ -59,9 +59,7 @@ const editUser = async (req, res, next) => {
             );
 
             if (existingEmail.length > 0) {
-                const error = new Error(
-                    'Ya existe un usuario con ese email'
-                );
+                const error = new Error('Ya existe un usuario con ese email');
                 error.httpStatus = 409;
                 throw error;
             }
@@ -72,8 +70,7 @@ const editUser = async (req, res, next) => {
             );
         }
 
-        if (phone && phone !== user[0].phone) {
-           
+        if (phone && phone !== user[0].telefono) {
             const [existingPhone] = await connection.query(
                 `SELECT id FROM users WHERE telefono = ?;`,
                 [phone]
@@ -107,7 +104,7 @@ const editUser = async (req, res, next) => {
                 [avartarName, formatDate(now), idUser]
             );
         }
-        
+
         await connection.query(
             `
             UPDATE users SET ccc = ?, direccion = ?, bio = ?, cp = ?, modifiedAt = ? WHERE id = ?;
