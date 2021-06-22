@@ -43,8 +43,8 @@ const getAllExperiences = async (req, res, next) => {
                 ${sqlExperience} ${separador} precio BETWEEN 0 AND 50;
                 `
             );
-            console.log([result]);
         }
+        console.log(precio);
         if (precio < 50 && precio > 100) {
             [result] = await connection.query(
                 `
@@ -89,8 +89,14 @@ const getAllExperiences = async (req, res, next) => {
                  `,
                 [`%${disp}%`]
             );
-        } else {
-            /*    if (fecha_inicio > 0 && fecha_fin > 0) {
+        } /* else {
+            [result] = await connection.query(
+                `
+                 ${sqlExperience} 
+                 `
+            );
+        }
+           */ /*    if (fecha_inicio > 0 && fecha_fin > 0) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} fecha_inicio BETWEEN fecha_fin AND ${formatDate(
@@ -99,12 +105,7 @@ const getAllExperiences = async (req, res, next) => {
                 `
             ); 
         } */
-            [result] = await connection.query(
-                `
-                 ${sqlExperience} 
-                 `
-            );
-        }
+
         res.send({
             status: 'ok',
             data: result,
