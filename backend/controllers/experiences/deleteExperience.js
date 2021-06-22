@@ -12,20 +12,26 @@ const deleteExperience = async(req, res, next) => {
 
         const { idExp } = req.params;
 
+        if(req.userAuth.rol !== 'admin') {
+            const error = new Error('No tienes permisos para eliminar experiencias');
+            error.httpStatus = 401;
+            throw error;
+        }
+
         const [photoExp] = await connection.query(
             `
-            SELECT photo FROM photos WHERE idExp = ?; 
+            SELECT url FROM photos WHERE id_experience = ?; 
         `,
             [idExp]
         );
 
         if (photoExp.length > 0) {
-            await deletePhoto(photoExp[0].photo);
+            await deletePhoto(photoExp[0].url);
         }
 
         await connection.query(
             `
-            DELETE FROM experience WHERE id = ?
+            DELETE FROM experiences WHERE id = ?
         `,
             [idExp]
         );
