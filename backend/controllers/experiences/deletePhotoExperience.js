@@ -9,7 +9,8 @@ const deletePhotoExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp, idPhoto } = req.params;
-        if (req.userAuth.rol !== 'admin') {
+
+        if(req.userAuth.rol !== 'admin') {
             const error = new Error('No tienes permisos para eliminar fotos');
             error.httpStatus = 401;
             throw error;

@@ -62,12 +62,7 @@ app.get('/experiences/:idExp', experienceExists, getExperience); //getExperience
 app.post('/experiences', authUser, newExperience); // newExperience
 app.post('/experiences/:idExp/photo', authUser, addPhotoExperience); //addPhotoExperience
 app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); //deleteExperience
-app.delete(
-    '/experiences/:idExp/photo/:idPhoto',
-    authUser,
-    experienceExists,
-    deletePhotoExperience
-); //deletePhoto
+app.delete('/experiences/:idExp/photo/:idPhoto', authUser, experienceExists, deletePhotoExperience); //deletePhoto
 app.put('/experiences/:idExp', authUser, experienceExists, editExperience); //editExperience
 // #############################
 // ## MIDDLEWARES DE USUARIOS ##
