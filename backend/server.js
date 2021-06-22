@@ -26,6 +26,7 @@ const {
     validateUser,
 } = require('./controllers/users');
 
+const { getAllExperiences } = require('./controllers/experiences');
 // Logger.
 app.use(morgan('dev'));
 
@@ -38,6 +39,10 @@ app.use(fileUpload());
 // #################################
 // ## MIDDLEWARES DE EXPERIENCIAS ##
 // #################################
+app.get('/experiences', getAllExperiences);
+app.get('/experiences/:id', getExperience);
+app.delete('/experiences/:id', deleteExperience);
+app.delete('/', deletePhotoExperience);
 
 // #############################
 // ## MIDDLEWARES DE USUARIOS ##
