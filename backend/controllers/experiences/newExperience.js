@@ -22,7 +22,13 @@ const newExperience = async (req, res, next) => {
             dStop,
         } = req.body;
         //const { idUser } = req.userAuth;
-
+        if (req.userAuth.rol !== admin) {
+            const error = new Error(
+                'El usuario no tiene permisos para crear una nueva experiencia'
+            );
+            error.httpStatus = 401;
+            throw error;
+        }
         // Fecha actual.
         // const now = new Date();
 

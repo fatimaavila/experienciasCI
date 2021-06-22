@@ -115,4 +115,4 @@ const getAllExperiences = async (req, res, next) => {
         if (connection) connection.release();
     }
 };
-module.exports = { getAllExperiences };
+module.exports = getAllExperiences;

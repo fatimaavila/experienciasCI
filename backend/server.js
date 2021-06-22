@@ -9,6 +9,7 @@ const { PORT } = process.env;
 const authUser = require('./middlewares/authUser');
 const canDoAnything = require('./middlewares/canDoAnything');
 const userExists = require('./middlewares/userExists');
+const experienceExists = require('./middlewares/experienceExists');
 
 // ###############################################
 // ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
@@ -26,7 +27,24 @@ const {
     validateUser,
 } = require('./controllers/users');
 
-const { getAllExperiences } = require('./controllers/experiences');
+const {
+    addPhotoExperience,
+    deleteExperience,
+    deletePhotoExperience,
+    editExperience,
+    getAllExperiences,
+    getExperience,
+    newExperience,
+} = require('./controllers/experiences');
+
+const {
+    deleteBooking,
+    getAllBookings,
+    getBooking,
+    newBooking,
+    newComment,
+    newRating,
+} = require('./controllers/bookings');
 // Logger.
 app.use(morgan('dev'));
 
@@ -39,7 +57,18 @@ app.use(fileUpload());
 // #################################
 // ## MIDDLEWARES DE EXPERIENCIAS ##
 // #################################
-
+app.get('/experiences', getAllExperiences); //getAllExperiences
+app.get('/experiences/:idExp', experienceExists, getExperience); //getExperience
+app.post('/experiences', authUser, newExperience); // newExperience
+app.post('/experiences/:idExp/photo', authUser, addPhotoExperience); //addPhotoExperience
+app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); //deleteExperience
+app.delete(
+    '/experiences/:idExp/photo',
+    authUser,
+    experienceExists,
+    deletePhotoExperience
+); //deletePhoto
+app.put('/experiences/:idExp', authUser, experienceExists, editExperience); //editExperience
 // #############################
 // ## MIDDLEWARES DE USUARIOS ##
 // #############################
@@ -57,6 +86,11 @@ app.delete('/users/:idUser', authUser, userExists, deleteUser); // deleteUser
 // #############################
 // ## MIDDLEWARES DE RESERVAS ##
 // #############################
+app.get('bookings/', authUser, getAllBookings); //getAllBookings
+app.get('bookings/:idBooking', authUser, getBooking); //getBooking
+app.post('bookings/', authUser, newBooking); //newBooking
+app.put('bookings/:idBooking/coments', authUser, newComment); //newComment
+app.put('bookings/:idBooking/rating', authUser, newRating); //newRating
 
 // ##########################
 // ## MIDDLEWARES DE ERROR ##
