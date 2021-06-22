@@ -57,17 +57,16 @@ const newExperience = async (req, res, next) => {
 
         // Si recibimos fotos a través de req.files...
         if (req.files) {
-            for (const photo of Object.values(req.files.photo).slice(0, 3)) {
+            for (const photo of Object.values(req.files).slice(0, 5)) {
                 // Guardamos la imagen en el disco y obtenemos su nombre.
-                console.log(Object.values(req.files.photo));
+
                 const photoName = await savePhoto(photo);
 
                 photos.push(photoName);
-
                 // Guardamos la foto en la base de datos.
                 await connection.query(
-                    `INSERT INTO photos (url, id_experience, alt) VALUES (?, ?, ?);`,
-                    [photoName, idExp, photoName]
+                    `INSERT INTO photos (url, id_experience) VALUES (?, ?);`,
+                    [photoName, idExp]
                 );
             }
         }
@@ -84,9 +83,7 @@ const newExperience = async (req, res, next) => {
                 participants,
                 dStart,
                 dStop,
-                photos: {
-                    ...photos
-                }
+                photoName,
             },
         });
     } catch (error) {
