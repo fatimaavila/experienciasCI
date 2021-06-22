@@ -59,70 +59,65 @@
     -   FK Id del usuario
     -   FK Id de la experiencia
 
-
 ## Endpoints
-
 
 ### Endpoints experiencias e imágenes.
 
-- **GET** - [/experiences] - Obtener la lista de experiencias.
-    * search = Lo que escriba el usuario en el buscador 
-    * ciudad = La ciudad seleccionada 
-    * precio = Precio seleccionados por el usuario
-    * disponibilidad = Si la experiencia esta disponible
-    
-- **GET** - [/experiences/:idExp] - Obtener los datos de una experiencia concreta
+-   **GET** - [/experiences] - Obtener la lista de experiencias.
+    -   search = Lo que escriba el usuario en el buscador
+    -   ciudad = La ciudad seleccionada
+    -   precio = Precio seleccionados por el usuario
+    -   disponibilidad = Si la experiencia esta disponible
+-   **GET** - [/experiences/:idExp] - Obtener los datos de una experiencia concreta
 
-- **PUT** - [/experiences/:idExp] - Editar la experiencia
+-   **PUT** - [/experiences/:idExp] - Editar la experiencia
 
-- **DELETE** - [/experiences/:idExp] - Elimina la experiencia
+-   **DELETE** - [/experiences/:idExp] - Elimina la experiencia
 
-- **DELETE** - [/experiences/:idExp/photo] - Elimina la img
+-   **DELETE** - [/experiences/:idExp/photo] - Elimina la img
 
-- **POST** - [/experiences] - Crea una nueva esperiencia
+-   **POST** - [/experiences] - Crea una nueva esperiencia
 
-- **POST** - [/experiences/:idExp/photo] - Añade una nueva img
+-   **POST** - [/experiences/:idExp/photo] - Añade una nueva img
 
 ### Endpoints del usuario.
 
-- **GET** - [/users/:idUser] - Obtener un usuario.
+-   **GET** - [/users/:idUser] - Obtener un usuario.
 
-- **GET** - [/users/validate/:registrationCode] - Valida el alta de un usuario
+-   **GET** - [/users/validate/:registrationCode] - Valida el alta de un usuario
 
-- **POST** - [/users] - Crear un usuario
+-   **POST** - [/users] - Crear un usuario
 
-- **POST** - [/users/login] - Logea el usuario restornando un tokent.
+-   **POST** - [/users/login] - Logea el usuario restornando un tokent.
 
-- **POST** - [/users/:idUser/avatar] - Crear el avatar del usuario.
+-   **POST** - [/users/:idUser/avatar] - Crear el avatar del usuario.
 
-- **DELETE** - [/users/:idUser] - Elimina la cuenta de un usuario.
+-   **DELETE** - [/users/:idUser] - Elimina la cuenta de un usuario.
 
-- **DELETE** - [/users/:idUser/avatar] - Eliminar el avatar del usuario.
+-   **DELETE** - [/users/:idUser/avatar] - Eliminar el avatar del usuario.
 
-- **PUT** - [/users/:idUser] - Editar los datos de un usuario
+-   **PUT** - [/users/:idUser] - Editar los datos de un usuario
 
-- **PUT** - [/users/:idUser/pwd] - Editar la contraseña de un usuario
+-   **PUT** - [/users/:idUser/pwd] - Editar la contraseña de un usuario
 
-- **PUT** - [/users/recover/pwd] - Recuperar contraseña de un usuario
+-   **PUT** - [/users/recover/pwd] - Recuperar contraseña de un usuario
 
-- **PUT** - [/users/reset/pwd] - Modifica la contraseña de un usuario
-
+-   **PUT** - [/users/reset/pwd] - Modifica la contraseña de un usuario
 
 ### Endpoints de reservas.
 
-- **GET** - [/booking] - Obtener todas las reservas
+-   **GET** - [/booking] - Obtener todas las reservas
 
-- **GET** - [/booking/:idBooking] - Obtener las reservas de una experiencia.
+-   **GET** - [/booking/:idBooking] - Obtener las reservas de una experiencia.
 
-- **POST** - [/booking] - Crear una nueva reserva.
+-   **POST** - [/booking] - Crear una nueva reserva.
 
-- **PUT** - [/booking/coments/:idBooking] - Crear un comentario de la reserva.
+-   **PUT** - [/booking/:idBooking/coments] - Crear un comentario de la reserva.
 
-- **PUT** - [/booking/:idBooking/rating] - Agregar una Valoración sobre la reserva.
-
+-   **PUT** - [/booking/:idBooking/rating] - Agregar una Valoración sobre la reserva.
 
 ### Endpoints Opcionales de reservas.
 
-- **PUT** - [/booking/coments/:idComent] - Editar un comentario
+-   **PUT** - [/booking/coments/:idComent] - Editar un comentario
 
-- **PUT** - [/booking/:idBooking/rating] - Editar una Valoración
+-   **PUT** - [/booking/:idBooking/rating] - Editar una Valoración
