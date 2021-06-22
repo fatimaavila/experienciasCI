@@ -70,7 +70,7 @@ const initDB = async () => {
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
             cantidad TINYINT NOT NULL,
             fecha_reserva DATE NOT NULL,
-            fecha_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            fecha_compra DATETIME NOT NULL,
             precio_total DECIMAL(5, 2) NOT NULL,
             estado BOOLEAN NOT NULL,
             valoracion TINYINT,
