@@ -1,5 +1,5 @@
 const getDB = require('../../bbdd/db');
-const { formatDate, savePhoto, validate } = require('../../helpers');
+const { savePhoto, validate } = require('../../helpers');
 //const { newEntrySchema } = require('../../schemas');
 
 const newExperience = async (req, res, next) => {
@@ -43,7 +43,7 @@ const newExperience = async (req, res, next) => {
             ]
         );
 
-        // Obtenemos el id de la nueva entrada.
+        // Obtenemos el id de la nueva exp.
         const { insertId: idExp } = newExperience;
 
         // Si existen fotos las pusheamos en este array.
@@ -51,7 +51,7 @@ const newExperience = async (req, res, next) => {
 
         // Si recibimos fotos a través de req.files...
         if (req.files) {
-            for (const photo of Object.values(req.files).slice(0, 5)) {
+            for (const photo of Object.values(req.files).slice(0, 3)) {
                 // Guardamos la imagen en el disco y obtenemos su nombre.
                 const photoName = await savePhoto(photo);
 
