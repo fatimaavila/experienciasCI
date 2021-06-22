@@ -18,7 +18,7 @@ const canDoAnything = async (req, res, next) => {
             req.userAuth.role !== 'admin'
         ) {
             const error = new Error(
-                'No tienes permisos para editar esta experiencia'
+                'No tienes permisos para gestionar esta experiencia'
             );
             error.httpStatus = 401;
             throw error;

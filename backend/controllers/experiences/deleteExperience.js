@@ -2,8 +2,11 @@
 
 const getDB = require('../../bbdd/db');
 const { deletePhoto } = require('../../helpers');
+
 let connection;
-const deleteExperience = async (req, res, next) => {
+
+const deleteExperience = async(req, res, next) => {
+
     try {
         connection = await getDB();
 
