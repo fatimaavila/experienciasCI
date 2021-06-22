@@ -9,12 +9,10 @@ const { PORT } = process.env;
 const authUser = require('./middlewares/authUser');
 const canDoAnything = require('./middlewares/canDoAnything');
 const userExists = require('./middlewares/userExists');
-const experienceExists = require('./middlewares/experienceExists');
 
-const { getAllBookings,
-        newComment} = require('./controllers/bookings');
-
-const { deleteExperience } = require('./controllers/experiences');
+// ###############################################
+// ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
+// ###############################################
 
 const {
     deleteUser,
@@ -28,10 +26,7 @@ const {
     validateUser,
 } = require('./controllers/users');
 
-// ###############################################
-// ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
-// ###############################################
-
+const { getAllExperiences } = require('./controllers/experiences');
 // Logger.
 app.use(morgan('dev'));
 
