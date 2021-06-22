@@ -16,9 +16,9 @@ const addPhotoExperience = async (req, res, next) => {
         );
 
         // Si el usuario tiene 3 o más fotos en una entrada...
-        if (photoExperience.length >= 3) {
+        if (photoExperience.length >= 5) {
             const error = new Error(
-                'Tienes 3 fotos asignadas a esta entrada, no puedes subir más fotos'
+                'Tienes 5 fotos asignadas a esta experiencia, no puedes subir más fotos'
             );
             error.httpStatus = 403;
             throw error;
