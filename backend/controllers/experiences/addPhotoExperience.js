@@ -9,19 +9,11 @@ const addPhotoExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp } = req.params;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         if (req.userAuth.rol !== 'admin') {
             const error = new Error('No tienes permisos para añadir fotos');
             error.httpStatus = 401;
             throw error;
         }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         const [photoExperience] = await connection.query(
             `SELECT id FROM photos WHERE id_experience = ?;`,
             [idExp]
@@ -44,11 +36,7 @@ const addPhotoExperience = async (req, res, next) => {
 
             // Guardamos la foto.
             await connection.query(
-<<<<<<< Updated upstream
-                `INSERT INTO photos (url, id_experience) VALUES (?, ? );`,
-=======
                 `INSERT INTO photos (url, id_experience) VALUES (?, ?);`,
->>>>>>> Stashed changes
                 [photoName, idExp]
             );
         }
