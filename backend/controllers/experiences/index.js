@@ -1,5 +1,5 @@
 'use strict';
 
-const { getAllExperiences } = require('./getAllExperiences');
+const deleteExperience = require('./deleteExperience');
 
-module.exports = { getAllExperiences };
+module.exports = { deleteExperience };

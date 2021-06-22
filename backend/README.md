@@ -112,11 +112,13 @@
 
 - **GET** - [/booking] - Obtener todas las reservas
 
-- **GET** - [/booking/:idBooking] - Obtener las reservas de una experiencia 
+- **GET** - [/booking/:idBooking] - Obtener las reservas de una experiencia.
 
-- **POST** - [/booking/coments/:idComent] - Crear un comentario
+- **POST** - [/booking] - Crear una nueva reserva.
 
-- **POST** - [/booking/:idBooking/rating] - Agregar una Valoración
+- **PUT** - [/booking/coments/:idBooking] - Crear un comentario de la reserva.
+
+- **PUT** - [/booking/:idBooking/rating] - Agregar una Valoración sobre la reserva.
 
 
 ### Endpoints Opcionales de reservas.

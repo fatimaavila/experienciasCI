@@ -39,11 +39,6 @@ app.use(fileUpload());
 // #################################
 // ## MIDDLEWARES DE EXPERIENCIAS ##
 // #################################
-app.get('/experiences', getAllExperiences);
-app.put('/experiences/:id', authUser, experienceExists, editExperience);
-/* app.get('/experiences/:id', getExperience);
-app.delete('/experiences/:id', deleteExperience);
-app.delete('/', deletePhotoExperience); */
 
 // #############################
 // ## MIDDLEWARES DE USUARIOS ##
@@ -62,7 +57,7 @@ app.delete('/users/:idUser', authUser, userExists, deleteUser); // deleteUser
 // #############################
 // ## MIDDLEWARES DE RESERVAS ##
 // #############################
-app.put('bookings/:id', authUser, editBooking);
+
 // ##########################
 // ## MIDDLEWARES DE ERROR ##
 // ##########################
