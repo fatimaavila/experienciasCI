@@ -72,7 +72,7 @@ const editUser = async (req, res, next) => {
             );
         }
 
-        if (phone && phone !== user[0].phone) {
+        if (phone && phone !== user[0].telefono) {
            
             const [existingPhone] = await connection.query(
                 `SELECT id FROM users WHERE telefono = ?;`,
