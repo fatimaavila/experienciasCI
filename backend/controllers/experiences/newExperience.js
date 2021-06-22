@@ -22,7 +22,7 @@ const newExperience = async (req, res, next) => {
             dStop,
         } = req.body;
         //const { idUser } = req.userAuth;
-        if (req.userAuth.rol !== admin) {
+        if (req.userAuth.rol !== 'admin') {
             const error = new Error(
                 'El usuario no tiene permisos para crear una nueva experiencia'
             );
@@ -57,8 +57,9 @@ const newExperience = async (req, res, next) => {
 
         // Si recibimos fotos a través de req.files...
         if (req.files) {
-            for (const photo of Object.values(req.files).slice(0, 3)) {
+            for (const photo of Object.values(req.files.photo).slice(0, 3)) {
                 // Guardamos la imagen en el disco y obtenemos su nombre.
+                console.log(Object.values(req.files.photo));
                 const photoName = await savePhoto(photo);
 
                 photos.push(photoName);
@@ -66,7 +67,7 @@ const newExperience = async (req, res, next) => {
                 // Guardamos la foto en la base de datos.
                 await connection.query(
                     `INSERT INTO photos (url, id_experience, alt) VALUES (?, ?, ?);`,
-                    [photoName, idExp, req.files.photo]
+                    [photoName, idExp, photoName]
                 );
             }
         }
@@ -83,6 +84,9 @@ const newExperience = async (req, res, next) => {
                 participants,
                 dStart,
                 dStop,
+                photos: {
+                    ...photos
+                }
             },
         });
     } catch (error) {
