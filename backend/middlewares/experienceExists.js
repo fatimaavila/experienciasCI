@@ -2,6 +2,8 @@
 
 const getDB = require('../bbdd/db');
 
+let connection;
+
 const experienceExists = async(req, res, next) => {
     try {
         connection = await getDB();

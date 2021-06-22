@@ -11,6 +11,9 @@ const canDoAnything = require('./middlewares/canDoAnything');
 const userExists = require('./middlewares/userExists');
 const experienceExists = require('./middlewares/experienceExists');
 
+const { getAllBookings,
+        newComment} = require('./controllers/bookings');
+
 const { deleteExperience } = require('./controllers/experiences');
 
 const {
