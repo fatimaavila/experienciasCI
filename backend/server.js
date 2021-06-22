@@ -63,7 +63,7 @@ app.post('/experiences', authUser, newExperience); // newExperience
 app.post('/experiences/:idExp/photo', authUser, addPhotoExperience); //addPhotoExperience
 app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); //deleteExperience
 app.delete(
-    '/experiences/:idExp/photo',
+    '/experiences/:idExp/photo/:idPhoto',
     authUser,
     experienceExists,
     deletePhotoExperience
@@ -91,6 +91,7 @@ app.get('bookings/:idBooking', authUser, getBooking); //getBooking
 app.post('bookings/', authUser, newBooking); //newBooking
 app.put('bookings/:idBooking/coments', authUser, newComment); //newComment
 app.put('bookings/:idBooking/rating', authUser, newRating); //newRating
+app.delete('bookings/:idBooking', authUser, deleteBooking); //deleteBooking
 
 // ##########################
 // ## MIDDLEWARES DE ERROR ##

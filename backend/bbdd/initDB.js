@@ -60,7 +60,8 @@ const initDB = async () => {
             num_participantes INT NOT NULL,
             disp BOOLEAN DEFAULT 1 NOT NULL,
             fecha_inicio DATE NOT NULL,
-            fecha_fin DATE NOT NULL
+            fecha_fin DATE NOT NULL,
+            modifiedAt DATETIME
         );
         `);
 

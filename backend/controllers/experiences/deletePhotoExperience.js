@@ -9,12 +9,16 @@ const deletePhotoExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp, idPhoto } = req.params;
-
+        if (req.userAuth.rol !== 'admin') {
+            const error = new Error('No tienes permisos para eliminar fotos');
+            error.httpStatus = 401;
+            throw error;
+        }
         const [photo] = await connection.query(
-            `SELECT name FROM photos WHERE id = ? AND id_experience = ?;`,
+            `SELECT url FROM photos WHERE id = ? AND id_experience = ?;`,
             [idPhoto, idExp]
         );
-
+        console.log(idExp);
         if (photo.length < 1) {
             const error = new Error('La foto no existe');
             error.httpStatus = 404;
@@ -22,7 +26,7 @@ const deletePhotoExperience = async (req, res, next) => {
         }
 
         // Borramos la foto del servidor.
-        await deletePhoto(photo[0].name);
+        await deletePhoto(photo[0].url);
 
         // Borramos la foto de la base de datos.
         await connection.query(
