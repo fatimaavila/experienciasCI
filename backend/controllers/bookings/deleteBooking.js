@@ -22,8 +22,7 @@ const deleteBooking = async (req, res, next) => {
             throw error;
         }
         await connection.query(
-            `
-            DELETE * FROM bookings WHERE id = ?;
+            `DELETE FROM bookings WHERE id = ?;
             `,
             [idBooking]
         );

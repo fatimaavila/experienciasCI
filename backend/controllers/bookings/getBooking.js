@@ -29,7 +29,6 @@ const getBooking = async (req, res, next) => {
             status: 'ok',
             data: {
                 ...booking[0],
-                photos,
             },
         });
     } catch (error) {
