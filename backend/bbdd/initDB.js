@@ -74,7 +74,7 @@ const initDB = async () => {
             fecha_compra DATETIME,
             precio_total DECIMAL(5, 2) NOT NULL,
             estado BOOLEAN DEFAULT 1 NOT NULL,
-            valoracion TINYINT ,
+            valoracion TINYINT,
             comentario TEXT,
             id_user INT UNSIGNED,
             FOREIGN KEY (id_user) REFERENCES users (id) ,
