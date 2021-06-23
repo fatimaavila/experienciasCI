@@ -9,11 +9,13 @@ const addPhotoExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp } = req.params;
-        if (req.userAuth.rol !== 'admin') {
+
+        if(req.userAuth.rol !== 'admin') {
             const error = new Error('No tienes permisos para añadir fotos');
             error.httpStatus = 401;
             throw error;
         }
+        
         const [photoExperience] = await connection.query(
             `SELECT id FROM photos WHERE id_experience = ?;`,
             [idExp]
