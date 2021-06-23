@@ -9,17 +9,11 @@ const recoverUserPassword = async (req, res, next) => {
 
         const { email } = req.body;
 
-        if (!email) {
-            const error = new Error('Faltan campos');
-            error.httpStatus = 400;
-            throw error;
-        }
-
         const [user] = await connection.query(
             `SELECT id FROM users WHERE email = ?;`,
             [email]
         );
-        console.log(user);
+
         if (user.length < 1) {
             const error = new Error(
                 `El correo no corresponde con ninguna cuenta`
