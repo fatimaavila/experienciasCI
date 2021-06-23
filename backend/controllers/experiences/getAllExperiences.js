@@ -14,6 +14,7 @@ const getAllExperiences = async (req, res, next) => {
             disp,
             fecha_inicio,
             fecha_fin,
+            order,
         } = req.query;
 
         let result;
@@ -125,6 +126,10 @@ const getAllExperiences = async (req, res, next) => {
                 `
             ); 
         } */
+
+        // if(order) {
+
+        // }
 
         res.send({
             status: 'ok',
