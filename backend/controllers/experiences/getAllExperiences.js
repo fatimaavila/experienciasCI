@@ -5,78 +5,118 @@ const getAllExperiences = async (req, res, next) => {
 
     try {
         connection = await getDB();
-        const { search, city, price, category, disp, dStart, dEnd } = req.query;
+        const {
+            search,
+            city,
+            precio,
+            category,
+            disp,
+            fecha_inicio,
+            fecha_fin,
+            order,
+        } = req.query;
+
         let result;
-        const [citys] = await connection.query(
-            `
-            SELECT ciudad FROM experiences GROUP BY ciudad;
-            `
-        );
-        const validateCity = citys.map((citys) => {
-            return citys.city;
-        });
         let sqlExperience = 'SELECT * FROM experiences';
         let separador = 'WHERE';
 
+        
         if (search) {
-            [result] = await connection.query(
-                `
-                ${sqlExperience} ${separador} nombre LIKE ? ;
-                `,
-                [`%${search}%`]
-            );
+            sqlExperience = `${sqlExperience} ${separador} nombre LIKE '%${search}%'`
+            await connection.query(sqlExperience);
+            separador = 'AND';
+        }
+        
+        if (precio && precio > 0 && precio <= 50) {
+            
+            sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 0 AND 50;`;
+            await connection.query(sqlExperience);
+            separador = 'AND';
+            console.log(sqlExperience);
+
+        } else if (precio && precio > 50 && precio <= 100) {
+
+            sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 51 AND 100;`
+            [result] = await connection.query(sqlExperience);
+            separador = 'AND';
+
+        } else if (precio && precio > 100 && precio <= 200) {
+
+            sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 101 AND 200`
+            [result] = await connection.query(sqlExperience);
+            separador = 'AND';
+
+        } else if (precio && precio > 200) {
+
+            sqlExperience = `${sqlExperience} ${separador} precio > 200`
+            [result] = await connection.query(sqlExperience);
+            separador = 'AND';
+
         }
 
-        if (price > 0 && price <= 50) {
-            [result] = await connection.query(
-                `
-                ${sqlExperience} ${separador} precio BETWEEN 0 AND 50;
-                `
-            );
-        } else if (price > 50 && price <= 100) {
-            [result] = await connection.query(
-                `
-                ${sqlExperience} ${separador} precio BETWEEN 51 AND 100;
-                `
-            );
-        } else if (price > 100 && price <= 200) {
-            [result] = await connection.query(
-                `
-                ${sqlExperience} ${separador} precio BETWEEN 101 AND 200;
-                `
-            );
-        } else if (price > 200) {
-            [result] = await connection.query(
-                `
-                ${sqlExperience} ${separador} precio > 200;
-                `
-            );
-        }
         if (city) {
-            [result] = await connection.query(
+
+            const [cities] = await connection.query(
                 `
-                ${sqlExperience} ${separador} ciudad LIKE ? ;
-                `,
-                [`%${city}%`]
+                SELECT ciudad FROM experiences GROUP BY ciudad;
+                `
             );
+    
+            const validateCity = cities.map((city) => {
+                return city.ciudad;
+            });
+    
+            let cityFilter = validateCity.includes(city);
+    
+            if(cityFilter) {
+                cityFilter = city;
+            } else {
+                const errorCity = new Error('No existe ninguna experiencia en esa ciudad');
+                errorCity.httpStatus = 404;
+                throw errorCity;
+            }
+
+            sqlExperience = `${sqlExperience} ${separador} ciudad = ? ;`
+            [result] = await connection.query(sqlExperience,[cityFilter]);
+            separador = 'AND';
+
         }
         if (category) {
-            [result] = await connection.query(
+
+            const [categories] = await connection.query(
                 `
-                ${sqlExperience} ${separador} categorias LIKE ? ;
-                `,
-                [`%${category}%`]
-            );
-        }
-        if (disp === 1) {
-            [result] = await connection.query(
+                SELECT categorias FROM experiences GROUP BY categorias;
                 `
-                 ${sqlExperience} ${separador} disp LIKE ? ;
-                 `,
-                [`%${disp}%`]
             );
+            const validateCategory = categories.map((category) => {
+                return category.categorias;
+            });
+    
+            let categoryFilter = validateCategory.includes(category);
+    
+            if(categoryFilter) {
+                categoryFilter = category;
+            } else {
+                const errorCategory = new Error('No existe ninguna experiencia de esa categoria');
+                errorCategory.httpStatus = 404;
+                throw errorCategory;
+            }
+
+            sqlExperience = `${sqlExperience} ${separador} categorias = ? ;`
+            [result] = await connection.query(sqlExperience,[category]);
+            separador = 'AND';
+
         }
-        if ((dStart, dEnd)) {
+
+        // if (disp) {
+        //     [result] = await connection.query(
+        //         `
+        //          ${sqlExperience} ${separador} disp LIKE ? ;
+        //          `,
+        //         [`%${disp}%`]
+        //     );
+        // }
+        /*    if (fecha_inicio > 0 && fecha_fin > 0) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} fecha_inicio >= '${dStart}' AND fecha_fin <= '${dEnd}'
@@ -84,7 +124,7 @@ const getAllExperiences = async (req, res, next) => {
                 [`${finicio},${ffin}`]
             );
         }
-        console.log(finicio, ffin);
+        console.log(finicio, ffin);*/
 
         if (
             !search &&
@@ -102,9 +142,13 @@ const getAllExperiences = async (req, res, next) => {
             );
         }
 
+        // if(order) {
+
+        // }
+
         res.send({
             status: 'ok',
-            data: result,
+            data: sqlExperience[0],
         });
     } catch (error) {
         next(error);

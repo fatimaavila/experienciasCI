@@ -59,7 +59,7 @@ const newExperience = async (req, res, next) => {
         if (req.files) {
             for (const photo of Object.values(req.files.photo).slice(0, 3)) {
                 // Guardamos la imagen en el disco y obtenemos su nombre.
-                console.log(Object.values(req.files.photo));
+
                 const photoName = await savePhoto(photo);
 
                 photos.push(photoName);
