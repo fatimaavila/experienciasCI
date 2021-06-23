@@ -2,7 +2,6 @@ const getDB = require('../../bbdd/db');
 const { formatDate } = require('../../helpers');
 const getAllExperiences = async (req, res, next) => {
     let connection;
-    const now = new Date();
 
     try {
         connection = await getDB();
@@ -120,12 +119,28 @@ const getAllExperiences = async (req, res, next) => {
         /*    if (fecha_inicio > 0 && fecha_fin > 0) {
             [result] = await connection.query(
                 `
-                ${sqlExperience} ${separador} fecha_inicio BETWEEN fecha_fin AND ${formatDate(
-                    now
-                )};
+                ${sqlExperience} ${separador} fecha_inicio >= '${dStart}' AND fecha_fin <= '${dEnd}'
+                `,
+                [`${finicio},${ffin}`]
+            );
+        }
+        console.log(finicio, ffin);*/
+
+        if (
+            !search &&
+            !city &&
+            !category &&
+            !disp &&
+            !price &&
+            !finicio &&
+            !ffin
+        ) {
+            [result] = await connection.query(
                 `
-            ); 
-        } */
+                 ${sqlExperience} 
+                 `
+            );
+        }
 
         // if(order) {
 
