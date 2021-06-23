@@ -28,9 +28,9 @@ const getExperience = async (req, res, next) => {
             status: 'ok',
             data: {
                 ...experience[0],
-                photos: {
-                    ...photos,
-                },
+
+                    ...photos
+
             },
         });
     } catch (error) {
