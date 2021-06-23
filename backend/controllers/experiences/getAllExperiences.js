@@ -9,7 +9,10 @@ const getAllExperiences = async (req, res, next) => {
         const {
             search,
             ciudad,
-            precio,
+            precio1,
+            precio2,
+            precio3,
+            precio4,
             categorias,
             disp,
             fecha_inicio,
@@ -34,38 +37,43 @@ const getAllExperiences = async (req, res, next) => {
                 `,
                 [`%${search}%`]
             );
-            separador = 'AND';
+        } else {
+            [result] = await connection.query(
+                `
+                 ${sqlExperience} 
+                 `
+            );
         }
-
-        if (precio < 0 && precio > 50) {
+        if (precio1) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} precio BETWEEN 0 AND 50;
                 `
             );
         }
-        console.log(precio);
-        if (precio < 50 && precio > 100) {
+
+        if (precio2) {
             [result] = await connection.query(
                 `
-                ${sqlExperience} ${separador} precio BETWEEN 50 AND 100;
+                ${sqlExperience} ${separador} precio BETWEEN 51 AND 100;
                 `
             );
         }
-        if (precio < 100 && precio > 200) {
+        if (precio3) {
             [result] = await connection.query(
                 `
-                ${sqlExperience} ${separador} precio BETWEEN 100 AND 200;
+                ${sqlExperience} ${separador} precio BETWEEN 101 AND 200;
                 `
             );
         }
-        if (precio > 200) {
+        if (precio4) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} precio > 200;
                 `
             );
         }
+        console.log([result]);
         if (ciudad) {
             [result] = await connection.query(
                 `
@@ -89,14 +97,8 @@ const getAllExperiences = async (req, res, next) => {
                  `,
                 [`%${disp}%`]
             );
-        } /* else {
-            [result] = await connection.query(
-                `
-                 ${sqlExperience} 
-                 `
-            );
         }
-           */ /*    if (fecha_inicio > 0 && fecha_fin > 0) {
+        /*    if (fecha_inicio > 0 && fecha_fin > 0) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} fecha_inicio BETWEEN fecha_fin AND ${formatDate(
