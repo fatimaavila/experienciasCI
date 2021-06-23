@@ -176,7 +176,7 @@ const initDB = async () => {
 
     Tengáis o no experiencia y, sea cual sea vuestra edad, ¡volad!',
     'Vuelo Paramotor para dos',
-    'Valencia',150.00,'Vuelo',2,false,'2021-10-15','2021-05-30'),
+    'Valencia',150.00,'Vuelo',2,false,'2021-02-15','2021-06-30'),
     (6,
     '¿Quieres disfrutar de un día lleno de emociones? Diviértete con una Excursión en Moto Acuática por la Catedral de Palma o en la Reserva Natural "Los Deltas" de Mallorca.
 
@@ -279,7 +279,7 @@ const initDB = async () => {
 
     Déjate llevar por la magia de estas cuevas de Mallorca. ¡Visítalas!',
     'Entrada a Cuevas dels Hams',
-    'Palma de Mallorca',20.00,'Aventura',20,false,'2021-10-15','2021-05-30'),
+    'Palma de Mallorca',20.00,'Aventura',20,false,'2021-02-15','2021-05-30'),
     (16,
     'Adentraos en un spa japonés en pleno centro de Madrid: Esenzias Spa. Cuidad vuestro bienestar de una forma original y que os dejará totalmente renovados.
 
@@ -382,7 +382,7 @@ const initDB = async () => {
 
     Disfrutad y sacadle el máximo provecho a esta actividad de enoturismo. ¿Preparados?',
     'Enoturismo: Visita a Viñedos y Bodega, Cata de Vinos, Almuerzo y Actividades de Vinicultura',
-    'Álava',65.00,'Gastronomia',20,true,'2021-10-15','2021-05-30'),
+    'Álava',65.00,'Gastronomia',20,true,'2021-02-15','2021-06-30'),
     (26,
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Formula 2.0.
 

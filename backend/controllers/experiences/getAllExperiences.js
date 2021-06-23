@@ -2,30 +2,18 @@ const getDB = require('../../bbdd/db');
 const { formatDate } = require('../../helpers');
 const getAllExperiences = async (req, res, next) => {
     let connection;
-    const now = new Date();
 
     try {
         connection = await getDB();
-        const {
-            search,
-            ciudad,
-            precio1,
-            precio2,
-            precio3,
-            precio4,
-            categorias,
-            disp,
-            fecha_inicio,
-            fecha_fin,
-        } = req.query;
+        const { search, city, price, category, disp, dStart, dEnd } = req.query;
         let result;
-        const [city] = await connection.query(
+        const [citys] = await connection.query(
             `
             SELECT ciudad FROM experiences GROUP BY ciudad;
             `
         );
-        const validateCity = city.map((city) => {
-            return city.ciudad;
+        const validateCity = citys.map((citys) => {
+            return citys.city;
         });
         let sqlExperience = 'SELECT * FROM experiences';
         let separador = 'WHERE';
@@ -37,60 +25,50 @@ const getAllExperiences = async (req, res, next) => {
                 `,
                 [`%${search}%`]
             );
-        } else {
-            [result] = await connection.query(
-                `
-                 ${sqlExperience} 
-                 `
-            );
         }
-        if (precio1) {
+
+        if (price > 0 && price <= 50) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} precio BETWEEN 0 AND 50;
                 `
             );
-        }
-
-        if (precio2) {
+        } else if (price > 50 && price <= 100) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} precio BETWEEN 51 AND 100;
                 `
             );
-        }
-        if (precio3) {
+        } else if (price > 100 && price <= 200) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} precio BETWEEN 101 AND 200;
                 `
             );
-        }
-        if (precio4) {
+        } else if (price > 200) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} precio > 200;
                 `
             );
         }
-        console.log([result]);
-        if (ciudad) {
+        if (city) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} ciudad LIKE ? ;
                 `,
-                [`%${ciudad}%`]
+                [`%${city}%`]
             );
         }
-        if (categorias) {
+        if (category) {
             [result] = await connection.query(
                 `
                 ${sqlExperience} ${separador} categorias LIKE ? ;
                 `,
-                [`%${categorias}%`]
+                [`%${category}%`]
             );
         }
-        if (disp) {
+        if (disp === 1) {
             [result] = await connection.query(
                 `
                  ${sqlExperience} ${separador} disp LIKE ? ;
@@ -98,15 +76,31 @@ const getAllExperiences = async (req, res, next) => {
                 [`%${disp}%`]
             );
         }
-        /*    if (fecha_inicio > 0 && fecha_fin > 0) {
+        if ((dStart, dEnd)) {
             [result] = await connection.query(
                 `
-                ${sqlExperience} ${separador} fecha_inicio BETWEEN fecha_fin AND ${formatDate(
-                    now
-                )};
+                ${sqlExperience} ${separador} fecha_inicio >= '${dStart}' AND fecha_fin <= '${dEnd}'
+                `,
+                [`${finicio},${ffin}`]
+            );
+        }
+        console.log(finicio, ffin);
+
+        if (
+            !search &&
+            !city &&
+            !category &&
+            !disp &&
+            !price &&
+            !finicio &&
+            !ffin
+        ) {
+            [result] = await connection.query(
                 `
-            ); 
-        } */
+                 ${sqlExperience} 
+                 `
+            );
+        }
 
         res.send({
             status: 'ok',
