@@ -6,16 +6,23 @@ const getBooking = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { idBook } = req.params;
-
+        const { idBooking } = req.params;
+        const { idUser } = req.userAuth;
+        if (req.userAuth.idUser !== Number(idUser)) {
+            const error = new Error(
+                'No tienes permisos para eliminar la reserva'
+            );
+            error.httpStatus = 403;
+            throw error;
+        }
+        console.log(idBooking);
         // Obtenemos la información de la reserva.
         const [booking] = await connection.query(
-            `
-                SELECT *
-                FROM bookings
-                WHERE id = ?;
+            `SELECT *
+             FROM bookings
+             WHERE id = ?;
             `,
-            [idBook]
+            [idBooking]
         );
 
         res.send({

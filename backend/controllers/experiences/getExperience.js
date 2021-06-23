@@ -20,7 +20,7 @@ const getExperience = async (req, res, next) => {
 
         // Obtenemos la información de las fotos asiganadas a la exp.
         const [photos] = await connection.query(
-            `SELECT id, url, alt FROM photos WHERE id_experiencia = ?`,
+            `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
             [idExp]
         );
 

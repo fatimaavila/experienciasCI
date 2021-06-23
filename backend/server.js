@@ -62,7 +62,12 @@ app.get('/experiences/:idExp', experienceExists, getExperience); //getExperience
 app.post('/experiences', authUser, newExperience); // newExperience
 app.post('/experiences/:idExp/photo', authUser, addPhotoExperience); //addPhotoExperience
 app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); //deleteExperience
-app.delete('/experiences/:idExp/photo/:idPhoto', authUser, experienceExists, deletePhotoExperience); //deletePhoto
+app.delete(
+    '/experiences/:idExp/photo/:idPhoto',
+    authUser,
+    experienceExists,
+    deletePhotoExperience
+); //deletePhoto
 app.put('/experiences/:idExp', authUser, experienceExists, editExperience); //editExperience
 // #############################
 // ## MIDDLEWARES DE USUARIOS ##
@@ -81,12 +86,12 @@ app.delete('/users/:idUser', authUser, userExists, deleteUser); // deleteUser
 // #############################
 // ## MIDDLEWARES DE RESERVAS ##
 // #############################
-app.get('bookings/', authUser, getAllBookings); //getAllBookings
-app.get('bookings/:idBooking', authUser, getBooking); //getBooking
-app.post('bookings/', authUser, newBooking); //newBooking
-app.put('bookings/:idBooking/coments', authUser, newComment); //newComment
-app.put('bookings/:idBooking/rating', authUser, newRating); //newRating
-app.delete('bookings/:idBooking', authUser, deleteBooking); //deleteBooking
+app.get('/bookings', authUser, getAllBookings); //getAllBookings
+app.get('/bookings/:idBooking', authUser, getBooking); //getBooking
+app.post('/bookings', authUser, newBooking); //newBooking
+app.put('/bookings/:idBooking/coments', authUser, newComment); //newComment
+app.put('/bookings/:idBooking/rating', authUser, newRating); //newRating
+app.delete('/bookings/:idBooking', authUser, deleteBooking); //deleteBooking
 
 // ##########################
 // ## MIDDLEWARES DE ERROR ##

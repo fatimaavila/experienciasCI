@@ -85,8 +85,8 @@ const newExperience = async (req, res, next) => {
                 dStart,
                 dStop,
                 photos: {
-                    ...photos
-                }
+                    ...photos,
+                },
             },
         });
     } catch (error) {
