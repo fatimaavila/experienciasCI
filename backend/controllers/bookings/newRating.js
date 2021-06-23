@@ -8,10 +8,19 @@ const voteBooking = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { idUser } = req.userAuth;
-        const { idExp } = req.params;
+        const { idBooking } = req.params;
         const { vote } = req.body;
-
+        const [booking] = await connection.query(
+            `SELECT id_user, id_experience, valoracion FROM bookings WHERE id = ?;`,
+            [idBooking]
+        );
+        if (req.userAuth.idUser !== Number(booking[0].id_user)) {
+            const error = new Error(
+                'No tienes permisos para votar esta reserva'
+            );
+            error.httpStatus = 401;
+            throw error;
+        }
         // Si el voto es menor que 1 o mayor que 5...
         if (vote < 1 || vote > 5) {
             const error = new Error('El voto debe estar entrew 1 y 5');
@@ -19,15 +28,7 @@ const voteBooking = async (req, res, next) => {
             throw error;
         }
 
-        // Comprobamos si el usuario actual ya ha votado anteriormente esta entrada.
-        const [alreadyVote] = await connection.query(
-            `SELECT valoracion FROM bookings WHERE id_user = ? AND id_experience = ?`,
-            [idUser, idExp]
-        );
-
-        // Si la longitud de "alreadyVote" es mayor que 0 quiere decir que el usuario ya
-        // ha votado.
-        if (alreadyVote.length > 0) {
+        if (booking[0].valoracion > 0) {
             const error = new Error(
                 'Ya votaste esta experiencia anteriormente'
             );
@@ -37,8 +38,8 @@ const voteBooking = async (req, res, next) => {
 
         // Añadimos el voto a la tabla.
         await connection.query(
-            `UPDATE bookings SET valoracion = ? WHERE id_user = ${idUSer} AND id_experience = ${idExp};`,
-            [vote, idUser, idExp]
+            `UPDATE bookings SET valoracion = ? WHERE id_user = ? AND id_experience = ?;`,
+            [vote, booking[0].id_user, booking[0].id_experience]
         );
 
         // Obtenemos la nueva media.
@@ -48,7 +49,7 @@ const voteBooking = async (req, res, next) => {
                 FROM bookings                
                 WHERE id_experience = ?;
             `,
-            [idExp]
+            [booking[0].id_experience]
         );
 
         res.send({

@@ -89,7 +89,7 @@ app.delete('/users/:idUser', authUser, userExists, deleteUser); // deleteUser
 app.get('/bookings', authUser, getAllBookings); //getAllBookings
 app.get('/bookings/:idBooking', authUser, getBooking); //getBooking
 app.post('/bookings', authUser, newBooking); //newBooking
-app.put('/bookings/:idBooking/coments', authUser, newComment); //newComment
+app.put('/bookings/:idBooking/comments', authUser, newComment); //newComment
 app.put('/bookings/:idBooking/rating', authUser, newRating); //newRating
 app.delete('/bookings/:idBooking', authUser, deleteBooking); //deleteBooking
 
