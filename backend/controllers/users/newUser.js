@@ -2,19 +2,20 @@
 
 const getDB = require('../../bbdd/db');
 const {
-    //validate,
+    validate,
     generateRandomString,
     sendMail,
     formatDate,
     savePhoto,
 } = require('../../helpers');
-//const { newUserSchema } = require('../../schemas');
+
+const { newUserSchema } = require('../../validations/newSchemaUserExperience');
 let connection;
 
 const newUser = async (req, res, next) => {
     try {
         connection = await getDB();
-        // await validate(newUserSchema, req.body);
+        await validate(newUserSchema, req.body);
         const {
             username,
             email,
@@ -27,22 +28,6 @@ const newUser = async (req, res, next) => {
             bio,
             phone,
         } = req.body;
-
-        if (
-            !email ||
-            !password ||
-            !username ||
-            !name ||
-            !last ||
-            !bio ||
-            !dni ||
-            !cp ||
-            !address
-        ) {
-            const error = new Error('Faltan campos');
-            error.httpStatus = 400;
-            throw error;
-        }
 
         const [user] = await connection.query(
             `SELECT id FROM users WHERE email = ? OR username = ?;`,

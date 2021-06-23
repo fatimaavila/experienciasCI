@@ -1,13 +1,16 @@
 'use strict';
 
 const getDB = require('../../bbdd/db');
-const { formatDate } = require('../../helpers');
+const { formatDate, validate } = require('../../helpers');
+const { newSchemaEditPassword } = require('../../validations/newSchemaEditPassword');
 
 let connection;
 
 const editUserPassword = async (req, res, next) => {
     try {
         connection = await getDB();
+
+        await validate(newSchemaEditPassword, req.body);
 
         const { idUser } = req.params;
         const { oldPassword, newPassword } = req.body;

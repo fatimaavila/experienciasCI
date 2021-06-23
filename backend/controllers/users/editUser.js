@@ -1,7 +1,8 @@
 'use strict';
 
 const getDB = require('../../bbdd/db');
-const { formatDate } = require('../../helpers');
+const { formatDate, validate } = require('../../helpers');
+const { newUserSchema } = require('../../validations/newSchemaUserExperience');
 
 let connection;
 
@@ -15,19 +16,7 @@ const editUser = async (req, res, next) => {
 
         const now = new Date();
 
-        if (
-            !email &&
-            !ccc &&
-            !address &&
-            !phone &&
-            !bio &&
-            !cp &&
-            !(req.files && req.files.avatar)
-        ) {
-            const error = new Error('Faltan campos');
-            error.httpStatus = 400;
-            throw error;
-        }
+        await validate(newUserSchema, req.body); 
 
         if (req.userAuth.idUser !== Number(idUser)) {
             const error = new Error(
