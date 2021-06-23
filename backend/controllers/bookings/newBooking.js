@@ -14,7 +14,6 @@ const newBooking = async (req, res, next) => {
         const { units, dateBooking, totalPrice, idExp } = req.body;
         const { idUser } = req.userAuth;
         const now = new Date();
-        state = 1;
         const datePurchase = formatDate(now);
 
         const [newBooking] = await connection.query(
@@ -26,7 +25,12 @@ const newBooking = async (req, res, next) => {
         );
 
         const { insertId: idBook } = newBooking;
-
+        const [state] = await connection.query(
+            `
+            SELECT estado FROM bookings WHERE id = ?;
+            `,
+            [idBook]
+        );
         res.send({
             status: 'ok',
             data: {
@@ -35,9 +39,9 @@ const newBooking = async (req, res, next) => {
                 dateBooking,
                 datePurchase,
                 totalPrice,
-                state,
                 idUser,
                 idExp,
+                ...state[0],
             },
         });
     } catch (error) {
