@@ -2,8 +2,8 @@
 
 const getDB = require('../../bbdd/db');
 const { validate } = require('../../helpers');
+const { newSchemaComment } = require('../../validations/newSchemaComment');
 let connection;
-const { newSchemaComment } = require('../../validations');
 const newComment = async (req, res, next) => {
     try {
         connection = await getDB();

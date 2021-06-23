@@ -17,11 +17,13 @@ const newSchemaComment = Joi.object().keys({
                     );
                 case 'string.min':
                     return new Error(
-                        'El campo comentario no contener menos de 15 caracteres'
+                        'El campo comentario no puede contener menos de 15 caracteres'
                     );
 
                 default:
-                    return new Error('El comentario no valido.');
+                    return new Error(
+                        'El campo comentario no puede estar vacio'
+                    );
             }
         }),
 });
