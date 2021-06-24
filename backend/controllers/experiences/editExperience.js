@@ -38,7 +38,7 @@ const editExperience = async (req, res, next) => {
         name = name || experience[0].nombre;
         city = city || experience[0].ciudad;
         price = price || experience[0].precio;
-        category = category || experience[0].categorias;
+        category = category || experience[0].categoria;
         participants = participants || experience[0].num_participantes;
         disp = disp || experience[0].disp;
         sDate = sDate || experience[0].fecha_inicio;
@@ -48,7 +48,7 @@ const editExperience = async (req, res, next) => {
         disp = 1;
         await connection.query(
             `UPDATE experiences SET descripcion = ?, nombre = ?,ciudad = ?,
-             precio = ?, categorias = ?, num_participantes = ?, disp = ?,
+             precio = ?, categoria = ?, num_participantes = ?, disp = ?,
              fecha_inicio = ?, fecha_fin = ?, modifiedAt = ? WHERE id = ?;`,
             [
                 description,

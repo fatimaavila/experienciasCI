@@ -1,5 +1,6 @@
 const getDB = require('../../bbdd/db');
-const { generateRandomString, sendMail } = require('../../helpers');
+const { generateRandomString } = require('../../helpers');
+const sendMail = require('../../src/sendMail');
 
 const recoverUserPassword = async (req, res, next) => {
     let connection;

@@ -14,6 +14,12 @@ const deleteUser = async (req, res, next) => {
 
         const { idUser } = req.params;
 
+        if(Number(idUser) === 1 || Number(idUser) === 2 || Number(idUser) === 3) {
+            const error = new Error('Los usuarios administradores no pueden ser eliminados');
+            error.httpStatus = 403;
+            throw error;
+        }
+
         if (
             Number(idUser) === 1 ||
             Number(idUser) === 2 ||
@@ -36,6 +42,7 @@ const deleteUser = async (req, res, next) => {
             error.httpStatus = 401;
             throw error;
         }
+        console.log(req.userAuth.rol);
 
         const [user] = await connection.query(
             `SELECT avatar FROM users WHERE id = ?;`,

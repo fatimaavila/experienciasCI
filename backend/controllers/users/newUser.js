@@ -4,12 +4,12 @@ const getDB = require('../../bbdd/db');
 const {
     validate,
     generateRandomString,
-    sendMail,
     formatDate,
     savePhoto,
 } = require('../../helpers');
 
 const { newUserSchema } = require('../../validations/newSchemaUserExperience');
+const sendMail = require('../../src/sendMail');
 let connection;
 
 const newUser = async (req, res, next) => {
@@ -45,13 +45,15 @@ const newUser = async (req, res, next) => {
         const registrationCode = generateRandomString(40);
 
         const emailBody = `
-            Te acabas de registrar en Van Experiences.
-            Pulsa en este link para verificar tu cuenta: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode}
+            <p>Te acabas de registrar en Van Experiences.</p>
+            <span class="mainEmail">${email}</span>
+            <p>Pulsa en este link para verificar tu cuenta:<p>
+            <a href="${process.env.PUBLIC_HOST}users/validate/${registrationCode}" target="_blank">Verifica tu email</a> 
         `;
 
         await sendMail({
             to: email,
-            subject: 'Activa tu cuenta en Van Experiences',
+            subject: `<h1>Activa tu cuenta en VAN Experiences</h1>`,
             body: emailBody,
         });
         console.log(req.files);

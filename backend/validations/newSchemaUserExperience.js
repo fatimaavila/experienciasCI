@@ -1,6 +1,5 @@
 'use strict';
 
-const { required } = require('joi');
 const Joi = require('joi');
 
 const newUserSchema = Joi.object().keys({
