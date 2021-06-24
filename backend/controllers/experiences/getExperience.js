@@ -8,7 +8,6 @@ const getExperience = async (req, res, next) => {
 
         const { idExp } = req.params;
 
-        // Obtenemos la información de la exp.
         const [experience] = await connection.query(
             `
                 SELECT *
@@ -18,7 +17,6 @@ const getExperience = async (req, res, next) => {
             [idExp]
         );
 
-        // Obtenemos la información de las fotos asiganadas a la exp.
         const [photos] = await connection.query(
             `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
             [idExp]
@@ -29,8 +27,8 @@ const getExperience = async (req, res, next) => {
             data: {
                 ...experience[0],
                 photos: {
-                    ...photos
-                }
+                    ...photos,
+                },
             },
         });
     } catch (error) {

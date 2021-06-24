@@ -13,10 +13,20 @@ const deleteUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
-
+        if (
+            Number(idUser) === 1 ||
+            Number(idUser) === 2 ||
+            Number(idUser) === 3
+        ) {
+            const error = new Error(
+                'Los usuarios administradores no pueden ser eliminados'
+            );
+            error.httpStatus = 403;
+            throw error;
+        }
         if (
             req.userAuth.idUser !== Number(idUser) &&
-            req.userAuth.role !== 'admin'
+            req.userAuth.rol !== 'admin'
         ) {
             const error = new Error(
                 'No tienes permisos para eliminar a este usuario'

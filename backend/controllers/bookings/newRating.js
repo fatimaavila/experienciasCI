@@ -1,7 +1,5 @@
 const getDB = require('../../bbdd/db');
 
-const { formatDate } = require('../../helpers');
-
 const voteBooking = async (req, res, next) => {
     let connection;
 
@@ -21,9 +19,9 @@ const voteBooking = async (req, res, next) => {
             error.httpStatus = 401;
             throw error;
         }
-        // Si el voto es menor que 1 o mayor que 5...
+
         if (vote < 1 || vote > 5) {
-            const error = new Error('El voto debe estar entrew 1 y 5');
+            const error = new Error('El voto debe estar entre 1 y 5');
             error.httpStatus = 400;
             throw error;
         }
@@ -36,13 +34,11 @@ const voteBooking = async (req, res, next) => {
             throw error;
         }
 
-        // Añadimos el voto a la tabla.
         await connection.query(
             `UPDATE bookings SET valoracion = ? WHERE id_user = ? AND id_experience = ?;`,
             [vote, booking[0].id_user, booking[0].id_experience]
         );
 
-        // Obtenemos la nueva media.
         const [newAvg] = await connection.query(
             `
                 SELECT AVG(valoracion) AS votes

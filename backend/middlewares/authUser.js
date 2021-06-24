@@ -17,10 +17,8 @@ const authUser = async (req, res, next) => {
             throw error;
         }
 
-        // Almacenamos la info del token en una variable.
         let tokenInfo;
 
-        // Verificamos si el token es válido.
         try {
             tokenInfo = jwt.verify(authorization, process.env.SECRET);
         } catch (error) {
@@ -29,7 +27,6 @@ const authUser = async (req, res, next) => {
             throw err2;
         }
 
-        // Guardamos la info del token en una nueva propiedad de la request.
         req.userAuth = tokenInfo;
 
         next();
