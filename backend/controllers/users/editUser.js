@@ -2,7 +2,7 @@
 
 const getDB = require('../../bbdd/db');
 const { formatDate, validate } = require('../../helpers');
-const { newUserSchema } = require('../../validations/newSchemaUserExperience');
+const { newSchemaEditUser } = require('../../validations/newSchemaEditUser');
 
 let connection;
 
@@ -16,7 +16,7 @@ const editUser = async (req, res, next) => {
 
         const now = new Date();
 
-        await validate(newUserSchema, req.body); 
+        await validate(newSchemaEditUser, req.body); 
 
         if (req.userAuth.idUser !== Number(idUser)) {
             const error = new Error(

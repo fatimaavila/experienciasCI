@@ -1,8 +1,8 @@
 const getDB = require('../../bbdd/db');
 const { savePhoto, validate } = require('../../helpers');
-const {
-    newSchemaExperience,
-} = require('../../validations/newSchemaExperience');
+
+const { newSchemaExperience } = require('../../validations/newSchemaExperience');
+
 
 const newExperience = async (req, res, next) => {
     let connection;
@@ -10,7 +10,9 @@ const newExperience = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        // Validamos los datos.
+
+        await validate(newSchemaExperience, req.body);
+
 
         const {
             name,
@@ -36,7 +38,7 @@ const newExperience = async (req, res, next) => {
 
         const [newExperience] = await connection.query(
             `
-               INSERT INTO experiences(descripcion, nombre, ciudad, precio, categorias, num_participantes, fecha_inicio, fecha_fin)
+               INSERT INTO experiences(descripcion, nombre, ciudad, precio, categoria, num_participantes, fecha_inicio, fecha_fin)
                 VALUES(?, ?, ?, ?, ?, ? , ?, ?);
             `,
             [

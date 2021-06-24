@@ -1,15 +1,12 @@
 const getDB = require('../../bbdd/db');
-const { formatDate, validate } = require('../../helpers');
-//const { newEntrySchema } = require('../../schemas');
+const { formatDate } = require('../../helpers');
+
 
 const newBooking = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
-
-        // Validamos los datos.
-        //await validate(newEntrySchema, req.body);
 
         const { units, dateBooking, totalPrice, idExp } = req.body;
         const { idUser } = req.userAuth;

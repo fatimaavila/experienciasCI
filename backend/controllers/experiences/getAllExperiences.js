@@ -8,11 +8,11 @@ const getAllExperiences = async (req, res, next) => {
         const {
             search,
             city,
-            precio,
-            category,
+            price,
+            cat,
             disp,
-            fecha_inicio,
-            fecha_fin,
+            dateStart,
+            dateEnd,
             order,
         } = req.query;
 
@@ -22,35 +22,40 @@ const getAllExperiences = async (req, res, next) => {
 
         
         if (search) {
-            sqlExperience = `${sqlExperience} ${separador} nombre LIKE '%${search}%'`
-            await connection.query(sqlExperience);
+            sqlExperience = `${sqlExperience} ${separador} nombre LIKE '${search}%'`
+            console.log(sqlExperience);
+            [result] = await connection.query(sqlExperience);
             separador = 'AND';
         }
         
-        if (precio && precio > 0 && precio <= 50) {
-            
-            sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 0 AND 50;`;
-            await connection.query(sqlExperience);
-            separador = 'AND';
-            console.log(sqlExperience);
+        if (price) {
 
-        } else if (precio && precio > 50 && precio <= 100) {
-
-            sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 51 AND 100;`
-            [result] = await connection.query(sqlExperience);
-            separador = 'AND';
-
-        } else if (precio && precio > 100 && precio <= 200) {
-
-            sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 101 AND 200`
-            [result] = await connection.query(sqlExperience);
-            separador = 'AND';
-
-        } else if (precio && precio > 200) {
-
-            sqlExperience = `${sqlExperience} ${separador} precio > 200`
-            [result] = await connection.query(sqlExperience);
-            separador = 'AND';
+            switch (price) {
+                case 1:
+                    sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 0 AND 50`;
+                    console.log(sqlExperience);
+                    [result] = await connection.query(sqlExperience);
+                    separador = 'AND';
+                    return result;
+                case 2:
+                    sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 51 AND 100`;
+                    console.log(sqlExperience);
+                    [result] = await connection.query(sqlExperience);
+                    separador = 'AND';
+                    return result;
+                case 3:
+                    sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 101 AND 200`;
+                    console.log(sqlExperience);
+                    [result] = await connection.query(sqlExperience);
+                    separador = 'AND';
+                    return result;
+                case 4:
+                    sqlExperience = `${sqlExperience} ${separador} precio > 200`;
+                    console.log(sqlExperience);
+                    [result] = await connection.query(sqlExperience);
+                    separador = 'AND';
+                    return result;
+            }
 
         }
 
@@ -65,7 +70,7 @@ const getAllExperiences = async (req, res, next) => {
             const validateCity = cities.map((city) => {
                 return city.ciudad;
             });
-    
+            
             let cityFilter = validateCity.includes(city);
     
             if(cityFilter) {
@@ -76,46 +81,47 @@ const getAllExperiences = async (req, res, next) => {
                 throw errorCity;
             }
 
-            sqlExperience = `${sqlExperience} ${separador} ciudad = ? ;`
-            [result] = await connection.query(sqlExperience,[cityFilter]);
+            sqlExperience = `${sqlExperience} ${separador} ciudad = '${cityFilter}'`;
+            console.log(sqlExperience);
+            [result] = await connection.query(sqlExperience);
             separador = 'AND';
 
         }
-        if (category) {
+
+        if (cat) {
 
             const [categories] = await connection.query(
                 `
-                SELECT categorias FROM experiences GROUP BY categorias;
+                SELECT categoria FROM experiences GROUP BY categoria;
                 `
             );
             const validateCategory = categories.map((category) => {
-                return category.categorias;
+                return category.categoria;
             });
     
-            let categoryFilter = validateCategory.includes(category);
+            let categoryFilter = validateCategory.includes(cat);
     
             if(categoryFilter) {
-                categoryFilter = category;
+                categoryFilter = cat;
             } else {
                 const errorCategory = new Error('No existe ninguna experiencia de esa categoria');
                 errorCategory.httpStatus = 404;
                 throw errorCategory;
             }
 
-            sqlExperience = `${sqlExperience} ${separador} categorias = ? ;`
-            [result] = await connection.query(sqlExperience,[category]);
+            sqlExperience = `${sqlExperience} ${separador} categoria = '${categoryFilter}'`;
+            console.log(sqlExperience);
+            [result] = await connection.query(sqlExperience);
             separador = 'AND';
 
         }
 
-        // if (disp) {
-        //     [result] = await connection.query(
-        //         `
-        //          ${sqlExperience} ${separador} disp LIKE ? ;
-        //          `,
-        //         [`%${disp}%`]
-        //     );
-        // }
+        if (disp) {
+            [result] = await connection.query(`${sqlExperience} ${separador} disp = ${disp}`);
+            separador = 'AND';
+        }
+        console.log(sqlExperience);
+
         /*    if (fecha_inicio > 0 && fecha_fin > 0) {
             [result] = await connection.query(
                 `
@@ -129,15 +135,15 @@ const getAllExperiences = async (req, res, next) => {
         if (
             !search &&
             !city &&
-            !category &&
+            !cat &&
             !disp &&
             !price &&
-            !finicio &&
-            !ffin
+            !dateStart &&
+            !dateEnd
         ) {
             [result] = await connection.query(
                 `
-                 ${sqlExperience} 
+                 SELECT * FROM experiences;
                  `
             );
         }
@@ -148,7 +154,7 @@ const getAllExperiences = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            data: sqlExperience[0],
+            data: result,
         });
     } catch (error) {
         next(error);
