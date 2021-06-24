@@ -1,6 +1,7 @@
 const getDB = require('../../bbdd/db');
 
-const { formatDate } = require('../../helpers');
+const { formatDate, validate } = require('../../helpers');
+const { newSchemaResetPassword } = require('../../validations/newSchemaResetPassword');
 
 const resetUserPassword = async (req, res, next) => {
     let connection;
@@ -8,9 +9,11 @@ const resetUserPassword = async (req, res, next) => {
     try {
         connection = await getDB();
 
+        await validate(newSchemaResetPassword, req.body);
+
         const { recoverCode, newPassword } = req.body;
 
-        if (!recoverCode || !newPassword) {
+        if (!recoverCode) {
             const error = new Error('Faltan campos');
             error.httpStatus = 400;
             throw error;

@@ -11,10 +11,6 @@ const canDoAnything = require('./middlewares/canDoAnything');
 const userExists = require('./middlewares/userExists');
 const experienceExists = require('./middlewares/experienceExists');
 
-// ###############################################
-// ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
-// ###############################################
-
 const {
     deleteUser,
     editUser,
@@ -45,30 +41,31 @@ const {
     newComment,
     newRating,
 } = require('./controllers/bookings');
-// Logger.
+
+// ###############################################
+// ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
+// ###############################################
+
 app.use(morgan('dev'));
-
-// Traduce el body y lo transforma en un objeto JS.
 app.use(express.json());
-
-// Nos permite leer bodys en formato "form-data".
 app.use(fileUpload());
 
 // #################################
 // ## MIDDLEWARES DE EXPERIENCIAS ##
 // #################################
-app.get('/experiences', getAllExperiences); //getAllExperiences
-app.get('/experiences/:idExp', experienceExists, getExperience); //getExperience
-app.post('/experiences', authUser, newExperience); // newExperience
-app.post('/experiences/:idExp/photo', authUser, addPhotoExperience); //addPhotoExperience
-app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); //deleteExperience
+
+app.get('/experiences', getAllExperiences);
+app.get('/experiences/:idExp', experienceExists, getExperience);
+app.post('/experiences', authUser, newExperience);
+app.post('/experiences/:idExp/photo', authUser, addPhotoExperience);
+app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); 
 app.delete(
     '/experiences/:idExp/photo/:idPhoto',
     authUser,
     experienceExists,
     deletePhotoExperience
-); //deletePhoto
-app.put('/experiences/:idExp', authUser, experienceExists, editExperience); //editExperience
+);
+app.put('/experiences/:idExp', authUser, experienceExists, editExperience);
 // #############################
 // ## MIDDLEWARES DE USUARIOS ##
 // #############################
@@ -97,7 +94,6 @@ app.delete('/bookings/:idBooking', authUser, deleteBooking); //deleteBooking
 // ## MIDDLEWARES DE ERROR ##
 // ##########################
 
-// Middleware de error que captura los errores generados.
 app.use((error, req, res, next) => {
     console.log(error);
     res.status(error.httpStatus || 500).send({
@@ -106,7 +102,6 @@ app.use((error, req, res, next) => {
     });
 });
 
-// Middleware de error genérico.
 app.use((req, res) => {
     res.status(404).send({
         status: 'error',

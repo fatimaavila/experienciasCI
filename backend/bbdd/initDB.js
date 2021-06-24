@@ -21,7 +21,6 @@ const initDB = async () => {
 
         console.log('Tablas eliminadas');
 
-        // Crear tabla de usuarios.gi
         await connection.query(`
         CREATE TABLE IF NOT EXISTS users(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -48,7 +47,6 @@ const initDB = async () => {
         );
         `);
 
-        // Crear tabla de experiencias.
         await connection.query(`
         CREATE TABLE IF NOT EXISTS experiences(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -56,7 +54,7 @@ const initDB = async () => {
             nombre VARCHAR(150) NOT NULL,
             ciudad VARCHAR(50) NOT NULL,
             precio DECIMAL(5, 2) NOT NULL,
-            categorias VARCHAR(25) NOT NULL,
+            categoria VARCHAR(25) NOT NULL,
             num_participantes INT NOT NULL,
             disp BOOLEAN DEFAULT 1 NOT NULL,
             fecha_inicio DATE NOT NULL,
@@ -65,7 +63,6 @@ const initDB = async () => {
         );
         `);
 
-        // Crear tabla de reservas.
         await connection.query(`
         CREATE TABLE IF NOT EXISTS bookings(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -77,26 +74,24 @@ const initDB = async () => {
             valoracion TINYINT,
             comentario TEXT,
             id_user INT UNSIGNED,
-            FOREIGN KEY (id_user) REFERENCES users (id) ,
+                FOREIGN KEY (id_user) REFERENCES users (id),
             id_experience INT UNSIGNED,
-            FOREIGN KEY (id_experience) REFERENCES experiences (id) 
+                FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
         );
         `);
 
-        // Crear tabla de fotos.
         await connection.query(`
         CREATE TABLE IF NOT EXISTS photos(
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
             alt VARCHAR(100),
             url VARCHAR(200),
             id_experience INT UNSIGNED,
-            FOREIGN KEY (id_experience) REFERENCES experiences (id) 
+                FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE 
         );
         `);
 
         console.log('Tablas creadas');
 
-        // Insertamos usuario administrador.
         await connection.query(`
         INSERT INTO users (id, username, pwd,rol, email, dni, ccc, direccion, telefono, bio, nombre, apellidos, cp, active) VALUES 
         (1, 'hatashi199', SHA2("${process.env.ADMIN_PASSWORD}", 512),'admin',  'alejandromf_199@hotmail.com', '90-5359970', 'DE64 7032 9119 6174 2043 34', '71 Doe Crossing Avenue', '9213721676', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Alejandro', 'Mariño', null, true),
@@ -116,9 +111,8 @@ const initDB = async () => {
 
         console.log('Usuarios administradores insertados');
 
-        // Insertamos las experiencias.
         await connection.query(`
-        INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categorias, num_participantes, disp, fecha_inicio, fecha_fin) VALUES
+        INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categoria, num_participantes, disp, fecha_inicio, fecha_fin) VALUES
     (1, 
     '¿Te gustaría ser piloto por un día? ¿En Madrid? ¡Ahora es más fácil que nunca, da el paso!
 
@@ -496,7 +490,6 @@ const initDB = async () => {
 
         console.log('Experiencias insertadas');
 
-        // Insertamos las reservas.
         await connection.query(`
           INSERT INTO bookings (id, cantidad, fecha_reserva,fecha_compra, precio_total, estado, valoracion, comentario, id_user, id_experience) VALUES 
           (1,1,'2021-07-16','2021-03-25',108.00,true,4,'Muy malo',3,16),
@@ -511,7 +504,7 @@ const initDB = async () => {
     } catch (error) {
         console.error(error);
     } finally {
-        // Siempre debemos cerrar la conexión.
+
         if (connection) connection.release();
         process.exit(0);
     }

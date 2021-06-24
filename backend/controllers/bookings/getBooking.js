@@ -15,8 +15,7 @@ const getBooking = async (req, res, next) => {
             error.httpStatus = 403;
             throw error;
         }
-        console.log(idBooking);
-        // Obtenemos la información de la reserva.
+
         const [booking] = await connection.query(
             `SELECT *
              FROM bookings
