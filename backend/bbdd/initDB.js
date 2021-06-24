@@ -53,7 +53,7 @@ const initDB = async () => {
             nombre VARCHAR(150) NOT NULL,
             ciudad VARCHAR(50) NOT NULL,
             precio DECIMAL(5, 2) NOT NULL,
-            categorias VARCHAR(25) NOT NULL,
+            categoria VARCHAR(25) NOT NULL,
             num_participantes INT NOT NULL,
             disp BOOLEAN DEFAULT 1 NOT NULL,
             fecha_inicio DATE NOT NULL,
@@ -73,9 +73,13 @@ const initDB = async () => {
             valoracion TINYINT,
             comentario TEXT,
             id_user INT UNSIGNED,
-            FOREIGN KEY (id_user) REFERENCES users (id) ,
+                FOREIGN KEY (id_user) REFERENCES users (id),
             id_experience INT UNSIGNED,
+<<<<<<< HEAD
             FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
+=======
+                FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
+>>>>>>> 4e6cb0e635aa6525b4ff350f008db6a9e5e76e28
         );
         `);
 
@@ -85,7 +89,11 @@ const initDB = async () => {
             alt VARCHAR(100),
             url VARCHAR(200),
             id_experience INT UNSIGNED,
+<<<<<<< HEAD
             FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
+=======
+                FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE 
+>>>>>>> 4e6cb0e635aa6525b4ff350f008db6a9e5e76e28
         );
         `);
 
@@ -111,7 +119,7 @@ const initDB = async () => {
         console.log('Usuarios administradores insertados');
 
         await connection.query(`
-        INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categorias, num_participantes, disp, fecha_inicio, fecha_fin) VALUES
+        INSERT INTO experiences(id, descripcion, nombre, ciudad, precio, categoria, num_participantes, disp, fecha_inicio, fecha_fin) VALUES
     (1, 
     '¿Te gustaría ser piloto por un día? ¿En Madrid? ¡Ahora es más fácil que nunca, da el paso!
 
@@ -503,6 +511,10 @@ const initDB = async () => {
     } catch (error) {
         console.error(error);
     } finally {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e6cb0e635aa6525b4ff350f008db6a9e5e76e28
         if (connection) connection.release();
         process.exit(0);
     }

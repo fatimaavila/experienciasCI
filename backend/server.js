@@ -13,10 +13,6 @@ const canDoAnything = require('./middlewares/canDoAnything');
 const userExists = require('./middlewares/userExists');
 const experienceExists = require('./middlewares/experienceExists');
 
-// ##################################
-// ## IMPORTACION DE CONTROLADORES ##
-// ##################################
-
 const {
     deleteUser,
     editUser,
@@ -47,33 +43,34 @@ const {
     newComment,
     newRating,
 } = require('./controllers/bookings');
+
 // ###############################################
 // ## MIDDLEWARES RELACIONADAS CON DEPENDENCIAS ##
 // ###############################################
+
 app.use(morgan('dev'));
-
 app.use(express.json());
-
 app.use(fileUpload());
 
-// ###############################
-// ## ENDPOINTS DE EXPERIENCIAS ##
-// ###############################
-app.get('/experiences', getAllExperiences); //getAllExperiences
-app.get('/experiences/:idExp', experienceExists, getExperience); //getExperience
-app.post('/experiences', authUser, newExperience); // newExperience
-app.post('/experiences/:idExp/photo', authUser, addPhotoExperience); //addPhotoExperience
-app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience); //deleteExperience
+// #################################
+// ## MIDDLEWARES DE EXPERIENCIAS ##
+// #################################
+
+app.get('/experiences', getAllExperiences);
+app.get('/experiences/:idExp', experienceExists, getExperience);
+app.post('/experiences', authUser, newExperience);
+app.post('/experiences/:idExp/photo', authUser, addPhotoExperience);
+app.delete('/experiences/:idExp', authUser, experienceExists, deleteExperience);
 app.delete(
     '/experiences/:idExp/photo/:idPhoto',
     authUser,
     experienceExists,
     deletePhotoExperience
-); //deletePhoto
-app.put('/experiences/:idExp', authUser, experienceExists, editExperience); //editExperience
-// ###########################
-// ## ENDPOINTS DE USUARIOS ##
-// ###########################
+);
+app.put('/experiences/:idExp', authUser, experienceExists, editExperience);
+// #############################
+// ## MIDDLEWARES DE USUARIOS ##
+// #############################
 
 app.get('/users/:idUser', authUser, userExists, getUser); // getUser
 app.get('/users/validate/:registrationCode', validateUser); // validateUser

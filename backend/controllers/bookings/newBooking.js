@@ -1,5 +1,9 @@
 const getDB = require('../../bbdd/db');
 const { formatDate } = require('../../helpers');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e6cb0e635aa6525b4ff350f008db6a9e5e76e28
 
 const newBooking = async (req, res, next) => {
     let connection;
