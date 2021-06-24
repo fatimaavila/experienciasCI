@@ -504,6 +504,7 @@ const initDB = async () => {
     } catch (error) {
         console.error(error);
     } finally {
+
         if (connection) connection.release();
         process.exit(0);
     }
