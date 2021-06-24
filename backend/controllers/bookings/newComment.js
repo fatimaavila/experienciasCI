@@ -1,15 +1,15 @@
 'use strict';
 
 const getDB = require('../../bbdd/db');
-
+const { validate } = require('../../helpers');
+const { newSchemaComment } = require('../../validations/newSchemaComment');
 let connection;
-
 const newComment = async (req, res, next) => {
     try {
         connection = await getDB();
-
         const { idBooking } = req.params;
         const { comment } = req.body;
+        await validate(newSchemaComment, req.body);
         const [booking] = await connection.query(
             `SELECT id_user, id_experience, comentario FROM bookings WHERE id = ?;`,
             [idBooking]
