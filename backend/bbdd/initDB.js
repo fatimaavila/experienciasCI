@@ -79,7 +79,7 @@ const initDB = async () => {
             id_user INT UNSIGNED,
             FOREIGN KEY (id_user) REFERENCES users (id) ,
             id_experience INT UNSIGNED,
-            FOREIGN KEY (id_experience) REFERENCES experiences (id) 
+            FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
         );
         `);
 
@@ -90,7 +90,7 @@ const initDB = async () => {
             alt VARCHAR(100),
             url VARCHAR(200),
             id_experience INT UNSIGNED,
-            FOREIGN KEY (id_experience) REFERENCES experiences (id) 
+            FOREIGN KEY (id_experience) REFERENCES experiences (id) ON DELETE CASCADE ON UPDATE CASCADE
         );
         `);
 
