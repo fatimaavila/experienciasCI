@@ -11,8 +11,7 @@ async function sendMail({ to, subject, body }) {
             from: process.env.SENDGRID_FROM,
             subject,
             text: body,
-            html: 
-            `
+            html: `
             <!DOCTYPE html>
             <html lang="es">
             <head>
