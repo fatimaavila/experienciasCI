@@ -9,7 +9,13 @@ const getBooking = async (req, res, next) => {
         const { idBooking } = req.params;
         const { idUser } = req.userAuth;
         if (req.userAuth.idUser !== Number(idUser)) {
+<<<<<<< Updated upstream
             const error = new Error('No tienes permisos para ver esta reserva');
+=======
+            const error = new Error(
+                'No tienes permisos para ver esta reserva'
+            );
+>>>>>>> Stashed changes
             error.httpStatus = 403;
             throw error;
         }
