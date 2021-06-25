@@ -11,9 +11,11 @@ const getExperience = async (req, res, next) => {
         // Obtenemos la información de la exp.
         const [experience] = await connection.query(
             `
-                SELECT *
-                FROM experiences
-                WHERE id = ?;
+            SELECT ex.*, book.id, ROUND(AVG(book.valoracion),1) AS rating 
+            FROM experiences ex 
+            LEFT JOIN bookings book ON ex.id = book.id_experience 
+            WHERE ex.id = ?
+            GROUP BY book.id;
             `,
             [idExp]
         );
@@ -24,10 +26,15 @@ const getExperience = async (req, res, next) => {
             [idExp]
         );
 
+        const [comment] = await connection.query(`SELECT comentario FROM bookings WHERE id_experience = ?`,[idExp]);
+
         res.send({
             status: 'ok',
             data: {
                 ...experience[0],
+                comentario: {
+                    ...comment
+                },
                 photos: {
                     ...photos
                 }
