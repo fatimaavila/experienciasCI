@@ -24,10 +24,9 @@ const getExperience = async (req, res, next) => {
             [idExp]
         );
 
-        const [comment] = await connection.query(
-            `SELECT comentario FROM bookings WHERE id_experience = ?`,
-            [idExp]
-        );
+
+        const [comment] = await connection.query(`SELECT comentario FROM bookings WHERE id_experience = ?`,[idExp]);
+
 
         res.send({
             status: 'ok',
@@ -35,6 +34,7 @@ const getExperience = async (req, res, next) => {
                 ...experience[0],
                 comentario: {
                     ...comment,
+
                 },
                 photos: {
                     ...photos,
