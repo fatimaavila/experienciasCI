@@ -48,6 +48,25 @@ async function validate(schema, data) {
     }
 }
 
+const priceQuery = async(price) => {
+
+    price = Number(price);
+
+    switch(price) {
+        case 1:
+            return `precio BETWEEN 0 AND 50`;
+        case 2:
+            return `precio BETWEEN 51 AND 100`;
+        case 3:
+            return `precio BETWEEN 101 AND 200`;
+        case 4:
+            return `precio > 200`;
+        default:
+            return `precio BETWEEN 0 AND 999`;
+
+    }
+}
+
 module.exports = {
     formatDate,
     getRandomValue,
@@ -55,4 +74,5 @@ module.exports = {
     deletePhoto,
     generateRandomString,
     validate,
+    priceQuery,
 };

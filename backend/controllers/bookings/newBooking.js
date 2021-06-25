@@ -8,11 +8,13 @@ const newBooking = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { units, dateBooking, totalPrice, idExp } = req.body;
+        let { units, dateBooking, totalPrice, idExp } = req.body;
         const { idUser } = req.userAuth;
         const now = new Date();
         const datePurchase = formatDate(now);
-
+        units = Number(units);
+        totalPrice = Number(totalPrice);
+        idExp = Number(idExp);
         const [newBooking] = await connection.query(
             `
             INSERT INTO bookings ( cantidad, fecha_reserva,fecha_compra, precio_total,  id_user, id_experience)

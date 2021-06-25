@@ -2,7 +2,6 @@
 require('dotenv').config();
 
 const getDB = require('./db');
-const { formatDate } = require('../helpers');
 
 let connection;
 
@@ -504,7 +503,6 @@ const initDB = async () => {
     } catch (error) {
         console.error(error);
     } finally {
-
         if (connection) connection.release();
         process.exit(0);
     }
