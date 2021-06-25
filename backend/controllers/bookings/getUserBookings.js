@@ -25,7 +25,9 @@ const getUserBookings = async (req, res, next) => {
         res.send({
             status: 'ok',
             data: {
-                ...booking[0],
+                bookings: {
+                    ...booking,
+                },
             },
         });
     } catch (error) {
