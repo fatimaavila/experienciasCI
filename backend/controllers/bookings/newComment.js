@@ -33,6 +33,7 @@ const newComment = async (req, res, next) => {
             `
             UPDATE bookings
             SET comentario = ?
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             WHERE id_experience = ? and id_user = ? AND id = ?;
         `,
@@ -42,6 +43,11 @@ const newComment = async (req, res, next) => {
         `,
             [comment, booking[0].id_experience, booking[0].id_user, id_booking]
 >>>>>>> Stashed changes
+=======
+            WHERE id_experience = ? and id_user = ? AND id = ?;
+        `,
+            [comment, booking[0].id_experience, booking[0].id_user, idBooking]
+>>>>>>> b7fdc53d1e8ae6c88e7071081de70f1abbca4b5c
         );
 
         res.status(200).send({
