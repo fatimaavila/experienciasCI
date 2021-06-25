@@ -18,7 +18,7 @@ const getExperience = async (req, res, next) => {
             `,
             [idExp]
         );
-
+        console.log(experience);
         const [photos] = await connection.query(
             `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
             [idExp]
