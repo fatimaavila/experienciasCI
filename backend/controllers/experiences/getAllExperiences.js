@@ -1,11 +1,12 @@
 const getDB = require('../../bbdd/db');
-const { formatDate } = require('../../helpers');
+const { formatDate, priceQuery } = require('../../helpers');
 const getAllExperiences = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
-        const {
+
+        let {
             search,
             city,
             price,
@@ -30,33 +31,11 @@ const getAllExperiences = async (req, res, next) => {
         
         if (price) {
 
-            switch (price) {
-                case 1:
-                    sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 0 AND 50`;
-                    // console.log(sqlExperience);
-                    [result] = await connection.query(sqlExperience);
-                    separador = 'AND';
-                    return result;
-                case 2:
-                    sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 51 AND 100`;
-                    // console.log(sqlExperience);
-                    [result] = await connection.query(sqlExperience);
-                    separador = 'AND';
-                    return result;
-                case 3:
-                    sqlExperience = `${sqlExperience} ${separador} precio BETWEEN 101 AND 200`;
-                    // console.log(sqlExperience);
-                    [result] = await connection.query(sqlExperience);
-                    separador = 'AND';
-                    return result;
-                case 4:
-                    sqlExperience = `${sqlExperience} ${separador} precio > 200`;
-                    // console.log(sqlExperience);
-                    [result] = await connection.query(sqlExperience);
-                    separador = 'AND';
-                    return result;
-            }
-
+            const priceCase = await priceQuery(price)
+            sqlExperience = `${sqlExperience} ${separador} ${priceCase}`;
+            [result] = await connection.query(sqlExperience);
+            console.log(result);
+            separador = 'AND';
         }
 
         if (city) {
@@ -123,15 +102,11 @@ const getAllExperiences = async (req, res, next) => {
         }
         // console.log(sqlExperience);
         
-        /*    if (fecha_inicio > 0 && fecha_fin > 0) {
-            [result] = await connection.query(
-                `
-                ${sqlExperience} ${separador} fecha_inicio >= '${dStart}' AND fecha_fin <= '${dEnd}'
-                `,
-                [`${finicio},${ffin}`]
-            );
+        if ((dateStart, dateEnd)) {
+            sqlExperience = `${sqlExperience} ${separador} fecha_inicio >= '${dateStart}' AND fecha_fin <= '${dateEnd}'`;
+            [result] = await connection.query(sqlExperience);
+            separador = 'AND';
         }
-        console.log(finicio, ffin);*/
 
         if (
             !search &&
