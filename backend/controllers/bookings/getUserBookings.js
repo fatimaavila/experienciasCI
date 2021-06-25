@@ -1,15 +1,15 @@
 const getDB = require('../../bbdd/db');
 
-const getBooking = async (req, res, next) => {
+const getUserBookings = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
-
-        const { idBooking } = req.params;
-        const { idUser } = req.userAuth;
+        const { idUser } = req.params;
         if (req.userAuth.idUser !== Number(idUser)) {
-            const error = new Error('No tienes permisos para ver esta reserva');
+            const error = new Error(
+                'No tienes permisos para ver estas reservas'
+            );
             error.httpStatus = 403;
             throw error;
         }
@@ -17,9 +17,9 @@ const getBooking = async (req, res, next) => {
         const [booking] = await connection.query(
             `SELECT *
              FROM bookings
-             WHERE id = ?;
+             WHERE id_user = ?;
             `,
-            [idBooking]
+            [idUser]
         );
 
         res.send({
@@ -35,4 +35,4 @@ const getBooking = async (req, res, next) => {
     }
 };
 
-module.exports = getBooking;
+module.exports = getUserBookings;
