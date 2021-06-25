@@ -33,9 +33,9 @@ const newComment = async (req, res, next) => {
             `
             UPDATE bookings
             SET comentario = ?
-            WHERE id_experience = ? and id_user = ?;
+            WHERE id_experience = ? and id_user = ? AND id = ?;
         `,
-            [comment, booking[0].id_experience, booking[0].id_user]
+            [comment, booking[0].id_experience, booking[0].id_user,idBooking]
         );
 
         res.status(200).send({
