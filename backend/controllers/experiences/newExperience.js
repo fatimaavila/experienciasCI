@@ -1,6 +1,8 @@
 const getDB = require('../../bbdd/db');
 const { savePhoto, validate } = require('../../helpers');
+
 const { newSchemaExperience } = require('../../validations/newSchemaExperience');
+
 
 const newExperience = async (req, res, next) => {
     let connection;
@@ -8,7 +10,9 @@ const newExperience = async (req, res, next) => {
     try {
         connection = await getDB();
 
+
         await validate(newSchemaExperience, req.body);
+
 
         const {
             name,
@@ -20,6 +24,7 @@ const newExperience = async (req, res, next) => {
             dStart,
             dStop,
         } = req.body;
+        await validate(newSchemaExperience, req.body);
         //const { idUser } = req.userAuth;
         if (req.userAuth.rol !== 'admin') {
             const error = new Error(
