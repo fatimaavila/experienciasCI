@@ -35,8 +35,8 @@ const voteBooking = async (req, res, next) => {
         }
 
         await connection.query(
-            `UPDATE bookings SET valoracion = ? WHERE id_user = ? AND id_experience = ?;`,
-            [vote, booking[0].id_user, booking[0].id_experience]
+            `UPDATE bookings SET valoracion = ? WHERE id_user = ? AND id_experience = ? AND id = ?;`,
+            [vote, booking[0].id_user, booking[0].id_experience,idBooking]
         );
 
         const [newAvg] = await connection.query(
