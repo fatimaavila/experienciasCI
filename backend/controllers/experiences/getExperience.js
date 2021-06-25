@@ -18,7 +18,13 @@ const getExperience = async (req, res, next) => {
             `,
             [idExp]
         );
+<<<<<<< Updated upstream
         console.log(experience);
+=======
+
+        console.log(experience[0]);
+
+>>>>>>> Stashed changes
         const [photos] = await connection.query(
             `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
             [idExp]
