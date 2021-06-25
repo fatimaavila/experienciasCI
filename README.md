@@ -15,6 +15,9 @@
 
 -   Disponen de un documento ".env.example" el cual debe ser rellenado en los campos libres,
     segun los datos propios de Mysql. Y guardado en la raiz del bakend como ".env"
+    -   Las variables SG_API_KEY y SENDGRID_FROM indicar los facilitados por http://sendgrid.com para tu
+        propio usuario registrado.
+    -   La variable SECRET debe ser un string alfanumerico aleatorio.
 
 ### Ejecución del Backend
 
