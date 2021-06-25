@@ -2,11 +2,9 @@
 
 const getDB = require('../bbdd/db');
 
-
 let connection;
 
-const experienceExists = async(req, res, next) => {
-
+const experienceExists = async (req, res, next) => {
     try {
         connection = await getDB();
 
@@ -19,7 +17,7 @@ const experienceExists = async(req, res, next) => {
         );
 
         if (exp.length < 1) {
-            const error = new Error('Usuario no encontrado');
+            const error = new Error('Experiencia no encontrada');
             error.httpStatus = 404;
             throw error;
         }

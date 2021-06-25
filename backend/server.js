@@ -12,7 +12,9 @@ const authUser = require('./middlewares/authUser');
 const canDoAnything = require('./middlewares/canDoAnything');
 const userExists = require('./middlewares/userExists');
 const experienceExists = require('./middlewares/experienceExists');
-
+// #########################################################
+// ## CONTROLADORES DE USUARIOS, EXPERIENCIAS Y RESERVAS  ##
+// #########################################################
 const {
     deleteUser,
     editUser,
@@ -52,9 +54,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(fileUpload());
 
-// #################################
-// ## MIDDLEWARES DE EXPERIENCIAS ##
-// #################################
+// ###############################
+// ## ENDPOINTS DE EXPERIENCIAS ##
+// ###############################
 
 app.get('/experiences', getAllExperiences);
 app.get('/experiences/:idExp', experienceExists, getExperience);
@@ -68,9 +70,9 @@ app.delete(
     deletePhotoExperience
 );
 app.put('/experiences/:idExp', authUser, experienceExists, editExperience);
-// #############################
-// ## MIDDLEWARES DE USUARIOS ##
-// #############################
+// ###########################
+// ## ENDPOINTS DE USUARIOS ##
+// ###########################
 
 app.get('/users/:idUser', authUser, userExists, getUser); // getUser
 app.get('/users/validate/:registrationCode', validateUser); // validateUser
@@ -92,9 +94,9 @@ app.put('/bookings/:idBooking/comments', authUser, newComment); //newComment
 app.put('/bookings/:idBooking/rating', authUser, newRating); //newRating
 app.delete('/bookings/:idBooking', authUser, deleteBooking); //deleteBooking
 
-// ##########################
-// ## MIDDLEWARES DE ERROR ##
-// ##########################
+// ########################
+// ## ENDPOINTS DE ERROR ##
+// ########################
 
 app.use((error, req, res, next) => {
     console.log(error);
