@@ -22,7 +22,7 @@
 
     -   [npm install] Instala todas las dependencias necesarias para el correcto funcionamiento del sitio.
     -   [npm run sql] Ejecuta el script que crea la base de datos, las tablas, y los datos necesarios.
-    -   [npm run dev] Ejecuta el servidor para poder trabajar, http://localhost:4000
+    -   [npm run dev] Ejecuta el servidor para poder trabajar, http://localhost:PORT
 
 ### Ejecución del Frontend
 
