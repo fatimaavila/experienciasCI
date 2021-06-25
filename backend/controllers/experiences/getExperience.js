@@ -10,21 +10,19 @@ const getExperience = async (req, res, next) => {
 
         const [experience] = await connection.query(
             `
-            SELECT ex.*, book.id, ROUND(AVG(book.valoracion),1) AS rating 
-            FROM experiences ex 
-            LEFT JOIN bookings book ON ex.id = book.id_experience 
-            WHERE ex.id = ?
-            GROUP BY book.id;
+            SELECT * FROM experiences WHERE id = ?;
             `,
             [idExp]
         );
-<<<<<<< Updated upstream
-        console.log(experience);
-=======
+
+        const [rating] = await connection.query(`
+            SELECT ROUND(AVG(book.valoracion),1) AS rating 
+            FROM bookings book 
+            WHERE book.id_experience = ?;
+        `, [idExp])
 
         console.log(experience[0]);
 
->>>>>>> Stashed changes
         const [photos] = await connection.query(
             `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
             [idExp]
@@ -39,7 +37,8 @@ const getExperience = async (req, res, next) => {
             status: 'ok',
             data: {
                 ...experience[0],
-                comentario: {
+                rating: rating[0].rating,
+                comentarios: {
                     ...comment,
                 },
                 photos: {
