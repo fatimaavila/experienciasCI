@@ -15,10 +15,6 @@ const getBooking = async (req, res, next) => {
             error.httpStatus = 403;
             throw error;
         }
-<<<<<<< HEAD
-        console.log(idBooking);
-=======
->>>>>>> 4e6cb0e635aa6525b4ff350f008db6a9e5e76e28
 
         const [booking] = await connection.query(
             `SELECT *

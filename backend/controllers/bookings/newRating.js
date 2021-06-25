@@ -1,5 +1,7 @@
 const getDB = require('../../bbdd/db');
 
+const { formatDate } = require('../../helpers');
+
 const voteBooking = async (req, res, next) => {
     let connection;
 
