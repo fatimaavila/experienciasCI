@@ -6,7 +6,7 @@ const getAllExperiences = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        let { search, city, price, cat, disp, dateStart, dateEnd, order } =
+        const { search, city, price, cat, disp, dateStart, dateEnd, order, orderDir } =
             req.query;
 
         let result;
@@ -21,6 +21,13 @@ const getAllExperiences = async (req, res, next) => {
         }
 
         if (price) {
+
+            if(price !== '1' && price !== '2' && price !== '3' && price !== '4') {
+                const errorPrice = new Error('El valor del parámetro price no es válido');
+                errorPrice.httpStatus = 404;
+                throw errorPrice;
+            }
+
             const priceCase = await priceQuery(price);
             sqlExperience = `${sqlExperience} ${separador} ${priceCase}`;
             [result] = await connection.query(sqlExperience);
@@ -85,6 +92,13 @@ const getAllExperiences = async (req, res, next) => {
         }
 
         if (disp) {
+
+            if(disp !== '1' && disp !== '0') {
+                const errorDisp = new Error('El parámetro disp sólo puede tener el valor 0 o el valor 1');
+                errorDisp.httpStatus = 404;
+                throw errorDisp;
+            }
+
             sqlExperience = `${sqlExperience} ${separador} disp = ${disp}`;
             [result] = await connection.query(sqlExperience);
             separador = 'AND';
@@ -96,6 +110,47 @@ const getAllExperiences = async (req, res, next) => {
             separador = 'AND';
         }
 
+        if(order && orderDir) {
+
+            const validateOrder = ['precio','nombre'];
+            const orderDirection = ['ASC', 'DESC'];
+
+            let orderFilter = validateOrder.includes(order);
+            let directionFilter = orderDirection.includes(orderDir);
+
+            if(orderFilter) {
+                orderFilter = order;
+            } else {
+                const errorOrder = new Error('No está permitido ordenar por ese parámetro');
+                errorOrder.httpStatus = 404;
+                throw errorOrder;
+            }
+
+            if(directionFilter) {
+                directionFilter = order;
+            } else {
+                const errorDirection = new Error('No está permitido ordenar en esa dirección');
+                errorDirection.httpStatus = 404;
+                throw errorDirection;
+            }
+
+            sqlExperience = `${sqlExperience} ORDER BY ${order} ${orderDir}`;
+            [result] = await connection.query(sqlExperience);
+
+        }
+
+        if(order && !orderDir) {
+            const error = new Error('El order debe ir con una dirección');
+            error.httpStatus = 404;
+            throw error;
+        } else if(orderDir && !order) {
+            const error = new Error('El orderDir necesita un order');
+            error.httpStatus = 404;
+            throw error;
+        }
+
+        console.log(sqlExperience);
+
         if (
             !search &&
             !city &&
@@ -103,22 +158,20 @@ const getAllExperiences = async (req, res, next) => {
             !disp &&
             !price &&
             !dateStart &&
-            !dateEnd
+            !dateEnd &&
+            !order && 
+            !orderDir
         ) {
             [result] = await connection.query(
                 `
                  SELECT * FROM experiences;
-                 `
+                `
             );
         }
 
-        // if(order) {
-
-        // }
-
         res.send({
             status: 'ok',
-            data: result,
+            data: result[0],
         });
     } catch (error) {
         next(error);
