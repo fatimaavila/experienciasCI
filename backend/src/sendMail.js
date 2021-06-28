@@ -29,10 +29,10 @@ async function sendMail({ to, subject, body }) {
                     <div>
                         <p>VAN_Experience · 2021 · Todos los derechos reservados.</p>
                         <ul>
-                        <li><a href="https://www.instagram.com">Instagram</a></li>
-                        <li><a href="https://www.twitter.com">Twitter</a></li>
-                        <li><a href="https://www.facebook.com">Facebook</a></li>
-                        <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+                            <li><a href="https://www.instagram.com">Instagram</a></li>
+                            <li><a href="https://www.twitter.com">Twitter</a></li>
+                            <li><a href="https://www.facebook.com">Facebook</a></li>
+                            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
                         </ul>
                     </div>
                 </footer>

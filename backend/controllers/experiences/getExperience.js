@@ -16,12 +16,10 @@ const getExperience = async (req, res, next) => {
         );
 
         const [rating] = await connection.query(`
-            SELECT ROUND(AVG(book.valoracion),1) AS rating 
+            SELECT ROUND(IFNULL(AVG(book.valoracion),0),1) AS rating 
             FROM bookings book 
             WHERE book.id_experience = ?;
-        `, [idExp])
-
-        console.log(experience[0]);
+        `, [idExp]);
 
         const [photos] = await connection.query(
             `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
