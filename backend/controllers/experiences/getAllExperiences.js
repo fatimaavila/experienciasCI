@@ -121,7 +121,7 @@ const getAllExperiences = async (req, res, next) => {
             if(orderFilter) {
                 orderFilter = order;
             } else {
-                const errorOrder = new Error('No está permitido ordenar por ese parámetro');
+                const errorOrder = new Error('No está permitido ordenar por este parámetro');
                 errorOrder.httpStatus = 404;
                 throw errorOrder;
             }
