@@ -4,6 +4,7 @@ import Spa from '../pages/spa/Spa';
 import Gastronomia from '../pages/gastronomia/Gastronomia';
 import Acuaticas from '../pages/acuaticas/Acuaticas';
 import Motor from '../pages/motor/Motor';
+import Home from '../pages/home/Home';
 
 const routes = [
     {
@@ -35,6 +36,11 @@ const routes = [
         path: '/acuaticas',
         Page: Acuaticas,
         label: 'Acuaticas',
+    },
+    {
+        path: '/',
+        Page: Home,
+        label: 'Home',
     },
 ];
 export default routes;
