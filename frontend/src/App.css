@@ -1,0 +1,13 @@
+@import './components/header/reset.css';
+@import './components/header/header.css';
+@import './components/footer/footer.css';
+
+
+
+* {
+  box-sizing: border-box;
+}
+a{
+ text-decoration: none;
+}
+
