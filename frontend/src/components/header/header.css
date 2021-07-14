@@ -1,44 +1,12 @@
 
 
 
-header{
-    display:flex;
-
-background-color: #3AABFE;
-flex-direction: column;
-}
 header > img{
-    margin-left: 10px;
-    width: 30%;
-}
-ul{display:flex;
-    justify-content: center;
-align-items: center;
-gap: 10px;}
-header > nav {
-    background-color: white;
-    border-bottom: 2px solid #3AABFE ;
-}
-ul > li {
-    
-    list-style: none;
-    color: #3AABFE;
-
-    padding: 4px;
-    margin:4px;
-   
-   
+    margin-left: absolute;
+    width: 20%;
 }
 
 
-div > button {
-    display:inline-flex;
-    flex-direction: column-reverse;
-    color: #3AABFE;
-    background-color: white;
-    justify-content: flex-end;
-    border: none;
-    width: 30px;
-    min-width: max-content;
-  
-}
+
+
+
