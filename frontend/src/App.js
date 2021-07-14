@@ -1,5 +1,5 @@
 import './App.css';
-import Header from './components/header/Header';
+import HeaderVan from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes/routes';
@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <HeaderVan />
       </div>
 
       <Switch>

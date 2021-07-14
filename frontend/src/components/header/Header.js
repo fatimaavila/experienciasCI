@@ -1,29 +1,53 @@
-import './header.css';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import logo from '../../assets/LOGOBUENO.png';
 import routes from '../../routes/routes';
 import { BlueButton, WhiteButton } from '../../components/button/Button';
-function Header() {
+
+const Header = styled.header`
+  background-color: #3aabfe;
+`;
+const Nav = styled.nav`
+  background-color: white;
+  border-bottom: 2px solid #3aabfe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Ul = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Li = styled.li`
+  list-style: none;
+  color: #3aabfe;
+  padding: 4px;
+  margin: 4px;
+`;
+
+function HeaderVan() {
   const navRoutes = routes.map(({ path, label }) => (
-    <li key={uuidv4()}>
+    <Li key={uuidv4()}>
       <Link to={path}>{label.toUpperCase()}</Link>
-    </li>
+    </Li>
   ));
 
   navRoutes.pop();
 
   return (
-    <header>
+    <Header>
       <img src={logo} alt="Logo" />
       <div>
         <BlueButton>SING IN</BlueButton>
         <WhiteButton>SING UP</WhiteButton>
       </div>
-      <nav>
-        <ul>{navRoutes}</ul>
-      </nav>
-    </header>
+
+      <Nav>
+        <Ul>{navRoutes}</Ul>
+      </Nav>
+    </Header>
   );
 }
-export default Header;
+export default HeaderVan;
