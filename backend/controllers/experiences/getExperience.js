@@ -15,11 +15,14 @@ const getExperience = async (req, res, next) => {
             [idExp]
         );
 
-        const [rating] = await connection.query(`
+        const [rating] = await connection.query(
+            `
             SELECT ROUND(IFNULL(AVG(book.valoracion),0),1) AS rating 
             FROM bookings book 
             WHERE book.id_experience = ?;
-        `, [idExp]);
+        `,
+            [idExp]
+        );
 
         const [photos] = await connection.query(
             `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
