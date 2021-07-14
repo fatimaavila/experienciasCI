@@ -1,10 +1,8 @@
 import Search from '../../components/search/Search';
 import styled from 'styled-components';
 import GridCategory from '../../components/gridcategories/GridCategory';
-import Carousel from '../../components/carousel/Carousel';
-import fondoSearch from '../../assets/Globos.jpg';
-import fondoSearch2 from '../../assets/Palmeras.jpg';
-import { v4 as uuidv4 } from 'uuid';
+
+import Carrusel from '../../components/carousel/Carrusel';
 const Landing = styled.div`
   margin: 10px;
   display: grid;
@@ -24,7 +22,7 @@ const Container = styled.div`
 `;
 
 function Home() {
-  const images = [
+  /* const images = [
     {
       id: uuidv4(),
       title: 'globos',
@@ -35,14 +33,12 @@ function Home() {
       title: 'palemeras',
       image: fondoSearch2,
     },
-  ];
+  ]; */
   return (
     <Landing>
       <Container>
         <Search></Search>
-        <Carousel images={images} key={images.id} title={images.title}>
-          Mierda
-        </Carousel>
+        <Carrusel />
         <GridCategory></GridCategory>
       </Container>
     </Landing>
