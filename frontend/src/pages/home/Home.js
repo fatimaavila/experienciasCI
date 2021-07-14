@@ -6,8 +6,9 @@ import fondoSearch from '../../assets/Globos.jpg';
 import fondoSearch2 from '../../assets/Palmeras.jpg';
 import { v4 as uuidv4 } from 'uuid';
 const Landing = styled.div`
+  margin: 10px;
   display: grid;
-  grid-template-columns: 1px, 1fr, 1em;
+  grid-template-columns: auto, 1800px, auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   justify-content: center;
@@ -16,7 +17,7 @@ const Landing = styled.div`
 `;
 
 const Container = styled.div`
-  grid-area: 2 / 3;
+  grid-area: 1 / 2;
 
   text-align: center;
   aling-items: center;
