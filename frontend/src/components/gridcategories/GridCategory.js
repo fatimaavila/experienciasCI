@@ -1,55 +1,108 @@
 import styled from 'styled-components';
+import allExp from '../../assets/allExp.jpg';
+import gastro from '../../assets/gastroCategory.jpg';
+import aqua from '../../assets/aquaCategory.jpeg';
+import spa from '../../assets/spaCategory.jpg';
+import pareja from '../../assets/parejaCategory.jpg';
+import motor from '../../assets/motorCategory.jpg';
+import aventure from '../../assets/routesCategory.jpeg';
+import fly from '../../assets/globoCategory.jpg';
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
+  width: min-content;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  text-align: center center;
+  color: white;
+  font-size: 1.5rem;
+  font-weigth: bold;
 `;
 const Div1 = styled.div`
   grid-area: 1 / 1 / 2 / 2;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${allExp});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div2 = styled.div`
   grid-area: 1 / 2 / 2 / 3;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${fly});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div3 = styled.div`
   grid-area: 1 / 3 / 2 / 4;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${motor});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div4 = styled.div`
   grid-area: 1 / 4 / 2 / 5;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${gastro});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div5 = styled.div`
   grid-area: 2 / 1 / 3 / 2;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${spa});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div6 = styled.div`
   grid-area: 2 / 2 / 3 / 3;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${aqua});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div7 = styled.div`
   grid-area: 2 / 3 / 3 / 4;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${pareja});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 const Div8 = styled.div`
   grid-area: 2 / 4 / 3 / 5;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  background-image: url(${aventure});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 
 function GridCategory(params) {
   return (
     <Grid>
-      <Div1>1</Div1>
-      <Div2>2</Div2>
-      <Div3>3</Div3>
-      <Div4>4</Div4>
-      <Div5>5</Div5>
-      <Div6>6</Div6>
-      <Div7>7</Div7>
-      <Div8>8</Div8>
+      <Div1>VER TODAS</Div1>
+      <Div2>VUELO</Div2>
+      <Div3>MOTOR</Div3>
+      <Div4>GASTRONOMIA</Div4>
+      <Div5>RELAX</Div5>
+      <Div6>ACUATICAS</Div6>
+      <Div7>EN PAREJA</Div7>
+      <Div8>AVENTURA</Div8>
     </Grid>
   );
 }

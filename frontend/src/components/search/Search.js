@@ -11,7 +11,7 @@ const Div = styled.div`
 const Comtainer = styled.div`
   height: 250px;
   padding: 0 150px;
-  margin: 30px 30px;
+  margin: 30px 0;
   background-image: url(${fondoSearch});
   background-repeat: no-repeat;
   background-size: cover;
