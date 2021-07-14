@@ -1,15 +1,29 @@
 import Search from '../../components/search/Search';
 import styled from 'styled-components';
+import GridCategory from '../../components/gridcategories/GridCategory';
+
 const Landing = styled.div`
   display: flex;
-  justify-content: center;
   aling-items: center;
+  justify-content: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  aling-items: center;
+  width: 70%;
 `;
 
 function Home() {
   return (
     <Landing>
-      <Search></Search>
+      <Container>
+        <Search></Search>
+        <GridCategory></GridCategory>
+      </Container>
     </Landing>
   );
 }
