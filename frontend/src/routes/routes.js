@@ -5,6 +5,7 @@ import Gastronomia from '../pages/gastronomia/Gastronomia';
 import Acuaticas from '../pages/acuaticas/Acuaticas';
 import Motor from '../pages/motor/Motor';
 import Home from '../pages/home/Home';
+import Parejas from '../pages/parejas/Parejas';
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: '/acuaticas',
         Page: Acuaticas,
         label: 'Acuaticas',
+    },
+    {
+        path: '/pareja',
+        Page: Parejas,
+        label: 'Parejas',
     },
     {
         path: '/',
