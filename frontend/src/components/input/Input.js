@@ -5,5 +5,4 @@ export const Input = styled.input`
   padding: 08px 25px;
   border-radius: 10px;
   text-aling: center;
-  background-image: '../../assets/Globos.jpg';
 `;
