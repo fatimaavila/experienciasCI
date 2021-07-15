@@ -9,12 +9,9 @@ import aventure from '../../assets/routesCategory.jpeg';
 import fly from '../../assets/globoCategory.jpg';
 
 const Grid = styled.div`
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(4, 1fr);
-  width: min-content;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  text-align: center center;
+  text-align: center;
   color: white;
   font-size: 1.5rem;
   font-weigth: bold;
@@ -94,16 +91,18 @@ const Div8 = styled.div`
 
 function GridCategory(params) {
   return (
-    <Grid>
-      <Div1>VER TODAS</Div1>
-      <Div2>VUELO</Div2>
-      <Div3>MOTOR</Div3>
-      <Div4>GASTRONOMIA</Div4>
-      <Div5>RELAX</Div5>
-      <Div6>ACUATICAS</Div6>
-      <Div7>EN PAREJA</Div7>
-      <Div8>AVENTURA</Div8>
-    </Grid>
+    <div>
+      <Grid>
+        <Div1>VER TODAS</Div1>
+        <Div2>VUELO</Div2>
+        <Div3>MOTOR</Div3>
+        <Div4>GASTRONOMIA</Div4>
+        <Div5>RELAX</Div5>
+        <Div6>ACUATICAS</Div6>
+        <Div7>EN PAREJA</Div7>
+        <Div8>AVENTURA</Div8>
+      </Grid>
+    </div>
   );
 }
 export default GridCategory;
