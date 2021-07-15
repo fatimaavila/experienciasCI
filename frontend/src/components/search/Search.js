@@ -13,7 +13,7 @@ const Comtainer = styled.div`
   background-image: url(${fondoSearch});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center;
+  background-position: top;
   border-radius: 10px;
   display: flex;
   gap: 15px;

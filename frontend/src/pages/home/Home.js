@@ -4,7 +4,7 @@ import GridCategory from '../../components/gridcategories/GridCategory';
 
 import Carrusel from '../../components/carousel/Carrusel';
 const Landing = styled.div`
-  max-width: 80%;
+  max-width: 70%;
   margin-left: auto;
   margin-right: auto;
 `;
