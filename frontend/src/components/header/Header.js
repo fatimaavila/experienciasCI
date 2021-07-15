@@ -38,7 +38,10 @@ function HeaderVan() {
 
   return (
     <Header>
-      <img src={logo} alt="Logo" />
+      <a href="./">
+        <img src={logo} alt="Logo" />
+      </a>
+
       <div>
         <BlueButton>SING IN</BlueButton>
         <WhiteButton>SING UP</WhiteButton>

@@ -13,19 +13,18 @@ function App() {
     <Router>
       <div className="App">
         <HeaderVan />
+
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path}>
+              <route.Page />
+            </Route>
+          ))}
+          {home && <Home />}
+        </Switch>
+
+        <Footer />
       </div>
-
-      <Switch>
-        {routes.map((route) => (
-          <Route key={route.path} path={route.path}>
-            <route.Page />
-          </Route>
-        ))}
-      </Switch>
-
-      {home && <Home />}
-
-      <Footer />
     </Router>
   );
 }
