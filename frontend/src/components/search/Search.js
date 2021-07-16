@@ -1,40 +1,31 @@
-import { BlueButton } from '../button/Button';
+import Button from '../button/Button';
 import styled from 'styled-components';
 import fondoSearch from '../../assets/Globos.jpg';
+import BlackTransparentBox from '../BlackTransparentBox/BlackTransparentBox';
+import Input from '../input/Input';
 
-/* const Div = styled.div`
+const StyledLandingSearch = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`; */
-const Comtainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const Section = styled.section`
-  position: absolute;
-  display: flex;
-  gap: 50px;
-`;
-const Input = styled.input`
-  border: 1px solid #3aabfe;
-  font-size: 10px;
-  padding: 08px 25px;
-  border-radius: 4px;
-  text-aling: center;
+  background-image: url(${fondoSearch});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 5px;
+  height: 400px;
+  margin: 50px 0px;
 `;
 
 function Search() {
   return (
-    <Comtainer>
-      <img width="650px" height="250px" src={fondoSearch} alt="Search" />
-      <Section>
+    <StyledLandingSearch className='posRel searchHome'>
+      <BlackTransparentBox>
         <Input placeholder="Introduce una experiencia" />
         <Input placeholder="Introduce una ciudad" />
-        <BlueButton>BUSCAR</BlueButton>
-      </Section>
-    </Comtainer>
+        <Button blue>BUSCAR</Button>
+      </BlackTransparentBox>
+    </StyledLandingSearch>
   );
 }
 export default Search;

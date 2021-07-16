@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-export const Input = styled.input`
-  border: 1px solid #3aabfe;
-  font-size: 10px;
-  padding: 08px 25px;
-  border-radius: 10px;
-  text-aling: center;
+
+const Input = styled.input`
+  padding: 1rem 10rem 1rem 1rem;
+  border-radius: 3px;
 `;
+
+export default Input;

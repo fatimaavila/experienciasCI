@@ -1,56 +1,38 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import logo from '../../assets/LOGOBUENO.png';
 import routes from '../../routes/routes';
-import { BlueButton, WhiteButton } from '../../components/button/Button';
+import Button from '../../components/button/Button';
+import StyledHeader from './StyledHeader';
 
-const Header = styled.header`
-  background-color: #3aabfe;
-`;
-const Nav = styled.nav`
-  background-color: white;
-  border-bottom: 2px solid #3aabfe;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Ul = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Li = styled.li`
-  list-style: none;
-  color: #3aabfe;
-  padding: 4px;
-  margin: 4px;
-`;
-
-function HeaderVan() {
+function Header() {
   const navRoutes = routes.map(({ path, label }) => (
-    <Li key={uuidv4()}>
+    <li key={uuidv4()}>
       <Link to={path}>{label.toUpperCase()}</Link>
-    </Li>
+    </li>
   ));
 
   navRoutes.pop();
 
   return (
-    <Header>
-      <a href="./">
-        <img src={logo} alt="Logo" />
-      </a>
-
-      <div>
-        <BlueButton>SING IN</BlueButton>
-        <WhiteButton>SING UP</WhiteButton>
-      </div>
-
-      <Nav>
-        <Ul>{navRoutes}</Ul>
-      </Nav>
-    </Header>
+    < >
+      <StyledHeader>
+        <div className='headerBox'>
+          <div className='logoHeader'>
+            <a href="./">
+              <img src={logo} alt="Logo" />
+            </a>
+          </div>
+          <div className='buttonSession'>
+            <Button blue barra>SING IN</Button>
+            <Button>SING UP</Button>
+          </div>
+        </div>
+        <nav>
+          <ul className='mainMenu'>{navRoutes}</ul>
+        </nav>
+      </StyledHeader>
+    </>
   );
 }
-export default HeaderVan;
+export default Header;
