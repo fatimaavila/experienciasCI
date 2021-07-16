@@ -5,7 +5,7 @@ const Button = styled.button`
   font-size: 15px;
   font-weigth: bold;
 
-  border-radius: 8px;
+  border-radius: 2px;
   font-family: 'Helvetica Neue';
   text-aling: center;
 `;
