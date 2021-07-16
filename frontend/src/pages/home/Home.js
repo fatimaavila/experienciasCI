@@ -1,6 +1,5 @@
 import Search from '../../components/search/Search';
 import styled from 'styled-components';
-import Carrusel from '../../components/carousel/Carrusel';
 import LandingCategories from '../../components/LandingCategories/LandingCategories';
 
 const Landing = styled.div`
@@ -24,7 +23,6 @@ function Home() {
   return (
     <Landing>
       <Search />
-      <Carrusel />
       <LandingCategories></LandingCategories>
     </Landing>
   );
