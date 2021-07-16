@@ -15,13 +15,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-  margin: 5px;
+  margin: 50px 0px;
   border-radius: 5px;
   padding: 15px;
-  border-bottom: 1px solid #3aabfe;
-  border-top: 1px solid #3aabfe;
-  box-shadow: inset 25px 0px 15px -25px #2086ca,
-    inset -25px 0px 15px -25px #2086ca; ;
+
+
 `;
 
 const Div = styled.div`
@@ -85,14 +83,14 @@ function Carousel() {
         autoPlayInterval={5000}
         infinite={true}
         animationType="fadeout"
-        animationDuration={800}
-        animationEasingFunction="ease"
+        animationDuration={500}
+        animationEasingFunction='ease'
         disableButtonsControls
         disableDotsControls
         mouseTracking
         items={items}
-        paddingLeft={50}
-        paddingRight={50}
+        paddingLeft={40}
+        paddingRight={40}
         responsive={responsive}
       />
     </Container>
