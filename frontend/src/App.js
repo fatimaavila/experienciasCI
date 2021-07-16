@@ -8,6 +8,8 @@ import { useState } from 'react';
 
 function App() {
   const [home] = useState();
+  const [searchExperience, setSearchExperience] = useState('');
+  const [searchCity, setSearchCity] = useState('');
 
   return (
     <Router>

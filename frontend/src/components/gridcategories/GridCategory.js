@@ -11,6 +11,8 @@ import fly from '../../assets/globoCategory.jpg';
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr, 1fr;
+  height: min-content;
 `;
 const Div1 = styled.div`
   grid-area: 1 / 1 / 2 / 2;

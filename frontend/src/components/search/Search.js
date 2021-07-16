@@ -8,35 +8,33 @@ import fondoSearch from '../../assets/Globos.jpg';
   justify-content: center;
 `; */
 const Comtainer = styled.div`
-  height: 250px;
-
-  background-image: url(${fondoSearch});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  border-radius: 10px;
   display: flex;
-  gap: 15px;
   align-items: center;
   justify-content: center;
+`;
+const Section = styled.section`
+  position: absolute;
+  display: flex;
+  gap: 50px;
 `;
 const Input = styled.input`
   border: 1px solid #3aabfe;
   font-size: 10px;
   padding: 08px 25px;
-  border-radius: 10px;
+  border-radius: 4px;
   text-aling: center;
 `;
 
 function Search() {
   return (
-    <div>
-      <Comtainer>
+    <Comtainer>
+      <img width="650px" height="250px" src={fondoSearch} alt="Search" />
+      <Section>
         <Input placeholder="Introduce una experiencia" />
         <Input placeholder="Introduce una ciudad" />
         <BlueButton>BUSCAR</BlueButton>
-      </Comtainer>
-    </div>
+      </Section>
+    </Comtainer>
   );
 }
 export default Search;
