@@ -7,27 +7,26 @@ import Home from './pages/home/Home';
 import { useState } from 'react';
 
 function App() {
-    const [home, setHome] = useState();
+  const [home] = useState();
 
-    return (
-        <Router>
-            <div className="App">
-                <Header />
-            </div>
+  return (
+    <Router>
+      <div className="App">
+        <Header />
 
-            <Switch>
-                {routes.map((route) => (
-                    <Route key={route.path} path={route.path}>
-                        <route.Page />
-                    </Route>
-                ))}
-            </Switch>
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path}>
+              <route.Page />
+            </Route>
+          ))}
+          {home && <Home />}
+        </Switch>
 
-            {home && <Home />}
-
-            <Footer />
-        </Router>
-    );
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
 export default App;

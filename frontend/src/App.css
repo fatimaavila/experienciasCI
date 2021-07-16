@@ -1,13 +1,27 @@
-@import './components/header/reset.css';
-@import './components/header/header.css';
-@import './components/footer/footer.css';
-
-
+@import './reset.css';
 
 * {
   box-sizing: border-box;
 }
-a{
- text-decoration: none;
+
+body {
+  font-size: 15px;
 }
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.posRel {
+  position: relative;
+}
+
+input {
+  border: 0;
+}
+
 

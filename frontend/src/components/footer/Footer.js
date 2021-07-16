@@ -3,27 +3,45 @@ import { FaFacebook } from 'react-icons/fa';
 import { SiInstagram } from 'react-icons/si';
 import { SiTwitter } from 'react-icons/si';
 import { SiLinkedin } from 'react-icons/si';
+import StyledFooter from './StyledFooter';
 
 function Footer() {
-    return (
-        <div className="footer">
-            <ul className="fotul">
-                <li>
-                    <FaFacebook size="30px" />
-                </li>
-                <li>
-                    <SiInstagram size="30px" />
-                </li>
-                <li>
-                    <SiTwitter size="30px" />
-                </li>
-                <li>
-                    <SiLinkedin size="30px" />
-                </li>
-            </ul>
-            <img className="logo-foot" src={logo} alt="Logo van exp" />
+  return (
+    <StyledFooter>
+      <div className='socialMedias'>
+        <ul>
+          <li>
+            <a href='#'>
+              <FaFacebook size="40px" />
+            </a>
+          </li>
+          <li>
+            <a href='#'>
+              <SiInstagram size="40px" />
+            </a>
+          </li>
+          <li>
+            <a href='#'>
+              <SiTwitter size="40px" />
+            </a>
+          </li>
+          <li>
+            <a href='#'>
+              <SiLinkedin size="40px" />
+            </a>
+          </li>
+        </ul>
+        <div className='logoFooter'>
+          <img src={logo} alt="Logo van exp" />
         </div>
-    );
+      </div>
+      <div className='copyrightBlock'>
+        <span>Términos</span>
+        <span>Legal</span>
+        <span>Otros</span>
+      </div>
+    </StyledFooter>
+  );
 }
 
 export default Footer;

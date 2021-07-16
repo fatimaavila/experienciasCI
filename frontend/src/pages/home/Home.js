@@ -1,29 +1,31 @@
 import Search from '../../components/search/Search';
 import styled from 'styled-components';
-import GridCategory from '../../components/gridcategories/GridCategory';
+import Carrusel from '../../components/carousel/Carrusel';
+import LandingCategories from '../../components/LandingCategories/LandingCategories';
 
 const Landing = styled.div`
-  display: flex;
-  aling-items: center;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  aling-items: center;
-  width: 70%;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 function Home() {
+  /* const images = [
+    {
+      id: uuidv4(),
+      title: 'globos',
+      image: fondoSearch,
+    },
+    {
+      id: uuidv4(),
+      title: 'palemeras',
+      image: fondoSearch2,
+    },
+  ]; */
   return (
     <Landing>
-      <Container>
-        <Search></Search>
-        <GridCategory></GridCategory>
-      </Container>
+      <Search />
+      <Carrusel />
+      <LandingCategories></LandingCategories>
     </Landing>
   );
 }
