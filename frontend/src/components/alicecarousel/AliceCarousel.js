@@ -38,7 +38,8 @@ const Div = styled.div`
 const responsive = {
   0: { items: 1 },
   568: { items: 2 },
-  1024: { items: 3 },
+  780: { items: 3 },
+  1024: { items: 4 },
 };
 
 const items = [
@@ -81,9 +82,11 @@ function Carousel() {
     <Container>
       <AliceCarousel
         autoPlay
+        autoPlayInterval={5000}
         infinite={true}
         animationType="fadeout"
         animationDuration={800}
+        animationEasingFunction="ease"
         disableButtonsControls
         disableDotsControls
         mouseTracking
