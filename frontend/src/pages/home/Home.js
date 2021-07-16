@@ -1,6 +1,7 @@
 import Search from '../../components/search/Search';
 import styled from 'styled-components';
 import LandingCategories from '../../components/LandingCategories/LandingCategories';
+import Carousel from '../../components/alicecarousel/AliceCarousel';
 
 const Landing = styled.div`
   max-width: 1200px;
@@ -23,6 +24,7 @@ function Home() {
   return (
     <Landing>
       <Search />
+      <Carousel/>
       <LandingCategories></LandingCategories>
     </Landing>
   );
