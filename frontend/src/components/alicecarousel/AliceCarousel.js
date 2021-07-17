@@ -15,10 +15,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-  margin: 5px;
+  margin: 50px 0px;
   border-radius: 5px;
   padding: 15px;
-
   box-shadow: inset 25px 0px 15px -25px #2086ca,
     inset -25px 0px 15px -25px #2086ca; ;
 `;
@@ -85,7 +84,7 @@ function Carousel() {
         infinite={true}
         animationType="fadeout"
         animationDuration={500}
-        animationEasingFunction="ease"
+        animationEasingFunction='ease'
         disableButtonsControls
         disableDotsControls
         mouseTracking
