@@ -24,6 +24,7 @@ const StyledLandingCategory = styled.div`
     right: auto;
     color: #fff;
     font-size: 3rem;
+    text-shadow: -2px 3px 3px rgba(150, 150, 150, 0.72);
   }
   a > p:hover {
     transform: translate(3%, 5%) scale(1.5);

@@ -36,16 +36,28 @@ function LandingCategories(params) {
         </a>
       </div>
       <div className="landingCategoryBlock">
-        <img width="100%" src={couple} alt="category" />
+        <a href="/pareja">
+          <p>PAREJA</p>
+          <img width="100%" src={couple} alt="category" />
+        </a>
       </div>
       <div className="landingCategoryBlock">
-        <img width="100%" src={motor} alt="category" />
+        <a href="/motor">
+          <p>MOTOR</p>
+          <img width="100%" src={motor} alt="category" />
+        </a>
       </div>
       <div className="landingCategoryBlock">
-        <img width="100%" src={adventure} alt="category" />
+        <a href="/aventuras">
+          <p>RUTAS</p>
+          <img width="100%" src={adventure} alt="category" />
+        </a>
       </div>
       <div className="landingCategoryBlock">
-        <img width="100%" src={fly} alt="category" />
+        <a href="/vuelo">
+          <p>VUELO</p>
+          <img width="100%" src={fly} alt="category" />
+        </a>
       </div>
     </StyledLandingCategory>
   );
