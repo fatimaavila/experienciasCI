@@ -18,8 +18,8 @@ const Container = styled.div`
   margin: 50px 0px;
   border-radius: 5px;
   padding: 15px;
-
-
+  box-shadow: inset 25px 0px 15px -25px #2086ca,
+    inset -25px 0px 15px -25px #2086ca; ;
 `;
 
 const Div = styled.div`
