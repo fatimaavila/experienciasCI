@@ -13,16 +13,20 @@ const StyledLandingCategory = styled.div`
   .landingCategoryBlock img {
     display: block;
   }
-
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   a > p {
-    position: relative;
-    top: 50%;
-    left: 35%;
+    position: absolute;
+    left: auto;
+    right: auto;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
   a > p:hover {
-    transform: translate(40%) scale(2);
+    transform: translate(3%, 5%) scale(1.5);
   }
 `;
 
