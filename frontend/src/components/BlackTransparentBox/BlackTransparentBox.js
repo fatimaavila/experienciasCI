@@ -7,7 +7,7 @@ const BlackTransparentBox = styled.div`
     left: 0;
     right: 0;
     z-index: 456;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.3);
 
     .searchHome & {
         display: flex;
@@ -15,6 +15,12 @@ const BlackTransparentBox = styled.div`
         align-items: center;
         gap: 25px;
         border-radius: 5px;
+    }
+
+    .landingCategoryBlock & {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
