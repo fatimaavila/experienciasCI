@@ -4,7 +4,7 @@ const StyledLandingCategory = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin: 50px 0px;
+  margin: 100px 0px;
 
   .landingCategoryBlock {
     width: 25%;
@@ -15,29 +15,17 @@ const StyledLandingCategory = styled.div`
     display: block;
   }
 
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  & a {
+    color: #FFF;
   }
 
-  a > p {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.75);
-    font-size: 3rem;
+  & p {
+    font-size: 2.5rem;
     text-shadow: -2px 3px 3px rgba(150, 150, 150, 0.72);
-    transition: transform 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 8512;
+    transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1) ;
   }
-  a:hover > p {
+
+  .landingCategoryBlock:hover p {
     transform: scale(1.2);
   }
 `;

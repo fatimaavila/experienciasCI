@@ -10,16 +10,16 @@ const StyledFooter = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: #3aabfe;
+    padding: 3rem 0rem;
     width: 100%;
-    padding: 2.5rem 0rem;
   }
 
   .socialMedias ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
+    width: 50%;
+    margin: 3rem 0rem;
   }
 
   .socialMedias a {
@@ -29,6 +29,11 @@ const StyledFooter = styled.div`
     align-items: center;
   }
 
+  .socialMedias p {
+    font-size: 20px;
+    margin-top: 15px;
+  }
+
   .copyrightBlock {
     display: flex;
     justify-content: center;
@@ -36,26 +41,14 @@ const StyledFooter = styled.div`
     background-color: #2193c5;
     width: 100%;
     color: #fff;
-    padding: 1rem 0rem;
+    padding: 1.5rem 0rem;
   }
-  .labelLinksFooter {
-    color: white;
+
+  .logoFooter {
+    width: 20%;
+    overflow: hidden;
   }
-  .titleLI {
-    color: #000;
-    font-size: 20px;
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-  }
-  ul > li {
-    text-align: center;
-    font-size: 20px;
-  }
-  .github {
-    width: 3rem;
-    margin-left: -2rem;
-  }
+
 `;
 
 export default StyledFooter;
