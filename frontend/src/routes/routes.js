@@ -31,12 +31,12 @@ const routes = [
   {
     path: '/gastronomia',
     Page: Gastronomia,
-    label: 'Gastronomia',
+    label: 'Gastronomía',
   },
   {
     path: '/acuaticas',
     Page: Acuaticas,
-    label: 'Acuaticas',
+    label: 'Acuáticas',
   },
   {
     path: '/pareja',
