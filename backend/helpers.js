@@ -48,11 +48,10 @@ async function validate(schema, data) {
     }
 }
 
-const priceQuery = async(price) => {
-
+const priceQuery = async (price) => {
     price = Number(price);
 
-    switch(price) {
+    switch (price) {
         case 1:
             return `precio BETWEEN 0 AND 50`;
         case 2:
@@ -63,9 +62,8 @@ const priceQuery = async(price) => {
             return `precio > 200`;
         default:
             return `precio BETWEEN 0 AND 999`;
-
     }
-}
+};
 
 module.exports = {
     formatDate,

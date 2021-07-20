@@ -1,10 +1,10 @@
+import StyledAllExperience from './StyledAllExperience';
+
 function AllExperiences() {
-    return (
-        <div>
-            <h1>holaaaaaa</h1>
-            <h1>adios</h1>
-            <h1>caca</h1>
-        </div>
-    );
+  return (
+    <div>
+      <StyledAllExperience />
+    </div>
+  );
 }
 export default AllExperiences;
