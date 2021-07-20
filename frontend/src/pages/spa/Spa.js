@@ -1,4 +1,10 @@
+import AllExperiences from '../../components/allexperiences/AllExperiences';
+
 function Spa() {
-    return <h1>Estas en Spa</h1>;
+  return (
+    <div>
+      <AllExperiences />
+    </div>
+  );
 }
 export default Spa;
