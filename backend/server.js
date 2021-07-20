@@ -2,9 +2,17 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
 const app = express();
 
 const { PORT } = process.env;
+
+const corsOptions = {
+    origin: 'http://localhost:3000'
+}
+
+app.use(cors(corsOptions));
+
 // ##################
 // ## MIDDLEWARES  ##
 // ##################

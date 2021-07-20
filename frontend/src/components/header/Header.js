@@ -19,7 +19,7 @@ function Header() {
       <StyledHeader>
         <div className='headerBox'>
           <div className='logoHeader'>
-            <a href="./">
+            <a href="/">
               <img src={logo} alt="Logo" />
             </a>
           </div>
