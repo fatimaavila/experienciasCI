@@ -1,4 +1,10 @@
+import AllExperiences from '../../components/allexperiences/AllExperiences';
+
 function Gastronomia() {
-    return <h1>Estas en Gastronomia</h1>;
+  return (
+    <div>
+      <AllExperiences />
+    </div>
+  );
 }
 export default Gastronomia;
