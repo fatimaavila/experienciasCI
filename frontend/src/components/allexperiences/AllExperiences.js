@@ -1,9 +1,9 @@
 import StyledAllExperience from './StyledAllExperience';
 
-function AllExperiences() {
+function AllExperiences({data}) {
   return (
     <div>
-      <StyledAllExperience />
+      <StyledAllExperience data={data} />
     </div>
   );
 }

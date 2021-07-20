@@ -1,9 +1,13 @@
-import AllExperiences from '../allexperiences/AllExperiences';
+import AllExperiences from '../../components/allexperiences/AllExperiences';
 
 function Acuaticas() {
+  const acuaticas = {
+    name: 'alejandro',
+    apellido: 'Fandiño',
+  };
   return (
     <div>
-      <AllExperiences />
+      <AllExperiences data={acuaticas} />
     </div>
   );
 }

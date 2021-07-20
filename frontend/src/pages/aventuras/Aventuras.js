@@ -1,10 +1,14 @@
-import AllExperiences from '../allexperiences/AllExperiences';
+import AllExperiences from '../../components/allexperiences/AllExperiences';
 
 function Aventuras() {
-    return (
-        <div>
-            <AllExperiences></AllExperiences>
-        </div>
-    );
+  const pepe = {
+    name: 'Nacho',
+    apellido: 'Rodriguez',
+  };
+  return (
+    <div>
+      <AllExperiences data={pepe} />
+    </div>
+  );
 }
 export default Aventuras;

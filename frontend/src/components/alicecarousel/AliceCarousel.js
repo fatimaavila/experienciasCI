@@ -84,7 +84,7 @@ function Carousel() {
         infinite={true}
         animationType="fadeout"
         animationDuration={500}
-        animationEasingFunction='ease'
+        animationEasingFunction="ease"
         disableButtonsControls
         disableDotsControls
         mouseTracking
