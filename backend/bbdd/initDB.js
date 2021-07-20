@@ -10,7 +10,7 @@ const initDB = async () => {
         connection = await getDB();
         await connection.query('DROP DATABASE IF EXISTS VAN_Experience');
         await connection.query('CREATE DATABASE VAN_Experience;');
-        await connection.query('USE dbs2646786;');
+        await connection.query('USE VAN_Experience;');
         await connection.query('SET FOREIGN_KEY_CHECKS = 1;');
         await connection.query('DROP TABLE IF EXISTS users;');
         await connection.query('DROP TABLE IF EXISTS experiences;');

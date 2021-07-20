@@ -1,10 +1,10 @@
 import AllExperiences from '../allexperiences/AllExperiences';
 
 function Acuaticas() {
-    return (
-        <div>
-            <AllExperiences></AllExperiences>
-        </div>
-    );
+  return (
+    <div>
+      <AllExperiences />
+    </div>
+  );
 }
 export default Acuaticas;

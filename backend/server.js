@@ -54,6 +54,8 @@ const {
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(fileUpload());
+const cors = require('cors');
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // ###############################
 // ## ENDPOINTS DE EXPERIENCIAS ##

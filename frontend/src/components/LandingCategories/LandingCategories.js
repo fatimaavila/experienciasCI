@@ -12,17 +12,14 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 function LandingCategories() {
+  useEffect(() => {
+    async function getCategoryExperience() {
+      const data = await axios.get('http://localhost:8080/experiences');
+      console.log(data);
+    }
 
-  // useEffect(() => {
-
-  //   async function getCategoryExperience() {
-  //     const data = await axios.get('http://localhost:6000/experiences');
-  //     console.log(data);
-  //   }
-
-  //   getCategoryExperience();
-
-  // })
+    getCategoryExperience();
+  });
 
   return (
     <StyledLandingCategory>
