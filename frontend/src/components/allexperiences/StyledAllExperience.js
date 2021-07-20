@@ -1,43 +1,28 @@
 import styled from 'styled-components';
-import Experiece from '../experience/Experience';
-import Filters from '../filters/Filters';
 
-const LandingExperiences = styled.div`
+const StyledAllExperience = styled.div`
+  max-width: 1200px;
+  margin: 6rem auto;
   display: flex;
-  justify-content: center;
-  margin: 2rem;
-  padding: 2rem;
-  gap: 2rem;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .results {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+  }
 
   .experiences {
-    width: 80%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
+
   .date-picker {
     border: 1px solid black;
   }
 `;
 
-function StyledAllExperience({ data }) {
-  return (
-    <LandingExperiences>
-      <Filters />
-      <div className="experiences">
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-        <Experiece />
-      </div>
-    </LandingExperiences>
-  );
-}
 export default StyledAllExperience;

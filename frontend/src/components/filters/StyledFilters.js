@@ -1,71 +1,50 @@
 import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
-import { useState } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
-const FilterContainer = styled.div`
-  .filters {
-    border-right: 1px solid black;
-    padding: 2rem;
+
+const StyledFilters = styled.div`
+  border: 3px solid #3AABFE;
+  border-radius: 6px;
+  width: 20%;
+
+  & > div, & > ul {
+    border-bottom: 2px solid #3AABFE;
   }
-  .ciudad {
-    border: 1px solid black;
-    padding: 1rem;
+
+  & > div:last-child {
+    border-bottom: 0;
   }
-  .precio {
-    border: 1px solid black;
-    padding: 1rem;
+
+  .cityFilter li {
+    padding: 1rem 1rem 0rem 1rem;
+    color: #3AABFE;
+  }
+
+  .cityFilter li:last-child {
+    padding-bottom: 1rem;
+  }
+
+  .priceFilter {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
-  .fechas {
+
+  .priceFilter > label {
+    padding: 1rem 1rem 0rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #3AABFE;
+  }
+
+  .priceFilter > label:last-child {
+    padding-bottom: 1rem;
+  }
+
+  .dateFilter {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     padding: 1rem;
   }
 `;
-
-function StyledFilters() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [finalDate, setFinalDate] = useState(startDate);
-  return (
-    <FilterContainer className="filters">
-      <div className="ciudad">
-        <ul>
-          <li>VALENCIA</li>
-          <li>MADRID</li>
-          <li>BARCELONA</li>
-          <li>A CORUÑA</li>
-          <li>SANTANDER</li>
-          <li>SEVILLA</li>
-        </ul>
-      </div>
-      <div className="precio">
-        <input type="checkbox" />
-        0€ - 50€
-        <input type="checkbox" />
-        50€ - 10€
-        <input type="checkbox" />
-        100€ - 150€
-        <input type="checkbox" />
-        150€ - 200€
-        <input type="checkbox" />
-        +200€
-      </div>
-
-      <div className="fechas">
-        <DatePicker
-          className="date-picker"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <DatePicker
-          className="date-picker"
-          selected={finalDate}
-          onChange={(date) => setFinalDate(date)}
-        />
-      </div>
-    </FilterContainer>
-  );
-}
+  
 export default StyledFilters;

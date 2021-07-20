@@ -2,9 +2,7 @@ import AllExperiences from '../../components/allexperiences/AllExperiences';
 
 function Acuaticas() {
   return (
-    <div>
-      <AllExperiences />
-    </div>
+    <AllExperiences />
   );
 }
 export default Acuaticas;
