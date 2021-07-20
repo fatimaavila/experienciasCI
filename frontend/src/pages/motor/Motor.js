@@ -1,4 +1,12 @@
+import AllExperiences from '../../components/allexperiences/AllExperiences';
+import FullExperience from '../../components/fullexperience/FullExperience';
+
 function Motor() {
-    return <h1>Estas en Motor</h1>;
+  return (
+    <div>
+      <FullExperience />
+      {/*  <AllExperiences /> */}
+    </div>
+  );
 }
 export default Motor;

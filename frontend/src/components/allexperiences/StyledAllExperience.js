@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import Experiece from '../experience/Experience';
-import DatePicker from 'react-datepicker';
-import { useState } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
+import Filters from '../filters/Filters';
 
 const LandingExperiences = styled.div`
   display: flex;
@@ -10,25 +8,7 @@ const LandingExperiences = styled.div`
   margin: 2rem;
   padding: 2rem;
   gap: 2rem;
-  .filters {
-    border-right: 1px solid black;
-    padding: 2rem;
-  }
-  .ciudad {
-    border: 1px solid black;
-    padding: 1rem;
-  }
-  .precio {
-    border: 1px solid black;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .fechas {
-    width: 100%;
-    border: 1px solid black;
-    padding: 1rem;
-  }
+
   .experiences {
     width: 80%;
     display: grid;
@@ -42,46 +22,9 @@ const LandingExperiences = styled.div`
 `;
 
 function StyledAllExperience({ data }) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [finalDate, setFinalDate] = useState(startDate);
   return (
     <LandingExperiences>
-      <div className="filters">
-        <div className="ciudad">
-          <ul>
-            <li>{data.name}</li>
-            <li>{data.apellido}</li>
-            <li>BARCELONA</li>
-            <li>A CORUÑA</li>
-            <li>SANTANDER</li>
-            <li>SEVILLA</li>
-          </ul>
-        </div>
-        <div className="precio">
-          <input type="checkbox" />
-          0€ - 50€
-          <input type="checkbox" />
-          50€ - 10€
-          <input type="checkbox" />
-          100€ - 150€
-          <input type="checkbox" />
-          150€ - 200€
-          <input type="checkbox" />
-          +200€
-        </div>
-        <div className="fechas">
-          <DatePicker
-            className="date-picker"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          />
-          <DatePicker
-            className="date-picker"
-            selected={finalDate}
-            onChange={(date) => setFinalDate(date)}
-          />
-        </div>
-      </div>
+      <Filters />
       <div className="experiences">
         <Experiece />
         <Experiece />

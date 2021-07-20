@@ -1,7 +1,9 @@
+import AllExperiences from '../../components/allexperiences/AllExperiences';
+
 function Parejas() {
   return (
     <div>
-      <h1>Prueba styled-components</h1>
+      <AllExperiences />
     </div>
   );
 }

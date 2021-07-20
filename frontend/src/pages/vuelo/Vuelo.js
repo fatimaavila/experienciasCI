@@ -1,4 +1,10 @@
+import AllExperiences from '../../components/allexperiences/AllExperiences';
+
 function Vuelo() {
-    return <h1>Estas en Vuelo</h1>;
+  return (
+    <div>
+      <AllExperiences />
+    </div>
+  );
 }
 export default Vuelo;
