@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Experiece from '../../components/experience/Experience';
+import Experiece from '../experience/Experience';
 import DatePicker from 'react-datepicker';
 import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -41,7 +41,7 @@ const LandingExperiences = styled.div`
   }
 `;
 
-function StyledAllExperience() {
+function StyledAllExperience({ data }) {
   const [startDate, setStartDate] = useState(new Date());
   const [finalDate, setFinalDate] = useState(startDate);
   return (
@@ -49,8 +49,8 @@ function StyledAllExperience() {
       <div className="filters">
         <div className="ciudad">
           <ul>
-            <li>VALENCIA</li>
-            <li>MADRID</li>
+            <li>{data.name}</li>
+            <li>{data.apellido}</li>
             <li>BARCELONA</li>
             <li>A CORUÑA</li>
             <li>SANTANDER</li>
