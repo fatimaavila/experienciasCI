@@ -1,18 +1,22 @@
 import CarouselFS from './CarouselFS';
 import StyledFullExperience from './StyledFullExperience';
+import Button from '../button/Button';
 
 function FullExperience() {
   return (
     <StyledFullExperience>
       <div className="carousel-photoexp">
-        <CarouselFS />
-        aqui va el carrusel
+        <CarouselFS className="carousel-fs" />
       </div>
       <div className="data-experience">
         <section className="info-experience-basic">
           <h1>NOMBRE DE LA EXPERIENCIA</h1>
-          <p>99,99€</p>
-          <button>Comprar</button>
+          <div className="fs-interaction-client">
+            <p>99,99€</p>
+            <Button blue className="button-buy">
+              Comprar
+            </Button>
+          </div>
           <h2>Incluye</h2>
           <p>Lorem ipsum dolor sit amet</p>
           <h2>Condiciones de uso</h2>

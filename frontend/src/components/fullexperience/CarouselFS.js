@@ -10,7 +10,7 @@ import fly from '../../assets/globoCategory.jpg';
 
 function CarouselFS() {
   return (
-    <Carousel>
+    <Carousel className="carousel-fs-fs">
       <div>
         <img src={fly} alt="category" />
       </div>
