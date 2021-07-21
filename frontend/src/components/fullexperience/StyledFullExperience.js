@@ -1,13 +1,8 @@
 import styled from 'styled-components';
-import CarouselFS from './CarouselFS';
 
-const FullExperienceContainer = styled.div``;
+const StyledFullExperience = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
-function StyledFullExperience() {
-  return (
-    <FullExperienceContainer>
-      <CarouselFS />
-    </FullExperienceContainer>
-  );
-}
 export default StyledFullExperience;
