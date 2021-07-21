@@ -6,9 +6,9 @@ function OrderExperiences() {
             <label>
                 <span>Ordenar por:</span>
                 <select>
-                    <option selected>-- Seleccionar --</option>
-                    <option>De mayor a menor</option>
-                    <option>De menor a mayor</option>
+                    <option defaultValue>-- Seleccionar --</option>
+                    <option value='mayor'>De mayor a menor</option>
+                    <option value='menor'>De menor a mayor</option>
                 </select>
             </label>
             <span>Mostrando X a XX de XX en total</span>

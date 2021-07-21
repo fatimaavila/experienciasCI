@@ -9,6 +9,11 @@ const StyledFilters = styled.div`
     border-bottom: 2px solid #3AABFE;
   }
 
+  & > ul {
+    overflow-y: scroll;
+    height: 300px;
+  }
+
   & > div:last-child {
     border-bottom: 0;
   }

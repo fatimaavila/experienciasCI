@@ -1,20 +1,41 @@
 import StyledFilters from './StyledFilters';
 import DatePicker from 'react-datepicker';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios';
+import { onlyUnique } from '../../helpers';
 
 function Filters() {
+  const [city,setCity] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [finalDate, setFinalDate] = useState(startDate);
+
+  async function getCities() {
+    try {
+      
+      const { data } = await axios.get('http://localhost:8080/experiences');
+      const allCities = data.data.map((city) => city.ciudad);
+      const cities = allCities.filter(onlyUnique);
+      setCity(cities.sort());
+
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+
+    getCities();
+
+  },[])
+
+
   return (
     <StyledFilters>
       <ul className="cityFilter">
-        <li>VALENCIA</li>
-        <li>MADRID</li>
-        <li>BARCELONA</li>
-        <li>A CORUÑA</li>
-        <li>SANTANDER</li>
-        <li>SEVILLA</li>
+        {city && city.map((city) => {
+          return <li key={city}>{city}</li>
+        })}
       </ul>
       <div className="priceFilter">
         <label>
