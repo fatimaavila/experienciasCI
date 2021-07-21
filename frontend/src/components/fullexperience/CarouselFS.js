@@ -1,48 +1,38 @@
-import React, { useState } from 'react';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import gastro from '../../assets/gastroCategory.jpg';
+import aqua from '../../assets/aquaCategory.jpeg';
 import spa from '../../assets/spaCategory.jpg';
 import pareja from '../../assets/parejaCategory.jpg';
 import motor from '../../assets/motorCategory.jpg';
 import aventure from '../../assets/routesCategory.jpeg';
 import fly from '../../assets/globoCategory.jpg';
 
-const items = [
-  <div className="item" data-value="1">
-    <img width="10%" src={aventure} alt="category" />
-  </div>,
-  <div className="item" data-value="2">
-    <img width="10%" src={motor} alt="category" />
-  </div>,
-  <div className="item" data-value="3">
-    <img width="10%" src={pareja} alt="category" />
-  </div>,
-  <div className="item" data-value="4">
-    <img width="10%" src={fly} alt="category" />
-  </div>,
-  <div className="item" data-value="5">
-    <img width="10%" src={spa} alt="category" />
-  </div>,
-];
-
-const responsive = {
-  1100: { items: 1 },
-};
-
 function CarouselFS() {
   return (
-    <AliceCarousel
-      autoPlay
-      autoPlayInterval={3000}
-      infinite={true}
-      animationType="fadeout"
-      animationDuration={500}
-      animationEasingFunction="ease"
-      mouseTracking
-      items={items}
-      responsive={responsive}
-    />
+    <Carousel>
+      <div>
+        <img src={fly} alt="category" />
+      </div>
+      <div>
+        <img src={spa} alt="category" />
+      </div>
+      <div>
+        <img src={aventure} alt="category" />
+      </div>
+      <div>
+        <img src={pareja} alt="category" />
+      </div>
+      <div>
+        <img src={aqua} alt="category" />
+      </div>
+      <div>
+        <img src={motor} alt="category" />
+      </div>
+      <div>
+        <img src={gastro} alt="category" />
+      </div>
+    </Carousel>
   );
 }
 export default CarouselFS;
