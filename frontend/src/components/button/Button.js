@@ -12,8 +12,8 @@ const Button = styled.button`
 
   .headerBox &::after {
     content: '';
-    border: ${props => props.barra ? '1px solid #FFF' : '0 '};
-    margin-left: ${props => props.barra && '20px'};
+    border: ${props => props.barra ? '1px solid #FFF' : '0'};
+    margin-left: ${props => props.barra ? '20px' : '0'};
   }
 
   .searchHome & {
