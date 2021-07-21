@@ -1,7 +1,10 @@
 @import './reset.css';
+@import './fonts/fonts.css';
+
 
 * {
   box-sizing: border-box;
+  font-family: Roboto-Regular;
 }
 
 body {
