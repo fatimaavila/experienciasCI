@@ -4,8 +4,10 @@ import logo from '../../assets/LOGOBUENO.png';
 import routes from '../../routes/routes';
 import Button from '../../components/button/Button';
 import StyledHeader from './StyledHeader';
+import RegisterUser from '../RegisterUser/RegisterUser';
+import LoginUser from '../LoginUser/LoginUser';
 
-function Header() {
+function MainHeader() {
   const navRoutes = routes.map(({ path, label }) => (
     <li key={uuidv4()}>
       <Link to={path}>{label.toUpperCase()}</Link>
@@ -24,8 +26,8 @@ function Header() {
             </a>
           </div>
           <div className='buttonSession'>
-            <Button blue barra>SING IN</Button>
-            <Button>SING UP</Button>
+            <LoginUser />
+            <RegisterUser />
           </div>
         </div>
         <nav>
@@ -35,4 +37,4 @@ function Header() {
     </>
   );
 }
-export default Header;
+export default MainHeader;

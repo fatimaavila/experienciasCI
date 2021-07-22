@@ -4,7 +4,7 @@ const StyledHeader = styled.header`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #3aabfe;
+  background-color: var(--color-cyan);
   width: 100%;
 
   .headerBox {
@@ -31,9 +31,9 @@ const StyledHeader = styled.header`
   }
 
   nav {
-    background-color: #FFF;
+    background-color: var(--color-white);
     width: 100%;
-    border-bottom: 2px solid #3aabfe;
+    border-bottom: 2px solid var(--color-cyan);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +48,7 @@ const StyledHeader = styled.header`
 
   .mainMenu a {
     display: block;
-    color: #3aabfe;
+    color: var(--color-cyan);
     padding: 1.5rem 1.5rem;
     position: relative;
     transition: all 0.5s ease;
@@ -61,7 +61,7 @@ const StyledHeader = styled.header`
     left: 0;
     bottom: 0;
     top: 98%;
-    background-color: #3aabfe;
+    background-color: var(--color-cyan);
   }
 `;
 
