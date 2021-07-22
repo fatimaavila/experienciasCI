@@ -1,31 +1,29 @@
 import StyledShop from './StyledShop';
-import { Button } from '@material-ui/core';
-import fly from '../../assets/globoCategory.jpg';
+import Button from '../button/Button';
+import ItemShop from './ItemShop';
+
 function Shop() {
   return (
     <StyledShop>
-      <div className="shop-global">
-        <h1>NOMBRE EXPERIENCIA</h1>
-        <img src={fly} alt="imgshop" />
+      <div className="containerItemShop">
+        <ItemShop />
+        <ItemShop />
+        <ItemShop />
       </div>
-      <div className="description">
-        <h2>Lorem ipsum dolor sit amet, consectetur adip</h2>
-        <p>99,99€</p>
-        <h1>Cantidad</h1>
-        <select>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-      <div className="send-type">
-        <Button blue className="button-buy">
-          Comprar
-        </Button>
-        <Button>Seguir comprando</Button>
+
+      <div className="searchShop">
+        <div className="send-type">
+          <h2>Envio via Email (recomendado)</h2>
+          <h2>Envio via Postal </h2>
+          <h2>Envio mediante caja de regalo </h2>
+        </div>
+
+        <div>
+          <Button blue className="button-buy">
+            Comprar
+          </Button>
+          <Button>Seguir comprando</Button>
+        </div>
       </div>
     </StyledShop>
   );
