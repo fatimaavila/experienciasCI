@@ -3,12 +3,11 @@ import photoName from '../../assets/allExp.jpg';
 import { Rating } from '@material-ui/lab';
 
 function Experiece() {
-
   const value = 0;
 
   return (
     <StyledExperience>
-      <div className='fotoExperience'>
+      <div className="fotoExperience">
         <img src={photoName} alt="fotoExperience" />
       </div>
       <div className="expDescription">
@@ -29,9 +28,9 @@ function Experiece() {
           <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
         )} */}
 
-        <span className='priceAllExperience'>70.99€</span>
+        <span className="priceAllExperience">70.99€</span>
       </div>
     </StyledExperience>
-  )
+  );
 }
 export default Experiece;
