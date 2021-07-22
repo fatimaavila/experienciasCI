@@ -27,8 +27,7 @@ li {
 input {
   border: 0;
 }
-
-.mainMenu ul {
+.mainMenu {
   padding-left: 0rem;
   margin-top: 0;
   margin-bottom: 0rem;
