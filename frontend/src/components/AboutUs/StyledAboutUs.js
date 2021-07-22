@@ -22,7 +22,7 @@ const StyledAboutUs = styled.div`
         flex-direction: column;
         align-items: center;
         width: 30%;
-        border: 3px solid #3AABFE;
+        border: 3px solid var(--color-cyan);
         border-radius: 6px;
         padding: 2rem;
     }
@@ -31,6 +31,7 @@ const StyledAboutUs = styled.div`
         line-height: 20px;
         text-align: center;
         margin-top: 2rem;
+        color: var(--color-grey-dark);
     }
 `
 

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const StyledFilters = styled.div`
-  border: 3px solid #3AABFE;
+  border: 3px solid var(--color-cyan);
   border-radius: 6px;
   width: 20%;
 
   & > div, & > ul {
-    border-bottom: 2px solid #3AABFE;
+    border-bottom: 2px solid var(--color-cyan);
   }
 
   & > ul {
@@ -20,7 +20,7 @@ const StyledFilters = styled.div`
 
   .cityFilter li {
     padding: 1rem 1rem 0rem 1rem;
-    color: #3AABFE;
+    color: var(--color-black);
   }
 
   .cityFilter li:last-child {
@@ -38,7 +38,7 @@ const StyledFilters = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
-    color: #3AABFE;
+    color: var(--color-black);
   }
 
   .priceFilter > label:last-child {
