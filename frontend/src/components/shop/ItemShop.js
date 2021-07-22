@@ -7,8 +7,12 @@ function ItemShop() {
         <img src={fly} alt="imgshop" />
       </div>
       <div className="description">
-        <h2>Lorem ipsum dolor sit amet, consectetur adip</h2>
-        <p>99,99€</p>
+        <h2>
+          Lorem ipsum dolor sit amet, consectetur adipLorem ipsum dolor sit
+          amet, consectetur adip Lorem ipsum dolor sit amet, consectetur adip
+          Lorem ipsum dolor sit amet, consectetur adip
+        </h2>
+
         <h1>Cantidad</h1>
         <select>
           <option value="1">1</option>
@@ -18,6 +22,8 @@ function ItemShop() {
           <option value="5">5</option>
           <option value="6">6</option>
         </select>
+
+        <p>99,99€</p>
       </div>
     </section>
   );

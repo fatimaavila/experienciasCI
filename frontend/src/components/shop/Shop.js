@@ -1,6 +1,7 @@
 import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
+import { GoPrimitiveDot } from 'react-icons/go';
 
 function Shop() {
   return (
@@ -13,9 +14,15 @@ function Shop() {
 
       <div className="searchShop">
         <div className="send-type">
-          <h2>Envio via Email (recomendado)</h2>
-          <h2>Envio via Postal </h2>
-          <h2>Envio mediante caja de regalo </h2>
+          <ul>
+            <GoPrimitiveDot>
+              Envio via Email (recomendado)
+              <li></li>
+            </GoPrimitiveDot>
+
+            <li>Envio via Postal </li>
+            <li>Envio mediante caja de regalo </li>
+          </ul>
         </div>
 
         <div>
