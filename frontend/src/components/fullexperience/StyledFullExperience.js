@@ -2,8 +2,16 @@ import styled from 'styled-components';
 
 const StyledFullExperience = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+
   padding: 3rem;
+
+  .container-header-fs {
+    display: flex;
+
+    justify-content: center;
+  }
 
   .carousel-photoexp {
     display: flex;
@@ -44,6 +52,16 @@ const StyledFullExperience = styled.div`
   }
   h1 {
     font-size: 3rem;
+  }
+  .include-experience {
+    margin-top: 3rem;
+    font-size: 2rem;
+  }
+  .info-experience-extended {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 
