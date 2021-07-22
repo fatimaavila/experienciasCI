@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3aabfe;
+    background-color: var(--color-cyan);
     padding: 3rem 0rem;
     width: 100%;
   }
@@ -23,7 +23,7 @@ const StyledFooter = styled.footer`
   }
 
   .socialMedias a {
-    color: #fff;
+    color: var(--color-white);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,9 +38,9 @@ const StyledFooter = styled.footer`
     display: flex;
     justify-content: center;
     gap: 25px;
-    background-color: #2193c5;
+    background-color: var(--color-blue-dark);
     width: 100%;
-    color: #fff;
+    color: var(--color-white);
     padding: 1.5rem 0rem;
   }
 

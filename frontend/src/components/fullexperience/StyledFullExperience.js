@@ -39,7 +39,7 @@ const StyledFullExperience = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 3rem;
-    color: #3aabfe;
+    color: var(--color-cyan);
     font-weigth: bold;
   }
   .fs-interaction-client > p {

@@ -16,7 +16,7 @@ const StyledLandingCategory = styled.div`
   }
 
   & a {
-    color: #FFF;
+    color: var(--color-white);
   }
 
   & p {
