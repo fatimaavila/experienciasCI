@@ -5,8 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import StyledLoginUser from './StyledLoginUser';
 
 function LoginUser() {
+  const [formActivate, setFormActivate] = useState(false);
 
-    const [formActivate,setFormActivate] = useState(false);
+  return (
+    <>
+      <Button blue onClickButton={() => setFormActivate(!formActivate)}>
+        INICIAR SESIÓN
+      </Button>
 
     return (
         < >
@@ -32,6 +37,7 @@ function LoginUser() {
             </Modal>
         </>
     )
+
 }
 
 export default LoginUser;

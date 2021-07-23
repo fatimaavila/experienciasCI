@@ -40,5 +40,42 @@ const StyledUserProfile = styled.div`
     margin: 2rem;
     gap: 1rem;
   }
+  .userBookingContainer {
+    border: 1px solid black;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .itemBookingContainer {
+    border: 1px solid black;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .itemBookingHead {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+  .itemBookingBody {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    gap: 15rem;
+  }
+  .itemBookingRate {
+    width: 60%;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 export default StyledUserProfile;

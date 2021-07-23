@@ -8,7 +8,6 @@ import pareja from '../../assets/parejaCategory.jpg';
 import motor from '../../assets/motorCategory.jpg';
 import adventure from '../../assets/routesCategory.jpeg';
 import fly from '../../assets/globoCategory.jpg';
-import StyledAliceCarousel from './StyledAliceCarousel';
 
 const responsive = {
   0: { items: 1 },

@@ -5,8 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import StyledRegisterUser from './StyledRegisterUser';
 
 function RegisterUser() {
+  const [formActivate, setFormActivate] = useState(false);
 
-    const [formActivate,setFormActivate] = useState(false);
+  return (
+    <>
+      <Button onClickButton={() => setFormActivate(!formActivate)}>
+        REGISTRARSE
+      </Button>
 
     return (
         < >
@@ -55,4 +60,3 @@ function RegisterUser() {
 }
 
 export default RegisterUser;
-
