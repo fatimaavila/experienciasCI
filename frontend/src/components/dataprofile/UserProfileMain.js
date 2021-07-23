@@ -17,13 +17,13 @@ function UserProfileMain() {
       </div>
       <div className="userProfileNav">
         <ul>
-          <l
+          <li
             onClick={() => (
               setShowUserProfile(true), setShowUserBookings(false)
             )}
           >
             MIS DATOS
-          </l>
+          </li>
           <li
             onClick={() => (
               setShowUserProfile(false), setShowUserBookings(true)
