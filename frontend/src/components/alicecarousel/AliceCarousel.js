@@ -21,7 +21,6 @@ const Container = styled.div`
   box-shadow: inset 25px 0px 15px -25px #2086ca,
     inset -25px 0px 15px -25px #2086ca; ;
 `;
-
 const Div = styled.div`
   display: flex;
   flex-direction: column;
