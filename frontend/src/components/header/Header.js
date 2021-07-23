@@ -6,6 +6,7 @@ import Button from '../../components/button/Button';
 import StyledHeader from './StyledHeader';
 import RegisterUser from '../RegisterUser/RegisterUser';
 import LoginUser from '../LoginUser/LoginUser';
+import LoggedUserNav from '../loggedUserNav/LoggedUserNav';
 
 function MainHeader() {
   const navRoutes = routes.map(({ path, label }) => (
@@ -17,21 +18,22 @@ function MainHeader() {
   navRoutes.pop();
 
   return (
-    < >
+    <>
       <StyledHeader>
-        <div className='headerBox'>
-          <div className='logoHeader'>
+        <div className="headerBox">
+          <div className="logoHeader">
             <a href="/">
               <img src={logo} alt="Logo" />
             </a>
           </div>
-          <div className='buttonSession'>
+          {/*   <LoggedUserNav /> */}
+          <div className="buttonSession">
             <LoginUser />
             <RegisterUser />
           </div>
         </div>
         <nav>
-          <ul className='mainMenu'>{navRoutes}</ul>
+          <ul className="mainMenu">{navRoutes}</ul>
         </nav>
       </StyledHeader>
     </>
