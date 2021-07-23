@@ -46,8 +46,6 @@ const StyledAdminProfile = styled.div`
     font-size: 40px;
     margin-left: 30px;
   }
-  .popUp {
-  }
 `;
 
 export default StyledAdminProfile;

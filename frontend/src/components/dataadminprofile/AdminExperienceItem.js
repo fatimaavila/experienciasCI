@@ -1,6 +1,5 @@
-import { Modal } from 'bootstrap';
 import { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { GoTrashcan } from 'react-icons/go';
 import { MdEdit } from 'react-icons/md';
 import Button from '../button/Button';
@@ -18,7 +17,7 @@ function AdminExperiencesItem() {
           onHide={() => setFormActivate(!formActivate)}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Añadir nueva experiencia</Modal.Title>
+            <Modal.Title>Edita la experiencia</Modal.Title>
           </Modal.Header>
           <Form>
             <Form.Group>

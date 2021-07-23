@@ -4,9 +4,13 @@ import AdminExperiences from './AdminExperiences';
 import AdminNeWExperience from './AdminNewExperience';
 import StyledAdminProfile from './StyledAdminProfile';
 
+const Initial_States = {
+  experiences: true,
+  bookings: false,
+}
+
 function AdminProfileMain() {
-  const [showAdminExperience, setShowAdminExperience] = useState(true);
-  const [showAdminBookings, setShowAdminBookings] = useState(false);
+  const [showSection, setShowSection] = useState(Initial_States);
 
   return (
     <StyledAdminProfile>
@@ -15,19 +19,17 @@ function AdminProfileMain() {
       </div>
       <div className="adminProfileNav">
         <ul>
-          <li
-            onClick={() => (
-              setShowAdminExperience(true), setShowAdminBookings(false)
-            )}
-          >
+          <li onClick={() => setShowSection({
+            experiences: !showSection.experiences && !showSection.experiences,
+            bookings: showSection.bookings,
+          })}>
             EXPERIENCIAS
           </li>
 
-          <li
-            onClick={() => (
-              setShowAdminExperience(false), setShowAdminBookings(true)
-            )}
-          >
+          <li onClick={() => setShowSection({
+            experiences: showSection.experiences,
+            bookings: !showSection.bookings && !showSection.bookings,
+          })}>
             RESERVAS
           </li>
           <li>
@@ -35,8 +37,7 @@ function AdminProfileMain() {
           </li>
         </ul>
       </div>
-      {showAdminBookings && <AdminBookings />}
-      {showAdminExperience && <AdminExperiences />}
+      {showSection?.bookings ? <AdminBookings /> : <AdminExperiences />}
     </StyledAdminProfile>
   );
 }

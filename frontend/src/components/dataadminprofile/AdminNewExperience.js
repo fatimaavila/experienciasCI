@@ -7,7 +7,7 @@ function AdminNeWExperience() {
   const [formActivate, setFormActivate] = useState(false);
 
   return (
-    <div className="popUp">
+    <div>
       <div onClick={() => setFormActivate(!formActivate)}>
         AÑADIR EXPERIENCIA
       </div>
