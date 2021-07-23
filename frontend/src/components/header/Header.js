@@ -25,7 +25,7 @@ function MainHeader() {
               <img src={logo} alt="Logo" />
             </a>
           </div>
-          {/*   <LoggedUserNav /> */}
+          {/*     <LoggedUserNav /> */}
           <div className="buttonSession">
             <LoginUser />
             <RegisterUser />
