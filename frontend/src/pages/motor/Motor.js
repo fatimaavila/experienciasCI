@@ -1,8 +1,6 @@
-import AllExperiences from '../../components/allexperiences/AllExperiences';
-
+// import AllExperiences from '../../components/allexperiences/AllExperiences';
 import UserProfileMain from '../../components/dataprofile/UserProfileMain';
-
-import FullExperience from '../../components/fullexperience/FullExperience';
+// import FullExperience from '../../components/fullexperience/FullExperience';
 
 function Motor() {
   return (
@@ -11,7 +9,6 @@ function Motor() {
 
       {/* <FullExperience /> */}
       {/* <AllExperiences /> */}
-
     </div>
   );
 }

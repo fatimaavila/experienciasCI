@@ -9,7 +9,7 @@
 
 body {
   font-size: 15px;
-  font-family: Roboto-Regular;
+  font-family: 'Roboto-Regular', sans-serif;
 }
 
 a {
@@ -27,7 +27,8 @@ li {
 input {
   border: 0;
 }
-.mainMenu {
+
+.mainMenu, .cityFilter {
   padding-left: 0rem;
   margin-top: 0;
   margin-bottom: 0rem;
@@ -36,3 +37,17 @@ input {
 #root a {
   text-decoration: none;
 }
+
+h1,h2,h3,h4,h5,h6 {
+  color: var(--color-black);
+}
+
+#root h2 {
+  margin-bottom: 2rem;
+}
+
+.item p {
+  color: var(--color-grey-dark);
+  margin-bottom: 0rem;
+}
+

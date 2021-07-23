@@ -2,9 +2,15 @@ import styled from 'styled-components';
 
 const StyledLandingCategory = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
+  text-align: center;
   margin: 100px 0px;
+
+  .categoriesExperiences {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 
   .landingCategoryBlock {
     width: 25%;
@@ -19,13 +25,13 @@ const StyledLandingCategory = styled.div`
     color: var(--color-white);
   }
 
-  & p {
+  & span {
     font-size: 2.5rem;
     text-shadow: -2px 3px 3px rgba(150, 150, 150, 0.72);
     transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1) ;
   }
 
-  .landingCategoryBlock:hover p {
+  .landingCategoryBlock:hover span {
     transform: scale(1.2);
   }
 `;

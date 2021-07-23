@@ -8,26 +8,29 @@ function LandingCategories() {
 
   return (
     <StyledLandingCategory>
-      <div className="landingCategoryBlock posRel">
-        <a href="/">
-          <img width="100%" src={allExp} alt="category" />
-          <BlackTransparentBox>
-            <p>Todas</p>
-          </BlackTransparentBox>
-        </a>
+      <h2>Explora la experiencia que desees</h2>
+      <div className='categoriesExperiences'>
+        <div className="landingCategoryBlock posRel">
+          <a href="/">
+            <img width="100%" src={allExp} alt="category" />
+            <BlackTransparentBox>
+              <span>Todas</span>
+            </BlackTransparentBox>
+          </a>
+        </div>
+        {allCategoriesObject.map(({label, img, path}) => {
+          return (
+            <div key={uuidv4()} className="landingCategoryBlock posRel">
+              <a href={path}>
+                <img width="100%" src={img} alt='Categoria' />
+                <BlackTransparentBox>
+                  <span>{label}</span>
+                </BlackTransparentBox>
+              </a>
+            </div>
+          )
+        })}
       </div>
-      {allCategoriesObject.map(({label, img, path}) => {
-        return (
-          <div key={uuidv4()} className="landingCategoryBlock posRel">
-            <a href={path}>
-              <img width="100%" src={img} alt='Categoria' />
-              <BlackTransparentBox>
-                <p>{label}</p>
-              </BlackTransparentBox>
-            </a>
-          </div>
-        )
-      })}
     </StyledLandingCategory>
   );
 }

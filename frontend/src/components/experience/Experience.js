@@ -11,8 +11,8 @@ function Experiece() {
         <img src={photoName} alt="fotoExperience" />
       </div>
       <div className="expDescription">
-        <h1>Piloto por un dia</h1>
-        <h2>Madrid</h2>
+        <h3>Piloto por un dia</h3>
+        <span>Madrid</span>
         <Rating
           name="hover-feedback"
           value={value}

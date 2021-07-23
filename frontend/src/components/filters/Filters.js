@@ -60,16 +60,22 @@ function Filters() {
         </label>
       </div>
       <div className="dateFilter">
-        <DatePicker
-          className="date-picker"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <DatePicker
-          className="date-picker"
-          selected={finalDate}
-          onChange={(date) => setFinalDate(date)}
-        />
+        <label>
+          <span>Fecha de Inicio</span>
+          <DatePicker
+            className="date-picker"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </label>
+        <label>
+          <span>Fecha de Fin</span>
+          <DatePicker
+            className="date-picker"
+            selected={finalDate}
+            onChange={(date) => setFinalDate(date)}
+          />
+        </label>
       </div>
     </StyledFilters>
   );

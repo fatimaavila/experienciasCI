@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import '../../App.css'
 
 const StyledExperience = styled.div`
   width: 30%;
@@ -7,7 +8,6 @@ const StyledExperience = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 4rem;
-  font-size: 2rem;
 
   & .fotoExperience {
     overflow: hidden;
@@ -29,6 +29,9 @@ const StyledExperience = styled.div`
 
   .priceAllExperience {
     align-self: flex-end;
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 2rem;
   }
 
 `;

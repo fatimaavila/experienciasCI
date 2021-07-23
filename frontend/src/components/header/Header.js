@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import logo from '../../assets/LOGOBUENO.png';
 import routes from '../../routes/routes';
-import Button from '../../components/button/Button';
 import StyledHeader from './StyledHeader';
 import RegisterUser from '../RegisterUser/RegisterUser';
 import LoginUser from '../LoginUser/LoginUser';
