@@ -19,52 +19,52 @@ const responsive = {
 
 const items = [
   <div className="item" data-value="1">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={adventure} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Ruta en Quad por Pirineos</span>
+    <span className="titlePopularExperience">Ruta en Quad por Pirineos</span>
   </div>,
   <div className="item" data-value="2">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={fly} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Se piloto por un día</span>
+    <span className="titlePopularExperience">Se piloto por un día</span>
   </div>,
   <div className="item" data-value="3">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={gastro} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Visita bodega y cata</span>
+    <span className="titlePopularExperience">Visita bodega y cata</span>
   </div>,
   <div className="item" data-value="4">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={spa} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Circuito de Spa</span>
+    <span className="titlePopularExperience">Circuito de Spa</span>
   </div>,
   <div className="item" data-value="5">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={aqua} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Rafting en Huesca</span>
+    <span className="titlePopularExperience">Rafting en Huesca</span>
   </div>,
   <div className="item" data-value="5">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={pareja} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Ruta para dos</span>
+    <span className="titlePopularExperience">Ruta para dos</span>
   </div>,
   <div className="item" data-value="5">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={motor} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Circuto en F480</span>
+    <span className="titlePopularExperience">Circuto en F480</span>
   </div>,
   <div className="item" data-value="5">
-    <div className='imgCarousel'>
+    <div className="imgCarousel">
       <img width="100%" src={allExp} alt="category" />
     </div>
-    <span className='titlePopularExperience'>Paseo a caballo</span>
+    <span className="titlePopularExperience">Paseo a caballo</span>
   </div>,
 ];
 

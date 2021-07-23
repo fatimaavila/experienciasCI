@@ -1,7 +1,6 @@
 import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
-import { Checkbox } from '@material-ui/core';
 
 function Shop() {
   return (
@@ -14,21 +13,23 @@ function Shop() {
 
       <div className="searchShop">
         <div className="send-type">
-          <ul>
-            <li>
-              <Checkbox label="email" />
-              Envio via Email
-            </li>
-
-            <li>
-              <Checkbox label="postal" />
-              Envio via Postal
-            </li>
-            <li>
-              <Checkbox label="regalo" />
-              Envio para regalo
-            </li>
-          </ul>
+          <form action="">
+            <ul>
+              <p>Por favor seleccione el metodo de envio:</p>
+              <li>
+                <input type="radio" id="email" name="envio" value="email" /> 
+                <label for="email">Via Email</label> 
+              </li>
+              <li>
+                <input type="radio" id="postal" name="envio" value="postal" /> 
+                <label for="postal">Via Postal</label>
+              </li>
+              <li>
+                <input type="radio" id="regalo" name="envio" value="regalo" />
+                <label for="regalo">Para regalo</label>
+              </li>
+            </ul>
+          </form>
         </div>
 
         <div>
