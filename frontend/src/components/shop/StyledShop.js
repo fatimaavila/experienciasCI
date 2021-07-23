@@ -19,7 +19,10 @@ const StyledShop = styled.div`
   .image-description {
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+
     border: #3cabfb 5px solid;
     margin-left: 100px;
     margin-bottom: 100px;
@@ -46,8 +49,8 @@ const StyledShop = styled.div`
     font-size: 2rem;
   }
   .shop-global > img {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     border: #3cabfb 5px solid;
   }
 
@@ -80,8 +83,7 @@ const StyledShop = styled.div`
   }
 
   /////////////////////////////////////////
-  .searchShop {
-  }
+
   .send-type {
     display: flex;
     flex-direction: column;
@@ -90,8 +92,9 @@ const StyledShop = styled.div`
     margin-bottom: 100px;
     border: #3cabfb 5px solid;
   }
-  .send-type > li {
-    margin-top: 20px;
+  .send-type > ul > li {
+    margin-top: 70px;
+    text-align: left;
   }
 
   .button-buy {

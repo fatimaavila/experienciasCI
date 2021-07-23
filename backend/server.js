@@ -8,8 +8,8 @@ const app = express();
 const { PORT } = process.env;
 
 const corsOptions = {
-    origin: 'http://localhost:3000'
-}
+    origin: 'http://localhost:3000',
+};
 
 app.use(cors(corsOptions));
 
@@ -62,6 +62,10 @@ const {
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(fileUpload());
+<<<<<<< Updated upstream
+=======
+app.use(cors({ origin: 'http://localhost:3000' }));
+>>>>>>> Stashed changes
 
 // ###############################
 // ## ENDPOINTS DE EXPERIENCIAS ##
