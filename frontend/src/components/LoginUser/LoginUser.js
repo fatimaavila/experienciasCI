@@ -7,12 +7,6 @@ import StyledLoginUser from './StyledLoginUser';
 function LoginUser() {
   const [formActivate, setFormActivate] = useState(false);
 
-  return (
-    <>
-      <Button blue onClickButton={() => setFormActivate(!formActivate)}>
-        INICIAR SESIÓN
-      </Button>
-
     return (
         < >
             <Button blue barra onClickButton={() => setFormActivate(!formActivate)}>INICIAR SESIÓN</Button>

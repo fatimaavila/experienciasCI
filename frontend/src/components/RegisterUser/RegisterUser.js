@@ -7,12 +7,6 @@ import StyledRegisterUser from './StyledRegisterUser';
 function RegisterUser() {
   const [formActivate, setFormActivate] = useState(false);
 
-  return (
-    <>
-      <Button onClickButton={() => setFormActivate(!formActivate)}>
-        REGISTRARSE
-      </Button>
-
     return (
         < >
             <Button onClickButton={() => setFormActivate(!formActivate)}>REGISTRARSE</Button>
