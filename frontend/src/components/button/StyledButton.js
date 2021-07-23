@@ -10,11 +10,12 @@ const StyledButton = styled.button`
   text-aling: center;
   padding: 0.5rem 1.5rem;
 
-  .headerBox &::after {
+  ${props => props.barra && `&::after {
     content: '';
-    border: ${props => props.barra ? '1px solid var(--color-white)' : '0'};
-    margin-left: ${props => props.barra ? '20px' : '0'};
+    border: 1px solid var(--color-white);
+    margin-left: 20px;
   }
+`};
 
   .searchHome & {
     padding: 1rem 2.5rem;

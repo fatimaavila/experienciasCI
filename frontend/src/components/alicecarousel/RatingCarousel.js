@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Component, useEffect } from 'react';
+import { Component } from 'react';
 
 export default class RatingCarousel extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ export default class RatingCarousel extends Component {
     };
   }
   async componentDidMount() {
-    const data = await axios.get('http://localhost:8080/bookings/rating');
-    const ratings = data.data.data.rating;
+    const { data } = await axios.get('http://localhost:8080/bookings/rating');
+    const ratings = data.data.rating;
     console.log(ratings);
     this.setState({ ratings });
   }

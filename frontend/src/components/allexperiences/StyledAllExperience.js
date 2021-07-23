@@ -19,10 +19,6 @@ const StyledAllExperience = styled.div`
     justify-content: space-between;
     align-items: center;
   }
-
-  .date-picker {
-    border: 1px solid black;
-  }
 `;
 
 export default StyledAllExperience;

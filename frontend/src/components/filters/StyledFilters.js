@@ -50,6 +50,26 @@ const StyledFilters = styled.div`
     flex-direction: column;
     padding: 1rem;
   }
+
+  .dateFilter label {
+    margin-bottom: 1.2rem;
+  }
+
+  .dateFilter span {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .dateFilter label:last-child {
+    margin-bottom: 0rem;
+  }
+
+  .date-picker {
+    border: 1px solid var(--color-cyan);
+    border-radius: 6px;
+    width: 100%;
+    padding: 0.5rem;
+  }
 `;
   
 export default StyledFilters;

@@ -10,7 +10,7 @@ function LoginUser() {
 
     return (
         < >
-            <Button blue activateForm={() => setFormActivate(!formActivate)}>INICIAR SESIÓN</Button>
+            <Button blue barra onClickButton={() => setFormActivate(!formActivate)}>INICIAR SESIÓN</Button>
 
             <Modal show={formActivate} onHide={() => setFormActivate(!formActivate)}>
                 <StyledLoginUser>
