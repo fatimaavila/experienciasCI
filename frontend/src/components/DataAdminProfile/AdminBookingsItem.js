@@ -2,13 +2,15 @@ import { GoTrashcan } from 'react-icons/go';
 import { MdEdit } from 'react-icons/md';
 function AdminBookingsItem() {
   return (
-    <div className="main">
-      <h1>Aqui va lo de dentro de la reserva</h1>
-      <div className="buttons">
+    <tr className="sectionData">
+      <td>
+        <h3>Aqui va lo de dentro de la reserva</h3>
+      </td>
+      <td className="buttonsAdmin">
         <MdEdit />
         <GoTrashcan />
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 }
 

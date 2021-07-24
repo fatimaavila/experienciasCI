@@ -2,7 +2,7 @@ import { Modal, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import StyledLoginUser from './StyledLoginUser';
+import StyledForm from '../RegisterUser/StyledForm';
 
 function LoginUser() {
   const [formActivate, setFormActivate] = useState(false);
@@ -12,7 +12,7 @@ function LoginUser() {
             <Button blue barra onClickButton={() => setFormActivate(!formActivate)}>INICIAR SESIÓN</Button>
 
             <Modal show={formActivate} onHide={() => setFormActivate(!formActivate)}>
-                <StyledLoginUser>
+                <StyledForm>
                     <Modal.Header closeButton>
                         <Modal.Title>Inicio de Sesión</Modal.Title>
                     </Modal.Header>
@@ -27,7 +27,7 @@ function LoginUser() {
                         </Form.Group>
                         <Button>Iniciar Sesión</Button>
                     </Form>
-                </StyledLoginUser>
+                </StyledForm>
             </Modal>
         </>
     )

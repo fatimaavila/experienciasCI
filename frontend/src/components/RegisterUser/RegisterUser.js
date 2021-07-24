@@ -2,7 +2,7 @@ import { Modal, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import StyledRegisterUser from './StyledRegisterUser';
+import StyledForm from './StyledForm';
 
 function RegisterUser() {
   const [formActivate, setFormActivate] = useState(false);
@@ -12,7 +12,7 @@ function RegisterUser() {
             <Button onClickButton={() => setFormActivate(!formActivate)}>REGISTRARSE</Button>
 
             <Modal show={formActivate} onHide={() => setFormActivate(!formActivate)}>
-                <StyledRegisterUser>
+                <StyledForm>
                     <Modal.Header closeButton>
                         <Modal.Title>Registro de Usuario</Modal.Title>
                     </Modal.Header>
@@ -47,7 +47,7 @@ function RegisterUser() {
                         </Form.Group>
                         <Button>ENVIAR</Button>
                     </Form>
-                </StyledRegisterUser>
+                </StyledForm>
             </Modal>
         </>
     )

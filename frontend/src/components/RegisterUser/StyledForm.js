@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import closeIcon from '../../assets/closeIcon.svg';
 
-const StyledLoginUser = styled.div`
+const StyledForm = styled.div`
     background-color: var(--color-cyan);
     color: var(--color-white);
 
@@ -22,6 +22,11 @@ const StyledLoginUser = styled.div`
     & .formElement {
         margin-bottom: 2rem;
     }
+
+    & .checkboxForm {
+        display: flex;
+        gap: 10px;
+    }
 `;
 
-export default StyledLoginUser;
+export default StyledForm;

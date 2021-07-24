@@ -12,23 +12,30 @@ const Initial_States = {
 function AdminProfileMain() {
   const [showSection, setShowSection] = useState(Initial_States);
 
+  const dataActive = {
+    backgroundColor: '#3aabfe',
+    color: '#ffffff',
+    borderTopLeftRadius: 6 + 'px',
+    borderTopRightRadius: 6 + 'px',
+  }
+  
   return (
     <StyledAdminProfile>
       <div className="adminProfileHead">
-        <h1 className="adminProfileTitle">Panel de Administracion</h1>
+        <h2>Panel de Administracion</h2>
       </div>
       <div className="adminProfileNav">
         <ul>
-          <li onClick={() => setShowSection({
-            experiences: !showSection.experiences && !showSection.experiences,
-            bookings: showSection.bookings,
+          <li style={showSection.experiences ? dataActive : null} onClick={() => setShowSection({
+            experiences: !showSection.experiences,
+            bookings: !showSection.bookings,
           })}>
             EXPERIENCIAS
           </li>
 
-          <li onClick={() => setShowSection({
-            experiences: showSection.experiences,
-            bookings: !showSection.bookings && !showSection.bookings,
+          <li style={showSection.bookings ? dataActive : null} onClick={() => setShowSection({
+            experiences: !showSection.experiences,
+            bookings: !showSection.bookings,
           })}>
             RESERVAS
           </li>
