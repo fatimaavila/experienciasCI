@@ -1,44 +1,38 @@
 import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
+import { Form } from 'react-bootstrap';
 
 function Shop() {
   return (
     <StyledShop>
-      <div className="containerItemShop">
+      <section className="bookingInfo">
         <ItemShop />
         <ItemShop />
         <ItemShop />
-      </div>
+      </section>
 
-      <div className="searchShop">
-        <div className="send-type">
-          <form action="">
-            <ul>
-              <p>Por favor seleccione el metodo de envio:</p>
-              <li>
-                <input type="radio" id="email" name="envio" value="email" /> 
-                <label for="email">Via Email</label> 
-              </li>
-              <li>
-                <input type="radio" id="postal" name="envio" value="postal" /> 
-                <label for="postal">Via Postal</label>
-              </li>
-              <li>
-                <input type="radio" id="regalo" name="envio" value="regalo" />
-                <label for="regalo">Para regalo</label>
-              </li>
-            </ul>
-          </form>
-        </div>
-
-        <div>
-          <Button blue className="button-buy">
-            Comprar
-          </Button>
-          <Button>Seguir comprando</Button>
-        </div>
-      </div>
+      <section className="searchShop">
+        <h4>Por favor seleccione el metodo de envio:</h4>
+        <Form className='sendType'>
+          <Form.Group className='checkboxForm'>
+            <Form.Check type='radio' name='envio' id='email'/>
+            <Form.Label htmlFor='email'>Vía Email</Form.Label>
+          </Form.Group>
+          <Form.Group className='checkboxForm'>
+            <Form.Check type='radio' name='envio' id='post'/>
+            <Form.Label htmlFor='post'>Vía Postal</Form.Label>
+          </Form.Group>
+          <Form.Group className='checkboxForm'>
+            <Form.Check type='radio' name='envio' id='present'/>
+            <Form.Label htmlFor='present'>Para Regalo</Form.Label>
+          </Form.Group>
+          <div className='buttonsShop'>
+            <Button blue>Comprar</Button>
+            <Button>Seguir comprando</Button>
+          </div>
+        </Form>
+      </section>
     </StyledShop>
   );
 }

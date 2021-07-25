@@ -2,105 +2,82 @@ import styled from 'styled-components';
 
 const StyledShop = styled.div`
   display: flex;
-  justify-content: center;
-  padding: 3rem;
-
-  .containerItemShop {
+  justify-content: space-between;
+  width: 1200px;
+  margin: 4rem auto;
+  
+  .bookingInfo {
     display: flex;
     flex-direction: column;
+    padding: 3rem 0rem;
+    width: 65%;
   }
+  
+  .bookingItemInfo {
+    display:flex;
+    gap: 20px;
+    margin-bottom: 6rem;
+  }
+
+  .bookingItemInfo::after {
+    content: '';
+    position: absolute;
+    bottom: -3rem;
+    right: 50%;
+    transform: translate(50%);
+    border: 1px solid var(--color-cyan);
+    width: 50%;
+    height: 2px;
+  }
+
+  .bookingItemInfo:last-child::after {
+    display: none;
+  } 
+
+  .imgShop {
+    width: 30%;
+    overflow: hidden;
+  }
+
+  .bookingExperienceInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bookingExperienceInfo label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .priceShop {
+    align-self: flex-end;
+  }
+
   .searchShop {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
-    margin-right: 200px;
+    width: 25%;
+    padding: 3rem 0rem;
   }
-  ////////// ITEMSHOP //////////
-  .image-description {
+
+  .sendType {
+    margin-top: 2rem;
+  }
+
+  .checkboxForm {
     display: flex;
     flex-direction: row;
-    width: 70%;
-    justify-content: center;
+    gap: 10px;
+  }
+
+  .buttonsShop {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
-
-    border: #3cabfb 5px solid;
-    margin-left: 100px;
-    margin-bottom: 100px;
-  }
-  .searchShop {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 1000px;
-    margin-bottom: 100px;
-  }
-
-  .shop-global {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    margin-bottom: 100px;
-  }
-  .shop-global > h1 {
-    margin-left: 500px;
-    padding: 2rem;
-    font-size: 2rem;
-  }
-  .shop-global > img {
-    width: 350px;
-    height: 350px;
-    border: #3cabfb 5px solid;
-  }
-
-  .description {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-  }
-  .description > h2 {
-    padding: 1rem;
-    font-size: 1.5rem;
-    margin-top: 50px;
-  }
-  .description > p {
-    font-size: 3rem;
-    margin-top: 20px;
-    margin-left: 300px;
-  }
-  .description > select {
-    max-width: 30%;
-    margin-left: 300px;
-  }
-  .description > h1 {
-    font-size: 2rem;
-    margin-left: 300px;
-    margin-top: 100px;
-  }
-  .description > h2 {
-    font-size: 1rem;
-  }
-
-  /////////////////////////////////////////
-
-  .send-type {
-    display: flex;
-    flex-direction: column;
-
-    height: 400px;
-    margin-bottom: 100px;
-    border: #3cabfb 5px solid;
-  }
-  .send-type > ul > li {
-    margin-top: 70px;
-    text-align: left;
-  }
-
-  .button-buy {
-    display: flex;
-    flex-direction: column;
-    font-size: 2rem;
+    padding-top: 2rem; 
   }
 `;
 

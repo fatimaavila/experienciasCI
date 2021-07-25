@@ -9,6 +9,7 @@ import motor from '../../assets/motorCategory.jpg';
 import adventure from '../../assets/routesCategory.jpeg';
 import fly from '../../assets/globoCategory.jpg';
 import StyledAliceCarousel from './StyledAliceCarousel';
+
 const responsive = {
   0: { items: 1 },
   568: { items: 2 },

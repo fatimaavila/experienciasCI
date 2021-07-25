@@ -1,11 +1,11 @@
 import AllExperiences from '../../components/allexperiences/AllExperiences';
-import AdminProfileMain from '../../components/dataadminprofile/AdminProfileMain';
+import AdminProfileMain from '../../components/DataAdminProfile/AdminProfileMain';
 
 function Parejas() {
   return (
-    <div>
+    < >
       <AdminProfileMain />
-    </div>
+    </>
   );
 }
 
