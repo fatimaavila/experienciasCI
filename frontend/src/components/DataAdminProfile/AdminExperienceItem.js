@@ -1,12 +1,27 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
 import { GoTrashcan } from 'react-icons/go';
 import { MdEdit } from 'react-icons/md';
+import { onlyUnique } from '../../helpers';
 import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 
 function AdminExperiencesItem() {
   const [formActivate, setFormActivate] = useState(false);
+  const [category,setCategory] = useState([]);
+
+  async function getCategories() {
+    const { data } = await axios.get('http://localhost:8080/experiences');
+    const categories = data.data.map((category) => category.categoria);
+    const allCategories = categories.filter(onlyUnique);
+    setCategory(allCategories);
+  }
+
+  useEffect(() => {
+    getCategories();
+  },[]);
 
   return (
     <tr className="sectionData">
@@ -25,42 +40,62 @@ function AdminExperiencesItem() {
             </Modal.Header>
             <Form className='modalBody'>
               <Form.Group className='formElement'>
-                <Form.Label>Nombre experiencia</Form.Label>
-                <Form.Control type="text"/>
+                <Form.Label>
+                  Nombre experiencia
+                  <Form.Control type="text"/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Ubicación</Form.Label>
-                <Form.Control type="text"/>
+                <Form.Label>
+                  Ubicación
+                  <Form.Control type="text"/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Categoria</Form.Label>
-                <Form.Select>
-                  <option value={1}>1</option>
-                </Form.Select>
+                <Form.Label>
+                  Categoria
+                  <Form.Select>
+                    {category && category.map((category) => {
+                      return <option key={category}>{category}</option>
+                    })}
+                  </Form.Select>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Precio</Form.Label>
-                <Form.Control type="text" placeholder=" €" />
+                <Form.Label>
+                  Precio
+                  <Form.Control type="text"/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Nº Participantes</Form.Label>
-                <Form.Control type="text" placeholder="Dirección" />
+                <Form.Label>
+                  Nº Participantes
+                  <Form.Control type="number"/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Fecha de Inicio</Form.Label>
-                <Form.Control type="text" placeholder="Codigo Postal" />
+                <Form.Label>
+                  Fecha de Inicio
+                  <DatePicker className='date-picker'/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Fecha Fin</Form.Label>
-                <Form.Control type="text" placeholder="Nombre de Usuario" />
+                <Form.Label>
+                  Fecha Fin
+                  <DatePicker className='date-picker'/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="email" placeholder="" />
+                <Form.Label>
+                  Descripcion
+                  <Form.Control as='textarea' style={{height: 100 + 'px'}}/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
-                <Form.Label>Imagen</Form.Label>
-                <Form.Control type="file" />
+                <Form.Label>
+                  Imagen
+                  <Form.Control type='file'/>
+                </Form.Label>
               </Form.Group>
               <Form.Group className='formElement checkboxForm'>
                 <Form.Check type="checkbox" />

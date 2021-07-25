@@ -18,12 +18,16 @@ function LoginUser() {
                     </Modal.Header>
                     <Form className='modalBody'>
                         <Form.Group className='formElement'>
-                            <Form.Label>Nombre de Usuario</Form.Label>
-                            <Form.Control type='text' placeholder='Nombre de Usuario' />
+                            <Form.Label>
+                                Nombre de Usuario
+                                <Form.Control type='text' placeholder='Nombre de Usuario' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement'>
-                            <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type='password' />
+                            <Form.Label>
+                                Contraseña
+                                <Form.Control type='password' />
+                            </Form.Label>
                         </Form.Group>
                         <Button>Iniciar Sesión</Button>
                     </Form>

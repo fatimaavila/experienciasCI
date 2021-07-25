@@ -18,28 +18,40 @@ function RegisterUser() {
                     </Modal.Header>
                     <Form className='modalBody'>
                         <Form.Group className='formElement'>
-                            <Form.Label>Nombre</Form.Label>
-                            <Form.Control type='text' placeholder='Nombre' />
+                            <Form.Label>
+                                Nombre
+                                <Form.Control type='text' placeholder='Nombre' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement'>
-                            <Form.Label>Apellidos</Form.Label>
-                            <Form.Control type='text' placeholder='Apellidos' />
+                            <Form.Label>
+                                Apellidos
+                                <Form.Control type='text' placeholder='Apellidos' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement'>
-                            <Form.Label>Nombre de Usuario</Form.Label>
-                            <Form.Control type='text' placeholder='Nombre de Usuario' />
+                            <Form.Label>
+                                Nombre de Usuario
+                                <Form.Control type='text' placeholder='Nombre de Usuario' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' placeholder='Email' />
+                            <Form.Label>
+                                Email
+                                <Form.Control type='email' placeholder='Email' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement'>
-                            <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type='password' />
+                            <Form.Label>
+                                Contraseña
+                                <Form.Control type='password' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement'>
-                            <Form.Label>Confirmar Contraseña</Form.Label>
-                            <Form.Control type='password' />
+                            <Form.Label>
+                                Confirmar Contraseña
+                                <Form.Control type='password' />
+                            </Form.Label>
                         </Form.Group>
                         <Form.Group className='formElement checkboxForm'>
                             <Form.Check type='checkbox' />
