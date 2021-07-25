@@ -1,6 +1,7 @@
 import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
+import { Form } from 'react-bootstrap';
 
 function Shop() {
   return (
@@ -13,18 +14,24 @@ function Shop() {
 
       <section className="searchShop">
         <h4>Por favor seleccione el metodo de envio:</h4>
-        <form action="#" method='POST'>
-          <input type="radio" id="email" name="envio" value="email" /> 
-          <label for="email">Via Email</label> 
-          <input type="radio" id="postal" name="envio" value="postal" /> 
-          <label for="postal">Via Postal</label>
-          <input type="radio" id="regalo" name="envio" value="regalo" />
-          <label for="regalo">Para regalo</label>
+        <Form className='sendType'>
+          <Form.Group className='checkboxForm'>
+            <Form.Check type='radio' name='envio' id='email'/>
+            <Form.Label htmlFor='email'>Vía Email</Form.Label>
+          </Form.Group>
+          <Form.Group className='checkboxForm'>
+            <Form.Check type='radio' name='envio' id='post'/>
+            <Form.Label htmlFor='post'>Vía Postal</Form.Label>
+          </Form.Group>
+          <Form.Group className='checkboxForm'>
+            <Form.Check type='radio' name='envio' id='present'/>
+            <Form.Label htmlFor='present'>Para Regalo</Form.Label>
+          </Form.Group>
           <div className='buttonsShop'>
             <Button blue>Comprar</Button>
             <Button>Seguir comprando</Button>
           </div>
-        </form>
+        </Form>
       </section>
     </StyledShop>
   );

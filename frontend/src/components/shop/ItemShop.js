@@ -1,8 +1,9 @@
 import fly from '../../assets/globoCategory.jpg';
+import { Form } from 'react-bootstrap';
 
 function ItemShop() {
   return (
-    <div className='bookingItemInfo'>
+    <div className='bookingItemInfo posRel'>
       <div className="imgShop">
         <img width='100%' src={fly} alt="imgshop" />
       </div>
@@ -14,15 +15,10 @@ function ItemShop() {
           Lorem ipsum dolor sit amet, consectetur adip.
         </p>
 
-        <label>Cantidad</label>
-        <select>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
+        <Form.Label>
+          Cantidad
+          <Form.Control type='number'/>
+        </Form.Label>
 
         <span className='priceShop'>Total: 99,99€</span>
       </div>

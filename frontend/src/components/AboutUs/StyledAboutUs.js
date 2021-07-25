@@ -28,7 +28,6 @@ const StyledAboutUs = styled.div`
     }
 
     .aboutUs_Box p {
-        line-height: 20px;
         text-align: center;
         margin-top: 2rem;
         color: var(--color-grey-dark);
