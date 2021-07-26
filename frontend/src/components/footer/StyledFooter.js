@@ -29,7 +29,7 @@ const StyledFooter = styled.footer`
     align-items: center;
   }
 
-  .socialMedias p {
+  .socialMedias span {
     font-size: 20px;
     margin-top: 15px;
   }

@@ -5,8 +5,8 @@ const StyledExperience = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: space-between;
   margin-bottom: 4rem;
 
   & .fotoExperience {
@@ -19,19 +19,20 @@ const StyledExperience = styled.div`
     width: 100%;
   }
 
-  .expDescription {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+  & h3 {
     padding: 0.5rem;
   }
 
-  .priceAllExperience {
+  .cityExperience {
+    padding: 0.5rem;
+  }
+
+  .priceExperience {
     align-self: flex-end;
     margin-top: 1rem;
     font-weight: 600;
     font-size: 2rem;
+    padding: 0.5rem;
   }
 
 `;

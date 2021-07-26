@@ -6,14 +6,15 @@ import StyledForm from '../RegisterUser/StyledForm';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
 import { onlyUnique } from '../../helpers';
+import { getAxios } from '../../axiosCalls';
 
 function AdminNeWExperience() {
   const [formActivate, setFormActivate] = useState(false);
   const [category,setCategory] = useState([]);
 
   async function getCategories() {
-    const { data } = await axios.get('http://localhost:8080/experiences');
-    const categories = data.data.map((category) => category.categoria);
+    const { data } = await getAxios('http://localhost:8080/experiences');
+    const categories = data.map((category) => category.categoria);
     const allCategories = categories.filter(onlyUnique);
     setCategory(allCategories);
   }

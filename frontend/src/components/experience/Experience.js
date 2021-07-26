@@ -17,26 +17,24 @@ function Experiece({ idExp, name, city, price }) {
       <div className="fotoExperience">
         <img src={photoName} alt="fotoExperience" />
       </div>
-      <div className="expDescription">
-        <h3>{name}</h3>
-        <span>{city}</span>
-        <Rating
-          name="hover-feedback"
-          value={value}
-          precision={1}
-          //   onChange={(event, newValue) => {
-          //     setValue(newValue);
-          //   }}
-          //   onChangeActive={(event, newHover) => {
-          //     setHover(newHover);
-          //   }}
-        />
-        {/* {value !== null && (
-          <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-        )} */}
+      <h3>{name}</h3>
+      <span className='cityExperience'>{city}</span>
+      <Rating
+        name="hover-feedback"
+        value={value}
+        precision={1}
+        //   onChange={(event, newValue) => {
+        //     setValue(newValue);
+        //   }}
+        //   onChangeActive={(event, newHover) => {
+        //     setHover(newHover);
+        //   }}
+      />
+      {/* {value !== null && (
+        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+      )} */}
 
-        <span className="priceAllExperience">{price}</span>
-      </div>
+      <span className="priceExperience">{price}&#8364;</span>
     </StyledExperience>
   );
 }

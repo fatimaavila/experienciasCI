@@ -17,19 +17,19 @@ function Footer() {
           <li>
             <a href="https://www.linkedin.com/in/nachorodr%C3%ADguezsanz/">
               <SiLinkedin size="30px" />
-              <p>Nacho Rodriguez Sanz</p>
+              <span>Nacho Rodriguez Sanz</span>
             </a>
           </li>
           <li>
             <a href="https://www.linkedin.com/in/vicente-aleixandre-sanz/">
               <SiLinkedin size="30px" />
-              <p>Vicente Aleixandre Sanz</p>
+              <span>Vicente Aleixandre Sanz</span>
             </a>
           </li>
           <li>
             <a href="https://www.linkedin.com/in/alejandromari%C3%B1o-fullstackdeveloper/">
               <SiLinkedin size="30px" />
-              <p>Alejandro Mariño Fandiño </p>
+              <span>Alejandro Mariño Fandiño </span>
             </a>
           </li>
         </ul>
