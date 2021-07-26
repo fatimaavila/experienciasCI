@@ -1,6 +1,6 @@
 import { Rating } from '@material-ui/lab';
 
-function CommentUser() {
+function CommentUser({ comment }) {
   const value = 0;
   return (
     <div className="user-comment-container">
@@ -24,7 +24,7 @@ function CommentUser() {
       </div>
 
       <div className="user-comment">
-        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+        <p>{comment}</p>
       </div>
     </div>
   );

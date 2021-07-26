@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes/routes';
 import Home from './pages/home/Home';
 import { useState } from 'react';
+import UniqueExperiece from './pages/uniqueExperience/UniqueExperience';
 
 function App() {
   const [home] = useState();
@@ -15,6 +16,9 @@ function App() {
         <MainHeader />
 
         <Switch>
+          <Route path="/experience">
+            <UniqueExperiece />
+          </Route>
           {routes.map((route) => (
             <Route key={route.path} path={route.path}>
               <route.Page />

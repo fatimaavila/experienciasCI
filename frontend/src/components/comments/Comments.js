@@ -2,7 +2,7 @@ import { Rating } from '@material-ui/lab';
 import StyledComments from './StyledComments';
 import CommentUser from './CommentUser';
 
-function Comments() {
+function Comments({ comment }) {
   const value = 0;
   return (
     <StyledComments>
@@ -23,7 +23,7 @@ function Comments() {
           <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
         )} */}
       </div>
-      <CommentUser />
+      <CommentUser comment={comment} />
     </StyledComments>
   );
 }
