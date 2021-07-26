@@ -4,6 +4,7 @@ const StyledLoggedUserNav = styled.div`
   color: white;
 
   display: flex;
+  flex-direction: column;
 
   .loggedUserNav {
     display: flex;
@@ -17,6 +18,12 @@ const StyledLoggedUserNav = styled.div`
     width: 15%;
   }
   .dropNav {
+    display: flex;
+    flex-direction: column;
+  }
+  .ulNavMenu {
+    background-color: var(--color-cyan);
+    position: absolute;
     display: flex;
     flex-direction: column;
   }

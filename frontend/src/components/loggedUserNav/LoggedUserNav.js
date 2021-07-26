@@ -1,20 +1,29 @@
 import StyledLoggedUserNav from './StyledLoggedUserNav';
 import userAvatar from '../../assets/existing-user-default-avatar.png';
-
-import { Dropdown } from 'react-bootstrap';
+import { useState } from 'react';
 
 function LoggedUserNav() {
+  const [showNavMenu, setShowNavMenu] = useState(false);
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav">
         <h2>Hola Usuario</h2>
-        <img className="avatarLoggedUserNav" src={userAvatar} alt="avatar" />
+        <img
+          onClick={() => setShowNavMenu(!showNavMenu)}
+          className="avatarLoggedUserNav"
+          src={userAvatar}
+          alt="avatar"
+        />
       </div>
-      <div className="dropNav">
-        <Dropdown.Item href="#/action-1">Panel Admnistrador</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Mi perfil</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Cerrar sesión</Dropdown.Item>
-      </div>
+      {showNavMenu && (
+        <div className="dropNav">
+          <ul className="ulNavMenu">
+            <li>MI PERFIL</li>
+            <li>ADMINISTRACION</li>
+            <li>CERRAR SESION</li>
+          </ul>
+        </div>
+      )}
     </StyledLoggedUserNav>
   );
 }
