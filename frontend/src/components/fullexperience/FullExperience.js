@@ -3,7 +3,7 @@ import StyledFullExperience from './StyledFullExperience';
 import Button from '../button/Button';
 import Comments from '../comments/Comments';
 
-function FullExperience() {
+function FullExperience({ data, comment }) {
   return (
     <StyledFullExperience>
       <div className="container-header-fs">
@@ -12,9 +12,9 @@ function FullExperience() {
         </div>
         <div className="data-experience">
           <section className="info-experience-basic">
-            <h1>NOMBRE DE LA EXPERIENCIA</h1>
+            <h1>{data.nombre}</h1>
             <div className="fs-interaction-client">
-              <p>99,99€</p>
+              <p>{data.precio}</p>
               <Button blue className="button-buy">
                 Comprar
               </Button>
@@ -47,11 +47,11 @@ function FullExperience() {
       <div className="info-experience-extended">
         <section>
           <h2>Descripcion</h2>
-          <p>Lorem ipsum dolor sit amet</p>
-          <h2>mas info</h2>
-          <p>Lorem ipsum dolor sit amet</p>
+          <p>{data.descripcion}</p>
+          <h2>Plazas libres</h2>
+          <p>{data.num_participantes}</p>
         </section>
-        <Comments />
+        <Comments comment={comment} />
       </div>
     </StyledFullExperience>
   );
