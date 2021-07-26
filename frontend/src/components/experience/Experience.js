@@ -1,12 +1,19 @@
 import StyledExperience from './StyledExperience';
 import photoName from '../../assets/allExp.jpg';
 import { Rating } from '@material-ui/lab';
+import { useHistory } from 'react-router-dom';
 
-function Experiece({ name, city, price }) {
+function Experiece({ idExp, name, city, price }) {
+  const history = useHistory();
+
+  const routeChange = () => {
+    let path = `/experience/${idExp}`;
+    history.push(path);
+  };
   const value = 0;
   console.log(name, city, price);
   return (
-    <StyledExperience>
+    <StyledExperience onClick={routeChange}>
       <div className="fotoExperience">
         <img src={photoName} alt="fotoExperience" />
       </div>

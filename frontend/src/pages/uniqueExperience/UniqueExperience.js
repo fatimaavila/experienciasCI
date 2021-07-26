@@ -1,12 +1,18 @@
 import FullExperience from '../../components/fullexperience/FullExperience';
 import { getAxios } from '../../axiosCalls';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 function UniqueExperiece() {
   const [uniqueExp, setUniqueExp] = useState([]);
   const [commentExp, setCommentExp] = useState([]);
 
+  const urlExp = useParams();
+  console.log(urlExp);
+
   const getUniqueExp = async () => {
-    const { data } = await getAxios('http://localhost:8080/experiences/16');
+    const { data } = await getAxios(
+      `http://localhost:8080/experiences/${Number(urlExp.idExp)}`
+    );
 
     setUniqueExp(data);
   };
@@ -22,7 +28,10 @@ function UniqueExperiece() {
   }, []);
   return (
     <div>
-      <FullExperience comment={commentExp.comentario} data={uniqueExp} />
+      <FullExperience
+        comment={'me puedes comer lo shuevoos'}
+        data={uniqueExp}
+      />
     </div>
   );
 }
