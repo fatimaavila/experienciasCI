@@ -282,7 +282,7 @@ const initDB = async () => {
 
     ¡Elegid esta experiencia de relax diferente y especial!',
     'Circuito Onsen Spa y Masaje para dos en Esenzias',
-    'Madrid', 108.00, 'Spa y Relax', 2,true,'2021-02-10','2021-05-30'),
+    'Madrid', 108.00, 'Relax', 2,true,'2021-02-10','2021-05-30'),
     (17,
     'Si queréis pasar un rato relajados y disfrutar en pareja de un masaje estad atentos a esta experiencia que os proponemos. Alejaos del estrés con estos Baños Termales y Masaje Relajante en Aire Ancient Baths Barcelona.
 
@@ -292,7 +292,7 @@ const initDB = async () => {
 
     Disfrutad con vuestra pareja de una sesión de relax y sentíos mejor.',
     'Baños Termales con Aromaterapia y Masaje Relajante',
-    'Barcelona',134.00,'Spa y Relax',2,true,'2021-01-13','2021-11-30'),
+    'Barcelona',134.00,'Relax',2,true,'2021-01-13','2021-11-30'),
     (18,
     '¿Buscáis alejaros de la rutina y vivir un momento de paz y tranquilidad? Entonces haced un hueco en la agenda y relajaos con un Circuito Spa en Estepona . Una experiencia ideal para desconectar y alcanzar el bienestar total de vuestro cuerpo y mente.
 
@@ -302,7 +302,7 @@ const initDB = async () => {
 
     No os lo penséis más y animaos a vivir un momento de bienestar total.',
     'Circuito Spa para dos en Elba Estepona Gran Hotel 5*',
-    'Málaga',60.00,'Spa y Relax',3,true,'2021-01-15','2021-10-20'),
+    'Málaga',60.00,'Relax',3,true,'2021-01-15','2021-10-20'),
     (19,
     'Dejad que la calma os invada con una experiencia de bienestar que os encantará. Disfrutad de un Circuito Spa con Masaje para dos en San Sebastián, Guipúzcoa y olvidaos del estrés diario.
 
@@ -312,7 +312,7 @@ const initDB = async () => {
 
     El relax os está llamando. ¿Os apetece?',
     'Circuito Spa y Masaje para dos en Hotel Catalonia Donosti 4*',
-    'San Sebastián',148.00,'Spa y Relax', 2,true,'2021-01-20','2021-12-20'),
+    'San Sebastián',148.00,'Relax', 2,true,'2021-01-20','2021-12-20'),
     (20,
     'No te pierdas esta chocolaterapia si eres una auténtica chocoadicta. Todos los beneficios del chocolate sin ningún remordimiento en Valladolid. Y después, un relajante baño en el jacuzzi. ¡Saldrás como nueva!
 
@@ -324,7 +324,7 @@ const initDB = async () => {
 
     ¡Ven a mimarte! ¡Te lo mereces!',
     'Chocolaterapia y Jacuzzi',
-    'Arroyo de la Encomienda',45.00,'Spa y Relax',1,true,'2021-02-02','2021-11-25'),
+    'Arroyo de la Encomienda',45.00,'Relax',1,true,'2021-02-02','2021-11-25'),
     (21, 
     'Adéntrate de una forma entretenida en el fascinante mundo de la Ribera del Duero con esta Jornada Enológica en Aranda.
 
