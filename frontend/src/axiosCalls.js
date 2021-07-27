@@ -16,9 +16,9 @@ async function postAxios(url, body) {
     console.error(error.message);
   }
 }
-async function putAxios(url) {
+async function putAxios(url, body) {
   try {
-    const { data } = await axios.put(url);
+    const { data } = await axios.put(url, body);
     return data;
   } catch (error) {
     console.error(error.message);
