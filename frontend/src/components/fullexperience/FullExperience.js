@@ -2,13 +2,22 @@ import CarouselFS from './CarouselFS';
 import StyledFullExperience from './StyledFullExperience';
 import Button from '../button/Button';
 import Comments from '../comments/Comments';
+import { useEffect, useState } from 'react';
 
 function FullExperience({ data, comment }) {
+  const [dataPhoto, setDataPhoto] = useState([]);
+  console.log('datag¡foto', dataPhoto);
+
+  useEffect(() => {
+    setDataPhoto(data);
+  }, [data]);
   return (
     <StyledFullExperience>
       <div className="container-header-fs">
         <div className="carousel-photoexp">
-          <CarouselFS className="carousel-fs" />
+          {dataPhoto && (
+            <CarouselFS photos={dataPhoto} className="carousel-fs" />
+          )}
         </div>
         <div className="data-experience">
           <section className="info-experience-basic">
@@ -22,6 +31,8 @@ function FullExperience({ data, comment }) {
           </section>
           <section className="include-experience">
             <div>
+              <h2>Plazas libres</h2>
+              <p>{data.num_participantes}</p>
               <h2>Incluye:</h2>
               <br />
               <p>Bono de acceso a la actividad</p>
@@ -48,8 +59,6 @@ function FullExperience({ data, comment }) {
         <section>
           <h2>Descripcion</h2>
           <p>{data.descripcion}</p>
-          <h2>Plazas libres</h2>
-          <p>{data.num_participantes}</p>
         </section>
         <Comments comment={comment} />
       </div>
