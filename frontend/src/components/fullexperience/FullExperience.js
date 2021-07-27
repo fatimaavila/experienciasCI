@@ -5,8 +5,8 @@ import Comments from '../comments/Comments';
 import { useEffect, useState } from 'react';
 
 function FullExperience({ data, comment }) {
-  const [dataPhoto, setDataPhoto] = useState([]);
-  console.log('datag¡foto', dataPhoto);
+  const [dataPhoto, setDataPhoto] = useState(data);
+  console.log('fullExp', dataPhoto);
 
   useEffect(() => {
     setDataPhoto(data);
@@ -15,9 +15,7 @@ function FullExperience({ data, comment }) {
     <StyledFullExperience>
       <div className="container-header-fs">
         <div className="carousel-photoexp">
-          {dataPhoto && (
-            <CarouselFS photos={dataPhoto} className="carousel-fs" />
-          )}
+          <CarouselFS photos={dataPhoto} className="carousel-fs" />
         </div>
         <div className="data-experience">
           <section className="info-experience-basic">

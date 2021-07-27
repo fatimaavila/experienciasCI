@@ -6,8 +6,7 @@ import OrderExperiences from '../OrderExperiences/OrderExperiences';
 function AllExperiences({ data }) {
   return (
     <StyledAllExperience>
-      <Filters /> <h2>Plazas libres</h2>
-      <p>{data.num_participantes}</p>
+      <Filters />
       <div className="results">
         <OrderExperiences />
         <div className="experiences">

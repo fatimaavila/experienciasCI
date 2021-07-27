@@ -7,17 +7,16 @@ function UniqueExperiece() {
 
   const urlExp = useParams();
 
-  const getUniqueExp = async () => {
-    const { data } = await getAxios(
-      `http://localhost:8080/experiences/${Number(urlExp.idExp)}`
-    );
-
-    setUniqueExp(data);
-  };
-
   useEffect(() => {
+    const getUniqueExp = async () => {
+      const { data } = await getAxios(
+        `http://localhost:8080/experiences/${Number(urlExp.idExp)}`
+      );
+
+      setUniqueExp(data);
+    };
     getUniqueExp();
-  }, []);
+  }, [urlExp.idExp]);
   return (
     <div>
       {uniqueExp && (
