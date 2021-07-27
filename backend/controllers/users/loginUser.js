@@ -24,7 +24,7 @@ const loginUser = async (req, res, next) => {
         );
 
         const [userName] = await connection.query(
-        `    
+            `    
             SELECT id, rol FROM users WHERE username = ? AND pwd = SHA2(?,512);
         `,
             [username, password]
@@ -39,7 +39,7 @@ const loginUser = async (req, res, next) => {
         }
 
         let tokenInfo;
-        
+
         if (userName[0]) {
             tokenInfo = { idUser: userName[0].id, rol: userName[0].rol };
         } else if (userEmail[0]) {
@@ -51,7 +51,6 @@ const loginUser = async (req, res, next) => {
         });
 
         res.status(200).send({
-            status: 'ok',
             data: {
                 token: token,
             },
