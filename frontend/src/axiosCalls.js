@@ -8,9 +8,9 @@ async function getAxios(url) {
     console.error(error.message);
   }
 }
-async function postAxios(url) {
+async function postAxios(url, body) {
   try {
-    const { data } = await axios.post(url);
+    const { data } = await axios.post(url, body);
     return data;
   } catch (error) {
     console.error(error.message);
