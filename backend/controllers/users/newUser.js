@@ -16,18 +16,7 @@ const newUser = async (req, res, next) => {
     try {
         connection = await getDB();
         await validate(newUserSchema, req.body);
-        const {
-            username,
-            email,
-            password,
-            dni,
-            cp,
-            address,
-            last,
-            name,
-            bio,
-            phone,
-        } = req.body;
+        const { username, email, password, last, name } = req.body;
 
         const [user] = await connection.query(
             `SELECT id FROM users WHERE email = ? OR username = ?;`,
@@ -62,20 +51,15 @@ const newUser = async (req, res, next) => {
 
             await connection.query(
                 `INSERT INTO users 
-                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, registrationCode, createdAt, avatar)
+                ( username, pwd, email, nombre, apellidos,  registrationCode, createdAt, avatar)
                  VALUES 
-                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?);`,
                 [
                     username,
                     password,
                     email,
-                    dni,
-                    address,
-                    bio,
-                    phone,
                     name,
                     last,
-                    cp,
                     registrationCode,
                     formatDate(new Date()),
                     avatarName,
@@ -84,20 +68,15 @@ const newUser = async (req, res, next) => {
         } else {
             await connection.query(
                 `INSERT INTO users 
-                ( username, pwd, email, dni, direccion, bio,telefono, nombre, apellidos, cp, registrationCode, createdAt)
+                ( username, pwd, email, nombre, apellidos, registrationCode, createdAt)
                  VALUES 
-                 (?, SHA2(?, 512), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                 (?, SHA2(?, 512), ?, ?, ?, ?, ?);`,
                 [
                     username,
                     password,
                     email,
-                    dni,
-                    address,
-                    bio,
-                    phone,
                     name,
                     last,
-                    cp,
                     registrationCode,
                     formatDate(new Date()),
                 ]

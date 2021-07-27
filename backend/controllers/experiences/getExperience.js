@@ -39,12 +39,8 @@ const getExperience = async (req, res, next) => {
             data: {
                 ...experience[0],
                 rating: rating[0].rating,
-                comentarios: {
-                    ...comment,
-                },
-                photos: {
-                    ...photos,
-                },
+                comentarios: [...comment],
+                photos: [...photos],
             },
         });
     } catch (error) {

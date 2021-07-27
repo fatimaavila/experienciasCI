@@ -11,14 +11,14 @@ function Experiece({ idExp, name, city, price }) {
     history.push(path);
   };
   const value = 0;
-  console.log(name, city, price);
+
   return (
     <StyledExperience onClick={routeChange}>
       <div className="fotoExperience">
         <img src={photoName} alt="fotoExperience" />
       </div>
       <h3>{name}</h3>
-      <span className='cityExperience'>{city}</span>
+      <span className="cityExperience">{city}</span>
       <Rating
         name="hover-feedback"
         value={value}

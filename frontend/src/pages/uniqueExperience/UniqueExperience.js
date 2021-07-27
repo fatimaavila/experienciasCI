@@ -1,7 +1,10 @@
-import FullExperience from '../../components/fullexperience/FullExperience';
 import { getAxios } from '../../axiosCalls';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import React, { Suspense } from 'react';
+const FullExperience = React.lazy(() =>
+  import('../../components/fullexperience/FullExperience')
+);
 function UniqueExperiece() {
   const [uniqueExp, setUniqueExp] = useState([]);
 
@@ -19,9 +22,9 @@ function UniqueExperiece() {
   }, [urlExp.idExp]);
   return (
     <div>
-      {uniqueExp && (
+      <Suspense fallback={<div>Loading...</div>}>
         <FullExperience comment={'Me gustó mucho.'} data={uniqueExp} />
-      )}
+      </Suspense>
     </div>
   );
 }

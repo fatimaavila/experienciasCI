@@ -14,7 +14,7 @@ function Vuelo() {
   useEffect(() => {
     getVuelo();
   }, []);
-  console.log(catVuelo);
+
   return <div>{catVuelo && <AllExperiences data={catVuelo} />}</div>;
 }
 export default Vuelo;
