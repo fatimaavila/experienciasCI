@@ -1,18 +1,35 @@
 import Button from '../button/Button';
 import BlackTransparentBox from '../BlackTransparentBox/BlackTransparentBox';
-import Input from '../input/Input';
 import StyledLandingSearch from './StyledLandingSearch';
 import SearchCity from './SearchCity';
+import Input from '../input/Input';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+const INITIAL_VALUES = {
+  experience: '',
+  city: '',
+}
 
 function Search() {
+
+  const history = useHistory();
+  const [search,setSearch] = useState(INITIAL_VALUES);
+
+  function searchData() {
+
+    let path = '/experiences'
+    history.push(path);
+  }
+
   return (
     <StyledLandingSearch className="posRel searchHome">
       <BlackTransparentBox>
-        <Input placeholder="Introduce una experiencia" />
+        <Input type='text' placeholder="Introduce una experiencia" querySearch={search.experience} value={search.experience} onChange={(e) => setSearch({...search,experience: e.target.value})}/>
 
-        <Input placeholder="Introduce una ciudad" component={SearchCity} />
+        <Input type='text' placeholder="Introduce una ciudad" querySearch={search.city} value={search.city} onChange={(e) => setSearch({...search,city: e.target.value})} component={SearchCity} />
 
-        <Button blue>BUSCAR</Button>
+        <Button blue onClickButton={searchData}>BUSCAR</Button>
       </BlackTransparentBox>
     </StyledLandingSearch>
   );

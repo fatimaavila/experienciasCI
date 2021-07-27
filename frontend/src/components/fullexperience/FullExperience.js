@@ -2,20 +2,17 @@ import CarouselFS from './CarouselFS';
 import StyledFullExperience from './StyledFullExperience';
 import Button from '../button/Button';
 import Comments from '../comments/Comments';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
-function FullExperience({ comment, data }) {
-  const [dataPhoto, setDataPhoto] = useState(data);
+function FullExperience({ data, comment }) {
 
-  useEffect(() => {
-    setDataPhoto(data);
-  }, [data]);
-  console.log('fullExp', dataPhoto);
+  console.log('fullExp', data);
+
   return (
     <StyledFullExperience>
       <div className="container-header-fs">
         <div className="carousel-photoexp">
-          <CarouselFS photos={dataPhoto} className="carousel-fs" />
+          <CarouselFS photos={data} className="carousel-fs" />
         </div>
         <div className="data-experience">
           <section className="info-experience-basic">

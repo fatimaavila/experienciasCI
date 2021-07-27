@@ -16,9 +16,6 @@ function App() {
         <MainHeader />
 
         <Switch>
-          <Route path="/experience/:idExp">
-            <UniqueExperiece />
-          </Route>
           {routes.map((route) => (
             <Route key={route.path} path={route.path}>
               <route.Page />
