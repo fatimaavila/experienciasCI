@@ -52,7 +52,9 @@ const loginUser = async (req, res, next) => {
 
         res.status(200).send({
             data: {
-                token: token,
+                username,
+                email,
+                token,
             },
         });
     } catch (error) {

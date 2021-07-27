@@ -23,14 +23,15 @@ function LoginUser({ setUser }) {
           username,
           password,
         };
-        const { token } = await postAxios(
+        const { data } = await postAxios(
           'http://localhost:8080/users/login',
           body
         );
-        console.log(token);
+        console.log(data.token);
+        console.log(data);
         // const { token } = data;
-        console.log(token);
-        localStorage.setItem('userToken', token);
+        // console.log(token);
+        localStorage.setItem('userToken', data.token);
       } catch (error) {
         console.log('ERROR: ', error);
       }
