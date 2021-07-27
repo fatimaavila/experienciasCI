@@ -6,6 +6,8 @@ import Acuaticas from '../pages/acuaticas/Acuaticas';
 import Motor from '../pages/motor/Motor';
 import Home from '../pages/home/Home';
 import Parejas from '../pages/parejas/Parejas';
+import UniqueExperiece from '../pages/uniqueExperience/UniqueExperience';
+import Experiences from '../pages/experiences/Experiences';
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: '/pareja',
     Page: Parejas,
     label: 'Parejas',
+  },
+  {
+    path: '/experiences',
+    Page: Experiences,
+    label: 'Experiences',
+  },
+  {
+    path: '/experience/:idExp',
+    Page: UniqueExperiece,
+    label: 'UniqueExperiece',
   },
   {
     path: '/',

@@ -8,18 +8,18 @@ const FullExperience = React.lazy(() =>
 function UniqueExperiece() {
   const [uniqueExp, setUniqueExp] = useState([]);
 
-  const urlExp = useParams();
+  const { idExp } = useParams();
 
   useEffect(() => {
     const getUniqueExp = async () => {
       const { data } = await getAxios(
-        `http://localhost:8080/experiences/${Number(urlExp.idExp)}`
+        `http://localhost:8080/experiences/${Number(idExp)}`
       );
 
       setUniqueExp(data);
     };
     getUniqueExp();
-  }, [urlExp.idExp]);
+  }, [idExp]);
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>

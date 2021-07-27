@@ -16,7 +16,7 @@ function AllExperiences({ data }) {
               name={nombre}
               city={ciudad}
               price={precio}
-              idExp={id}
+              id={id}
             />
           ))}
         </div>
