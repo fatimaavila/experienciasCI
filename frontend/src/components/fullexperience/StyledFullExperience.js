@@ -55,10 +55,10 @@ const StyledFullExperience = styled.div`
   }
   .include-experience {
     margin-top: 3rem;
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .info-experience-extended {
-    font-size: 3rem;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
     flex-direction: column;

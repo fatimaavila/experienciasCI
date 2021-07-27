@@ -4,13 +4,13 @@ import Button from '../button/Button';
 import Comments from '../comments/Comments';
 import { useEffect, useState } from 'react';
 
-function FullExperience({ data, comment }) {
+function FullExperience({ comment, data }) {
   const [dataPhoto, setDataPhoto] = useState(data);
-  console.log('fullExp', dataPhoto);
 
   useEffect(() => {
     setDataPhoto(data);
   }, [data]);
+  console.log('fullExp', dataPhoto);
   return (
     <StyledFullExperience>
       <div className="container-header-fs">
