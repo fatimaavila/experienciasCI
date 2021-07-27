@@ -22,7 +22,7 @@ function Experiece({ id, name, city, price }) {
         <img src={photoName} alt="fotoExperience" />
       </div>
       <h3>{name}</h3>
-      <span className='cityExperience'>{city}</span>
+      <span className="cityExperience">{city}</span>
       <Rating
         name="hover-feedback"
         value={value}
