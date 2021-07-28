@@ -8,9 +8,14 @@ const StyledComments = styled.div`
   font-size: 2rem;
   justify-content: center;
   gap: 5rem;
+  .rating-container {
+    display: flex;
+    flex-direction: column;
+  }
 
   .user-comment-container {
     display: flex;
+
     align-items: center;
     gap: 5rem;
   }

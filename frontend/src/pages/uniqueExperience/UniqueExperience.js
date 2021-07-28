@@ -23,7 +23,7 @@ function UniqueExperiece() {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
-        <FullExperience comment={'Me gustó mucho.'} data={uniqueExp} />
+        <FullExperience data={uniqueExp} />
       </Suspense>
     </div>
   );

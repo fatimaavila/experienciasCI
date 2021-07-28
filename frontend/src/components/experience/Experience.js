@@ -24,7 +24,7 @@ function Experiece({ id, name, city, price }) {
     };
     getUniqueExp();
   }, [id]);
-
+  console.log('unique', uniqueExp);
   const value = 0;
 
   return (
