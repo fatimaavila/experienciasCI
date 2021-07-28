@@ -1,14 +1,17 @@
 import AllExperiences from '../../components/allexperiences/AllExperiences';
 import { getAxios } from '../../axiosCalls';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Experiences({ querySearch }) {
+function Experiences() {
 
     const [experienceSearch,setExperienceSearch] = useState([]);
 
+    const location = useLocation();
+
     async function searchExperience() {
         try {
-            const { data } = await getAxios(`ttp://localhost:8080/experiences?search=${querySearch}`);
+            const { data } = await getAxios(`http://localhost:8080/experiences${location.search && location.search}`);
             setExperienceSearch(data);
         } catch (error) {
             console.error(error.message);

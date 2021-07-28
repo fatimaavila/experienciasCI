@@ -11,7 +11,7 @@ function LandingCategories() {
       <h2>Explora la experiencia que desees</h2>
       <div className='categoriesExperiences'>
         <div className="landingCategoryBlock posRel">
-          <a href="/">
+          <a href="/experiences">
             <img width="100%" src={allExp} alt="category" />
             <BlackTransparentBox>
               <span>Todas</span>

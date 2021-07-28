@@ -7,7 +7,8 @@ const getAllExperiences = async (req, res, next) => {
         connection = await getDB();
 
         const {
-            search,
+            searchExp,
+            searchCity,
             city,
             price,
             cat,
@@ -22,8 +23,15 @@ const getAllExperiences = async (req, res, next) => {
         let sqlExperience = 'SELECT * FROM experiences';
         let separador = 'WHERE';
 
-        if (search) {
-            sqlExperience = `${sqlExperience} ${separador} nombre LIKE '%${search}%'`;
+        if (searchExp) {
+            sqlExperience = `${sqlExperience} ${separador} nombre LIKE '%${searchExp}%'`;
+
+            [result] = await connection.query(sqlExperience);
+            separador = 'AND';
+        }
+
+        if (searchCity) {
+            sqlExperience = `${sqlExperience} ${separador} ciudad LIKE '%${searchCity}%'`;
 
             [result] = await connection.query(sqlExperience);
             separador = 'AND';
@@ -170,7 +178,8 @@ const getAllExperiences = async (req, res, next) => {
         console.log(sqlExperience);
 
         if (
-            !search &&
+            !searchExp &&
+            !searchCity &&
             !city &&
             !cat &&
             !disp &&
