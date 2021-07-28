@@ -14,17 +14,17 @@ function CarouselFS({ photos }) {
 
   return (
     <>
-      {photos.photos &&
-        photos.photos.map((photo) => (
-          <Carousel className="carousel-fs-fs">
+      <Carousel className="carousel-fs-fs">
+        {photos.photos &&
+          photos.photos.map((photo) => (
             <div key={photo.url}>
               <img
                 src={`http://localhost:8080/uploads/${photo.url}`}
                 alt="category"
               />
             </div>
-          </Carousel>
-        ))}
+          ))}
+      </Carousel>
     </>
     // <Carousel className="carousel-fs-fs">
     //   <div>
