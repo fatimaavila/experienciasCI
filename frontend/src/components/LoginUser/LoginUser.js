@@ -1,11 +1,13 @@
 import { Modal, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { postAxios } from '../../axiosCalls';
 import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { UserContext } from '../../context/UserContext';
 function LoginUser({ setUser }) {
+  const { setToken } = useContext(UserContext);
+
   const [formActivate, setFormActivate] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +33,7 @@ function LoginUser({ setUser }) {
         console.log(data);
         // const { token } = data;
         // console.log(token);
-        localStorage.setItem('userToken', data.token);
+        setToken(data.token);
       } catch (error) {
         console.log('ERROR: ', error);
       }
@@ -73,7 +75,11 @@ function LoginUser({ setUser }) {
                 />
               </Form.Label>
             </Form.Group>
-            <Button type="submit" value="Login">
+            <Button
+              type="submit"
+              value="Login"
+              onClickButton={() => setFormActivate(!formActivate)}
+            >
               Iniciar Sesión
             </Button>
             {error && <div>{error} </div>}

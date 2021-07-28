@@ -34,7 +34,7 @@ const newUser = async (req, res, next) => {
 
         const registrationCode = generateRandomString(40);
 
-        /*  const emailBody = `
+        const emailBody = `
             <p>Te acabas de registrar en Van Experiences.</p>
             <span class="mainEmail">${email}</span>
             <p>Pulsa en este link para verificar tu cuenta:<p>
@@ -45,7 +45,7 @@ const newUser = async (req, res, next) => {
             to: email,
             subject: `<h1>Activa tu cuenta en VAN Experiences</h1>`,
             body: emailBody,
-        }); */
+        });
         console.log(req.files);
         if (req.files && req.files.avatar) {
             const avatarName = await savePhoto(req.files.avatar);

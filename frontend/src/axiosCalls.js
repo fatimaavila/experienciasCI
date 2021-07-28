@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-async function getAxios(url) {
+async function getAxios(url, token) {
   try {
-    const { data } = await axios.get(url);
+    const headers = token ? { Authorization: token } : null;
+    const { data } = await axios.get(url, {
+      headers,
+    });
     return data;
   } catch (error) {
     console.error(error.message);

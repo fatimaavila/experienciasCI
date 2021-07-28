@@ -6,8 +6,11 @@ import RegisterUser from '../RegisterUser/RegisterUser';
 import LoginUser from '../LoginUser/LoginUser';
 import LoggedUserNav from '../loggedUserNav/LoggedUserNav';
 import categories from '../LandingCategories/categories';
+import { UserContext } from '../../context/UserContext';
+import { useContext } from 'react';
 
 function MainHeader() {
+  const { userInfo, token } = useContext(UserContext);
 
   return (
     <>
@@ -18,14 +21,17 @@ function MainHeader() {
               <img src={logo} alt="Logo" />
             </a>
           </div>
-          <LoggedUserNav />
-          <div className="buttonSession">
-            <LoginUser />
-            <RegisterUser />
-          </div>
+          {userInfo && <LoggedUserNav />}
+          {!token && (
+            <div className="buttonSession">
+              <LoginUser />
+              <RegisterUser />
+            </div>
+          )}
         </div>
         <nav>
-          <ul className="mainMenu">{categories.map(({ path, label }) => (
+          <ul className="mainMenu">
+            {categories.map(({ path, label }) => (
               <li key={uuidv4()}>
                 <Link to={path}>{label.toUpperCase()}</Link>
               </li>
