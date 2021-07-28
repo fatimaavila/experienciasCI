@@ -3,10 +3,12 @@ import StyledComments from './StyledComments';
 import CommentUser from './CommentUser';
 
 function Comments({ comment }) {
+  console.log('comm', comment.comentarios);
+
   const value = 0;
   return (
     <StyledComments>
-      <div>
+      <div className="rating-container">
         <h2>Valoración y opiniones</h2>
         <Rating
           name="hover-feedback"
@@ -23,7 +25,12 @@ function Comments({ comment }) {
           <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
         )} */}
       </div>
-      <CommentUser comment={comment} />
+      <div>
+        {comment.comentarios &&
+          comment.comentarios.map((data) => (
+            <CommentUser key={data.comentario} comment={data.comentario} />
+          ))}
+      </div>
     </StyledComments>
   );
 }

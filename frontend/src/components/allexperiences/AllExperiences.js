@@ -4,7 +4,6 @@ import StyledAllExperience from './StyledAllExperience';
 import OrderExperiences from '../OrderExperiences/OrderExperiences';
 
 function AllExperiences({ data }) {
-  console.log('allExp', data);
   return (
     <>
       {data && (

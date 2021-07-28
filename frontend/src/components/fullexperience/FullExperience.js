@@ -4,8 +4,7 @@ import Button from '../button/Button';
 import Comments from '../comments/Comments';
 // import { useEffect, useState } from 'react';
 
-function FullExperience({ data, comment }) {
-
+function FullExperience({ data }) {
   console.log('fullExp', data);
 
   return (
@@ -55,7 +54,7 @@ function FullExperience({ data, comment }) {
           <h2>Descripcion</h2>
           <p>{data.descripcion}</p>
         </section>
-        <Comments comment={comment} />
+        <Comments comment={data} />
       </div>
     </StyledFullExperience>
   );
