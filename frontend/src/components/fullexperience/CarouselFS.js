@@ -10,42 +10,42 @@ import { Carousel } from 'react-responsive-carousel';
 // import { useEffect, useState } from 'react';
 
 function CarouselFS({ photos }) {
-
-  console.log('foto',photos);
+  console.log('foto', photos);
 
   return (
-      < >
-        {photos && photos.map((photo) => (
+    <>
+      {photos.photos &&
+        photos.photos.map((photo) => (
           <Carousel className="carousel-fs-fs">
-            <div key={photo.photos.url}>
+            <div key={photo.url}>
               <img
-                src={`http://localhost:8080/static/uploads/${photo.photos.url}`}
+                src={`http://localhost:8080/uploads/${photo.url}`}
                 alt="category"
               />
             </div>
           </Carousel>
         ))}
-      </>
-      // <Carousel className="carousel-fs-fs">
-      //   <div>
-      //     <img src={spa} alt="category" />
-      //   </div>
-      //   <div>
-      //     <img src={aventure} alt="category" />
-      //   </div>
-      //   <div>
-      //     <img src={pareja} alt="category" />
-      //   </div>
-      //   <div>
-      //     <img src={aqua} alt="category" />
-      //   </div>
-      //   <div>
-      //     <img src={motor} alt="category" />
-      //   </div>
-      //   <div>
-      //     <img src={gastro} alt="category" />
-      //   </div>
-      // </Carousel>
+    </>
+    // <Carousel className="carousel-fs-fs">
+    //   <div>
+    //     <img src={spa} alt="category" />
+    //   </div>
+    //   <div>
+    //     <img src={aventure} alt="category" />
+    //   </div>
+    //   <div>
+    //     <img src={pareja} alt="category" />
+    //   </div>
+    //   <div>
+    //     <img src={aqua} alt="category" />
+    //   </div>
+    //   <div>
+    //     <img src={motor} alt="category" />
+    //   </div>
+    //   <div>
+    //     <img src={gastro} alt="category" />
+    //   </div>
+    // </Carousel>
   );
 }
 export default CarouselFS;

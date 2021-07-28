@@ -4,6 +4,7 @@ import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StyledForm from './StyledForm';
 import { postAxios } from '../../axiosCalls';
+import { useHistory } from 'react-router-dom';
 
 function RegisterUser() {
   const [formActivate, setFormActivate] = useState(false);
@@ -14,6 +15,7 @@ function RegisterUser() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [last, setLast] = useState('');
+  let history = useHistory();
 
   function onSubmitRegister(event) {
     event.preventDefault();
@@ -36,15 +38,14 @@ function RegisterUser() {
 
         const data = await postAxios('http://localhost:8080/users', body);
         console.log('newUser', data);
-        // setUser(response.data)
-        // history.pushState("/home");
       } catch (error) {
-        // Manejando errores: https://github.com/axios/axios#handling-errors
         console.log('ERROR: ', error);
       }
     }
     if (password === password2) {
       performLogin();
+
+      history.push('/');
     }
   }
 
@@ -128,7 +129,9 @@ function RegisterUser() {
               <Form.Check type="checkbox" />
               <Form.Label>Aceptar condiciones de uso</Form.Label>
             </Form.Group>
-            <Button onClick={onSubmitRegister}>ENVIAR</Button>
+            <Button onClickButton={() => setFormActivate(!formActivate)}>
+              ENVIAR
+            </Button>
           </Form>
         </StyledForm>
       </Modal>

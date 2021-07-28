@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 
 const { PORT } = process.env;
 
@@ -62,7 +63,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(fileUpload());
 app.use(cors(corsOptions));
-
+app.use(express.static(path.join(__dirname, 'static/')));
 // ###############################
 // ## ENDPOINTS DE EXPERIENCIAS ##
 // ###############################
