@@ -37,7 +37,7 @@ function RegisterUser() {
         };
 
         const data = await postAxios('http://localhost:8080/users', body);
-        console.log('newUser', data);
+        console.log('newUser', data, body);
       } catch (error) {
         console.log('ERROR: ', error);
       }
@@ -45,7 +45,7 @@ function RegisterUser() {
     if (password === password2) {
       performLogin();
 
-      history.push('/');
+      history.push('/registervalidate');
     }
   }
 
