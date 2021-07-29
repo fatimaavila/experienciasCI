@@ -19,10 +19,23 @@ function UserProfile({ userInfo }) {
   const [dataUser, setDataUser] = useState(userInitialState);
   const [password, setPassword] = useState('');
   const { token } = useContext(UserContext);
+
   async function updateUser() {
+    const body = {
+      name: dataUser.name,
+      last: dataUser.last,
+      dni: dataUser.dni,
+      phone: dataUser.phone,
+      address: dataUser.address,
+      cp: dataUser.cp,
+      username: dataUser.username,
+      email: dataUser.email,
+    };
+
     const { data } = await putAxios(
       `http://localhost:8080/users/${userInfo.idUser}`,
-      token
+      token,
+      body
     );
     setDataUser(data);
   }

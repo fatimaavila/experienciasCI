@@ -39,15 +39,24 @@ const loginUser = async (req, res, next) => {
         }
 
         let tokenInfo;
+        const now = new Date().getTime();
 
         if (userName[0]) {
-            tokenInfo = { idUser: userName[0].id, rol: userName[0].rol };
+            tokenInfo = {
+                idUser: userName[0].id,
+                rol: userName[0].rol,
+                expired: now,
+            };
         } else if (userEmail[0]) {
-            tokenInfo = { idUser: userEmail[0].id, rol: userEmail[0].rol };
+            tokenInfo = {
+                idUser: userEmail[0].id,
+                rol: userEmail[0].rol,
+                expired: now,
+            };
         }
 
         const token = jwt.sign(tokenInfo, process.env.SECRET, {
-            expiresIn: '1d',
+            expiresIn: '120000',
         });
 
         res.status(200).send({

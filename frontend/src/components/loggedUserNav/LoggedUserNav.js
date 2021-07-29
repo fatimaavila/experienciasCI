@@ -1,11 +1,19 @@
 import StyledLoggedUserNav from './StyledLoggedUserNav';
-import userAvatar from '../../assets/existing-user-default-avatar.png';
-import { useState, useContext } from 'react';
+import userAvatar from '../../assets/userdefaul.png';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
 function LoggedUserNav() {
   const { tokenContent, userInfo, logout } = useContext(UserContext);
   const [showNavMenu, setShowNavMenu] = useState(false);
-
+  /*  const [autoLogout, setAutoLogout] = useState();
+  const now = new Date().getTime();
+  console.log(now, tokenContent.expired);
+  if (tokenContent.expired + 120000 === now - 200) setAutoLogout(true);
+  useEffect(() => {
+    if (autoLogout) {
+      logout();
+    }
+  }, [autoLogout, logout]); */
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav">
