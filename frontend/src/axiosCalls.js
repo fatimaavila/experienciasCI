@@ -19,10 +19,10 @@ async function postAxios(url, body) {
     console.error(error.message);
   }
 }
-async function putAxios(url, body, files, token) {
+async function putAxios(url, body, formData, token) {
   try {
     const headers = token ? { Authorization: token } : null;
-    const avatar = files ? files : null;
+    const avatar = formData ? formData : null;
 
     const { data } = await axios.put(url, body, avatar, {
       headers,

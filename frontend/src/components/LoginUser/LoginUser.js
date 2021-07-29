@@ -5,26 +5,27 @@ import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserContext } from '../../context/UserContext';
-function LoginUser({ setUser }) {
-  const { setToken } = useContext(UserContext);
+function LoginUser() {
+  const { setToken, token } = useContext(UserContext);
 
   const [formActivate, setFormActivate] = useState(false);
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const [error, setError] = useState('');
 
   function onSubmitLogin(event) {
     event.preventDefault();
 
-    console.log('username: ', username);
-    console.log('password: ', password);
-
     async function performLogin() {
       try {
         const body = {
-          username,
+          username: username ? username : '',
+          email: email ? email : '',
           password,
         };
+
         const { data } = await postAxios(
           'http://localhost:8080/users/login',
           body
@@ -40,6 +41,9 @@ function LoginUser({ setUser }) {
     }
 
     performLogin();
+  }
+  function isValidEmail(mail) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
   }
 
   return (
@@ -58,7 +62,10 @@ function LoginUser({ setUser }) {
               <Form.Label>
                 Nombre de Usuario
                 <Form.Control
-                  onChange={(event) => setUsername(event.target.value)}
+                  onChange={(event) => {
+                    setUsername(event.target.value);
+                    setEmail(event.target.value);
+                  }}
                   value={username}
                   type="text"
                   placeholder="Nombre de Usuario"
@@ -78,7 +85,18 @@ function LoginUser({ setUser }) {
             <Button
               type="submit"
               value="Login"
-              onClickButton={() => setFormActivate(!formActivate)}
+              onClickButton={() => {
+                if (!isValidEmail(email)) {
+                  setUsername(username);
+                  setEmail('');
+                  setPassword(password);
+                } else if (isValidEmail(email)) {
+                  setUsername('');
+                  setEmail(email);
+                  setPassword(password);
+                }
+                if (token) setFormActivate(!formActivate);
+              }}
             >
               Iniciar Sesión
             </Button>

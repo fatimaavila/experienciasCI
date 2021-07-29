@@ -1,5 +1,5 @@
 import StyledUserProfile from './StyledUserProfile';
-import defaulAvatar from '../../assets/existing-user-default-avatar.png';
+import defaulAvatar from '../../assets/userdefaul.png';
 import Button from '../button/Button';
 import UserProfile from './UserProfile';
 import UserBookings from './UserBookings';
