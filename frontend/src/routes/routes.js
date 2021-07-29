@@ -8,6 +8,7 @@ import Home from '../pages/home/Home';
 import Parejas from '../pages/parejas/Parejas';
 import UniqueExperiece from '../pages/uniqueExperience/UniqueExperience';
 import Experiences from '../pages/experiences/Experiences';
+import RegisterValidate from '../pages/registervalidate/RegisterValidate';
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     path: '/experience/:idExp',
     Page: UniqueExperiece,
     label: 'UniqueExperiece',
+  },
+  {
+    path: '/registervalidate',
+    Page: RegisterValidate,
+    label: 'RegisterValidate',
   },
   {
     path: '/',

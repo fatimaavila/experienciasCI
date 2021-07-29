@@ -5,8 +5,14 @@ import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserContext } from '../../context/UserContext';
+<<<<<<< Updated upstream
 function LoginUser() {
   const { setToken, token } = useContext(UserContext);
+=======
+
+function LoginUser() {
+  const { token, setToken } = useContext(UserContext);
+>>>>>>> Stashed changes
 
   const [formActivate, setFormActivate] = useState(false);
   const [username, setUsername] = useState('');
@@ -18,6 +24,14 @@ function LoginUser() {
   function onSubmitLogin(event) {
     event.preventDefault();
 
+<<<<<<< Updated upstream
+=======
+    console.log('username: ', username);
+    console.log('email: ', email);
+
+    console.log('password: ', password);
+
+>>>>>>> Stashed changes
     async function performLogin() {
       try {
         const body = {
@@ -30,8 +44,8 @@ function LoginUser() {
           'http://localhost:8080/users/login',
           body
         );
-        console.log(data.token);
         console.log(data);
+        console.log(data.token);
         // const { token } = data;
         // console.log(token);
         setToken(data.token);
@@ -42,10 +56,16 @@ function LoginUser() {
 
     performLogin();
   }
+<<<<<<< Updated upstream
   function isValidEmail(mail) {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
   }
 
+=======
+  function isValidEmail(email) {
+    return /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,4})+$/.test(email);
+  }
+>>>>>>> Stashed changes
   return (
     <>
       <Button blue barra onClickButton={() => setFormActivate(!formActivate)}>
@@ -89,12 +109,20 @@ function LoginUser() {
                 if (!isValidEmail(email)) {
                   setUsername(username);
                   setEmail('');
+<<<<<<< Updated upstream
                   setPassword(password);
                 } else if (isValidEmail(email)) {
                   setUsername('');
                   setEmail(email);
                   setPassword(password);
                 }
+=======
+                } else {
+                  setEmail(email);
+                  setUsername('');
+                }
+
+>>>>>>> Stashed changes
                 if (token) setFormActivate(!formActivate);
               }}
             >
