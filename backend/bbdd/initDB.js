@@ -147,7 +147,7 @@ const initDB = async () => {
 
     ¡Atrévete a volar!',
     'Alas para Uno: Túnel de Viento',
-    'A coruña',50.00,'Vuelo',1,true,'2021-02-01','2021-09-30'),
+    'A Coruña',50.00,'Vuelo',1,true,'2021-02-01','2021-09-30'),
     (4, 
     'Vuela en globo con un grupo de entre 7 y 10 personas por encima del Parque Regional del Río de Guadarrama. ¡Vive una experiencia única desde las alturas con este paseo en globo! Disfruta de esta experiencia en la zona de vuelo más cercana a Madrid, a tan sólo 20 minutos de la capital
 
@@ -364,7 +364,7 @@ const initDB = async () => {
     Dejaos sorprender por el gusto característico de cada una de las variedades, donde la espuma, el amargor y su efecto refrescante o afrutado va cambiando. Aprovechad esta visita y cata de cerveza en Sevilla que no os dejará indiferentes. Viviréis un momento único que no olvidaréis.
 
     ¡No os lo penséis más!',
-    'OFERTA EXCLUSIVA: Visita a Fábrica Mond con Cata de Cerveza y Maridaje',
+    'Visita a Fábrica Mond con Cata de Cerveza y Maridaje',
     'Sevilla',18.00,'Gastronomia',8,true,'2021-05-15','2021-08-11'),
     (25, 
     '¿Os gusta el mundo de los vinos? Os recomendamos esta experiencia de Enoturismo en Rioja Alavesa.
