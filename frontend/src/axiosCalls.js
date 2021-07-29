@@ -19,9 +19,14 @@ async function postAxios(url, body) {
     console.error(error.message);
   }
 }
-async function putAxios(url, body) {
+async function putAxios(url, body, files, token) {
   try {
-    const { data } = await axios.put(url, body);
+    const headers = token ? { Authorization: token } : null;
+    const avatar = files ? files : null;
+
+    const { data } = await axios.put(url, body, avatar, {
+      headers,
+    });
     return data;
   } catch (error) {
     console.error(error.message);
