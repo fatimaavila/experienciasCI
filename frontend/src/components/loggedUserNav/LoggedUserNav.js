@@ -3,7 +3,7 @@ import userAvatar from '../../assets/userdefaul.png';
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
 function LoggedUserNav() {
-  const { tokenContent, userInfo, logout } = useContext(UserContext);
+  const { userInfo, logout } = useContext(UserContext);
   const [showNavMenu, setShowNavMenu] = useState(false);
   /*  const [autoLogout, setAutoLogout] = useState();
   const now = new Date().getTime();
