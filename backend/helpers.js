@@ -52,13 +52,15 @@ const priceQuery = async (price) => {
     price = Number(price);
 
     switch (price) {
-        case 1:
+        case '0-50':
             return `precio BETWEEN 0 AND 50`;
-        case 2:
+        case '50-100':
             return `precio BETWEEN 51 AND 100`;
-        case 3:
-            return `precio BETWEEN 101 AND 200`;
-        case 4:
+        case '100-150':
+            return `precio BETWEEN 101 AND 150`;
+        case '150-200':
+            return `precio BETWEEN 151 AND 200`;
+        case '200-':
             return `precio > 200`;
         default:
             return `precio BETWEEN 0 AND 999`;

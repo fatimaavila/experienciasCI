@@ -39,10 +39,11 @@ const getAllExperiences = async (req, res, next) => {
 
         if (price) {
             if (
-                price !== '1' &&
-                price !== '2' &&
-                price !== '3' &&
-                price !== '4'
+                price !== '0-50' &&
+                price !== '50-100' &&
+                price !== '100-150' &&
+                price !== '150-200' &&
+                price !== '200-'
             ) {
                 const errorPrice = new Error(
                     'El valor del parámetro price no es válido'
