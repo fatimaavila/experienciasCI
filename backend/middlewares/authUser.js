@@ -22,7 +22,7 @@ const authUser = async (req, res, next) => {
         try {
             tokenInfo = jwt.verify(authorization, process.env.SECRET);
         } catch (error) {
-            const err2 = new Error('Faltan la autorización en la cabecera');
+            const err2 = new Error('Token no válido');
             err2.httpStatus = 401;
             throw err2;
         }
