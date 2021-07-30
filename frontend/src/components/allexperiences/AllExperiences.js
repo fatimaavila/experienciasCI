@@ -3,13 +3,13 @@ import Filters from '../filters/Filters';
 import OrderExperiences from '../OrderExperiences/OrderExperiences';
 import StyledAllExperience from './StyledAllExperience';
 
-function AllExperiences({ data, onChangeSelect, order }) {
+function AllExperiences({ data, onChangeSelect, order, onClickCity, cityActive, onChangePrice, priceFilter }) {
 
   return (
     <>
       {data && (
         <StyledAllExperience>
-            <Filters />
+            <Filters onClickCity={onClickCity} cityActive={cityActive} priceFilter={priceFilter} onChangePrice={onChangePrice}/>
             {data && (
               <div className='results'>
                 <OrderExperiences order={order} onChangeSelect={onChangeSelect}/>

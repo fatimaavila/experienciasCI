@@ -21,6 +21,7 @@ const StyledFilters = styled.div`
   .cityFilter li {
     padding: 1rem 1rem 0rem 1rem;
     color: var(--color-black);
+    cursor: pointer;
   }
 
   .cityFilter li:last-child {
