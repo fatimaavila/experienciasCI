@@ -16,11 +16,12 @@ function Search() {
 
   function searchData() {
 
-    let path = `/experiences${search.experience ? `?searchExp=${search.experience}${search.city && `&searchCity=${search.city}`}` : `?searchCity=${search.city}${search.experience && `&searchExp=${search.experience}`}`}`;
+    let path = `/experiences${
+            search.experience ? `?searchExp=${search.experience}${search.city && `&searchCity=${search.city}`}` 
+            : 
+            `?searchCity=${search.city}${search.experience && `&searchExp=${search.experience}`}`}`;
     history.push(path);
   }
-
-  console.log(search.experience);
 
   return (
     <StyledLandingSearch className="posRel searchHome">
@@ -34,4 +35,5 @@ function Search() {
     </StyledLandingSearch>
   );
 }
+
 export default Search;

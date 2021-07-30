@@ -30,10 +30,6 @@ function LoginUser() {
           'http://localhost:8080/users/login',
           body
         );
-        console.log(data);
-        console.log(data.token);
-        // const { token } = data;
-        // console.log(token);
         setToken(data.token);
       } catch (error) {
         console.log('ERROR: ', error);

@@ -12,11 +12,7 @@ const StyledExperience = styled.div`
   & .fotoExperience {
     overflow: hidden;
     width: 100%;
-  }
-
-  & .fotoExperience img {
-    display: block;
-    width: 100%;
+    height: 300px;
   }
 
   & h3 {

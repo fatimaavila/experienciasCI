@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { onlyUnique } from '../../helpers';
+import { Form } from 'react-bootstrap';
 
-function Filters() {
+function Filters({onClickCity, cityActive, onChangePrice, priceFilter}) {
   const [city,setCity] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [finalDate, setFinalDate] = useState(startDate);
@@ -34,30 +35,34 @@ function Filters() {
     <StyledFilters>
       <ul className="cityFilter">
         {city && city.map((city) => {
-          return <li key={city}>{city}</li>
+          return (
+            < >
+              {cityActive ? <li key={city} onClick={onClickCity} style={cityActive}>{city}</li> : <li key={city} onClick={onClickCity}>{city}</li>}
+            </>
+          )
         })}
       </ul>
       <div className="priceFilter">
-        <label>
-          <input type="checkbox" />
-          <span>0€ - 50&#8364;</span>
-        </label>
-        <label>
-          <input type="checkbox" />
-          <span>50€ - 100&#8364;</span>
-        </label>
-        <label>
-          <input type="checkbox" />
-          <span>100€ - 150&#8364;</span>
-        </label>
-        <label>
-          <input type="checkbox" />
-          <span>150€ - 200&#8364;</span>
-        </label>
-        <label>
-          <input type="checkbox" />
+        <Form.Label>
+          <Form.Check type="checkbox" value='0-50' checked={priceFilter} onChange={onChangePrice}/>
+          <span>0&#8364; - 50&#8364;</span>
+        </Form.Label>
+        <Form.Label>
+          <Form.Check type="checkbox" value='50-100' checked={priceFilter} onChange={onChangePrice}/>
+          <span>50&#8364; - 100&#8364;</span>
+        </Form.Label>
+        <Form.Label>
+          <Form.Check type="checkbox" value='100-150' checked={priceFilter} onChange={onChangePrice}/>
+          <span>100&#8364; - 150&#8364;</span>
+        </Form.Label>
+        <Form.Label>
+          <Form.Check type="checkbox" value='150-200' checked={priceFilter} onChange={onChangePrice}/>
+          <span>150&#8364; - 200&#8364;</span>
+        </Form.Label>
+        <Form.Label>
+          <Form.Check type="checkbox" value='200-' checked={priceFilter} onChange={onChangePrice}/>
           <span>&#62; 200&#8364;</span>
-        </label>
+        </Form.Label>
       </div>
       <div className="dateFilter">
         <label>

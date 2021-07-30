@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../Hooks/Hooks';
+import { useLocalStorage } from '../Hooks/useLocaleStorage';
 import jwt_decode from 'jwt-decode';
 import { getAxios } from '../axiosCalls';
 export const UserContext = createContext();
