@@ -6,7 +6,7 @@ import axios from 'axios';
 import { onlyUnique } from '../../helpers';
 import { Form } from 'react-bootstrap';
 
-function Filters({onClickCity, cityActive, onChangePrice, priceFilter}) {
+function Filters({onClickCity, cityActive, onChangePrice, priceFilter, cityFilter}) {
   const [city,setCity] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [finalDate, setFinalDate] = useState(startDate);
@@ -37,7 +37,7 @@ function Filters({onClickCity, cityActive, onChangePrice, priceFilter}) {
         {city && city.map((city) => {
           return (
             < >
-              {cityActive ? <li key={city} onClick={onClickCity} style={cityActive}>{city}</li> : <li key={city} onClick={onClickCity}>{city}</li>}
+              {cityActive ? <li key={city} onClick={onClickCity} style={city === cityFilter ? cityActive : {}}>{city}</li> : <li key={city} onClick={onClickCity}>{city}</li>}
             </>
           )
         })}
