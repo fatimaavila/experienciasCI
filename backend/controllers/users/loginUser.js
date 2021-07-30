@@ -39,19 +39,16 @@ const loginUser = async (req, res, next) => {
         }
 
         let tokenInfo;
-        const now = new Date().getTime();
 
         if (userName[0]) {
             tokenInfo = {
                 idUser: userName[0].id,
                 rol: userName[0].rol,
-                expired: now + 86400000,
             };
         } else if (userEmail[0]) {
             tokenInfo = {
                 idUser: userEmail[0].id,
                 rol: userEmail[0].rol,
-                expired: now + 86400000,
             };
         }
 

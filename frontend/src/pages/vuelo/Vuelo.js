@@ -19,7 +19,7 @@ function Vuelo() {
   useEffect(() => {
 
     async function getVueloFiltered() {
-
+      console.log(orderType,orderDirection,cityFilter,priceFilter);
       try {
         const { data } = await getAxios(
           `http://localhost:8080/experiences?cat=Vuelo${

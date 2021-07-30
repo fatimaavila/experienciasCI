@@ -11,13 +11,13 @@ function UserProfileMain() {
   const [showUserBookings, setShowUserBookings] = useState(false);
   const { userInfo } = useContext(UserContext);
   console.log(userInfo);
-  const userAvatar = !userInfo.avatar ? defaulAvatar : userInfo.avatar;
+  const userAvatar = !userInfo?.avatar ? defaulAvatar : userInfo?.avatar;
 
-  const avatar = !userInfo.avatar ? defaulAvatar : userAvatar;
+  const avatar = !userInfo?.avatar ? defaulAvatar : userAvatar;
   return (
     <StyledUserProfile>
       <div className="userProfileHead">
-        <h1 className="userProfileTitle">Hola {userInfo.username}</h1>
+        <h1 className="userProfileTitle">Hola {userInfo?.username}</h1>
         <img src={avatar} alt="user-avatar" />
       </div>
       <div className="userProfileNav">

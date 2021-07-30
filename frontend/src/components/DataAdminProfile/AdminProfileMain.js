@@ -30,8 +30,8 @@ function AdminProfileMain() {
             style={showSection.experiences ? dataActive : null}
             onClick={() =>
               setShowSection({
-                experiences: !showSection.experiences,
-                bookings: !showSection.bookings,
+                experiences: true,
+                bookings: false,
               })
             }
           >
@@ -42,8 +42,8 @@ function AdminProfileMain() {
             style={showSection.bookings ? dataActive : null}
             onClick={() =>
               setShowSection({
-                experiences: !showSection.experiences,
-                bookings: !showSection.bookings,
+                experiences: false,
+                bookings: true,
               })
             }
           >

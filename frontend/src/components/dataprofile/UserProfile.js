@@ -7,14 +7,14 @@ import { putAxios } from '../../axiosCalls';
 
 function UserProfile({ userInfo }) {
   const userInitialState = {
-    name: userInfo.nombre,
-    last: userInfo.apellidos,
-    dni: userInfo.dni,
-    phone: userInfo.telefono,
-    address: userInfo.direccion,
-    cp: userInfo.cp,
-    username: userInfo.username,
-    email: userInfo.email,
+    name: userInfo?.nombre,
+    last: userInfo?.apellidos,
+    dni: userInfo?.dni,
+    phone: userInfo?.telefono,
+    address: userInfo?.direccion,
+    cp: userInfo?.cp,
+    username: userInfo?.username,
+    email: userInfo?.email,
   };
   const [dataUser, setDataUser] = useState(userInitialState);
   const [password, setPassword] = useState('');
