@@ -29,6 +29,16 @@ export const UserProvider = ({ children }) => {
     if (token) getUserInfo();
   }, [token, setUserInfo, setTokenContent]);
 
+  /*     const timer = setInterval(() => {
+      const now = new Date().getTime();
+      if (now - 1000 >= tokenContent.expired) {
+        logout();
+      }
+      console.log(tokenContent.expired, now);
+    }, 1000);
+  
+    if (token === null) clearInterval(timer); */
+
   return (
     <UserContext.Provider
       value={{ userInfo, token, setToken, logout, tokenContent }}
