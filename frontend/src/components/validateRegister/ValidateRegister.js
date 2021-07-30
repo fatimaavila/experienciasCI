@@ -1,15 +1,15 @@
 import StyledValidateRegister from './StyledValidateRegister';
 import LOGOICON from '../../assets/LOGOICON.png';
 import Button from '../button/Button';
-function ValidateRegister() {
+function ValidateRegister({ email, name }) {
   return (
     <StyledValidateRegister>
       <img src={LOGOICON} alt="Logo" className="icon" />
       <div className="main">
         <h3>
-          Usuario registrado correctamente.
+          {name}registrado correctamente.
           <br />
-          Verifique su email para activar su cuenta.
+          Verifique su email :{email} , para activar su cuenta.
         </h3>
       </div>
       <a href="/">

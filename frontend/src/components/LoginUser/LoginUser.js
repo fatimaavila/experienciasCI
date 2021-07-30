@@ -89,12 +89,11 @@ function LoginUser() {
                 if (!isValidEmail(email)) {
                   setUsername(username);
                   setEmail('');
-                  setPassword(password);
-                } else if (isValidEmail(email)) {
-                  setUsername('');
+                } else {
                   setEmail(email);
-                  setPassword(password);
+                  setUsername('');
                 }
+
                 if (token) setFormActivate(!formActivate);
               }}
             >

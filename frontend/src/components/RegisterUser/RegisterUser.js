@@ -45,7 +45,11 @@ function RegisterUser() {
       performLogin();
     }
     if (error?.data?.message === 'Error enviando email') {
-      history.push('/registervalidate');
+      history.push({
+        pathname: '/registervalidate',
+        email: email,
+        username: username,
+      });
       setFormActivate(!formActivate);
     }
   }
