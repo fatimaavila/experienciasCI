@@ -45,18 +45,18 @@ const loginUser = async (req, res, next) => {
             tokenInfo = {
                 idUser: userName[0].id,
                 rol: userName[0].rol,
-                expired: now,
+                expired: now + 86400000,
             };
         } else if (userEmail[0]) {
             tokenInfo = {
                 idUser: userEmail[0].id,
                 rol: userEmail[0].rol,
-                expired: now,
+                expired: now + 86400000,
             };
         }
 
         const token = jwt.sign(tokenInfo, process.env.SECRET, {
-            expiresIn: '120000',
+            expiresIn: '86400000',
         });
 
         res.status(200).send({

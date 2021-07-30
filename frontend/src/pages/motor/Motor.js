@@ -6,8 +6,8 @@ import ValidateRegister from '../../components/validateRegister/ValidateRegister
 function Motor() {
   return (
     <div>
-      <ValidateRegister></ValidateRegister>
-      {/* <UserProfileMain /> */}
+      {/*  <ValidateRegister></ValidateRegister> */}
+      <UserProfileMain />
 
       {/* <FullExperience /> */}
       {/* <AllExperiences /> */}

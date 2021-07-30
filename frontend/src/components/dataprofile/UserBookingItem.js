@@ -1,19 +1,32 @@
 import { Rating } from '@material-ui/lab';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getAxios } from '../../axiosCalls';
 import Button from '../button/Button';
 import UserComment from './UserComment';
-function UserRatingBookingItem() {
+function UserRatingBookingItem({ bookingInfo }) {
   const [showRate, setShowRate] = useState(false);
   const value = 0;
+  const [uniqueExp, setUniqueExp] = useState([]);
+
+  useEffect(() => {
+    const getUniqueExp = async () => {
+      const { data } = await getAxios(
+        `http://localhost:8080/experiences/${Number(bookingInfo.id)}`
+      );
+
+      setUniqueExp(data);
+    };
+    getUniqueExp();
+  }, [bookingInfo]);
   return (
     <div className="itemBookingContainer">
       <div className="itemBookingHead">
-        <h2>#15236</h2>
-        <h2>Nombre de la Experiencia</h2>
-        <h2>Precio total</h2>
+        <h2>{bookingInfo.id}</h2>
+        <h2>{uniqueExp.nombre}</h2>
+        <h2>{bookingInfo.precio_total}</h2>
       </div>
       <div className="itemBookingBody">
-        <h4>Fecha de Compra</h4>
+        <h4>{bookingInfo.fecha_compra}</h4>
         <Button blue onClickButton={() => setShowRate(!showRate)}>
           Valora tu Experiencia
         </Button>
