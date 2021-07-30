@@ -1,44 +1,28 @@
 import axios from 'axios';
 
 async function getAxios(url, token) {
-  try {
-    const headers = token ? { Authorization: token } : null;
-    const { data } = await axios.get(url, {
-      headers,
-    });
-    return data;
-  } catch (error) {
-    console.error(error.message);
-  }
+  const headers = token ? { Authorization: token } : null;
+  const { data } = await axios.get(url, {
+    headers,
+  });
+  return data;
 }
 async function postAxios(url, body) {
-  try {
-    const { data } = await axios.post(url, body);
-    return data;
-  } catch (error) {
-    console.error(error.message);
-  }
+  const { data } = await axios.post(url, body);
+  return data;
 }
 async function putAxios(url, body, formData, token) {
-  try {
-    const headers = token ? { Authorization: token } : null;
-    const avatar = formData ? formData : null;
+  const headers = token ? { Authorization: token } : null;
+  const avatar = formData ? formData : null;
 
-    const { data } = await axios.put(url, body, avatar, {
-      headers,
-    });
-    return data;
-  } catch (error) {
-    console.error(error.message);
-  }
+  const { data } = await axios.put(url, body, avatar, {
+    headers,
+  });
+  return data;
 }
 async function deleteAxios(url) {
-  try {
-    const { data } = await axios.delete(url);
-    return data;
-  } catch (error) {
-    console.error(error.message);
-  }
+  const { data } = await axios.delete(url);
+  return data;
 }
 
 export { getAxios, putAxios, postAxios, deleteAxios };

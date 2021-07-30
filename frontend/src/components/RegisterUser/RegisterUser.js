@@ -15,16 +15,11 @@ function RegisterUser() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [last, setLast] = useState('');
+  const [error, setError] = useState('');
   let history = useHistory();
 
   function onSubmitRegister(event) {
     event.preventDefault();
-
-    console.log('Email: ', email);
-    console.log('password: ', password);
-    console.log('user: ', username);
-    console.log('name: ', name);
-    console.log('last: ', last);
 
     async function performLogin() {
       try {
@@ -36,19 +31,28 @@ function RegisterUser() {
           last,
         };
 
-        const data = await postAxios('http://localhost:8080/users', body);
-        console.log('newUser', data);
+        await postAxios('http://localhost:8080/users', body);
       } catch (error) {
-        console.log('ERROR: ', error);
+        console.log(' error: ', error.response);
+
+        console.log('response error: ', error.response.data.message);
+
+        setError(error.response);
       }
     }
+    console.log('ERROR: ', error?.data?.message);
     if (password === password2) {
       performLogin();
-
-      history.push('/');
+    }
+    if (error?.data?.message === 'Error enviando email') {
+      history.push({
+        pathname: '/registervalidate',
+        email: email,
+        username: username,
+      });
+      setFormActivate(!formActivate);
     }
   }
-
   return (
     <>
       <Button onClickButton={() => setFormActivate(!formActivate)}>
@@ -129,9 +133,8 @@ function RegisterUser() {
               <Form.Check type="checkbox" />
               <Form.Label>Aceptar condiciones de uso</Form.Label>
             </Form.Group>
-            <Button onClickButton={() => setFormActivate(!formActivate)}>
-              ENVIAR
-            </Button>
+            <Button>ENVIAR</Button>
+            {error?.data?.message && <span>{error?.data?.message}</span>}
           </Form>
         </StyledForm>
       </Modal>

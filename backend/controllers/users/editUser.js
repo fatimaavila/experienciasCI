@@ -16,7 +16,7 @@ const editUser = async (req, res, next) => {
 
         const now = new Date();
 
-        await validate(newSchemaEditUser, req.body); 
+        await validate(newSchemaEditUser, req.body);
 
         if (req.userAuth.idUser !== Number(idUser)) {
             const error = new Error(
