@@ -40,7 +40,7 @@ function UserProfileMain() {
       </div>
       <div>
         {showUserBookings && <UserBookings />}
-        {showUserProfile && <UserProfile userInfo={userInfo} />}
+        {showUserProfile && <UserProfile />}
       </div>
       {showUserProfile && (
         <div className="userProfileDele">

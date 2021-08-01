@@ -10,11 +10,11 @@ export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   // const [errorToken,setErrorToken] = useState('');
 
-  const logout = useCallback( () => {
+  const logout = useCallback(() => {
     setToken(null);
     setTokenContent(null);
     setUserInfo(null);
-  },[setToken,setTokenContent])
+  }, [setToken, setTokenContent]);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -28,26 +28,14 @@ export const UserProvider = ({ children }) => {
         setUserInfo(data);
         console.log('logged', data);
         //decoded.idUser
-
-        
+        console.log(userInfo);
       } catch (error) {
-          // setErrorToken(error.response.data.message);
-          logout();
+        // setErrorToken(error.response.data.message);
+        logout();
       }
-  };
+    };
     if (token) getUserInfo();
-  }, [token, setUserInfo, setTokenContent,logout]);
-
-    //   const timer = setInterval(() => {
-    //   const now = new Date().getTime();
-    //   if (now - 1000 >= tokenContent.expired) {
-    //     logout();
-    //   }
-    //   console.log(tokenContent.expired, now);
-    // }, 1000);
-  
-    // if (token === null) clearInterval(timer);
-
+  }, [token, setUserInfo, setTokenContent, logout]);
   return (
     <UserContext.Provider
       value={{ userInfo, token, setToken, logout, tokenContent }}

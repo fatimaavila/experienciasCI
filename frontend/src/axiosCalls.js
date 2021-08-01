@@ -7,21 +7,28 @@ async function getAxios(url, token) {
   });
   return data;
 }
-async function postAxios(url, body) {
-  const { data } = await axios.post(url, body);
-  return data;
-}
-async function putAxios(url, body, formData, token) {
+async function postAxios(url, body, token) {
   const headers = token ? { Authorization: token } : null;
-  const avatar = formData ? formData : null;
 
-  const { data } = await axios.put(url, body, avatar, {
+  const { data } = await axios.post(url, body, {
     headers,
   });
   return data;
 }
-async function deleteAxios(url) {
-  const { data } = await axios.delete(url);
+async function putAxios(url, body, token) {
+  const headers = token ? { Authorization: token } : null;
+
+  const { data } = await axios.put(url, body, {
+    headers,
+  });
+  return data;
+}
+async function deleteAxios(url, token) {
+  const headers = token ? { Authorization: token } : null;
+
+  const { data } = await axios.delete(url, {
+    headers,
+  });
   return data;
 }
 
