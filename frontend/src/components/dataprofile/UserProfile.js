@@ -5,49 +5,65 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { putAxios } from '../../axiosCalls';
 
-function UserProfile({ userInfo }) {
-  const userInitialState = {
-    name: userInfo?.nombre,
-    last: userInfo?.apellidos,
-    dni: userInfo?.dni,
-    phone: userInfo?.telefono,
-    address: userInfo?.direccion,
-    cp: userInfo?.cp,
-    username: userInfo?.username,
-    email: userInfo?.email,
-  };
-  const [dataUser, setDataUser] = useState(userInitialState);
+function UserProfile() {
   const [password, setPassword] = useState('');
-  const { token } = useContext(UserContext);
+  const [useravatar, setAvatar] = useState();
+  const [file, setFile] = useState();
+  const [error, setError] = useState();
+  const { token, tokenContent } = useContext(UserContext);
 
-  async function updateUser() {
-    const body = {
-      name: dataUser.name,
-      last: dataUser.last,
-      dni: dataUser.dni,
-      phone: dataUser.phone,
-      address: dataUser.address,
-      cp: dataUser.cp,
-      username: dataUser.username,
-      email: dataUser.email,
-    };
+  let avatar = new FormData();
+  avatar.append('photo', file);
+  const [dataUser, setDataUser] = useState({});
+  const body = {
+    name: dataUser.name,
+    last: dataUser.last,
+    dni: dataUser.dni,
+    phone: dataUser.phone,
+    address: dataUser.address,
+    cp: dataUser.cp,
+    username: dataUser.username,
+    email: dataUser.email,
+    avatar: useravatar,
+  };
 
-    const { data } = await putAxios(
-      `http://localhost:8080/users/${userInfo.idUser}`,
-      token,
-      body
-    );
-    setDataUser(data);
+  console.log(tokenContent?.idUser);
+  async function updateUser(event) {
+    event.preventDefault();
+
+    try {
+      const { data } = await putAxios(
+        `http://localhost:8080/users/${tokenContent?.idUser}`,
+        body,
+        token
+      );
+
+      const avatarUrl = data.avatar;
+      setAvatar(avatarUrl);
+
+      console.log(avatarUrl);
+
+      setDataUser(data);
+    } catch (error) {
+      setError(error.response.data.message);
+      console.log('error', error.response);
+    }
+    console.log('error', error);
   }
+
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    setFile(file);
+  };
 
   useEffect(() => {});
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={updateUser}>
         <Form.Group>
           <Form.Label>Avatar</Form.Label>
-          <Form.Control type="file" />
+          <Form.Control type="file" onChange={onFileChange} />
         </Form.Group>
         <Form.Group>
           <Form.Label>Nombre</Form.Label>
@@ -120,9 +136,7 @@ function UserProfile({ userInfo }) {
           <Form.Label>Aceptar condiciones de uso</Form.Label>
           <Form.Check type="checkbox" />
         </Form.Group>
-        <Button blue onClick={() => updateUser()}>
-          ENVIAR
-        </Button>
+        <Button blue>ENVIAR</Button>
       </Form>
     </div>
   );
