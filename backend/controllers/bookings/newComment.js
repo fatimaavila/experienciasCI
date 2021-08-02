@@ -39,7 +39,7 @@ const newComment = async (req, res, next) => {
         );
 
         res.status(200).send({
-            status: 'ok',
+            status: 200,
             data: {
                 idExp: booking[0].id_experience,
                 idUser: booking[0].id_user,

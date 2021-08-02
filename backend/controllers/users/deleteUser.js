@@ -51,7 +51,7 @@ const deleteUser = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             message: 'Usuario eliminado correctamente',
         });
     } catch (error) {

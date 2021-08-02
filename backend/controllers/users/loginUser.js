@@ -56,7 +56,8 @@ const loginUser = async (req, res, next) => {
             expiresIn: '1d',
         });
 
-        res.status(200).send({
+        res.send({
+            status: 200,
             data: {
                 username,
                 email,

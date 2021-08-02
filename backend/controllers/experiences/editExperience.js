@@ -10,7 +10,7 @@ const editExperience = async (req, res, next) => {
         const { idExp } = req.params;
 
         if(req.userAuth.rol !== 'admin') {
-            const error = new Error('No tienes permisos para eliminar fotos');
+            const error = new Error('No tienes permisos para editar la experiencia');
             error.httpStatus = 401;
             throw error;
         }
@@ -66,7 +66,7 @@ const editExperience = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 id: idExp,
                 description,

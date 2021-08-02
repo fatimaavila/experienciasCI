@@ -43,8 +43,8 @@ const editUserPassword = async (req, res, next) => {
             [newPassword, formatDate(new Date()), idUser]
         );
 
-        res.status(200).send({
-            status: 'ok',
+        res.send({
+            status: 200,
             message: 'Contraseña actualizada con éxito',
         });
     } catch (error) {

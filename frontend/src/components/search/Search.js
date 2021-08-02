@@ -16,10 +16,10 @@ function Search() {
 
   function searchData() {
 
-    let path = `/experiences${
-            search.experience ? `?searchExp=${search.experience}${search.city && `&searchCity=${search.city}`}` 
+    let path = `/experiences?${
+            search.experience ? `searchExp=${search.experience}${search.city && `&searchCity=${search.city}`}` 
             : 
-            `?searchCity=${search.city}${search.experience && `&searchExp=${search.experience}`}`}`;
+            `searchCity=${search.city}${search.experience && `&searchExp=${search.experience}`}`}`;
     history.push(path);
   }
 

@@ -18,7 +18,7 @@ const getCommentsRatings = async (req, res, next) => {
         console.log(booking);
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 comentarios: [...booking],
             },

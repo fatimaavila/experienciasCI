@@ -34,7 +34,7 @@ const deletePhotoExperience = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             message: 'Foto eliminada',
         });
     } catch (error) {

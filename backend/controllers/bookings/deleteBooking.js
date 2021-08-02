@@ -27,7 +27,7 @@ const deleteBooking = async (req, res, next) => {
             [idBooking]
         );
         res.send({
-            status: 'ok',
+            status: 200,
             message: 'Has cancelado la reserva correctamente',
         });
     } catch (error) {

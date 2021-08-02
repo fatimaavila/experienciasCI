@@ -68,7 +68,7 @@ const newExperience = async (req, res, next) => {
         }
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 id: idExp,
                 name,

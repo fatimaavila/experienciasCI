@@ -26,7 +26,6 @@ export const UserProvider = ({ children }) => {
           token
         );
         setUserInfo(data);
-        console.log('logged', data);
         //decoded.idUser
         console.log(userInfo);
       } catch (error) {

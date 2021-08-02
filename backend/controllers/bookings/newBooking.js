@@ -31,7 +31,7 @@ const newBooking = async (req, res, next) => {
             [idBook]
         );
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 id: idBook,
                 units,
