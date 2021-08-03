@@ -55,7 +55,7 @@ function RegisterUser() {
   }
   return (
     <>
-      <Button onClickButton={() => setFormActivate(!formActivate)}>
+      <Button white onClickButton={() => setFormActivate(!formActivate)}>
         REGISTRARSE
       </Button>
 
@@ -133,7 +133,7 @@ function RegisterUser() {
               <Form.Check type="checkbox" />
               <Form.Label>Aceptar condiciones de uso</Form.Label>
             </Form.Group>
-            <Button>ENVIAR</Button>
+            <Button white>ENVIAR</Button>
             {error?.data?.message && <span>{error?.data?.message}</span>}
           </Form>
         </StyledForm>

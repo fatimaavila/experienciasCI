@@ -48,6 +48,7 @@ const StyledUserProfile = styled.div`
     margin-bottom: 3rem;
     gap: 1rem;
   }
+  
   .userBookingContainer {
     border: 1px solid black;
     padding: 1rem;

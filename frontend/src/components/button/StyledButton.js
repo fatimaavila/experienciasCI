@@ -8,10 +8,12 @@ const StyledButton = styled.button`
   padding: 0.5rem 1.5rem;
   border: 0px;
 
-  ${props => props.blue ? `& {
+  ${props => props.blue && `& {
     color: var(--color-white);
     background-color: var(--color-cyan);
-  }` : `& {
+  }`};
+
+  ${props => props.white && `& {
     color: var(--color-cyan);
     background-color: var(--color-white);
   }`};
