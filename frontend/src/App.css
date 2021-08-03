@@ -28,7 +28,7 @@ input {
   border: 0;
 }
 
-.mainMenu, .cityFilter, .adminProfileNav ul {
+.mainMenu, .cityFilter, .adminProfileNav ul, .dropNav ul {
   padding-left: 0rem;
   margin-top: 0;
   margin-bottom: 0rem;

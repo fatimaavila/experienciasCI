@@ -1,6 +1,6 @@
 import StyledLoggedUserNav from './StyledLoggedUserNav';
 import userAvatar from '../../assets/userdefaul.png';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 function LoggedUserNav() {
   const { userInfo, logout } = useContext(UserContext);
@@ -8,24 +8,25 @@ function LoggedUserNav() {
 
   return (
     <StyledLoggedUserNav>
-      <div className="loggedUserNav">
-        <h2>Hola {userInfo.username}</h2>
-        <img
-          onClick={() => setShowNavMenu(!showNavMenu)}
-          className="avatarLoggedUserNav"
-          src={userAvatar}
-          alt="avatar"
-        />
-      </div>
+      <div className="loggedUserNav posRel">
+        <span>Bienvenido, {userInfo.username}</span>
+        <div className="avatarUser">
+          <img
+            onClick={() => setShowNavMenu(!showNavMenu)}
+            src={userAvatar}
+            alt="avatarUser"
+          />
+        </div>
       {showNavMenu && (
         <div className="dropNav">
-          <ul className="ulNavMenu">
+          <ul>
             <li>MI PERFIL</li>
-            <li>ADMINISTRACION</li>
-            <li onClick={() => logout()}>CERRAR SESION</li>
+            <li>ADMINISTRACIÓN</li>
+            <li onClick={() => logout()}>CERRAR SESIÓN</li>
           </ul>
         </div>
       )}
+      </div>
     </StyledLoggedUserNav>
   );
 }

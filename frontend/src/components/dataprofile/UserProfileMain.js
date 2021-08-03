@@ -1,5 +1,5 @@
 import StyledUserProfile from './StyledUserProfile';
-import defaulAvatar from '../../assets/userdefaul.png';
+import defaultAvatar from '../../assets/userdefaul.png';
 import Button from '../button/Button';
 import UserProfile from './UserProfile';
 import UserBookings from './UserBookings';
@@ -7,50 +7,49 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 
 function UserProfileMain() {
-  const [showUserProfile, setShowUserProfile] = useState(true);
-  const [showUserBookings, setShowUserBookings] = useState(false);
-  const { userInfo } = useContext(UserContext);
-  console.log(userInfo);
-  const userAvatar = !userInfo?.avatar ? defaulAvatar : userInfo?.avatar;
 
-  const avatar = !userInfo?.avatar ? defaulAvatar : userAvatar;
+  const infoActive = {
+    borderBottom: '5px solid #3aabfe',
+  }
+  // borderTopLeftRadius: 6 + 'px',
+  // borderTopRightRadius: 6 + 'px',
+
+  const [showInfo,setShowInfo] = useState({profile: true,bookings: false});
+  const { userInfo } = useContext(UserContext);
+  const userAvatar = !userInfo?.avatar ? defaultAvatar : userInfo?.avatar;
+  const completeName = `${userInfo?.nombre} ${userInfo?.apellidos}`;
+
   return (
     <StyledUserProfile>
       <div className="userProfileHead">
-        <h1 className="userProfileTitle">Hola {userInfo?.username}</h1>
-        <img src={avatar} alt="user-avatar" />
+        <h3>{completeName}</h3>
+        <div className='avatarUser'>
+          <img src={userAvatar} alt="user-avatar" />
+        </div>
       </div>
       <div className="userProfileNav">
         <ul>
-          <li
-            onClick={() => (
-              setShowUserProfile(true), setShowUserBookings(false)
-            )}
-          >
+          <li style={showInfo.profile ? infoActive : null} onClick={() => setShowInfo({profile: true, bookings: false})}>
             MIS DATOS
           </li>
-          <li
-            onClick={() => (
-              setShowUserProfile(false), setShowUserBookings(true)
-            )}
-          >
+          <li style={showInfo.bookings ? infoActive : null} onClick={() => setShowInfo({profile: false, bookings: true})}>
             MIS RESERVAS
           </li>
         </ul>
       </div>
-      <div>
-        {showUserBookings && <UserBookings />}
-        {showUserProfile && <UserProfile />}
-      </div>
-      {showUserProfile && (
+      {showInfo.profile && (
         <div className="userProfileDele">
           <label>
             <input type="checkbox" />
             <span>Acepto eliminar mis datos</span>
           </label>
-          <Button blue>ELIMINAR MI CUENTA</Button>
+          <Button red>ELIMINAR MI CUENTA</Button>
         </div>
       )}
+      <div>
+        {showInfo.bookings && <UserBookings />}
+        {showInfo.profile && <UserProfile />}
+      </div>
     </StyledUserProfile>
   );
 }

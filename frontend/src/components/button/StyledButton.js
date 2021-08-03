@@ -1,15 +1,27 @@
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  color: ${props => props.blue ? 'var(--color-white)' : 'var(--color-cyan)'};
-  background-color: ${props => props.blue ? 'var(--color-cyan)' : 'var(--color-white)'};
-  border: ${props => props.blue ? '0' : '2px solid var(--color-white)'};
   font-size: 15px;
-  font-weigth: bold;
+  font-weight: 500;
   border-radius: 4px;
-  text-aling: center;
+  text-align: center;
   padding: 0.5rem 1.5rem;
+  border: 0px;
 
+  ${props => props.blue ? `& {
+    color: var(--color-white);
+    background-color: var(--color-cyan);
+  }` : `& {
+    color: var(--color-cyan);
+    background-color: var(--color-white);
+  }`};
+
+  ${props => props.red && `& {
+    color: var(--color-white);
+    background-color: var(--color-red);
+  }`};
+  
+  
   ${props => props.barra && `&::after {
     content: '';
     border: 1px solid var(--color-white);
@@ -20,8 +32,6 @@ const StyledButton = styled.button`
   .searchHome & {
     padding: 1rem 2.5rem;
   }
-
-
 `;
 
 export default StyledButton;

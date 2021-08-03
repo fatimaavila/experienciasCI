@@ -3,41 +3,49 @@ import styled from 'styled-components';
 const StyledUserProfile = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 1200px;
+  margin: 6rem auto;
 
   .userProfileHead {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5rem;
-    margin: 2rem;
+    margin-bottom: 3rem;
   }
-  .userProfileHead img {
-    border-radius: 50% 50%;
-    width: 200px;
-    height: 200px;
+  
+  .avatarUser {
+    width: 15%;
   }
-  .userProfileTitle {
-    font-size: 3rem;
+  
+  .avatarUser img {
+    border-radius: 50%;
+    border: 3px solid var(--color-cyan);
+    width: 100%;
   }
+
   .userProfileNav {
-    width: 40%;
-    margin: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
   }
+
   .userProfileNav ul {
     display: flex;
-    justify-content: space-around;
-    gap: 2rem;
-    padding: 1rem;
-    border: 1px solid black;
+    justify-content: space-evenly;
+    border-bottom: 1px solid var(--color-cyan);
   }
+
+  .userProfileNav li {
+    padding: 1rem 0rem;
+    letter-spacing: 5px;
+    cursor: pointer;
+  }
+
   .userProfileDele {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 2rem;
+    margin-bottom: 3rem;
     gap: 1rem;
   }
   .userBookingContainer {

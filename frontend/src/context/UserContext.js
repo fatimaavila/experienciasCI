@@ -15,19 +15,19 @@ export const UserProvider = ({ children }) => {
     setTokenContent(null);
     setUserInfo(null);
   }, [setToken, setTokenContent]);
-
+console.log(userInfo);
   useEffect(() => {
     const getUserInfo = async () => {
       try {
         const decoded = jwt_decode(token);
+        console.log(decoded);
         setTokenContent(decoded);
         const { data } = await getAxios(
           `http://localhost:8080/users/${decoded.idUser}`,
           token
         );
+        console.log(data);
         setUserInfo(data);
-        //decoded.idUser
-        console.log(userInfo);
       } catch (error) {
         // setErrorToken(error.response.data.message);
         logout();
@@ -35,6 +35,7 @@ export const UserProvider = ({ children }) => {
     };
     if (token) getUserInfo();
   }, [token, setUserInfo, setTokenContent, logout]);
+
   return (
     <UserContext.Provider
       value={{ userInfo, token, setToken, logout, tokenContent }}
