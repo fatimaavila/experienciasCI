@@ -24,7 +24,7 @@ function Experience({ id, name, city, price }) {
     };
     getUniqueExp();
   }, [id]);
-  const value = 0;
+  const value = 2.3;
 
   const imgBackground = {
     backgroundSize: 'cover',
@@ -41,20 +41,11 @@ function Experience({ id, name, city, price }) {
       <h3>{name}</h3>
       <span className="cityExperience">{city}</span>
       <Rating
-        name="hover-feedback"
+        name="rating-experience"
         value={value}
-        precision={1}
-        //   onChange={(event, newValue) => {
-        //     setValue(newValue);
-        //   }}
-        //   onChangeActive={(event, newHover) => {
-        //     setHover(newHover);
-        //   }}
+        precision={0.5}
+        readOnly
       />
-      {/* {value !== null && (
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-      )} */}
-
       <span className="priceExperience">{price}&#8364;</span>
     </StyledExperience>
   );

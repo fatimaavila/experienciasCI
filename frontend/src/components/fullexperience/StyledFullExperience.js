@@ -3,65 +3,115 @@ import styled from 'styled-components';
 const StyledFullExperience = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
+  width: 1200px;
+  margin: 6rem auto;
   padding: 3rem;
 
-  .container-header-fs {
-    display: flex;
-
-    justify-content: center;
-  }
-
-  .carousel-photoexp {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-  }
-  .carousel-fs-fs {
-    width: 60%;
-  }
-  .data-experience {
-    width: 80%;
-  }
-  .info-experience-basic {
-    padding: 1rem;
-    font-size: 2rem;
-  }
-  .info-experience-basic {
-    padding: 1rem;
-    display: inline-block;
-    font-size: 2rem;
-  }
-  .fs-interaction-client {
+  .experienceDetails {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 3rem;
-    color: var(--color-cyan);
-    font-weigth: bold;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-grey-light);
+
+    & .carouselPhotoExp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 55%;
+
+      & .carouselElements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & ul.thumbs {
+          margin: 0px;
+          padding: 0px;
+          display: flex;
+          justify-content: center;
+
+          & img {
+            width: 70px;
+            height: 45px;
+          }
+        }
+      }
+    }
+
+    & .experienceInfo {
+      width: 40%;
+
+      & h2 {
+        font-size: 3rem;
+      }
+
+      & .experiencePrice_Buy {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--color-grey-light);
+
+        & > section {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        & > section .priceLabel {
+          font-size: 1.3rem;
+
+        }
+        & > section .priceNumber {
+          font-size: 2rem;
+        }
+      }
+
+      & .includes_freePlaces {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & span {
+          font-size: 1.3rem;
+          margin-bottom: 1.5rem;
+        }
+
+        & .participants {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      & .useConditionsExp {
+        padding: 0rem 1.5rem;
+
+        & div {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
   }
-  .fs-interaction-client > p {
-    font-size: 3rem;
-  }
-  .button-buy {
-    width: 50%;
-    height: 4rem;
-    font-size: 2rem;
-  }
-  h1 {
-    font-size: 3rem;
-  }
-  .include-experience {
-    margin-top: 3rem;
-    font-size: 1rem;
-  }
-  .info-experience-extended {
-    font-size: 1rem;
+
+  .experienceDesc_Appreciation {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+
+    & > section {
+      margin-bottom: 3rem
+    }
+
+    & > section > h3 {
+      margin-bottom: 1.5rem;
+    }
   }
 `;
 

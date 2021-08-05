@@ -46,7 +46,7 @@ function UserProfileMain() {
           <Button red>ELIMINAR MI CUENTA</Button>
         </div>
       )}
-      <div>
+      <div className='userProfile_Bookings'>
         {showInfo.bookings && <UserBookings />}
         {showInfo.profile && <UserProfile />}
       </div>

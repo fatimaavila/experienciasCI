@@ -19,11 +19,11 @@ const StyledExperience = styled.div`
     padding: 0.5rem;
   }
 
-  .cityExperience {
+  & .cityExperience {
     padding: 0.5rem;
   }
 
-  .priceExperience {
+  & .priceExperience {
     align-self: flex-end;
     margin-top: 1rem;
     font-weight: 600;

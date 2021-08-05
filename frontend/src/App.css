@@ -28,7 +28,11 @@ input {
   border: 0;
 }
 
-.mainMenu, .cityFilter, .adminProfileNav ul, .dropNav ul {
+#root input:focus, #root textarea:focus{
+  box-shadow: var(--box-shadow-light);
+}
+
+.mainMenu, .cityFilter, .adminProfileNav ul, .dropNav ul, .useConditionsExp {
   padding-left: 0rem;
   margin-top: 0;
   margin-bottom: 0rem;

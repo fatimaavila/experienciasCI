@@ -1,4 +1,6 @@
 import { Rating } from '@material-ui/lab';
+import defaultAvatar from '../../assets/userdefaul.png';
+
 
 function CommentUser({ comment }) {
   const value = 0;
@@ -7,8 +9,19 @@ function CommentUser({ comment }) {
   return (
     <>
       {comment && (
-        <div className="user-comment-container">
-          <div className="user-comment-block">
+        <div className="userAppreciation_Comment">
+          <div className="userComment">
+            <div className='userInfo'>
+              <div className='avatarUser'>
+                <img src={defaultAvatar} alt='avatar_User'/>
+              </div>
+              <span className='userName'>Nombre de Usuario</span>
+            </div>
+            <blockquote>"{comment}"</blockquote>
+            <span className='dateComment'>XX de Mes de XXXX</span>
+          </div>
+          <div className='userAppreciation'>
+            <span className='appreciationNumber'>XX.XX</span>
             <Rating
               name="hover-feedback"
               value={value}
@@ -21,13 +34,8 @@ function CommentUser({ comment }) {
               //   }}
             />
             {/* {value !== null && (
-          <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-        )} */}
-            <p>Fecha del comentario:</p>
-          </div>
-
-          <div className="user-comment">
-            <p>{comment}</p>
+              <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+            )} */}
           </div>
         </div>
       )}

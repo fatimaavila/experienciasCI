@@ -14,7 +14,7 @@ function CarouselFS({ photos }) {
 
   return (
     <>
-      <Carousel className="carousel-fs-fs">
+      <Carousel className="carouselElements">
         {photos.photos &&
           photos.photos.map((photo) => (
             <div key={photo.url}>
@@ -26,26 +26,6 @@ function CarouselFS({ photos }) {
           ))}
       </Carousel>
     </>
-    // <Carousel className="carousel-fs-fs">
-    //   <div>
-    //     <img src={spa} alt="category" />
-    //   </div>
-    //   <div>
-    //     <img src={aventure} alt="category" />
-    //   </div>
-    //   <div>
-    //     <img src={pareja} alt="category" />
-    //   </div>
-    //   <div>
-    //     <img src={aqua} alt="category" />
-    //   </div>
-    //   <div>
-    //     <img src={motor} alt="category" />
-    //   </div>
-    //   <div>
-    //     <img src={gastro} alt="category" />
-    //   </div>
-    // </Carousel>
   );
 }
 export default CarouselFS;

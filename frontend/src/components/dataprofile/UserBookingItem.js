@@ -5,8 +5,8 @@ import Button from '../button/Button';
 import UserComment from './UserComment';
 function UserRatingBookingItem({ bookingInfo }) {
   const [showRate, setShowRate] = useState(false);
-  const value = 0;
   const [uniqueExp, setUniqueExp] = useState([]);
+  const value = 4.5;
 
   useEffect(() => {
     const getUniqueExp = async () => {
@@ -18,38 +18,43 @@ function UserRatingBookingItem({ bookingInfo }) {
     };
     getUniqueExp();
   }, [bookingInfo]);
+
+  const optionsDate = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric'
+  }
+  const dateFormat = new Date(bookingInfo.fecha_compra);
+
   return (
-    <div className="itemBookingContainer">
-      <div className="itemBookingHead">
-        <h2>{bookingInfo.id}</h2>
-        <h2>{uniqueExp.nombre}</h2>
-        <h2>{bookingInfo.precio_total}</h2>
+    <div className="userBookking">
+      <div className="bookingHead">
+        <span className='idBooking'>ID: {bookingInfo.id}</span>
+        <h3>{uniqueExp.nombre}</h3>
+        <span className='totalPriceBooking'>{bookingInfo.precio_total}&#8364;</span>
       </div>
-      <div className="itemBookingBody">
-        <h4>{bookingInfo.fecha_compra}</h4>
+      <div className="bookingBody">
+        <span>Fecha de Compra: {dateFormat.toLocaleDateString('es-ES', optionsDate)}</span>
+      </div>
+      <div>
         <Button blue onClickButton={() => setShowRate(!showRate)}>
           Valora tu Experiencia
         </Button>
       </div>
       {showRate && (
-        <div className="itemBookingRate">
-          <h3>Valora tu Experiencia</h3>
-          <div>
-            <Rating
-              name="hover-feedback"
-              value={value}
-              precision={1}
-              //   onChange={(event, newValue) => {
-              //     setValue(newValue);
-              //   }}
-              //   onChangeActive={(event, newHover) => {
-              //     setHover(newHover);
-              //   }}
-            />
-            {/* {value !== null && (
-          <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-        )} */}
+        <div className='appreciations'>
+          <div className='bookingComments'>
+            <span>Comentario:</span>
             <UserComment />
+          </div>
+          <div className='bookingRate'>
+            <span>Valoración:</span>
+            <Rating
+              name="rating-experience"
+              value={value}
+              precision={0.5}
+              // onChange={(e,newRating) => setRating(newRating)}
+            />
           </div>
         </div>
       )}
