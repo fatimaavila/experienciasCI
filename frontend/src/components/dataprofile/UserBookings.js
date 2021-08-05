@@ -28,11 +28,9 @@ function UserBookings() {
   return (
     <>
       {userBookings &&
-        userBookings.map((booking) => (
-          <div className="userBookingContainer">
-            <UserRatingBookingItem key={booking.id} bookingInfo={booking} />
-          </div>
-        ))}
+        userBookings?.map((booking) => 
+          <UserRatingBookingItem key={booking.id} bookingInfo={booking} />
+        )}
     </>
   );
 }

@@ -35,8 +35,8 @@ const deleteExperience = async (req, res, next) => {
             [idExp]
         );
 
-        res.status(200).send({
-            status: 'ok',
+        res.send({
+            status: 200,
             message: 'Experiencia Eliminada',
         });
     } catch (error) {

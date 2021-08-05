@@ -85,7 +85,7 @@ const newUser = async (req, res, next) => {
         }
 
         res.send({
-            status: 'ok',
+            status: 200,
             code: registrationCode,
             message: 'Usuario registrado, comprueba tu email para activarlo',
         });

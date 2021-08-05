@@ -10,7 +10,9 @@ function UserProfile() {
   const [useravatar, setAvatar] = useState();
   const [file, setFile] = useState();
   const [error, setError] = useState();
-  const { token, tokenContent } = useContext(UserContext);
+  const { token, tokenContent, userInfo } = useContext(UserContext);
+
+  console.log(userInfo);
 
   let avatar = new FormData();
   avatar.append('photo', file);
@@ -27,9 +29,8 @@ function UserProfile() {
     avatar: useravatar,
   };
 
-  console.log(tokenContent?.idUser);
-  async function updateUser(event) {
-    event.preventDefault();
+  async function updateUser(e) {
+    e.preventDefault();
 
     try {
       const { data } = await putAxios(
@@ -41,8 +42,6 @@ function UserProfile() {
       const avatarUrl = data.avatar;
       setAvatar(avatarUrl);
 
-      console.log(avatarUrl);
-
       setDataUser(data);
     } catch (error) {
       setError(error.response.data.message);
@@ -51,94 +50,124 @@ function UserProfile() {
     console.log('error', error);
   }
 
-  const onFileChange = (event) => {
-    const file = event.target.files[0];
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
     setFile(file);
   };
 
   useEffect(() => {});
 
+  console.log(dataUser);
+
   return (
-    <div>
-      <Form onSubmit={updateUser}>
+    < >
+      <Form className='modalBody' onSubmit={updateUser}>
         <Form.Group>
-          <Form.Label>Avatar</Form.Label>
-          <Form.Control type="file" onChange={onFileChange} />
+          <Form.Label className='editInfoLabel'>
+            <span>Avatar</span>
+            <Form.Control type="file" onChange={onFileChange} />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Nombre"
-            value={dataUser.name}
-            disabled
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Nombre</span>
+            <Form.Control
+              type="text"
+              placeholder={userInfo?.name ? userInfo.name : 'Nombre'}
+              value={dataUser.name}
+              disabled
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Apellidos</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Apellidos"
-            value={dataUser.last}
-            disabled
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Apellidos</span>
+            <Form.Control
+              type="text"
+              placeholder="Apellidos"
+              value={dataUser.last}
+              disabled
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>DNI</Form.Label>
-          <Form.Control type="text" placeholder="DNI" value={dataUser.dni} />
+          <Form.Label className='editInfoLabel'>
+            <span>DNI</span>
+            <Form.Control type="text" placeholder="DNI" value={dataUser.dni} />
+          </Form.Label>
+        </Form.Group>
+        <Form.Group className='textareaBox'>
+          <Form.Label className='editInfoLabel'>
+            <span>Biografía</span>
+            <Form.Control as='textarea' style={{height: '200px'}} />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Teléfono</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Telefono"
-            value={dataUser.phone}
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Teléfono</span>
+            <Form.Control
+              type="text"
+              placeholder="Telefono"
+              value={dataUser.phone}
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Dirección</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Dirección"
-            value={dataUser.address}
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Dirección</span>
+            <Form.Control
+              type="text"
+              placeholder="Dirección"
+              value={dataUser.address}
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Código Postal</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Codigo Postal"
-            value={dataUser.cp}
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Código Postal</span>
+            <Form.Control
+              type="text"
+              placeholder="Codigo Postal"
+              value={dataUser.cp}
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Nombre de Usuario</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Nombre de Usuario"
-            value={dataUser.username}
-            disabled
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Nombre de Usuario</span>
+            <Form.Control
+              type="text"
+              placeholder="Nombre de Usuario"
+              value={dataUser.username}
+              disabled
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Email"
-            value={dataUser.email}
-          />
+          <Form.Label className='editInfoLabel'>
+            <span>Email</span>
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              value={dataUser.email}
+            />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Introduce tu contraseña para confirmar</Form.Label>
-          <Form.Control type="password" />
+          <Form.Label className='editInfoLabel'>
+            <span>Introduce tu contraseña para confirmar</span>
+            <Form.Control type="password" />
+          </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Aceptar condiciones de uso</Form.Label>
-          <Form.Check type="checkbox" />
+          <Form.Label>
+            <Form.Check type="checkbox" />
+            <span>Aceptar condiciones de uso</span>
+          </Form.Label>
+          <Button blue className='editInfoButton'>EDITAR INFORMACIÓN</Button>
         </Form.Group>
-        <Button blue>ENVIAR</Button>
       </Form>
-    </div>
+    </>
   );
 }
 export default UserProfile;

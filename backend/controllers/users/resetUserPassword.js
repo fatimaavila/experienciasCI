@@ -38,7 +38,7 @@ const resetUserPassword = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             message: 'Contraseña actualizada',
         });
     } catch (error) {

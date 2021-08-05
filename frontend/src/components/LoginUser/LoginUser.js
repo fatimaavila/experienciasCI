@@ -79,6 +79,7 @@ function LoginUser() {
               </Form.Label>
             </Form.Group>
             <Button
+              white
               type="submit"
               value="Login"
               onClickButton={() => {

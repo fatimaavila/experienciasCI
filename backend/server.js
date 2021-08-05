@@ -113,7 +113,7 @@ app.delete('/bookings/:idBooking', authUser, deleteBooking); //deleteBooking
 app.use((error, req, res, next) => {
     console.log(error);
     res.status(error.httpStatus || 500).send({
-        status: 'error',
+        status: `ERROR: ${error.httpStatus}`,
         message: error.message,
     });
 });

@@ -23,7 +23,7 @@ const getBooking = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 ...booking[0],
             },

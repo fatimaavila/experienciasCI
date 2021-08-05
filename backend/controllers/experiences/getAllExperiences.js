@@ -197,8 +197,15 @@ const getAllExperiences = async (req, res, next) => {
             );
         }
 
+        if(result.length < 1) {
+            res.send({
+                status: 204,
+                data: 'No se han obtenido ningún resultado con los filtros seleccionados',
+            });
+        }
+
         res.send({
-            status: 'ok',
+            status: 200,
             data: result,
         });
     } catch (error) {

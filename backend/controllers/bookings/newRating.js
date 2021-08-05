@@ -49,7 +49,7 @@ const voteBooking = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 votes: newAvg[0].votes,
             },

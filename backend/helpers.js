@@ -49,7 +49,6 @@ async function validate(schema, data) {
 }
 
 const priceQuery = async (price) => {
-    price = Number(price);
 
     switch (price) {
         case '0-50':

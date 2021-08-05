@@ -101,8 +101,8 @@ const editUser = async (req, res, next) => {
             [ccc, address, bio, cp, formatDate(now), idUser]
         );
 
-        res.status(200).send({
-            status: 'ok',
+        res.send({
+            status: 200,
             data: {
                 id: idUser,
                 ...req.body,

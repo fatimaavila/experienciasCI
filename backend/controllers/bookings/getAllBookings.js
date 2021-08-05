@@ -19,7 +19,7 @@ const getAllBookings = async(req,res,next) => {
         `);
 
         res.status(200).send({
-            status: 'ok',
+            status: 200,
             data: {
                 booking: booking
             }

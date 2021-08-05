@@ -3,79 +3,175 @@ import styled from 'styled-components';
 const StyledUserProfile = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 1200px;
+  margin: 6rem auto;
 
   .userProfileHead {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5rem;
-    margin: 2rem;
+    margin-bottom: 3rem;
   }
-  .userProfileHead img {
-    border-radius: 50% 50%;
-    width: 200px;
-    height: 200px;
+  
+  .avatarUser {
+    width: 15%;
+
+    & > img {
+      border-radius: 50%;
+      border: 3px solid var(--color-cyan);
+      width: 100%;
+    }
   }
-  .userProfileTitle {
-    font-size: 3rem;
-  }
+
   .userProfileNav {
-    width: 40%;
-    margin: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+
+    & > ul {
+      display: flex;
+      justify-content: space-evenly;
+      border-bottom: 1px solid var(--color-cyan);
+
+      & > li {
+        padding: 1rem 0rem;
+        letter-spacing: 5px;
+        cursor: pointer;
+      }
+    }
+
   }
-  .userProfileNav ul {
-    display: flex;
-    justify-content: space-around;
-    gap: 2rem;
-    padding: 1rem;
-    border: 1px solid black;
-  }
+
   .userProfileDele {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 2rem;
-    gap: 1rem;
+    margin-bottom: 3rem;
+    gap: 2rem;
+
+    & > label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
   }
-  .userBookingContainer {
-    border: 1px solid black;
-    padding: 1rem;
+
+  .userProfile_Bookings {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 50px;
+  }
+
+  .userProfile_Bookings > form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    & > div {
+      width: 45%;
+      margin-bottom: 1rem;
+
+      & > .editInfoLabel {
+        display: flex;
+        flex-direction: column;
+
+        & > input[type='text'],
+        & > input[type='email'],
+        & > input[type='password'],
+        & > input[type='file'] {
+          border: 0px;
+          border-radius: 0px;
+          border-bottom: 2px solid var(--color-cyan);
+        }
+
+        & > span {
+          margin-bottom: 0.3rem;
+        }
+      }
+    }
+
+    & .textareaBox {
+      width: 100%;
+
+      & textarea {
+        border-radius: 0px;
+        border: 2px solid var(--color-cyan);
+      }
+    }
+
+    & > div:last-child {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+
+      & > label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .userProfile_Bookings > .userBookking {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
-  }
-  .itemBookingContainer {
-    border: 1px solid black;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .itemBookingHead {
-    display: flex;
-    padding: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-  }
-  .itemBookingBody {
-    display: flex;
-    padding: 1rem;
-    align-items: center;
-    gap: 15rem;
-  }
-  .itemBookingRate {
-    width: 60%;
-    display: flex;
-    padding: 1rem;
-    align-items: center;
-    justify-content: space-between;
+    padding: 2rem;
+    box-shadow: var(--box-shadow-light);
+
+    & .bookingHead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 2rem;
+
+      & h3 {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+
+      & .totalPriceBooking {
+        font-weight: 500;
+      }
+    }
+
+    & .bookingBody {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 30px;
+      width: 100%;
+
+      & span {
+        letter-spacing: 0.75px;
+        font-size: 1.5rem;
+      }
+    }
+
+    & .appreciations {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      
+      & .bookingRate {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+  
+      & .bookingComments {
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+      }
+    }
+
   }
 `;
 export default StyledUserProfile;

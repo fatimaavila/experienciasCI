@@ -15,13 +15,12 @@ const getCommentsRatings = async (req, res, next) => {
             `,
             [idExp]
         );
-        console.log(booking);
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
-                comentarios: [...booking],
-            },
+                comentarios_valoraciones: [...booking],
+            }
         });
     } catch (error) {
         next(error);

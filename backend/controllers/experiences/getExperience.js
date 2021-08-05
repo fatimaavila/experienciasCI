@@ -35,7 +35,7 @@ const getExperience = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: {
                 ...experience[0],
                 rating: rating[0].rating,

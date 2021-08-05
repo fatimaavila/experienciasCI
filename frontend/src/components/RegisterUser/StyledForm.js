@@ -26,6 +26,7 @@ const StyledForm = styled.div`
     & .formElement label {
         display: flex;
         flex-direction: column;
+        gap: 10px;
     }
 
     & .checkboxForm {

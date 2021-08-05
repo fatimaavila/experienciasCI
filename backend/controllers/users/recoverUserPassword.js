@@ -48,7 +48,7 @@ const recoverUserPassword = async (req, res, next) => {
         );
 
         res.send({
-            status: 'ok',
+            status: 200,
             message: 'Email enviado',
         });
     } catch (error) {

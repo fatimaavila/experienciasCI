@@ -37,7 +37,7 @@ const getUser = async (req, res, next) => {
         }
 
         res.send({
-            status: 'ok',
+            status: 200,
             data: userInfo,
         });
     } catch (error) {

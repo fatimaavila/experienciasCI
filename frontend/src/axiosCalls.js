@@ -7,6 +7,7 @@ async function getAxios(url, token) {
   });
   return data;
 }
+
 async function postAxios(url, body, token) {
   const headers = token ? { Authorization: token } : null;
 
@@ -15,6 +16,7 @@ async function postAxios(url, body, token) {
   });
   return data;
 }
+
 async function putAxios(url, body, token) {
   const headers = token ? { Authorization: token } : null;
 
@@ -23,6 +25,7 @@ async function putAxios(url, body, token) {
   });
   return data;
 }
+
 async function deleteAxios(url, token) {
   const headers = token ? { Authorization: token } : null;
 
