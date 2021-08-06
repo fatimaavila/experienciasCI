@@ -1,16 +1,33 @@
-import { Rating } from '@material-ui/lab';
 import StyledComments from './StyledComments';
 import CommentUser from './CommentUser';
+import { useEffect, useState } from 'react';
+import { getAxios } from '../../axiosCalls';
 
 function Comments({ comment }) {
+
+  const [appreciationComment,setAppreciationComment] = useState([]);
+
+  useEffect(() => {
+    async function getComment_Rating() {
+      try {
+        const { data } = await getAxios(`http://localhost:8080/bookings/comments-ratings/${comment.id}`);
+        setAppreciationComment(data);
+      } catch (error) {
+        console.error(error.message)
+      }
+    }
+
+    getComment_Rating();
+  },[comment.id]);
+
 
   return (
     <StyledComments>
       <h3>Valoración y opiniones</h3>
       <section>
-        {comment.comentarios &&
-          comment.comentarios.map((data) => (
-            <CommentUser key={data.comentario} comment={data.comentario} />
+        {appreciationComment.appreciations_comments &&
+          appreciationComment.appreciations_comments.map((data) => (
+            <CommentUser key={data.comentario} appreciationComment={data}/>
             ))}
       </section>
     </StyledComments>
