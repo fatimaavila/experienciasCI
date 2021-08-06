@@ -26,7 +26,7 @@ function UserProfile() {
     cp: dataUser.cp,
     username: dataUser.username,
     email: dataUser.email,
-    avatar: useravatar,
+    avatar: avatar,
   };
 
   async function updateUser(e) {
@@ -50,8 +50,14 @@ function UserProfile() {
     console.log('error', error);
   }
 
+<<<<<<< Updated upstream
   const onFileChange = (e) => {
     const file = e.target.files[0];
+=======
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+>>>>>>> Stashed changes
     setFile(file);
   };
 

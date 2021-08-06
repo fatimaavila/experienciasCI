@@ -13,7 +13,7 @@ const editUser = async (req, res, next) => {
         const { idUser } = req.params;
         let { email, ccc, address, phone, bio, cp } = req.body;
         let avatar = req.files;
-        console.log(req.userAuth.idUser, idUser);
+        console.log(req.files, idUser);
         const now = new Date();
 
         await validate(newSchemaEditUser, req.body);
