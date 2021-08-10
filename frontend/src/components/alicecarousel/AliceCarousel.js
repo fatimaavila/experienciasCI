@@ -48,19 +48,19 @@ const items = [
     </div>
     <span className="titlePopularExperience">Rafting en Huesca</span>
   </div>,
-  <div className="item" data-value="5">
+  <div className="item" data-value="6">
     <div className="imgCarousel">
       <img width="100%" src={pareja} alt="category" />
     </div>
     <span className="titlePopularExperience">Ruta para dos</span>
   </div>,
-  <div className="item" data-value="5">
+  <div className="item" data-value="7">
     <div className="imgCarousel">
       <img width="100%" src={motor} alt="category" />
     </div>
     <span className="titlePopularExperience">Circuto en F480</span>
   </div>,
-  <div className="item" data-value="5">
+  <div className="item" data-value="8">
     <div className="imgCarousel">
       <img width="100%" src={allExp} alt="category" />
     </div>
@@ -83,8 +83,8 @@ function Carousel() {
         disableDotsControls
         mouseTracking
         items={items}
-        paddingLeft={40}
-        paddingRight={40}
+        paddingLeft={30}
+        paddingRight={30}
         responsive={responsive}
       />
     </StyledAliceCarousel>

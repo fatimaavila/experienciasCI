@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes/routes';
 import Home from './pages/home/Home';
 import { useState } from 'react';
-import UniqueExperiece from './pages/uniqueExperience/UniqueExperience';
+import ScrollToTop from 'react-scroll-up';
+import ScrollToTopRouter from './components/ScrollTopRouter/ScrollTopRouter';
+import { BsArrowUpShort } from 'react-icons/bs';
 
 function App() {
   const [home] = useState();
@@ -13,6 +15,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+
+        <ScrollToTopRouter/>
+
         <MainHeader />
 
         <Switch>
@@ -25,6 +30,10 @@ function App() {
         </Switch>
 
         <Footer />
+
+        <ScrollToTop showUnder={200} duration={300}>
+          <div className='scrollUp_Box'><BsArrowUpShort size='50px' color='#FFF'/></div>
+        </ScrollToTop>
       </div>
     </Router>
   );

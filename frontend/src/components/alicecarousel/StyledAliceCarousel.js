@@ -12,7 +12,7 @@ const StyledAliceCarousel = styled.div`
     flex-direction: column;
     background-color: var(--color-white);
     text-align: center;
-    margin: 0rem 1rem;
+    margin: 0rem 0.5rem;
 }
 
 & .item img {
