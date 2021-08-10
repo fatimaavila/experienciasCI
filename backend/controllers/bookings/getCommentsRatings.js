@@ -19,7 +19,7 @@ const getCommentsRatings = async (req, res, next) => {
         res.send({
             status: 200,
             data: {
-                comentarios_valoraciones: [...booking],
+                appreciations_comments: [...booking],
             }
         });
     } catch (error) {

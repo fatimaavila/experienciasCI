@@ -59,3 +59,9 @@ p {
   margin-bottom: 0rem;
 }
 
+.scrollUp_Box {
+  background-color: var(--color-blue-dark);
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+}
+

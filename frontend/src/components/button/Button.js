@@ -1,8 +1,8 @@
 import StyledButton from './StyledButton';
 
-function Button({ children, blue, barra, onClickButton }) {
+function Button({ children, blue, barra, red, white, onClickButton }) {
   return (
-    <StyledButton blue={blue} barra={barra} onClick={onClickButton}>
+    <StyledButton blue={blue} red={red} white={white} barra={barra} onClick={onClickButton}>
       {children}
     </StyledButton>
   );

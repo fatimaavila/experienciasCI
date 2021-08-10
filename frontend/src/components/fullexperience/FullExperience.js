@@ -8,7 +8,8 @@ import { Rating } from '@material-ui/lab';
 
 function FullExperience({ data }) {
 
-  const value = 2;
+  const defaultRating = 3.5;
+  const rating = Number(data.rating);
 
   return (
     <StyledFullExperience>
@@ -21,7 +22,7 @@ function FullExperience({ data }) {
             <h2>{data.nombre}</h2>
             <Rating
               name="rating-experience"
-              value={value}
+              value={ rating !== 0.0 ? rating : defaultRating}
               precision={0.5}
               readOnly
             />
@@ -40,7 +41,7 @@ function FullExperience({ data }) {
               <h4>Incluye:</h4>
               <span>Bono de acceso a la actividad</span>
               <span className='participants'>
-                <FaUser size='1.5rem' color='#3aabfe'/>{data.num_participantes} {data.num_participantes > 1  ? 'personas' : 'persona'}
+                <FaUser size='1.5rem' color='#3aabfe'/>{data.num_participantes > 1  ? `${data.num_participantes} personas` : `${data.num_participantes} persona`}
               </span>
             </div>
             <h4>Condiciones de uso:</h4>

@@ -24,7 +24,8 @@ function Experience({ id, name, city, price }) {
     };
     getUniqueExp();
   }, [id]);
-  const value = 2.3;
+  const defaultRating = 3.5;
+  const rating = Number(uniqueExp.rating);
 
   const imgBackground = {
     backgroundSize: 'cover',
@@ -42,7 +43,7 @@ function Experience({ id, name, city, price }) {
       <span className="cityExperience">{city}</span>
       <Rating
         name="rating-experience"
-        value={value}
+        value={rating !== 0.0 ? rating : defaultRating}
         precision={0.5}
         readOnly
       />

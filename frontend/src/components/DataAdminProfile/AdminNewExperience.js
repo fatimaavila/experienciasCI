@@ -96,7 +96,7 @@ function AdminNeWExperience() {
                 <Form.Check type="checkbox" />
                 <Form.Label>Aceptar condiciones de uso</Form.Label>
               </Form.Group>
-              <Button>ENVIAR</Button>
+              <Button white>ENVIAR</Button>
             </Form>
           </StyledForm>
       </Modal>
