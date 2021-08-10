@@ -14,16 +14,25 @@ function CarouselFS({ photos }) {
 
   return (
     <>
-      <Carousel className="carouselElements">
-        {photos.photos &&
-          photos.photos.map((photo) => (
-            <div key={photo.url}>
-              <img
-                src={`http://localhost:8080/uploads/${photo.url}`}
-                alt="category"
-              />
-            </div>
-          ))}
+      <Carousel 
+        dynamicHeight={true} 
+        emulateTouch={true} 
+        infiniteLoop={true} 
+        showArrows={false} 
+        showStatus={false} 
+        showIndicators={false} 
+        className="carouselElements"
+        >
+          {photos.photos &&
+            photos.photos.map((photo) => (
+              <div key={photo.url}>
+                <img
+                  src={`http://localhost:8080/uploads/${photo.url}`}
+                  alt="category"
+                  height='400px'
+                />
+              </div>
+            ))}
       </Carousel>
     </>
   );

@@ -15,6 +15,7 @@ const StyledComments = styled.div`
     gap: 15px;
     box-shadow: var(--box-shadow-light);
     padding: 1.5rem;
+    margin-bottom: 3rem;
 
     & .userComment {
       display: flex;
@@ -63,6 +64,10 @@ const StyledComments = styled.div`
         font-size: 2.5rem;
       }
     }
+  }
+
+  .userAppreciation_Comment:last-child {
+    margin-bottom: 0px;
   }
 `;
 export default StyledComments;

@@ -25,7 +25,7 @@ function Aventura() {
     const newDateEnd = dateFilter.dateEnd && dateFilter.dateEnd.toLocaleDateString('es-ES',{year: 'numeric', month: 'numeric', day: 'numeric',});
 
     const urlFiltered = queryString.stringifyUrl({
-      url: 'http://localhost:8080/experiences?cat=Aventuras',
+      url: 'http://localhost:8080/experiences?cat=Aventura',
       query: {
         order: `${orderType}`,
         orderDir: `${orderDirection}`,
