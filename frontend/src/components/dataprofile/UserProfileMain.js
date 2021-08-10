@@ -7,32 +7,37 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 
 function UserProfileMain() {
-
   const infoActive = {
     borderBottom: '5px solid #3aabfe',
-  }
+  };
   // borderTopLeftRadius: 6 + 'px',
   // borderTopRightRadius: 6 + 'px',
 
-  const [showInfo,setShowInfo] = useState({profile: true,bookings: false});
+  const [showInfo, setShowInfo] = useState({ profile: true, bookings: false });
   const { userInfo } = useContext(UserContext);
-  const userAvatar = !userInfo?.avatar ? defaultAvatar : userInfo?.avatar;
+  const userAvatar = userInfo?.avatar ? defaultAvatar : userInfo?.avatar;
   const completeName = `${userInfo?.nombre} ${userInfo?.apellidos}`;
 
   return (
     <StyledUserProfile>
       <div className="userProfileHead">
         <h3>{completeName}</h3>
-        <div className='avatarUser'>
+        <div className="avatarUser">
           <img src={userAvatar} alt="user-avatar" />
         </div>
       </div>
       <div className="userProfileNav">
         <ul>
-          <li style={showInfo.profile ? infoActive : null} onClick={() => setShowInfo({profile: true, bookings: false})}>
+          <li
+            style={showInfo.profile ? infoActive : null}
+            onClick={() => setShowInfo({ profile: true, bookings: false })}
+          >
             MIS DATOS
           </li>
-          <li style={showInfo.bookings ? infoActive : null} onClick={() => setShowInfo({profile: false, bookings: true})}>
+          <li
+            style={showInfo.bookings ? infoActive : null}
+            onClick={() => setShowInfo({ profile: false, bookings: true })}
+          >
             MIS RESERVAS
           </li>
         </ul>
@@ -46,7 +51,7 @@ function UserProfileMain() {
           <Button red>ELIMINAR MI CUENTA</Button>
         </div>
       )}
-      <div className='userProfile_Bookings'>
+      <div className="userProfile_Bookings">
         {showInfo.bookings && <UserBookings />}
         {showInfo.profile && <UserProfile />}
       </div>
