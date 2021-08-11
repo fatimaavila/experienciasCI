@@ -10,21 +10,17 @@ function UserProfileMain() {
   const infoActive = {
     borderBottom: '5px solid #3aabfe',
   };
-  // borderTopLeftRadius: 6 + 'px',
-  // borderTopRightRadius: 6 + 'px',
 
   const [showInfo, setShowInfo] = useState({ profile: true, bookings: false });
   const { userInfo } = useContext(UserContext);
-  const userAvatar = userInfo?.avatar ? defaultAvatar : userInfo?.avatar;
+  const userAvatar = userInfo?.avatar ? userInfo?.avatar : defaultAvatar;
   const completeName = `${userInfo?.nombre} ${userInfo?.apellidos}`;
 
   return (
     <StyledUserProfile>
       <div className="userProfileHead">
         <h3>{completeName}</h3>
-        <div className="avatarUser">
-          <img src={userAvatar} alt="user-avatar" />
-        </div>
+        <img src={userAvatar} alt="user-avatar" />
       </div>
       <div className="userProfileNav">
         <ul>

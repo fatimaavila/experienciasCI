@@ -25,9 +25,9 @@ function CarouselFS({ photos }) {
         >
           {photos.photos &&
             photos.photos.map((photo) => (
-              <div key={photo.url}>
+              <div key={photo.photo}>
                 <img
-                  src={`http://localhost:8080/uploads/${photo.url}`}
+                  src={photo.photo}
                   alt="category"
                   height='400px'
                 />

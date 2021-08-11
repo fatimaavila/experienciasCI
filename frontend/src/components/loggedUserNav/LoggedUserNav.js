@@ -10,13 +10,11 @@ function LoggedUserNav() {
     <StyledLoggedUserNav>
       <div className="loggedUserNav posRel">
         <span>Bienvenido, {userInfo.username}</span>
-        <div className="avatarUser">
-          <img
-            onClick={() => setShowNavMenu(!showNavMenu)}
-            src={userAvatar}
-            alt="avatarUser"
-          />
-        </div>
+        <img
+          onClick={() => setShowNavMenu(!showNavMenu)}
+          src={userInfo?.avatar ? userInfo?.avatar : userAvatar}
+          alt="avatarUser"
+        />
       {showNavMenu && (
         <div className="dropNav">
           <ul>

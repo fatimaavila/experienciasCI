@@ -12,18 +12,15 @@ const StyledUserProfile = styled.div`
     align-items: center;
     gap: 5rem;
     margin-bottom: 3rem;
-  }
-  
-  .avatarUser {
-    width: 15%;
 
     & > img {
       border-radius: 50%;
       border: 3px solid var(--color-cyan);
-      width: 100%;
+      width: 180px;
+      height: 180px;
     }
   }
-
+  
   .userProfileNav {
     width: 100%;
     margin-bottom: 3rem;

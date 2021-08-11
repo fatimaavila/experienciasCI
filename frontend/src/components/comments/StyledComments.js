@@ -33,17 +33,14 @@ const StyledComments = styled.div`
           font-size: 1.3rem;
         }
 
-        & .avatarUser {
-          width: 7%;
-
-          img {
-            width: 100%;
-            display: block;
-            padding: 0.15rem;
-            border-radius: 50%;
-            border: 2px solid var(--color-cyan);
-            
-          }
+        & > img {
+          width: 50px;
+          height: 50px;
+          display: block;
+          padding: 0.15rem;
+          border-radius: 50%;
+          border: 2px solid var(--color-cyan);
+          
         }
       }
 

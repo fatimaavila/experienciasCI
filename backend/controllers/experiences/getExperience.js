@@ -1,4 +1,5 @@
 const getDB = require('../../bbdd/db');
+const { PUBLIC_HOST, UPLOADS } = process.env;
 
 const getExperience = async (req, res, next) => {
     let connection;
@@ -29,6 +30,12 @@ const getExperience = async (req, res, next) => {
             [idExp]
         );
 
+        const photosExperience = photos.map((photo) => {
+            return {
+                photo: `${PUBLIC_HOST}${UPLOADS}${photo.url}`
+            }
+        })
+
         const [comment] = await connection.query(
             `SELECT comentario FROM bookings WHERE id_experience = ?`,
             [idExp]
@@ -40,7 +47,7 @@ const getExperience = async (req, res, next) => {
                 ...experience[0],
                 rating: rating[0].rating,
                 comentarios: [...comment],
-                photos: [...photos],
+                photos: photosExperience,
             },
         });
     } catch (error) {

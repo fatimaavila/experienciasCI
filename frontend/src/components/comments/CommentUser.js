@@ -9,9 +9,7 @@ function CommentUser({ appreciationComment }) {
       <div className="userAppreciation_Comment">
         <div className="userComment">
           <div className='userInfo'>
-            <div className='avatarUser'>
-              <img src={defaultAvatar} alt='avatar_User'/>
-            </div>
+            <img src={appreciationComment?.avatar ? appreciationComment?.avatar : defaultAvatar} alt='avatar_User'/>
             <span className='userName'>{appreciationComment.username}</span>
           </div>
           <blockquote>"{appreciationComment.comentario}"</blockquote>
