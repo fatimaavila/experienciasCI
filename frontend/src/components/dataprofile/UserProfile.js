@@ -25,7 +25,7 @@ function UserProfile() {
     avatar: userInfo?.avatar,
   }
 
-  const avatar = new FormData();
+  let avatar = new FormData();
   avatar.append('avatar', file);
 
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
@@ -36,19 +36,21 @@ function UserProfile() {
     bio: dataUser.bio,
     cp: dataUser.cp,
     email: dataUser.email,
-    avatar: avatar && avatar,
   };
 
+  console.log(file, avatar);
   async function updateUser(e) {
     e.preventDefault();
-
+    
     try {
       const { data } = await putAxios(
         `http://localhost:8080/users/${tokenContent?.idUser}`,
         body,
-        token
+        token,
+        avatar
       );
 
+      console.log(data);
       setDataUser(data);
     } catch (error) {
       setError(error.response.data.message);
@@ -57,8 +59,8 @@ function UserProfile() {
     console.log('error', error);
   }
 
-  const onFileChange = (event) => {
-    const file = event.target.files[0];
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
 
     setFile(file);
   };
@@ -120,7 +122,6 @@ function UserProfile() {
               type="text"
               placeholder={userInfo?.telefono ? userInfo?.telefono : 'Teléfono'}
               onChange={(e) => setDataUser({...dataUser, phone: e.target.value})}
-              value={dataUser.phone}
             />
           </Form.Label>
         </Form.Group>

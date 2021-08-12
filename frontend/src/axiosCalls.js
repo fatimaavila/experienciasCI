@@ -14,15 +14,17 @@ async function postAxios(url, body, token) {
   const { data } = await axios.post(url, body, {
     headers,
   });
+
   return data;
 }
 
-async function putAxios(url, body, token) {
+async function putAxios(url, body, token, avatar) {
   const headers = token ? { Authorization: token } : null;
 
   const { data } = await axios.put(url, body, {
     headers,
-  });
+  }, avatar);
+  
   return data;
 }
 
