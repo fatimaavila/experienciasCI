@@ -23,6 +23,7 @@ const StyledAdminProfile = styled.div`
 
   .adminProfileNav li {
     padding: 2rem 8rem;
+    cursor: pointer;
   }
 
   .dataActive {
@@ -44,6 +45,22 @@ const StyledAdminProfile = styled.div`
     padding: 2rem;
     width: 100%;
     border-bottom: 3px solid var(--color-cyan);
+
+    & .dataInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+    }
+
+    & .dataInfo > div:first-child {
+      display: flex;
+      flex-direction: column;
+    }
+      & .dataInfoRow {
+        display: flex;
+        gap: 1rem;
+      }
   }
 
   .sectionData:nth-child(odd) {
@@ -63,6 +80,7 @@ const StyledAdminProfile = styled.div`
     gap: 20px;
     font-size: 40px;
     color: var(--color-cyan);
+    cursor: pointer;
   }
 
   .sectionData td h3 {

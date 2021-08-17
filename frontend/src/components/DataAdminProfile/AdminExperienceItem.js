@@ -8,7 +8,7 @@ import { onlyUnique } from '../../helpers';
 import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 
-function AdminExperiencesItem() {
+function AdminExperiencesItem({experience}) {
   const [formActivate, setFormActivate] = useState(false);
   const [category,setCategory] = useState([]);
 
@@ -19,14 +19,33 @@ function AdminExperiencesItem() {
     setCategory(allCategories);
   }
 
+  const optionsDate = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  }
+
+  const fechaInicio = new Date(experience?.fecha_inicio).toLocaleDateString('es-ES',optionsDate);
+  const fechaFin = new Date(experience?.fecha_fin).toLocaleDateString('es-ES',optionsDate);
+
   useEffect(() => {
     getCategories();
   },[]);
 
   return (
     <tr className="sectionData">
-      <td>
-        <h3>Aqui va lo de dentro de la experiencia</h3>
+      <td className='dataInfo'>
+        <div>
+          <h3>{experience.nombre}</h3>
+          <span>Ciudad: {experience.ciudad}</span>
+          <span>Categoría: {experience.categoria}</span>
+          <span>{experience.num_participantes} {experience.num_participantes === 1 ? 'persona' : 'personas'}</span>
+          <div className='dataInfoRow'>
+            <span>{fechaInicio}</span>
+            <span>{fechaFin}</span>
+          </div>
+        </div>
+        <span>{experience.disp === 1 ? 'Disponible' : 'No disponible'}</span>
       </td>
       <td className="buttonsAdmin">
         <MdEdit onClick={() => setFormActivate(!formActivate)} />
@@ -42,13 +61,13 @@ function AdminExperiencesItem() {
               <Form.Group className='formElement'>
                 <Form.Label>
                   Nombre experiencia
-                  <Form.Control type="text"/>
+                  <Form.Control type="text" placeholder={experience.nombre}/>
                 </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
                 <Form.Label>
                   Ubicación
-                  <Form.Control type="text"/>
+                  <Form.Control type="text" placeholder={experience.direccion}/>
                 </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
@@ -64,13 +83,13 @@ function AdminExperiencesItem() {
               <Form.Group className='formElement'>
                 <Form.Label>
                   Precio
-                  <Form.Control type="text"/>
+                  <Form.Control type="text" placeholder={experience.precio}/>
                 </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
                 <Form.Label>
                   Nº Participantes
-                  <Form.Control type="number"/>
+                  <Form.Control type="number" placeholder={experience.num_participantes}/>
                 </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>
@@ -88,7 +107,7 @@ function AdminExperiencesItem() {
               <Form.Group className='formElement'>
                 <Form.Label>
                   Descripcion
-                  <Form.Control as='textarea' style={{height: 100 + 'px'}}/>
+                  <Form.Control as='textarea' style={{height: 100 + 'px'}} placeholder={experience.descripcion}/>
                 </Form.Label>
               </Form.Group>
               <Form.Group className='formElement'>

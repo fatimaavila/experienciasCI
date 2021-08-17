@@ -21,19 +21,11 @@ function CommentUser({ appreciationComment }) {
           </div>
           <blockquote>"{appreciationComment.comentario}"</blockquote>
         </div>
-        <div className="userAppreciation">
-          <span className="appreciationNumber">
-            {appreciationComment.valoracion !== 0.0
-              ? appreciationComment.valoracion
-              : defaultRating}
-          </span>
+        <div className='userAppreciation'>
+          <span className='appreciationNumber'>{appreciationComment.valoracion !== 0.0 ? appreciationComment.valoracion : defaultRating}</span>
           <Rating
             name="rating-experience"
-            value={
-              Number(appreciationComment.valoracion) !== 0.0
-                ? Number(appreciationComment.valoracion)
-                : defaultRating
-            }
+            value={Number(appreciationComment.valoracion) !== 0.0 ? Number(appreciationComment.valoracion) : defaultRating}
             precision={0.5}
             readOnly
           />
