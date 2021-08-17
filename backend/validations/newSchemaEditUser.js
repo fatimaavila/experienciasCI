@@ -4,56 +4,55 @@ const Joi = require('joi');
 
 const newSchemaEditUser = Joi.object().keys({
     email: Joi.string()
-                .email()
-                .error((error) => {
-                    switch(error[0].code) {
-                        case 'any.required':
-                            return new Error('Se requiere un email.');
-                        default:
-                            return new Error('El email no es válido.');
-                    }
-                }),
+        .email()
+        .error((error) => {
+            switch (error[0].code) {
+                case 'any.required':
+                    return new Error('Se requiere un email.');
+                default:
+                    return new Error('El email no es válido.');
+            }
+        }),
     cp: Joi.number()
-                .integer()
-                .error((error) => {
-                    switch(error[0].code) {
-                        case 'any.required':
-                            return new Error('Se requiere un código postal.');
-                        case 'number.base':
-                            return new Error('Sólo números enteros permitidos.');
-                        default:
-                            return new Error('El código postal no es válido.')
-                    }
-                }),
-    address: Joi.string()
-                .error((error) => {
-                    switch(error[0].code) {
-                        case 'any.required':
-                            return new Error('Se requiere una dirección.');
-                        default:
-                            return new Error('La dirección no es válida.'); 
-                    }
-                }),
-    bio: Joi.string()
-                .error((error) => {
-                    switch(error[0].code) {
-                        case 'any.required':
-                            return new Error('Se requiere una biografía.');
-                        default:
-                            return new Error('La biografía no es válida.'); 
-                    }
-                }),
+        .integer()
+        .error((error) => {
+            switch (error[0].code) {
+                case 'any.required':
+                    return new Error('Se requiere un código postal.');
+                case 'number.base':
+                    return new Error('Sólo números enteros permitidos.');
+                default:
+                    return new Error('El código postal no es válido.');
+            }
+        }),
+    address: Joi.string().error((error) => {
+        switch (error[0].code) {
+            case 'any.required':
+                return new Error('Se requiere una dirección.');
+            default:
+                return new Error('La dirección no es válida.');
+        }
+    }),
+    bio: Joi.string().error((error) => {
+        switch (error[0].code) {
+            case 'any.required':
+                return new Error('Se requiere una biografía.');
+            default:
+                return new Error('La biografía no es válida.');
+        }
+    }),
     phone: Joi.number()
-                .integer()
-                .error((error) => {
-                    switch(error[0].code) {
-                        case 'number.base':
-                            return new Error('El teléfono solo debe contener números.');
-                        default:
-                            return new Error('El teléfono no es válido.'); 
-                    }
-                }),
+        .integer()
+        .error((error) => {
+            switch (error[0].code) {
+                case 'number.base':
+                    return new Error('El teléfono solo debe contener números.');
+                default:
+                    return new Error('El teléfono no es válido.');
+            }
+        }),
     ccc: Joi.string()
+
                 .creditCard()
                 .min(20)
                 .max(20)
@@ -63,6 +62,7 @@ const newSchemaEditUser = Joi.object().keys({
                             return new Error('La tarjeta de crédito debe tener 20 caracteres');
                     }
                 }),
+
     avatar: Joi.object({
                 filename: Joi.string().required(),
                 path: Joi.string().required(),
@@ -72,8 +72,6 @@ const newSchemaEditUser = Joi.object().keys({
                 }).required(),
                 bytes: Joi.number().required()
                 })
-                
-
 });
 
 module.exports = { newSchemaEditUser };

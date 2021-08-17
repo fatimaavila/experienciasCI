@@ -29,6 +29,7 @@ function UserProfile() {
   avatar.append('avatar', file);
 
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
+
   const body = {
     dni: dataUser.dni,
     phone: dataUser.phone,
