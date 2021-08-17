@@ -14,11 +14,11 @@ function RegisterValidate() {
   }, [location]);
 
   return (
-    <div>
+    <>
       {userDataEmail && (
         <ValidateRegister email={userDataEmail} name={userDataName} />
       )}
-    </div>
+    </>
   );
 }
 export default RegisterValidate;

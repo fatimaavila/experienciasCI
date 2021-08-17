@@ -13,7 +13,7 @@ const BlackTransparentBox = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 25px;
+        gap: 4rem;
         border-radius: 5px;
     }
 

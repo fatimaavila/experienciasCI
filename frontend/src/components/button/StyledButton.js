@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   border-radius: 4px;
   text-align: center;
-  padding: 0.5rem 1.5rem;
+  padding: 0.8rem 2rem;
   border: 0px;
 
   ${props => props.blue && `& {
@@ -27,7 +27,7 @@ const StyledButton = styled.button`
   ${props => props.barra && `&::after {
     content: '';
     border: 1px solid var(--color-white);
-    margin-left: 20px;
+    margin-left: 2rem;
   }
 `};
 
