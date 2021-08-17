@@ -23,16 +23,19 @@ const getCommentsRatings = async (req, res, next) => {
                 valoracion: appreciationObject.valoracion,
                 id: appreciationObject.id,
                 username: appreciationObject.username,
-                avatar: appreciationObject.avatar !== null ? `${PUBLIC_HOST}${UPLOADS}${appreciationObject.avatar}` : null,
+                avatar:
+                    appreciationObject.avatar !== null
+                        ? `${PUBLIC_HOST}${UPLOADS}${appreciationObject.avatar}`
+                        : null,
                 fecha_compra: appreciationObject.fecha_compra,
-            }
-        })
+            };
+        });
 
         res.send({
             status: 200,
             data: {
                 appreciations_comments: includesAvatar,
-            }
+            },
         });
     } catch (error) {
         next(error);
