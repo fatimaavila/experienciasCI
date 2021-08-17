@@ -1,7 +1,12 @@
 'use strict';
 
 const getDB = require('../../bbdd/db');
-const { formatDate, validate } = require('../../helpers');
+const {
+    formatDate,
+    validate,
+    savePhoto,
+    deletePhoto,
+} = require('../../helpers');
 const { newSchemaEditUser } = require('../../validations/newSchemaEditUser');
 
 let connection;
@@ -11,12 +16,12 @@ const editUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
-        let { email, ccc, address, phone, bio, cp } = req.body;
-        let avatar = req.files;
-        console.log(req.body, idUser);
+        let { email, ccc, address, phone, bio, cp, avatar } = req.body;
+        /*   let avatar = req.files; */
+        console.log(avatar, idUser);
         const now = new Date();
 
-        await validate(newSchemaEditUser, req.body);
+        /*  await validate(newSchemaEditUser, req.body); */
 
         if (req.userAuth.idUser !== Number(idUser)) {
             const error = new Error(
@@ -81,10 +86,10 @@ const editUser = async (req, res, next) => {
 
         if (avatar) {
             if (user[0].avatar) {
-                await deletePhoto(req.files.avatar);
+                await deletePhoto(req.body.avatar);
             }
 
-            const avartarName = savePhoto(req.files.avatar);
+            const avartarName = savePhoto(avatar.name);
 
             await connection.query(
                 `

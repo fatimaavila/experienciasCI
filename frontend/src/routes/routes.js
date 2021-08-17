@@ -9,6 +9,8 @@ import Parejas from '../pages/parejas/Parejas';
 import UniqueExperiece from '../pages/uniqueExperience/UniqueExperience';
 import Experiences from '../pages/experiences/Experiences';
 import RegisterValidate from '../pages/registervalidate/RegisterValidate';
+import UserMenu from '../pages/userMenu/UserMenu';
+import AdminMenu from '../pages/adminMenu/AdminMenu';
 
 const routes = [
   {
@@ -60,6 +62,16 @@ const routes = [
     path: '/registervalidate',
     Page: RegisterValidate,
     label: 'RegisterValidate',
+  },
+  {
+    path: '/usermenu',
+    Page: UserMenu,
+    label: 'UserMenu',
+  },
+  {
+    path: '/adminmenu',
+    Page: AdminMenu,
+    label: 'AdminMenu',
   },
   {
     path: '/',

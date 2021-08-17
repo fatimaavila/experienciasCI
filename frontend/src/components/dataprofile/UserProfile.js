@@ -14,7 +14,7 @@ function UserProfile() {
 
   const avatar = new FormData();
   avatar.append('avatar', file);
-  console.log('avatar', avatar);
+  console.log('avatar', file);
   const [dataUser, setDataUser] = useState({});
   const body = {
     name: dataUser.name,
@@ -25,7 +25,7 @@ function UserProfile() {
     cp: dataUser.cp,
     username: dataUser.username,
     email: dataUser.email,
-    avatar: avatar,
+    avatar: { file },
   };
 
   async function updateUser(e) {
