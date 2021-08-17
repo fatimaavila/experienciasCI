@@ -389,7 +389,7 @@ const initDB = async () => {
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.',
     'Ferrari F430 F1 y Formula 2.0',
-    'Valencia',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Valencia',179.00,'Motor',1,true,'2021-01-01','2021-08-30'),
     (27, 
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Lamborghini Gallardo.
 
@@ -402,7 +402,7 @@ const initDB = async () => {
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.', 
     'Ferrari F430 F1 y Lamborghini Gallardo ', 
-    'Navarra',179.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Navarra',179.00,'Motor',1,true,'2021-01-01','2021-08-30'),
     (28,
     '¡Conduce tres coches! Ponte a los mandos de un Ferrari, un Lamborghini y un Porsche en esta experiencia sin igual.
 
@@ -413,7 +413,7 @@ const initDB = async () => {
   
     Adrenalina en estado puro. ¿¡Te quedarás sin probarlo!?',
     'Trío de Coches: Ferrari, Lamborghini y Porsche',
-    'Madrid',249.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Madrid',249.00,'Motor',1,true,'2021-01-01','2021-08-30'),
     (29,
     'Déjate sorprender por un día lleno de emoción y adrenalina. Disfruta de un Vuelo en Avioneta y conduce un Ferrari en Carretera por Barcelona.
 
@@ -423,7 +423,7 @@ const initDB = async () => {
 
     ¿Te vas a perder vivir el día con el que todo el mundo sueña?',
     'Vuelo en Avioneta y Conducción de Ferrari en Carretera',
-    'Sabadell',119.00,'Conducción',1,true,'2021-01-01','2021-08-30'),
+    'Sabadell',119.00,'Motor',1,true,'2021-01-01','2021-08-30'),
     (30,
     'Si te gustan las emociones fuertes y los deportes de riesgo, libera toda tu adrenalina aprendiendo a derrapar con este Curso de Drift en Madrid.
 
@@ -433,7 +433,7 @@ const initDB = async () => {
 
     ¡Dale al gas! Y anímate a vivir una experiencia inolvidable llena de sensaciones fuertes.',
     'Curso de Drift en Asfalto (Madrid)', 
-    'Leganés', 49.00, 'Conducción', 1, true, '2021-01-01', '2021-08-30'),
+    'Leganés', 49.00, 'Motor', 1, true, '2021-01-01', '2021-08-30'),
     (31, 
     '¿Te gusta el mar y te gustaría explorar sus profundidades? No te pierdas esta oportunidad y disfruta del Pack de Bautismo de Buceo en diferentes zonas de España. ¿A qué esperas?
 
