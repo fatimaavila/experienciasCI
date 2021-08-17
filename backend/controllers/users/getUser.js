@@ -1,4 +1,5 @@
 const getDB = require('../../bbdd/db');
+const { PUBLIC_HOST, UPLOADS } = process.env;
 
 const getUser = async (req, res, next) => {
     let connection;
@@ -15,7 +16,7 @@ const getUser = async (req, res, next) => {
 
         const userInfo = {
             username: user[0].username,
-            avatar: user[0].avatar,
+            avatar: `${PUBLIC_HOST}${UPLOADS}${user[0].avatar}`,
         };
         console.log(user[0].id, req.userAuth.idUser);
         if (

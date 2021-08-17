@@ -1,13 +1,11 @@
 'use strict';
 
 const getDB = require('../../bbdd/db');
-const {
-    formatDate,
-    validate,
-    savePhoto,
-    deletePhoto,
-} = require('../../helpers');
+
+const { formatDate, validate, savePhoto, deletePhoto } = require('../../helpers');
+
 const { newSchemaEditUser } = require('../../validations/newSchemaEditUser');
+const { PUBLIC_HOST, UPLOADS } = process.env;
 
 let connection;
 
@@ -16,8 +14,9 @@ const editUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
-        let { email, ccc, address, phone, bio, cp, avatar } = req.body;
-        /*   let avatar = req.files; */
+        let { email, ccc, address, phone, bio, cp } = req.body;
+        let { avatar } = req.files;
+
         console.log(avatar, idUser);
         const now = new Date();
 
@@ -84,18 +83,21 @@ const editUser = async (req, res, next) => {
             );
         }
 
-        if (avatar) {
+        let avatarName;
+
+        if (req.files && req.files.avatar) {
             if (user[0].avatar) {
-                await deletePhoto(req.body.avatar);
+
+                await deletePhoto(user[0].avatar);
             }
 
-            const avartarName = savePhoto(avatar.name);
+            avatarName = await savePhoto(user[0].avatar);
 
             await connection.query(
                 `
                 UPDATE users SET avatar = ?, modifiedAt = ? WHERE id = ?;
             `,
-                [avartarName, formatDate(now), idUser]
+                [avatarName, formatDate(now), idUser]
             );
         }
 
@@ -111,6 +113,7 @@ const editUser = async (req, res, next) => {
             data: {
                 id: idUser,
                 ...req.body,
+                avatar: `${PUBLIC_HOST}${UPLOADS}${avatarName}`,
                 modifiedAt: now,
             },
         });

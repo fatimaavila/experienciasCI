@@ -18,15 +18,12 @@ const StyledLoggedUserNav = styled.div`
     font-size: 25px;
   }
   
-  .avatarUser {
-    width: 15%;
-    cursor: pointer;
-  }
-  
-  .avatarUser img {
+  .loggedUserNav img {
     border-radius: 50%;
     border: 3px solid var(--color-white);
-    width: 100%;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
     display: block;
   }
   
