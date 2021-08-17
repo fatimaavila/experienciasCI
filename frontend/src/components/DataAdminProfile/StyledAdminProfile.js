@@ -11,7 +11,7 @@ const StyledAdminProfile = styled.div`
   .adminProfileHead h2 {
     font-size: 3rem;
   }
-  
+
   .adminProfileNav {
     width: 100%;
   }
@@ -36,7 +36,7 @@ const StyledAdminProfile = styled.div`
     width: 100%;
     border: 3px solid var(--color-cyan);
   }
-  
+
   .sectionData {
     display: flex;
     justify-content: space-between;
@@ -63,6 +63,14 @@ const StyledAdminProfile = styled.div`
     gap: 20px;
     font-size: 40px;
     color: var(--color-cyan);
+  }
+
+  .sectionData td h3 {
+    color: var(--color-black);
+  }
+  .sectionData td span {
+    color: var(--color-black);
+    margin-left: 10px;
   }
 `;
 
