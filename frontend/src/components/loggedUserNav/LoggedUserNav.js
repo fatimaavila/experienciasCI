@@ -23,7 +23,7 @@ function LoggedUserNav() {
         <div className="avatarUser">
           <img
             onClick={() => setShowNavMenu(!showNavMenu)}
-            src={userInfo?.avatar ? userInfo?.avatar : userAvatar}
+            src={userInfo?.avatar !== null ? userInfo?.avatar : userAvatar}
             alt="avatarUser"
           />
         </div>
