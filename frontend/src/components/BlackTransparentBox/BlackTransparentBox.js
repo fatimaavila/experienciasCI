@@ -7,7 +7,7 @@ const BlackTransparentBox = styled.div`
     left: 0;
     right: 0;
     z-index: 456;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--bg-black-light);
 
     .searchHome & {
         display: flex;

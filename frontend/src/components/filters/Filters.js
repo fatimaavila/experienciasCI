@@ -1,5 +1,5 @@
 import StyledFilters from './StyledFilters';
-import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
