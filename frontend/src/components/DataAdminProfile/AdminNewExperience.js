@@ -23,8 +23,6 @@ function AdminNeWExperience() {
   const [dStop, setDStop] = useState('');
   const [error, setError] = useState('');
 
-  console.log(section);
-
   const dateStart = new Date(dStart).toLocaleDateString('es-ES', {
     year: 'numeric',
     month: 'numeric',
