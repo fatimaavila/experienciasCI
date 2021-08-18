@@ -35,10 +35,15 @@ function Experience({ id, name, city, price }) {
 
   return (
     <StyledExperience onClick={routeChange}>
-      {uniqueExp.photos && <div className="fotoExperience" style={{
-          backgroundImage: `url('${uniqueExp.photos[0].photo}')`,
-          ...imgBackground,
-      }}></div>}
+      {uniqueExp?.photos && (
+        <div
+          className="fotoExperience"
+          style={{
+            backgroundImage: `url('${uniqueExp?.photos[0]?.photo}')`,
+            ...imgBackground,
+          }}
+        ></div>
+      )}
       <h3>{name}</h3>
       <span className="cityExperience">{city}</span>
       <Rating

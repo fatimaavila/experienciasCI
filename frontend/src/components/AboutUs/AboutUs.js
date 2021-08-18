@@ -1,6 +1,6 @@
 import StyledAboutUs from './StyledAboutUs';
-import { AiFillLike } from 'react-icons/ai';
-import vanIcon from '../../assets/LOGOICON.png';
+
+import vanIcon from '../../assets/LOGOICONfondo.png';
 
 function AboutUs() {
   return (
@@ -8,7 +8,7 @@ function AboutUs() {
       <h2>Quienes Somos</h2>
       <section>
         <div className="aboutUs_Box">
-          <img src={vanIcon} />
+          <img src={vanIcon} alt="Logo" />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -20,7 +20,7 @@ function AboutUs() {
           </p>
         </div>
         <div className="aboutUs_Box">
-          <img src={vanIcon} />
+          <img src={vanIcon} alt="Logo" />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -32,7 +32,7 @@ function AboutUs() {
           </p>
         </div>
         <div className="aboutUs_Box">
-          <img src={vanIcon} />
+          <img src={vanIcon} alt="Logo" />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

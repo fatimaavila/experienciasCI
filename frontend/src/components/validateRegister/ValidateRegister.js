@@ -1,5 +1,5 @@
 import StyledValidateRegister from './StyledValidateRegister';
-import LOGOICON from '../../assets/LOGOICON.png';
+import LOGOICON from '../../assets/LOGOICONfondo.png';
 import Button from '../button/Button';
 function ValidateRegister({ email, name }) {
   return (
@@ -8,10 +8,16 @@ function ValidateRegister({ email, name }) {
         <img src={LOGOICON} alt="Logo" className="icon" />
       </figure>
       <div className="emailVerify">
-        <p>El usuario <span class='outstanding'>{name}</span> ha sido registrado correctamente.</p>
-        <p>Verifique su email: <span class='outstanding'>{email}</span> , para activar su cuenta.</p>
+        <p>
+          El usuario <span class="outstanding">{name}</span> ha sido registrado
+          correctamente.
+        </p>
+        <p>
+          Verifique su email: <span class="outstanding">{email}</span> , para
+          activar su cuenta.
+        </p>
       </div>
-      <a href='/'>
+      <a href="/">
         <Button blue>Home</Button>
       </a>
     </StyledValidateRegister>
