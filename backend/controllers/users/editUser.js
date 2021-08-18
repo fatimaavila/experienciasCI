@@ -2,7 +2,12 @@
 
 const getDB = require('../../bbdd/db');
 
-const { formatDate, validate, savePhoto, deletePhoto } = require('../../helpers');
+const {
+    formatDate,
+    validate,
+    savePhoto,
+    deletePhoto,
+} = require('../../helpers');
 
 const { newSchemaEditUser } = require('../../validations/newSchemaEditUser');
 const { PUBLIC_HOST, UPLOADS } = process.env;
@@ -87,7 +92,6 @@ const editUser = async (req, res, next) => {
 
         if (req.files && req.files.avatar) {
             if (user[0].avatar) {
-
                 await deletePhoto(user[0].avatar);
             }
 
