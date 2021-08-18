@@ -30,7 +30,7 @@ function LoggedUserNav() {
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav posRel">
-        <GrCart className="cart" size="2rem" />
+        <GrCart className="cart" size="2rem" style={{color: '#FFF'}} />
         <span>Bienvenido, {userInfo.username}</span>
 
         <div className="avatarUser">

@@ -16,17 +16,6 @@ import { useHistory } from 'react-router-dom';
 registerLocale('es', es);
 
 function AdminExperiencesItem({experience}) {
-  
-  const optionsDate = {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  }
-
-  const dateInit = new Date(experience?.fecha_inicio).toLocaleDateString('es-ES',optionsDate);
-  const dateFinal = new Date(experience?.fecha_fin).toLocaleDateString('es-ES',optionsDate);
-
-  console.log(experience?.fecha_inicio);
 
   const INITIAL_VALUES = {
     name: experience?.nombre,
@@ -38,14 +27,23 @@ function AdminExperiencesItem({experience}) {
     fDate: experience?.fecha_fin,
     description: experience?.descripcion,
   }
-
+  
   const history = useHistory();
-
+  
   const [formActivate, setFormActivate] = useState(false);
   const [category,setCategory] = useState([]);
   const { token } = useContext(UserContext)
   const [editDataForm,setEditDataForm] = useState(INITIAL_VALUES);
   const [error,setError] = useState('');
+  
+  const optionsDate = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  }
+
+  const dateInit = new Date(editDataForm?.sDate).toLocaleDateString('es-ES',optionsDate);
+  const dateFinal = new Date(editDataForm?.fDate).toLocaleDateString('es-ES',optionsDate);
 
   async function getCategories() {
     const { data } = await axios.get('http://localhost:8080/experiences');
@@ -63,7 +61,11 @@ function AdminExperiencesItem({experience}) {
     e.preventDefault();
 
     try {
-      await putAxios(`http://localhost:8080/experiences/${experience.id}`,editDataForm, token);
+      await putAxios(
+        `http://localhost:8080/experiences/${experience.id}`,
+        {...editDataForm,sDate: sqlDateFormat(dateInit),fDate: sqlDateFormat(dateFinal)}, 
+        token
+      );
       history.go(0);
     } catch (error) {
       setError(error.message);
@@ -160,8 +162,8 @@ function AdminExperiencesItem({experience}) {
                     locale="es"
                     dateFormat="dd/MM/yyyy"
                     className="date-picker"
-                    selected={dateInit}
-                    onChange={(date) => setEditDataForm({...editDataForm,sDate: sqlDateFormat(date)})}
+                    selected={editDataForm.sDate}
+                    onChange={(date) => setEditDataForm({...editDataForm,sDate: date})}
                   />
                 </Form.Label>
               </Form.Group>
@@ -172,8 +174,8 @@ function AdminExperiencesItem({experience}) {
                     locale="es"
                     dateFormat="dd/MM/yyyy"
                     className="date-picker"
-                    selected={dateFinal}
-                    onChange={(date) => setEditDataForm({...editDataForm,fDate: sqlDateFormat(date)})}
+                    selected={editDataForm.fDate}
+                    onChange={(date) => setEditDataForm({...editDataForm,fDate: date})}
                   />
                 </Form.Label>
               </Form.Group>
