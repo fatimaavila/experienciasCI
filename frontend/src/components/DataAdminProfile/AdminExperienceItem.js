@@ -17,14 +17,23 @@ registerLocale('es', es);
 
 function AdminExperiencesItem({experience}) {
 
+  const optionsDate = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  }
+
+  const dateInit = new Date(experience?.fecha_inicio);
+  const dateFinal = new Date(experience?.fecha_fin);
+
   const INITIAL_VALUES = {
     name: experience?.nombre,
     city: experience?.ciudad,
     category: experience?.categoria,
     price: experience?.precio,
     participants: experience?.num_participantes,
-    sDate: experience?.fecha_inicio,
-    fDate: experience?.fecha_fin,
+    sDate: dateInit,
+    fDate: dateFinal,
     description: experience?.descripcion,
   }
   
@@ -36,14 +45,6 @@ function AdminExperiencesItem({experience}) {
   const [editDataForm,setEditDataForm] = useState(INITIAL_VALUES);
   const [error,setError] = useState('');
   
-  const optionsDate = {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  }
-
-  const dateInit = new Date(editDataForm?.sDate).toLocaleDateString('es-ES',optionsDate);
-  const dateFinal = new Date(editDataForm?.fDate).toLocaleDateString('es-ES',optionsDate);
 
   async function getCategories() {
     const { data } = await axios.get('http://localhost:8080/experiences');
@@ -63,7 +64,11 @@ function AdminExperiencesItem({experience}) {
     try {
       await putAxios(
         `http://localhost:8080/experiences/${experience.id}`,
-        {...editDataForm,sDate: sqlDateFormat(dateInit),fDate: sqlDateFormat(dateFinal)}, 
+        {
+          ...editDataForm,
+          sDate: sqlDateFormat(editDataForm.sDate.toLocaleDateString('es-ES',optionsDate)),
+          fDate: sqlDateFormat(editDataForm.fDate.toLocaleDateString('es-ES',optionsDate)),
+        }, 
         token
       );
       history.go(0);
@@ -81,8 +86,8 @@ function AdminExperiencesItem({experience}) {
           <span>Categoría: {experience?.categoria}</span>
           <span>{experience?.num_participantes} {experience?.num_participantes === 1 ? 'persona' : 'personas'}</span>
           <div className='dataInfoRow'>
-            <span>{dateInit}</span>
-            <span>{dateFinal}</span>
+            <span>{dateInit.toLocaleDateString('es-ES',optionsDate)}</span>
+            <span>{dateFinal.toLocaleDateString('es-ES',optionsDate)}</span>
           </div>
         </div>
         <span>{experience?.disp === 1 ? 'Disponible' : 'No disponible'}</span>
