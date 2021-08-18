@@ -16,7 +16,7 @@ function LoggedUserNav() {
     history.push({ pathname: '/adminmenu' });
   }
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const handleUserKeyPress = (event) => {
       event = setShowNavMenu(!showNavMenu);
     };
@@ -25,7 +25,7 @@ function LoggedUserNav() {
     return () => {
       window.removeEventListener('click', handleUserKeyPress);
     };
-  }, [showNavMenu]);
+  }, [showNavMenu]); */
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav posRel">
