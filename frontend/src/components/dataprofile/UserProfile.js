@@ -23,7 +23,7 @@ function UserProfile() {
     username: userInfo?.username,
     email: userInfo?.email,
     avatar: userInfo?.avatar,
-  }
+  };
 
   let avatar = new FormData();
   avatar.append('avatar', file);
@@ -31,6 +31,7 @@ function UserProfile() {
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
 
   const body = {
+    name: dataUser.name,
     dni: dataUser.dni,
     phone: dataUser.phone,
     address: dataUser.address,
@@ -40,15 +41,15 @@ function UserProfile() {
   };
 
   console.log(file, avatar);
+
   async function updateUser(e) {
     e.preventDefault();
-    
+
     try {
       const { data } = await putAxios(
         `http://localhost:8080/users/${tokenContent?.idUser}`,
         body,
-        token,
-        avatar
+        token
       );
 
       console.log(data);
@@ -60,27 +61,30 @@ function UserProfile() {
     console.log('error', error);
   }
 
-  const onFileChange = (e) => {
+  /* const onFileChange = (e) => {
     const file = e.target.files[0];
 
     setFile(file);
-  };
+  }; */
 
   return (
     <>
       <Form className="modalBody" onSubmit={updateUser}>
-        <Form.Group>
+        {/* <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Avatar</span>
             <Form.Control type="file" onChange={onFileChange} />
           </Form.Label>
-        </Form.Group>
+        </Form.Group> */}
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Nombre</span>
-            <Form.Control 
-              type="text" 
-              placeholder={userInfo?.nombre}
+            <Form.Control
+              type="text"
+              placeholder={userInfo?.nombre ? userInfo?.nombre : 'Nombre'}
+              onChange={(e) =>
+                setDataUser({ ...dataUser, name: e.target.value })
+              }
               disabled
             />
           </Form.Label>
@@ -98,21 +102,26 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>DNI</span>
-            <Form.Control 
-              type="text" 
+            <Form.Control
+              type="text"
               placeholder={userInfo?.dni ? userInfo?.dni : 'DNI'}
-              onChange={(e) => setDataUser({...dataUser, dni: e.target.value})}
+              /* onChange={(e) =>
+                setDataUser({ ...dataUser, dni: e.target.value })
+              } */
+              disabled
             />
           </Form.Label>
         </Form.Group>
         <Form.Group className="textareaBox">
           <Form.Label className="editInfoLabel">
             <span>Biografía</span>
-            <Form.Control 
-              as="textarea" 
+            <Form.Control
+              as="textarea"
               style={{ height: '200px' }}
               placeholder={userInfo?.bio ? userInfo?.bio : 'Biografía'}
-              onChange={(e) => setDataUser({...dataUser, bio: e.target.value})}
+              onChange={(e) =>
+                setDataUser({ ...dataUser, bio: e.target.value })
+              }
             />
           </Form.Label>
         </Form.Group>
@@ -122,27 +131,35 @@ function UserProfile() {
             <Form.Control
               type="text"
               placeholder={userInfo?.telefono ? userInfo?.telefono : 'Teléfono'}
-              onChange={(e) => setDataUser({...dataUser, phone: e.target.value})}
+              onChange={(e) =>
+                setDataUser({ ...dataUser, phone: e.target.value })
+              }
             />
           </Form.Label>
         </Form.Group>
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Dirección</span>
-            <Form.Control 
-              type="text" 
-              placeholder={userInfo?.direccion ? userInfo?.direccion : 'Dirección'}
-              onChange={(e) => setDataUser({...dataUser, address: e.target.value})}
+            <Form.Control
+              type="text"
+              placeholder={
+                userInfo?.direccion ? userInfo?.direccion : 'Dirección'
+              }
+              onChange={(e) =>
+                setDataUser({ ...dataUser, address: e.target.value })
+              }
             />
           </Form.Label>
         </Form.Group>
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Código Postal</span>
-            <Form.Control 
-              type="text" 
-              placeholder={userInfo?.cp ? userInfo?.cp : 'Código Postal'} 
-              onChange={(e) => setDataUser({...dataUser, postalCode: e.target.value})}
+            <Form.Control
+              type="text"
+              placeholder={userInfo?.cp ? userInfo?.cp : 'Código Postal'}
+              onChange={(e) =>
+                setDataUser({ ...dataUser, postalCode: e.target.value })
+              }
             />
           </Form.Label>
         </Form.Group>
@@ -159,17 +176,22 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Email</span>
-            <Form.Control 
-              type="email" 
-              placeholder={userInfo?.email ? userInfo?.email : 'Email'} 
-              onChange={(e) => setDataUser({...dataUser, email: e.target.value})}
+            <Form.Control
+              type="email"
+              placeholder={userInfo?.email ? userInfo?.email : 'Email'}
+              onChange={(e) =>
+                setDataUser({ ...dataUser, email: e.target.value })
+              }
             />
           </Form.Label>
         </Form.Group>
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Introduce tu contraseña para confirmar</span>
-            <Form.Control type="password" placeholder='Confirma tu Contraseña'/>
+            <Form.Control
+              type="password"
+              placeholder="Confirma tu Contraseña"
+            />
           </Form.Label>
         </Form.Group>
         <Form.Group>

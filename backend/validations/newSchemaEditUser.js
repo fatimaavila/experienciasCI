@@ -53,17 +53,19 @@ const newSchemaEditUser = Joi.object().keys({
         }),
     ccc: Joi.string()
 
-                .creditCard()
-                .min(20)
-                .max(20)
-                .error((error) => {
-                    switch (error[0].code) {
-                        default:
-                            return new Error('La tarjeta de crédito debe tener 20 caracteres');
-                    }
-                }),
+        .creditCard()
+        .min(20)
+        .max(20)
+        .error((error) => {
+            switch (error[0].code) {
+                default:
+                    return new Error(
+                        'La tarjeta de crédito debe tener 20 caracteres'
+                    );
+            }
+        }),
 
-    avatar: Joi.object({
+    /* avatar: Joi.object({
                 filename: Joi.string().required(),
                 path: Joi.string().required(),
                 headers: Joi.object({
@@ -71,7 +73,7 @@ const newSchemaEditUser = Joi.object().keys({
                     'content-type' : Joi.string().valid('image/jpeg','image/png').required(),
                 }).required(),
                 bytes: Joi.number().required()
-                })
+                }) */
 });
 
 module.exports = { newSchemaEditUser };
