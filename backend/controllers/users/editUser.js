@@ -19,13 +19,13 @@ const editUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
-        let { email, ccc, address, phone, bio, cp } = req.body;
-        let { avatar } = req.files;
+        let { email, address, phone, bio, cp } = req.body;
+        let avatar = req.files;
 
-        console.log(avatar, idUser);
+        /*  console.log(idUser, req.files, avatar); */
         const now = new Date();
 
-        /*  await validate(newSchemaEditUser, req.body); */
+        /* await validate(newSchemaEditUser, req.body); */
 
         if (req.userAuth.idUser !== Number(idUser)) {
             const error = new Error(
@@ -43,7 +43,7 @@ const editUser = async (req, res, next) => {
         );
 
         email = !email ? user[0].email : email;
-        ccc = !ccc ? user[0].ccc : ccc;
+
         address = !address ? user[0].direccion : address;
         phone = !phone ? user[0].telefono : phone;
         bio = !bio ? user[0].bio : bio;
@@ -95,7 +95,7 @@ const editUser = async (req, res, next) => {
                 await deletePhoto(user[0].avatar);
             }
 
-            avatarName = await savePhoto(user[0].avatar);
+            avatarName = await savePhoto(avatar);
 
             await connection.query(
                 `
@@ -107,9 +107,9 @@ const editUser = async (req, res, next) => {
 
         await connection.query(
             `
-            UPDATE users SET ccc = ?, direccion = ?, bio = ?, cp = ?, modifiedAt = ? WHERE id = ?;
+            UPDATE users SET direccion = ?, bio = ?, cp = ?, modifiedAt = ? WHERE id = ?;
         `,
-            [ccc, address, bio, cp, formatDate(now), idUser]
+            [address, bio, cp, formatDate(now), idUser]
         );
 
         res.send({

@@ -4,11 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { putAxios } from '../../axiosCalls';
+import axios from 'axios';
 
 function UserProfile() {
   const [password, setPassword] = useState('');
 
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState();
   const [error, setError] = useState();
   const { token, tokenContent, userInfo } = useContext(UserContext);
 
@@ -25,9 +26,6 @@ function UserProfile() {
     avatar: userInfo?.avatar,
   };
 
-  let avatar = new FormData();
-  avatar.append('avatar', file);
-
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
 
   const body = {
@@ -39,8 +37,6 @@ function UserProfile() {
     cp: dataUser.cp,
     email: dataUser.email,
   };
-
-  console.log(file, avatar);
 
   async function updateUser(e) {
     e.preventDefault();
@@ -54,6 +50,18 @@ function UserProfile() {
 
       console.log(data);
       setDataUser(data);
+      let photo = new FormData();
+      photo.append('avatar', file);
+
+      const response = await putAxios(
+        `http://localhost:8080/users/${tokenContent?.idUser}`,
+        photo,
+        token
+      );
+      console.log(response);
+      const avatarUrl = response.data;
+
+      console.log(avatarUrl);
     } catch (error) {
       setError(error.response.data.message);
       console.log('error', error.response);
@@ -61,21 +69,21 @@ function UserProfile() {
     console.log('error', error);
   }
 
-  /* const onFileChange = (e) => {
+  const onFileChange = (e) => {
     const file = e.target.files[0];
 
     setFile(file);
-  }; */
+  };
 
   return (
     <>
       <Form className="modalBody" onSubmit={updateUser}>
-        {/* <Form.Group>
+        <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Avatar</span>
             <Form.Control type="file" onChange={onFileChange} />
           </Form.Label>
-        </Form.Group> */}
+        </Form.Group>
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Nombre</span>

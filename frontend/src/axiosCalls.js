@@ -18,13 +18,13 @@ async function postAxios(url, body, token) {
   return data;
 }
 
-async function putAxios(url, body, token, avatar) {
+async function putAxios(url, body, token) {
   const headers = token ? { Authorization: token } : null;
 
   const { data } = await axios.put(url, body, {
     headers,
-  }, avatar);
-  
+  });
+
   return data;
 }
 
