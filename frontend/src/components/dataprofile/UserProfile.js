@@ -92,11 +92,7 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Apellidos</span>
-            <Form.Control
-              type="text"
-              placeholder={userInfo?.apellidos}
-              disabled
-            />
+            <Form.Control type="text" placeholder={userInfo?.apellidos} />
           </Form.Label>
         </Form.Group>
         <Form.Group>
@@ -182,6 +178,7 @@ function UserProfile() {
               onChange={(e) =>
                 setDataUser({ ...dataUser, email: e.target.value })
               }
+              disabled
             />
           </Form.Label>
         </Form.Group>
