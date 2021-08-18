@@ -29,13 +29,11 @@ const betterExperiences = [
   random(),
   random(),
 ];
-console.log(betterExperiences);
 
 function Carousel() {
   const history = useHistory();
 
   const [allExperiences, setAllExperiences] = useState([]);
-  console.log(allExperiences);
 
   useEffect(() => {
     const carouselExperiences = [];
@@ -49,7 +47,6 @@ function Carousel() {
           carouselExperiences.push(data);
         }
         setAllExperiences(carouselExperiences);
-        console.log(carouselExperiences);
       } catch (error) {}
     }
     getExperience(betterExperiences);
@@ -80,10 +77,10 @@ function Carousel() {
               className="item"
               data-value={index}
             >
-              <div className="imgCarousel">
+              <div className='posRel'>
                 <img width="100%" src={data?.photos[0].photo} alt="category" />
+                <span className="titlePopularExperience">{data?.nombre}</span>
               </div>
-              <span className="titlePopularExperience">{data?.nombre}</span>
             </div>
           );
         })}

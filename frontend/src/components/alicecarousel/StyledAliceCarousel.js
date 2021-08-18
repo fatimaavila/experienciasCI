@@ -16,11 +16,21 @@ const StyledAliceCarousel = styled.div`
 }
 
 & .item img {
+    height: 200px;
     display: block;
 }
 
 & .titlePopularExperience {
-    margin-top: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 65%;
+    background-color: var(--bg-black-light);
+    color: var(--color-white);
+    display: block;
+    padding: 0.5rem 0rem;
+    z-index: 123;
 }
 
 `;
