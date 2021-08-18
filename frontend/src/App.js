@@ -15,11 +15,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-
-        <ScrollToTopRouter/>
-
+        <ScrollToTopRouter />
         <MainHeader />
-
         <Switch>
           {routes.map((route) => (
             <Route key={route.path} path={route.path}>
@@ -28,11 +25,11 @@ function App() {
           ))}
           {home && <Home />}
         </Switch>
-
         <Footer />
-
-        <ScrollToTop showUnder={200} duration={300}>
-          <div className='scrollUp_Box'><BsArrowUpShort size='50px' color='#FFF'/></div>
+        <ScrollToTop showUnder={200} duration={150} easing={'easeInOutQuart'}>
+          <div className="scrollUp_Box">
+            <BsArrowUpShort size="50px" color="#FFF" />
+          </div>
         </ScrollToTop>
       </div>
     </Router>
