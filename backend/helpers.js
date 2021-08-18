@@ -6,7 +6,7 @@ const { ensureDir, unlink } = require('fs-extra');
 const path = require('path');
 
 const { UPLOADS } = process.env;
-const uploadsDir = path.join(__dirname, UPLOADS);
+const uploadsDir = path.join(__dirname, `static/${UPLOADS}`);
 
 function formatDate(date) {
     return format(date, 'yyyy-MM-dd HH:mm:ss');
@@ -17,6 +17,7 @@ function getRandomValue(min, max) {
 }
 
 async function savePhoto(image) {
+    console.log(uploadsDir);
     await ensureDir(uploadsDir);
     const sharpImage = sharp(image.data);
     const imageInfo = await sharpImage.metadata();
@@ -49,7 +50,6 @@ async function validate(schema, data) {
 }
 
 const priceQuery = async (price) => {
-
     switch (price) {
         case '0-50':
             return `precio BETWEEN 0 AND 50`;

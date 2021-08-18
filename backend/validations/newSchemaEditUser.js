@@ -51,19 +51,6 @@ const newSchemaEditUser = Joi.object().keys({
                     return new Error('El teléfono no es válido.');
             }
         }),
-    ccc: Joi.string()
-
-        .creditCard()
-        .min(20)
-        .max(20)
-        .error((error) => {
-            switch (error[0].code) {
-                default:
-                    return new Error(
-                        'La tarjeta de crédito debe tener 20 caracteres'
-                    );
-            }
-        }),
 
     /* avatar: Joi.object({
                 filename: Joi.string().required(),
