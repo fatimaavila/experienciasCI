@@ -17,10 +17,12 @@ function getRandomValue(min, max) {
 }
 
 async function savePhoto(image) {
-    console.log(uploadsDir);
     await ensureDir(uploadsDir);
     const sharpImage = sharp(image.data);
+    console.log('si', sharpImage);
     const imageInfo = await sharpImage.metadata();
+    console.log('ii', sharpImage);
+
     const IMAGE_MAX_WIDTH = 1000;
     if (imageInfo.width > IMAGE_MAX_WIDTH) {
         sharpImage.resize(IMAGE_MAX_WIDTH);

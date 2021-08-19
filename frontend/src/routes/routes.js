@@ -11,6 +11,7 @@ import Experiences from '../pages/experiences/Experiences';
 import RegisterValidate from '../pages/registervalidate/RegisterValidate';
 import UserMenu from '../pages/userMenu/UserMenu';
 import AdminMenu from '../pages/adminMenu/AdminMenu';
+import Shop from '../components/shop/Shop';
 
 const routes = [
   {
@@ -72,6 +73,11 @@ const routes = [
     path: '/adminmenu',
     Page: AdminMenu,
     label: 'AdminMenu',
+  },
+  {
+    path: '/shop',
+    Page: Shop,
+    label: 'Shop',
   },
   {
     path: '/',

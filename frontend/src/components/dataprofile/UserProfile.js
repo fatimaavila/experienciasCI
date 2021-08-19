@@ -1,10 +1,9 @@
 import { Form } from 'react-bootstrap';
 import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { putAxios } from '../../axiosCalls';
-import axios from 'axios';
 
 function UserProfile() {
   const [password, setPassword] = useState('');
