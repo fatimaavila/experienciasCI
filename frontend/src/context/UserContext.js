@@ -1,5 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 import { useLocalStorage } from '../Hooks/useLocaleStorage';
+import { useLocalStorageCart } from '../Hooks/useLocaleStorageCart';
+
 import jwt_decode from 'jwt-decode';
 import { getAxios } from '../axiosCalls';
 export const UserContext = createContext();
@@ -8,14 +10,18 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useLocalStorage('token');
   const [tokenContent, setTokenContent] = useLocalStorage('tokenContent');
   const [userInfo, setUserInfo] = useState(null);
+
+  const [cartExperience, setCartExperience] = useLocalStorageCart('infoCart');
   // const [errorToken,setErrorToken] = useState('');
+  console.log('cart', cartExperience);
 
   const logout = useCallback(() => {
     setToken(null);
     setTokenContent(null);
     setUserInfo(null);
-  }, [setToken, setTokenContent]);
-console.log(userInfo);
+    setCartExperience([]);
+  }, [setToken, setTokenContent, setCartExperience]);
+  console.log(userInfo);
   useEffect(() => {
     const getUserInfo = async () => {
       try {
@@ -38,7 +44,15 @@ console.log(userInfo);
 
   return (
     <UserContext.Provider
-      value={{ userInfo, token, setToken, logout, tokenContent }}
+      value={{
+        userInfo,
+        token,
+        setToken,
+        logout,
+        tokenContent,
+        setCartExperience,
+        cartExperience,
+      }}
     >
       {children}
     </UserContext.Provider>
