@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 function FullExperience({ data }) {
   let history = useHistory();
   const infoActive = data;
+
   function goToCart() {
     history.push({
       pathname: '/shop',
