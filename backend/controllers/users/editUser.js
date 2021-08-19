@@ -88,7 +88,7 @@ const editUser = async (req, res, next) => {
             );
         }
 
-        let avatarName;
+        let avatarName = '';
 
         if (req.files && req.files.avatar) {
             if (user[0].avatar) {
@@ -96,7 +96,7 @@ const editUser = async (req, res, next) => {
             }
 
             avatarName = await savePhoto(avatar);
-
+            console.log('avatarName', avatarName);
             await connection.query(
                 `
                 UPDATE users SET avatar = ?, modifiedAt = ? WHERE id = ?;

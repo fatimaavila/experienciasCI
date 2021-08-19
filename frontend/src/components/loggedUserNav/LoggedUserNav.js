@@ -16,7 +16,9 @@ function LoggedUserNav() {
   function redirectAdminMenu() {
     history.push({ pathname: '/adminmenu' });
   }
-
+  function redirectshop() {
+    history.push({ pathname: '/shop' });
+  }
   /*   useEffect(() => {
     const handleUserKeyPress = (event) => {
       event = setShowNavMenu(!showNavMenu);
@@ -30,7 +32,12 @@ function LoggedUserNav() {
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav posRel">
-        <GrCart className="cart" size="2rem" style={{color: '#FFF'}} />
+        <GrCart
+          className="cart"
+          size="2rem"
+          style={{ color: '#FFF' }}
+          onClick={() => redirectshop()}
+        />
         <span>Bienvenido, {userInfo.username}</span>
 
         <div className="avatarUser">

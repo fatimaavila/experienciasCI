@@ -3,12 +3,11 @@ import Button from '../button/Button';
 import ItemShop from './ItemShop';
 import { Form } from 'react-bootstrap';
 
-function Shop() {
+function Shop({ data }) {
+  console.log(data);
   return (
     <StyledShop>
       <section className="bookingInfo">
-        <ItemShop />
-        <ItemShop />
         <ItemShop />
       </section>
 
