@@ -2,6 +2,7 @@ import { getAxios } from '../../axiosCalls';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import React, { Suspense } from 'react';
+import Loading from '../../components/spinner/Loading';
 const FullExperience = React.lazy(() =>
   import('../../components/fullexperience/FullExperience')
 );
@@ -22,7 +23,13 @@ function UniqueExperiece() {
   }, [idExp]);
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div>
+            <Loading />
+          </div>
+        }
+      >
         <FullExperience data={uniqueExp} />
       </Suspense>
     </div>
