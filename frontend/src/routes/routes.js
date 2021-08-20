@@ -12,6 +12,8 @@ import RegisterValidate from '../pages/registervalidate/RegisterValidate';
 import UserMenu from '../pages/userMenu/UserMenu';
 import AdminMenu from '../pages/adminMenu/AdminMenu';
 import Shop from '../components/shop/Shop';
+import RecoverPass from '../pages/recoverPass/recoverPass';
+import ResetPass from '../pages/resetPass/resetPass';
 
 const routes = [
   {
@@ -78,6 +80,16 @@ const routes = [
     path: '/shop',
     Page: Shop,
     label: 'Shop',
+  },
+  {
+    path: '/recover-pass',
+    Page: RecoverPass,
+    label: 'RecoverPass',
+  },
+  {
+    path: '/reset-pass',
+    Page: ResetPass,
+    label: 'ResetPass',
   },
   {
     path: '/',

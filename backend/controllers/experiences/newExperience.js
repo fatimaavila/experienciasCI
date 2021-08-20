@@ -11,8 +11,6 @@ const newExperience = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        await validate(newSchemaExperience, req.body);
-
         const {
             name,
             description,
@@ -23,6 +21,7 @@ const newExperience = async (req, res, next) => {
             dStart,
             dStop,
         } = req.body;
+
         await validate(newSchemaExperience, req.body);
 
         if (req.userAuth.rol !== 'admin') {

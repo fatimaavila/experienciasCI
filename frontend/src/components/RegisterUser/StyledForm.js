@@ -42,6 +42,15 @@ const StyledForm = styled.div`
         width: 100%;
         padding: 0.375rem 0.75rem;
       }
+
+    .errorForm {
+        background-color: var(--color-red);
+        color: var(--color-white);
+        padding: 0.5rem 1rem;
+        align-self: center;
+        border-radius: 0.3rem;
+        margin-bottom: 2rem;
+    }
 `;
 
 export default StyledForm;

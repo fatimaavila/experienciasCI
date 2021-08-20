@@ -5,6 +5,7 @@ import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserContext } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 function LoginUser() {
   const { setToken, token } = useContext(UserContext);
 
@@ -32,7 +33,7 @@ function LoginUser() {
         );
         setToken(data.token);
       } catch (error) {
-        console.log('ERROR: ', error);
+        setError(error.response.data.message);
       }
     }
 
@@ -78,6 +79,8 @@ function LoginUser() {
                 />
               </Form.Label>
             </Form.Group>
+            <Link to='/recover-pass'>Olvidaste tu contraseña?</Link>
+            {error && <div className='errorForm'>{error}</div>}
             <Button
               white
               type="submit"
@@ -96,7 +99,6 @@ function LoginUser() {
             >
               Iniciar Sesión
             </Button>
-            {error && <div>{error} </div>}
           </Form>
         </StyledForm>
       </Modal>

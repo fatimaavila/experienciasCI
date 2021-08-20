@@ -15,7 +15,6 @@ function OrderExperiences({onChangeSelect, order}) {
                     <option value='precio-ASC'>Menor a mayor - Precio</option>
                 </Form.Select>
             </Form.Label>
-            <span>Mostrando X a XX de XX en total</span>
         </StyledOrderExperiences>
     )
 }

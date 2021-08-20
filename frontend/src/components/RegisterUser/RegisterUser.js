@@ -33,17 +33,14 @@ function RegisterUser() {
 
         await postAxios('http://localhost:8080/users', body);
       } catch (error) {
-        console.log(' error: ', error.response);
-
-        console.log('response error: ', error.response.data.message);
-
         setError(error.response);
       }
     }
-    console.log('ERROR: ', error?.data?.message);
+
     if (password === password2) {
       performLogin();
     }
+
     if (error?.data?.message === 'Error enviando email') {
       history.push({
         pathname: '/registervalidate',
@@ -133,8 +130,8 @@ function RegisterUser() {
               <Form.Check type="checkbox" />
               <Form.Label>Aceptar condiciones de uso</Form.Label>
             </Form.Group>
+            {error?.data?.message && <div className='errorForm'>{error?.data?.message}</div>}
             <Button white>ENVIAR</Button>
-            {error?.data?.message && <span>{error?.data?.message}</span>}
           </Form>
         </StyledForm>
       </Modal>
