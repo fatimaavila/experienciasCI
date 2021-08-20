@@ -2,18 +2,23 @@ import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
 import { Form } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
 function Shop() {
+  let history = useHistory();
+
   const expInfo = useLocation();
-  const { setCartExperience, cartExperience } = useContext(UserContext);
+  const { setCartExperience, cartExperience, token } = useContext(UserContext);
   console.log(cartExperience);
   console.log('shop', expInfo.data);
   const itemsStorage = localStorage.getItem('infoCart');
   const itemsMap = JSON.parse(itemsStorage);
   console.log('st', itemsMap);
+  function goToHome() {
+    history.push('/');
+  }
 
   let mappedItems = cartExperience !== [] ? cartExperience : itemsMap;
   console.log('mp', mappedItems);
@@ -57,8 +62,22 @@ function Shop() {
             <Form.Label htmlFor="present">Para Regalo</Form.Label>
           </Form.Group>
           <div className="buttonsShop">
-            <Button blue>Comprar</Button>
-            <Button>Seguir comprando</Button>
+            <Button
+              blue
+              onClickButton={() =>
+                token
+                  ? alert(
+                      'Tu viaje esta a punto de comenzar, prepara las maletas'
+                    ) &
+                    setCartExperience([]) &
+                    goToHome()
+                  : alert('Debes estar registrado para finalizar tu compra')
+              }
+            >
+              Comprar
+            </Button>
+
+            <Button onClickButton={() => goToHome()}>Seguir comprando</Button>
           </div>
         </Form>
       </section>

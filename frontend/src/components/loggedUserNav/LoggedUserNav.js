@@ -1,7 +1,7 @@
 import StyledLoggedUserNav from './StyledLoggedUserNav';
 import userAvatar from '../../assets/userdefaul.png';
-import { GrCart } from 'react-icons/gr';
-import { useState, useContext, useEffect } from 'react';
+
+import { useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 function LoggedUserNav() {
@@ -16,9 +16,7 @@ function LoggedUserNav() {
   function redirectAdminMenu() {
     history.push({ pathname: '/adminmenu' });
   }
-  function redirectshop() {
-    history.push({ pathname: '/shop' });
-  }
+
   /*   useEffect(() => {
     const handleUserKeyPress = (event) => {
       event = setShowNavMenu(!showNavMenu);
@@ -32,12 +30,6 @@ function LoggedUserNav() {
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav posRel">
-        <GrCart
-          className="cart"
-          size="2rem"
-          style={{ color: '#FFF' }}
-          onClick={() => redirectshop()}
-        />
         <span>Bienvenido, {userInfo.username}</span>
 
         <div className="avatarUser">

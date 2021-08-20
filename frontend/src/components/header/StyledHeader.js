@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -62,6 +62,20 @@ const StyledHeader = styled.header`
     bottom: 0;
     top: 98%;
     background-color: var(--color-cyan);
+  }
+  .carrito {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .bubble {
+    text-align: center;
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: #ef0e0e;
+    position: absolute;
   }
 `;
 

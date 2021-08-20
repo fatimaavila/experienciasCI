@@ -6,11 +6,8 @@ import { FaUser } from 'react-icons/fa';
 import { BsCheck } from 'react-icons/bs';
 import { Rating } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
 
 function FullExperience({ data }) {
-  const { token } = useContext(UserContext);
   let history = useHistory();
   const infoActive = data;
 
@@ -47,9 +44,7 @@ function FullExperience({ data }) {
               <Button
                 blue
                 onClickButton={() => {
-                  token
-                    ? goToCart()
-                    : alert('Debes estar registrado para continuar tu viaje');
+                  goToCart();
                 }}
               >
                 Comprar
