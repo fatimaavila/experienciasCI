@@ -1,26 +1,33 @@
-import fly from '../../assets/globoCategory.jpg';
 import { Form } from 'react-bootstrap';
+import { useState } from 'react';
 
-function ItemShop() {
+function ItemShop({ name, description, photo, precio }) {
+  const [units, setUnits] = useState();
+  console.log(units);
+  console.log(precio);
+  const totalPrice = (a, b) => {
+    return a * b;
+  };
+
+  const price = totalPrice(units, Number(precio));
   return (
-    <div className='bookingItemInfo posRel'>
+    <div className="bookingItemInfo posRel">
       <div className="imgShop">
-        <img width='100%' src={fly} alt="imgshop" />
+        <img width="1000%" src={photo} alt="imgshop" />
       </div>
       <div className="bookingExperienceInfo">
-        <h3>NOMBRE EXPERIENCIA</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipLorem ipsum dolor sit
-          amet, consectetur adip Lorem ipsum dolor sit amet, consectetur adip
-          Lorem ipsum dolor sit amet, consectetur adip.
-        </p>
+        <h3>{name}</h3>
+        <p>{description}</p>
 
         <Form.Label>
           Cantidad
-          <Form.Control type='number'/>
+          <Form.Control
+            type="number"
+            onChange={(e) => setUnits(e.target.value)}
+          />
         </Form.Label>
 
-        <span className='priceShop'>Total: 99,99€</span>
+        <span className="priceShop">Total: {price ? price : ''}€</span>
       </div>
     </div>
   );
