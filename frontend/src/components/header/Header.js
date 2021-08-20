@@ -8,10 +8,18 @@ import LoggedUserNav from '../loggedUserNav/LoggedUserNav';
 import categories from '../LandingCategories/categories';
 import { UserContext } from '../../context/UserContext';
 import { useContext } from 'react';
+import { GrCart } from 'react-icons/gr';
+import { useHistory } from 'react-router-dom';
 
 function MainHeader() {
-  const { userInfo, token } = useContext(UserContext);
+  let history = useHistory();
 
+  const { userInfo, token, cartExperience } = useContext(UserContext);
+  const bubble = cartExperience?.length;
+  console.log(bubble);
+  function redirectshop() {
+    history.push({ pathname: '/shop' });
+  }
   return (
     <>
       <StyledHeader>
@@ -21,14 +29,25 @@ function MainHeader() {
               <img src={logo} alt="Logo" />
             </a>
           </div>
-          {userInfo && <LoggedUserNav />}
-          {!token && (
-            <div className="buttonSession">
-              <LoginUser />
-              <RegisterUser />
+          <div className="carrito">
+            <div>
+              <GrCart
+                className="cart"
+                size="2.4rem"
+                onClick={() => redirectshop()}
+              />
+              {bubble > 0 && <span className="bubble">{bubble}</span>}
             </div>
-          )}
+            {userInfo && <LoggedUserNav />}
+            {!token && (
+              <div className="buttonSession">
+                <LoginUser />
+                <RegisterUser />
+              </div>
+            )}
+          </div>
         </div>
+
         <nav>
           <ul className="mainMenu">
             {categories.map(({ path, label }) => (

@@ -2,7 +2,7 @@ import { Form } from 'react-bootstrap';
 import { useState } from 'react';
 
 function ItemShop({ name, description, photo, precio }) {
-  const [units, setUnits] = useState();
+  const [units, setUnits] = useState(1);
   console.log(units);
   console.log(precio);
   const totalPrice = (a, b) => {
@@ -23,6 +23,9 @@ function ItemShop({ name, description, photo, precio }) {
           Cantidad
           <Form.Control
             type="number"
+            min="1"
+            max="99"
+            placeholder="1"
             onChange={(e) => setUnits(e.target.value)}
           />
         </Form.Label>
