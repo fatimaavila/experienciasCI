@@ -2,30 +2,43 @@ import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
 import { Form } from 'react-bootstrap';
-import { useLocation, useParams } from 'react-router-dom';
-import { useLocalStorageCart } from '../../Hooks/useLocaleStorageCart';
-import { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
 function Shop() {
   const expInfo = useLocation();
-  const { token, tokenContent, userInfo, setCartExperience, cartExperience } =
-    useContext(UserContext);
+  const { setCartExperience, cartExperience } = useContext(UserContext);
   console.log(cartExperience);
+  console.log('shop', expInfo.data);
+  const itemsStorage = localStorage.getItem('infoCart');
+  const itemsMap = JSON.parse(itemsStorage);
+  console.log('st', itemsMap);
+
+  let mappedItems = cartExperience !== [] ? cartExperience : itemsMap;
+  console.log('mp', mappedItems);
   useEffect(() => {
     if (cartExperience === []) {
       setCartExperience(expInfo.data);
-    } else {
+    } else if (expInfo.data !== undefined && cartExperience) {
       const item = [...cartExperience, expInfo.data];
       setCartExperience(item);
     }
   }, [expInfo.data, setCartExperience]);
 
-  console.log('shop', expInfo.data);
-
   return (
     <StyledShop>
       <section className="bookingInfo">
-        <ItemShop />
+        {mappedItems &&
+          mappedItems?.map((item) => (
+            <ItemShop
+              key={item?.nombre}
+              name={item?.nombre}
+              description={item?.descripcion}
+              photo={item?.photos[0].photo}
+              precio={item?.precio}
+            />
+          ))}
       </section>
 
       <section className="searchShop">
