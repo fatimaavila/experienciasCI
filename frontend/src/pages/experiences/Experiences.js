@@ -1,10 +1,14 @@
-import AllExperiences from '../../components/allexperiences/AllExperiences';
 import { getAxios } from '../../axiosCalls';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { sqlDateFormat } from '../../helpers';
+import React, { Suspense } from 'react';
+import Loading from '../../components/spinner/Loading';
 
+const AllExperiences = React.lazy(() =>
+  import('../../components/allexperiences/AllExperiences')
+);
 function Experiences() {
   const [experienceSearch, setExperienceSearch] = useState([]);
   const [selectFilter, setSelectFilter] = useState('');
@@ -83,29 +87,37 @@ function Experiences() {
   return (
     <>
       {experienceSearch && (
-        <AllExperiences
-          data={experienceSearch}
-          order={selectFilter}
-          onChangeSelect={(e) => setSelectFilter(e.target.value)}
-          onClickCity={(e) => setCityFilter(e.target.innerHTML)}
-          cityActive={cityFilter && cityActive}
-          cityFilterSelected={cityFilter}
-          priceFilter={priceFilter.checked}
-          onChangePrice={(e) =>
-            setPriceFilter({
-              checked: !priceFilter.checked,
-              value: e.target.value,
-            })
+        <Suspense
+          fallback={
+            <div>
+              <Loading />
+            </div>
           }
-          dateStartFilter={dateFilter.dateStart}
-          changeDatePickerStart={(date) =>
-            setDateFilter({ ...dateFilter, dateStart: date })
-          }
-          dateEndFilter={dateFilter.dateEnd}
-          changeDatePickerEnd={(date) =>
-            setDateFilter({ ...dateFilter, dateEnd: date })
-          }
-        />
+        >
+          <AllExperiences
+            data={experienceSearch}
+            order={selectFilter}
+            onChangeSelect={(e) => setSelectFilter(e.target.value)}
+            onClickCity={(e) => setCityFilter(e.target.innerHTML)}
+            cityActive={cityFilter && cityActive}
+            cityFilterSelected={cityFilter}
+            priceFilter={priceFilter.checked}
+            onChangePrice={(e) =>
+              setPriceFilter({
+                checked: !priceFilter.checked,
+                value: e.target.value,
+              })
+            }
+            dateStartFilter={dateFilter.dateStart}
+            changeDatePickerStart={(date) =>
+              setDateFilter({ ...dateFilter, dateStart: date })
+            }
+            dateEndFilter={dateFilter.dateEnd}
+            changeDatePickerEnd={(date) =>
+              setDateFilter({ ...dateFilter, dateEnd: date })
+            }
+          />
+        </Suspense>
       )}
     </>
   );
