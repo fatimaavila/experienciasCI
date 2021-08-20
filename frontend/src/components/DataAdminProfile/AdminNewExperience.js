@@ -5,6 +5,7 @@ import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StyledForm from '../RegisterUser/StyledForm';
 import DatePicker from 'react-datepicker';
+import { useHistory } from 'react-router-dom';
 
 import { onlyUnique, sqlDateFormat } from '../../helpers';
 import { getAxios, postAxios } from '../../axiosCalls';
@@ -22,6 +23,8 @@ function AdminNeWExperience() {
   const [dStart, setDStart] = useState('');
   const [dStop, setDStop] = useState('');
   const [error, setError] = useState('');
+
+  let history = useHistory();
 
   const dateStart = new Date(dStart).toLocaleDateString('es-ES', {
     year: 'numeric',
@@ -56,24 +59,19 @@ function AdminNeWExperience() {
           dStart: sqlDateFormat(dateStart),
           dStop: sqlDateFormat(dateStop),
         };
-
+        
         await postAxios('http://localhost:8080/experiences', body, token);
+        history.go(0);
       } catch (error) {
-        console.log(' error: ', error.response);
-
-        console.log('response error: ', error.response.data.message);
-
         setError(error.response);
       }
     }
-    console.log('ERROR: ', error?.data?.message);
     performNewExperience();
-    setFormActivate(!formActivate);
   }
 
   useEffect(() => {
     getCategories();
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -190,8 +188,8 @@ function AdminNeWExperience() {
               <Form.Check type="checkbox" />
               <Form.Label>Aceptar condiciones de uso</Form.Label>
             </Form.Group>
+            {error?.data?.message && <div className='errorForm'>{error?.data?.message}</div>}
             <Button white>ENVIAR</Button>
-            {error?.data?.message && <span>{error?.data?.message}</span>}
           </Form>
         </StyledForm>
       </Modal>

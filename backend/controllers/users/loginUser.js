@@ -11,7 +11,7 @@ const loginUser = async (req, res, next) => {
 
         const { email, username, password } = req.body;
         if ((!email && !username) || !password) {
-            const error = new Error('Debes rellenar tu usuario');
+            const error = new Error('Obligatorio rellenar todos los campos');
             error.httpStatus = 400;
             throw error;
         }
@@ -29,8 +29,6 @@ const loginUser = async (req, res, next) => {
         `,
             [username, password]
         );
-
-        console.log(userEmail);
 
         if (userEmail.length < 1 && userName.length < 1) {
             const error = new Error('Usuario/Email o contraseña incorrectos');

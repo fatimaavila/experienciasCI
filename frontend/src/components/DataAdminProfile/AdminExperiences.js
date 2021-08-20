@@ -12,7 +12,6 @@ function AdminExperiences() {
 
       const { data } = await getAxios('http://localhost:8080/experiences');
       setExperienceInfo(data);
-      console.log(data);
     }
 
     getInfoExperiences();
