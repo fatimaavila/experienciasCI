@@ -17,7 +17,7 @@ const recoverUserPassword = async (req, res, next) => {
 
         if (user.length < 1) {
             const error = new Error(
-                `El correo no corresponde con ninguna cuenta`
+                `El correo no corresponde con ninguna cuenta registrada`
             );
             error.httpStatus = 404;
             throw error;
@@ -29,7 +29,7 @@ const recoverUserPassword = async (req, res, next) => {
             
             Se solicitó un cambio de contraseña para el usuario registrado con este email en la plataforma VAN Experiences.
 
-            El código de recuperación es: ${recoverCode}
+            El código de recuperación es: http://loclalhost:3000/reset-pass/${recoverCode}
 
             Si no has sido tu por favor, ignora este email.
 
@@ -50,6 +50,7 @@ const recoverUserPassword = async (req, res, next) => {
         res.send({
             status: 200,
             message: 'Email enviado',
+            recoverCode: recoverCode,
         });
     } catch (error) {
         next(error);

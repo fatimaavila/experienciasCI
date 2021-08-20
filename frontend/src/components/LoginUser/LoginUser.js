@@ -79,7 +79,7 @@ function LoginUser() {
                 />
               </Form.Label>
             </Form.Group>
-            <Link to='/recover-pass'>Olvidaste tu contraseña?</Link>
+            <Link className='forgetPass' to='/recover-pass'>Olvidaste tu contraseña?</Link>
             {error && <div className='errorForm'>{error}</div>}
             <Button
               white
