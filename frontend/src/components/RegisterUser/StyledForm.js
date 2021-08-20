@@ -51,6 +51,12 @@ const StyledForm = styled.div`
         border-radius: 0.3rem;
         margin-bottom: 2rem;
     }
+
+    .forgetPass {
+        align-self: center;
+        color: var(--color-white);
+        margin-bottom: 2rem; 
+    }
 `;
 
 export default StyledForm;
