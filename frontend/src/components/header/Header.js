@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import logo from '../../assets/LOGOBUENO.png';
 import StyledHeader from './StyledHeader';
@@ -16,10 +16,14 @@ function MainHeader() {
 
   const { userInfo, token, cartExperience } = useContext(UserContext);
   const bubble = cartExperience?.length;
-  console.log(bubble);
   function redirectshop() {
     history.push({ pathname: '/shop' });
   }
+
+  // const categoryParam = useLocation();
+
+  // console.log(new URLSearchParams(categoryParam.pathname));
+
   return (
     <>
       <StyledHeader>

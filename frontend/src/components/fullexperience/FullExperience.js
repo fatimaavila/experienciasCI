@@ -6,6 +6,11 @@ import { FaUser } from 'react-icons/fa';
 import { BsCheck } from 'react-icons/bs';
 import { Rating } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import es from 'date-fns/locale/es';
+
+registerLocale('es', es);
 
 function FullExperience({ data }) {
   let history = useHistory();
@@ -30,12 +35,22 @@ function FullExperience({ data }) {
         <div className="experienceInfo">
           <section>
             <h2>{data.nombre}</h2>
-            <Rating
-              name="rating-experience"
-              value={rating !== 0.0 ? rating : defaultRating}
-              precision={0.5}
-              readOnly
-            />
+            <div className='rating_dateBooking'>
+              <Rating
+                name="rating-experience"
+                value={rating !== 0.0 ? rating : defaultRating}
+                precision={0.5}
+                readOnly
+              />
+              <div className='dateBooking'>
+                <span>Fecha de la Reserva:</span>
+                <DatePicker 
+                  locale="es"
+                  dateFormat="dd/MM/yyyy"
+                  className="date-picker"
+                />
+              </div>
+            </div>
             <div className="experiencePrice_Buy">
               <section>
                 <span className="priceLabel">Precio:</span>
