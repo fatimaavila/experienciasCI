@@ -9,6 +9,7 @@ import { UserContext } from '../../context/UserContext';
 function Shop() {
   let history = useHistory();
   const [checked, setChecked] = useState();
+  const [error, setError] = useState();
   console.log('post', checked);
   const expInfo = useLocation();
   const { setCartExperience, cartExperience, token } = useContext(UserContext);
@@ -47,9 +48,9 @@ function Shop() {
     <StyledShop>
       <section className="bookingInfo">
         {mappedItems &&
-          mappedItems?.map((item) => (
+          mappedItems?.map((item, index) => (
             <ItemShop
-              key={item?.nombre}
+              key={index}
               name={item?.nombre}
               description={item?.descripcion}
               photo={item?.photos[0].photo}
@@ -84,22 +85,25 @@ function Shop() {
               type="radio"
               name="envio"
               id="present"
-              checked={() => isChecked('present')}
+              onChange={() => isChecked('present')}
             />
             <Form.Label htmlFor="present">Para Regalo</Form.Label>
           </Form.Group>
           <div className="buttonsShop">
+            {error && <span>{error}</span>}
             <Button
               blue
-              onClickButton={() => {
+              onClickButton={(e) => {
+                e.preventDefault();
                 if (token && checked) {
                   alert(checked);
+                  setError();
                   setCartExperience([]);
                   goToHome();
                 } else if (!token) {
-                  alert('Debes estar registrado para finalizar tu compra');
+                  setError('Debes estar registrado para finalizar tu compra');
                 } else if (token && !checked) {
-                  alert('Debes seleccionar un metodo de envío');
+                  setError('Debes seleccionar un metodo de envío');
                 }
               }}
             >
