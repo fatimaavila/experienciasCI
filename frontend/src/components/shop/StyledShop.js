@@ -15,7 +15,7 @@ const StyledShop = styled.div`
   
   .bookingItemInfo {
     display:flex;
-    gap: 20px;
+    gap: 2rem;
     margin-bottom: 6rem;
   }
 
@@ -43,6 +43,7 @@ const StyledShop = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 65%;
   }
 
   .bookingExperienceInfo label {
@@ -53,6 +54,8 @@ const StyledShop = styled.div`
 
   .priceShop {
     align-self: flex-end;
+    font-weight: 600;
+    font-size: 2rem;
   }
 
   .searchShop {
@@ -78,6 +81,13 @@ const StyledShop = styled.div`
     gap: 10px;
     align-items: center;
     padding-top: 2rem; 
+  }
+
+  .showMoreBtn {
+    color: var(--color-cyan);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 0.5rem;
   }
 `;
 

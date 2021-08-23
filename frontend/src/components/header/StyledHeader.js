@@ -63,19 +63,30 @@ const StyledHeader = styled.header`
     top: 98%;
     background-color: var(--color-cyan);
   }
-  .carrito {
+
+  .logIn_shopCart {
     display: flex;
     align-items: center;
     gap: 3rem;
   }
-  .bubble {
-    text-align: center;
-    color: white;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    background-color: #ef0e0e;
+
+  .bubbleCart {
     position: absolute;
+    right: -25%;
+    top: -10%;
+    color: var(--color-white);
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    background-color: var(--color-red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cartIcon {
+    color: var(--color-white);
+    cursor: pointer;
   }
 `;
 
