@@ -8,7 +8,6 @@ const getAllExperiences = async (req, res, next) => {
 
         const {
             searchExp,
-            searchCity,
             city,
             price,
             cat,
@@ -25,13 +24,6 @@ const getAllExperiences = async (req, res, next) => {
 
         if (searchExp) {
             sqlExperience = `${sqlExperience} ${separador} nombre LIKE '%${searchExp}%'`;
-
-            [result] = await connection.query(sqlExperience);
-            separador = 'AND';
-        }
-
-        if (searchCity) {
-            sqlExperience = `${sqlExperience} ${separador} ciudad LIKE '%${searchCity}%'`;
 
             [result] = await connection.query(sqlExperience);
             separador = 'AND';
@@ -180,7 +172,6 @@ const getAllExperiences = async (req, res, next) => {
 
         if (
             !searchExp &&
-            !searchCity &&
             !city &&
             !cat &&
             !disp &&
@@ -195,13 +186,6 @@ const getAllExperiences = async (req, res, next) => {
                  SELECT * FROM experiences;
                 `
             );
-        }
-
-        if(result.length < 1) {
-            res.send({
-                status: 204,
-                data: 'No se han obtenido ningún resultado con los filtros seleccionados',
-            });
         }
 
         res.send({

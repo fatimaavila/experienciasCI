@@ -18,6 +18,14 @@ const StyledAllExperience = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
+  .dataNull {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 6rem 0rem;
+  }
 `;
 
 export default StyledAllExperience;

@@ -78,7 +78,7 @@ function Filters({
             type="radio"
             name="price"
             value="50-100"
-            checked={priceFilter.value && priceFilter}
+            checked={priceFilter.value && priceFilter.checked}
             onChange={onChangePrice}
           />
           <span>50&#8364; - 100&#8364;</span>

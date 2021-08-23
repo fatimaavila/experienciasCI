@@ -3,7 +3,7 @@ import Filters from '../filters/Filters';
 import OrderExperiences from '../OrderExperiences/OrderExperiences';
 import StyledAllExperience from './StyledAllExperience';
 
-function AllExperiences({ data, onChangeSelect, order, onClickCity, cityActive, onChangePrice, cityFilterSelected, priceFilter, dateStartFilter, dateEndFilter, changeDatePickerStart, changeDatePickerEnd }) {
+function AllExperiences({ data, onChangeSelect, order, filterNull, onClickCity, cityActive, onChangePrice, cityFilterSelected, priceFilter, dateStartFilter, dateEndFilter, changeDatePickerStart, changeDatePickerEnd }) {
 
   return (
     <>
@@ -14,22 +14,27 @@ function AllExperiences({ data, onChangeSelect, order, onClickCity, cityActive, 
                       dateStartFilter={dateStartFilter} changeDatePickerStart={changeDatePickerStart}
                       dateEndFilter={dateEndFilter} changeDatePickerEnd={changeDatePickerEnd}         
             />
-            {data && (
               <div className='results'>
-                <OrderExperiences order={order} onChangeSelect={onChangeSelect}/>
-                <div className="experiences">
-                  {data.map(({ id, nombre, ciudad, precio }) => (
-                    <Experience
-                      key={id}
-                      name={nombre}
-                      city={ciudad}
-                      price={precio}
-                      id={id}
-                    />
-                  ))}
-                </div>
+                <OrderExperiences order={order} onChangeSelect={onChangeSelect} filterNull={filterNull}/>
+                {data && 
+                  <div className="experiences">
+                    {data.map(({ id, nombre, ciudad, precio }) => (
+                      <Experience
+                        key={id}
+                        name={nombre}
+                        city={ciudad}
+                        price={precio}
+                        id={id}
+                      />
+                    ))}
+                  </div>
+                }
+                {data.length === 0 && 
+                  <div className='dataNull'>
+                    <h3>{'No se han obtenido resultados con los filtros seleccionados'}</h3>
+                  </div>
+                }
               </div>
-            )}
         </StyledAllExperience>
       )}
     </>

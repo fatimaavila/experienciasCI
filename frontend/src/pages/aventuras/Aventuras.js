@@ -84,6 +84,13 @@ function Aventura() {
           <AllExperiences
             data={catAventure}
             order={selectFilter}
+            filterNull={
+              () => 
+                setSelectFilter('') &
+                setCityFilter('') &
+                setPriceFilter({ checked: false, value: '' }) &
+                setDateFilter({ dateStart: '', dateEnd: '' })
+            }
             onChangeSelect={(e) => setSelectFilter(e.target.value)}
             onClickCity={(e) => setCityFilter(e.target.innerHTML)}
             cityActive={cityFilter && cityActive}
