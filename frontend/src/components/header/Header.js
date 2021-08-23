@@ -20,9 +20,12 @@ function MainHeader() {
     history.push({ pathname: '/shop' });
   }
 
-  // const categoryParam = useLocation();
+  const categoryParam = useLocation().pathname;
 
-  // console.log(new URLSearchParams(categoryParam.pathname));
+  const categorySelected = {
+    backgroundColor: '#3aabfe',
+    color: '#FFF',
+  }
 
   return (
     <>
@@ -57,7 +60,7 @@ function MainHeader() {
           <ul className="mainMenu">
             {categories.map(({ path, label }) => (
               <li key={uuidv4()}>
-                <Link to={path}>{label.toUpperCase()}</Link>
+                <Link to={path} style={categoryParam === path ? categorySelected : null}>{label.toUpperCase()}</Link>
               </li>
             ))}
           </ul>
