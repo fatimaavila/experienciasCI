@@ -47,6 +47,24 @@ const StyledFullExperience = styled.div`
         font-size: 3rem;
       }
 
+      & .rating_dateBooking {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+
+        & .date-picker {
+          border: 0;
+          border-bottom: 2px solid var(--color-cyan);
+        }
+
+        & .dateBooking {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+
       & .experiencePrice_Buy {
         display: flex;
         align-items: center;
