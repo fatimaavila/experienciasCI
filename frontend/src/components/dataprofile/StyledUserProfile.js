@@ -20,7 +20,7 @@ const StyledUserProfile = styled.div`
       height: 180px;
     }
   }
-  
+
   .userProfileNav {
     width: 100%;
     margin-bottom: 3rem;
@@ -36,7 +36,6 @@ const StyledUserProfile = styled.div`
         cursor: pointer;
       }
     }
-
   }
 
   .userProfileDele {
@@ -155,20 +154,19 @@ const StyledUserProfile = styled.div`
       align-items: center;
       justify-content: space-around;
       width: 100%;
-      
+
       & .bookingRate {
         display: flex;
         align-items: center;
         gap: 15px;
       }
-  
+
       & .bookingComments {
         display: flex;
         align-items: center;
         gap: 5rem;
       }
     }
-
   }
 `;
 export default StyledUserProfile;

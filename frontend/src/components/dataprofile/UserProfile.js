@@ -26,7 +26,8 @@ function UserProfile() {
   };
 
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
-
+  const [changeChecked, setChangeChecked] = useState(false);
+  const [labelCheck, setLabelCheck] = useState(false);
   const body = {
     name: dataUser.name,
     dni: dataUser.dni,
@@ -191,7 +192,7 @@ function UserProfile() {
         </Form.Group>
         <Form.Group>
           <Form.Label className="editInfoLabel">
-            <span>Introduce tu contraseña para confirmar</span>
+            <span>Introduce tu contraseña si deseas modificarla</span>
             <Form.Control
               type="password"
               placeholder="Confirma tu Contraseña"
@@ -200,9 +201,15 @@ function UserProfile() {
         </Form.Group>
         <Form.Group>
           <Form.Label>
-            <Form.Check type="checkbox" />
-            <span>Aceptar condiciones de uso</span>
+            <Form.Check
+              type="checkbox"
+              onChange={() => setChangeChecked(!changeChecked)}
+            />
+            <span>Aceptar condiciones de actualizado de datos.</span>
           </Form.Label>
+          {labelCheck && (
+            <span>Debes aceptar la condiciones para actualizar tus datos</span>
+          )}
           <Button blue className="editInfoButton">
             EDITAR INFORMACIÓN
           </Button>
