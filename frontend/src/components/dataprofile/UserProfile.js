@@ -26,47 +26,50 @@ function UserProfile() {
   };
 
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
-  const [changeChecked, setChangeChecked] = useState(false);
-  const [labelCheck, setLabelCheck] = useState(false);
+  const [changeChecked, setChangeChecked] = useState(true);
+  console.log(changeChecked);
+
   const body = {
     name: dataUser.name,
     dni: dataUser.dni,
     phone: dataUser.phone,
     address: dataUser.address,
     bio: dataUser.bio,
-    cp: dataUser.cp,
+    cp: dataUser.postalCode,
     email: dataUser.email,
   };
 
   async function updateUser(e) {
-    e.preventDefault();
+    if (changeChecked === false) {
+      try {
+        const { data } = await putAxios(
+          `http://localhost:8080/users/${tokenContent?.idUser}`,
+          body,
+          token
+        );
 
-    try {
-      const { data } = await putAxios(
-        `http://localhost:8080/users/${tokenContent?.idUser}`,
-        body,
-        token
-      );
+        console.log(data);
+        setDataUser(data);
+        let photo = new FormData();
+        photo.append('avatar', file);
 
-      console.log(data);
-      setDataUser(data);
-      let photo = new FormData();
-      photo.append('avatar', file);
+        const response = await putAxios(
+          `http://localhost:8080/users/${tokenContent?.idUser}`,
+          photo,
+          token
+        );
+        console.log(response);
+        const avatarUrl = response.data;
 
-      const response = await putAxios(
-        `http://localhost:8080/users/${tokenContent?.idUser}`,
-        photo,
-        token
-      );
-      console.log(response);
-      const avatarUrl = response.data;
-
-      console.log(avatarUrl);
-    } catch (error) {
-      setError(error.response.data.message);
-      console.log('error', error.response);
+        console.log(avatarUrl);
+      } catch (error) {
+        setError(error.response.data.message);
+        console.log('error', error.response);
+      }
+      console.log('error', error);
+    } else {
+      e.preventDefault();
     }
-    console.log('error', error);
   }
 
   const onFileChange = (e) => {
@@ -100,7 +103,11 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Apellidos</span>
-            <Form.Control type="text" placeholder={userInfo?.apellidos} />
+            <Form.Control
+              type="text"
+              placeholder={userInfo?.apellidos}
+              disabled
+            />
           </Form.Label>
         </Form.Group>
         <Form.Group>
@@ -186,7 +193,6 @@ function UserProfile() {
               onChange={(e) =>
                 setDataUser({ ...dataUser, email: e.target.value })
               }
-              disabled
             />
           </Form.Label>
         </Form.Group>
@@ -207,7 +213,7 @@ function UserProfile() {
             />
             <span>Aceptar condiciones de actualizado de datos.</span>
           </Form.Label>
-          {labelCheck && (
+          {changeChecked && (
             <span>Debes aceptar la condiciones para actualizar tus datos</span>
           )}
           <Button blue className="editInfoButton">

@@ -8,16 +8,13 @@ function ItemShop({ name, description, photo, precio, date, remove, index }) {
   const totalPrice = (a, b) => {
     return a * b;
   };
-  const { cartExperience, setCartExperience } = useContext(UserContext);
+  const { cartExperience } = useContext(UserContext);
 
   const price = totalPrice(units, Number(precio));
 
   const descFirts_Part = description.split('.').slice(0, 4).join('.');
   const descSecond_Part = description.split('.').slice(4).join('.');
-  function removeItem() {
-    let items = remove(cartExperience, index);
-    /*  setCartExperience(...items); */
-  }
+
   return (
     <div className="bookingItemInfo posRel">
       <div className="imgShop">
