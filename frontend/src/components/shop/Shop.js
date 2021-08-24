@@ -12,6 +12,7 @@ function Shop() {
   const [error, setError] = useState();
   console.log('post', checked);
   const expInfo = useLocation();
+
   const { setCartExperience, cartExperience, token } = useContext(UserContext);
   console.log(cartExperience);
   console.log('shop', expInfo.data);
@@ -37,12 +38,17 @@ function Shop() {
   console.log('mp', mappedItems);
   useEffect(() => {
     if (cartExperience === []) {
-      setCartExperience(expInfo.data);
-    } else if (expInfo.data !== undefined && cartExperience) {
-      const item = [...cartExperience, expInfo.data];
+      setCartExperience(expInfo?.data);
+    } else if (expInfo?.data !== undefined && cartExperience) {
+      const item = [...cartExperience, expInfo?.data];
       setCartExperience(item);
     }
   }, [expInfo.data, setCartExperience]);
+  function removeItem(array, index) {
+    const removedItem = array.splice(index - 1, 1);
+    console.log('aaaaa', index, removedItem);
+    setCartExperience(...removedItem);
+  }
 
   return (
     <StyledShop>
@@ -51,10 +57,13 @@ function Shop() {
           mappedItems?.map((item, index) => (
             <ItemShop
               key={index}
-              name={item?.nombre}
-              description={item?.descripcion}
-              photo={item?.photos[0].photo}
-              precio={item?.precio}
+              name={item?.exp.nombre}
+              description={item?.exp.descripcion}
+              photo={item?.exp.photos[0].photo}
+              precio={item?.exp.precio}
+              date={item?.date}
+              remove={removeItem}
+              index={index}
             />
           ))}
       </section>

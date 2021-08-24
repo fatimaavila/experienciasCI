@@ -5,16 +5,16 @@ const StyledShop = styled.div`
   justify-content: space-between;
   width: 1200px;
   margin: 4rem auto;
-  
+
   .bookingInfo {
     display: flex;
     flex-direction: column;
     padding: 3rem 0rem;
     width: 65%;
   }
-  
+
   .bookingItemInfo {
-    display:flex;
+    display: flex;
     gap: 2rem;
     margin-bottom: 6rem;
   }
@@ -32,7 +32,7 @@ const StyledShop = styled.div`
 
   .bookingItemInfo:last-child::after {
     display: none;
-  } 
+  }
 
   .imgShop {
     width: 30%;
@@ -80,7 +80,7 @@ const StyledShop = styled.div`
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    padding-top: 2rem; 
+    padding-top: 2rem;
   }
 
   .showMoreBtn {
@@ -88,6 +88,12 @@ const StyledShop = styled.div`
     text-decoration: underline;
     cursor: pointer;
     margin-left: 0.5rem;
+  }
+  .dateBooking {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
 `;
 
