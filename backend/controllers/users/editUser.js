@@ -21,7 +21,7 @@ const editUser = async (req, res, next) => {
         const { idUser } = req.params;
         let { email, address, phone, bio, cp } = req.body;
         let avatar = req.files;
-
+        console.log(avatar);
         /*  console.log(idUser, req.files, avatar); */
         const now = new Date();
 
@@ -95,7 +95,7 @@ const editUser = async (req, res, next) => {
                 await deletePhoto(user[0].avatar);
             }
 
-            avatarName = await savePhoto(avatar);
+            avatarName = await savePhoto(avatar.avatar);
             console.log('avatarName', avatarName);
             await connection.query(
                 `
