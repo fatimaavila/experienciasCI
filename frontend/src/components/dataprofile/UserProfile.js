@@ -11,7 +11,7 @@ function UserProfile() {
   const [file, setFile] = useState();
   const [error, setError] = useState();
   const { token, tokenContent, userInfo } = useContext(UserContext);
-
+  console.log(file);
   const INITIAL_USERINFO = {
     name: userInfo?.nombre,
     last: userInfo?.apellidos,
@@ -40,6 +40,9 @@ function UserProfile() {
   };
 
   async function updateUser(e) {
+    let photo = new FormData();
+    photo.append('avatar', file);
+    console.log(photo);
     if (changeChecked === false) {
       try {
         const { data } = await putAxios(
@@ -50,8 +53,6 @@ function UserProfile() {
 
         console.log(data);
         setDataUser(data);
-        let photo = new FormData();
-        photo.append('avatar', file);
 
         const response = await putAxios(
           `http://localhost:8080/users/${tokenContent?.idUser}`,
