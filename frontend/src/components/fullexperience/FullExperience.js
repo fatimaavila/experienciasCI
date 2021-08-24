@@ -9,17 +9,28 @@ import { useHistory } from 'react-router-dom';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
+import { sqlDateFormat } from '../../helpers';
+import { useState } from 'react';
 
 registerLocale('es', es);
 
 function FullExperience({ data }) {
+  const [bookingDate, setBookingDate] = useState('');
   let history = useHistory();
   const infoActive = data;
+  const optionsDate = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  };
+  const dateNoFormat = new Date(bookingDate);
+  const dateBooking = dateNoFormat.toLocaleDateString('es-ES', optionsDate);
 
+  console.log(dateBooking);
   function goToCart() {
     history.push({
       pathname: '/shop',
-      data: infoActive,
+      data: { exp: infoActive, date: dateBooking },
     });
   }
 
@@ -35,19 +46,21 @@ function FullExperience({ data }) {
         <div className="experienceInfo">
           <section>
             <h2>{data.nombre}</h2>
-            <div className='rating_dateBooking'>
+            <div className="rating_dateBooking">
               <Rating
                 name="rating-experience"
                 value={rating !== 0.0 ? rating : defaultRating}
                 precision={0.5}
                 readOnly
               />
-              <div className='dateBooking'>
+              <div className="dateBooking">
                 <span>Fecha de la Reserva:</span>
-                <DatePicker 
+                <DatePicker
                   locale="es"
                   dateFormat="dd/MM/yyyy"
                   className="date-picker"
+                  selected={bookingDate}
+                  onChange={(date) => setBookingDate(date)}
                 />
               </div>
             </div>
