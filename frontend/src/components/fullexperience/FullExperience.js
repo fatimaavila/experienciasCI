@@ -25,6 +25,9 @@ function FullExperience({ data }) {
   };
   const dateNoFormat = new Date(bookingDate);
   const dateBooking = dateNoFormat.toLocaleDateString('es-ES', optionsDate);
+  const [labelDate, setLabelDate] = useState('');
+
+  console.log(labelDate);
 
   console.log(dateBooking);
   function goToCart() {
@@ -63,7 +66,9 @@ function FullExperience({ data }) {
                   onChange={(date) => setBookingDate(date)}
                 />
               </div>
+              {labelDate && <span>{labelDate}</span>}
             </div>
+
             <div className="experiencePrice_Buy">
               <section>
                 <span className="priceLabel">Precio:</span>
@@ -72,7 +77,11 @@ function FullExperience({ data }) {
               <Button
                 blue
                 onClickButton={() => {
-                  goToCart();
+                  if (bookingDate) {
+                    goToCart();
+                  } else {
+                    setLabelDate('Debes seleccionar una fecha para tu reserva');
+                  }
                 }}
               >
                 Comprar
