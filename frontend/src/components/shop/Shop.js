@@ -39,15 +39,23 @@ function Shop() {
   useEffect(() => {
     if (cartExperience === []) {
       setCartExperience(expInfo?.data);
-    } else if (expInfo?.data !== undefined && cartExperience) {
+    } else if (
+      expInfo?.data !== undefined &&
+      cartExperience !== expInfo?.data
+    ) {
       const item = [...cartExperience, expInfo?.data];
       setCartExperience(item);
     }
   }, [expInfo.data, setCartExperience]);
   function removeItem(array, index) {
-    const removedItem = array.splice(index - 1, 1);
-    console.log('aaaaa', index, removedItem);
-    setCartExperience(...removedItem);
+    let arrayItems = array;
+    console.log('aaaaa', index, arrayItems);
+    if (arrayItems.length === 1) {
+      setCartExperience([]);
+    } else {
+      setCartExperience(arrayItems.splice(index - 1, 1));
+    }
+    /*  history.go(0); */
   }
 
   return (
