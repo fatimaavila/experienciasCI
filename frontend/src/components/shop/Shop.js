@@ -48,10 +48,12 @@ function Shop() {
 
   function removeItem(array, index) {
     let arrayItems = array;
+    const item = index - 1;
+    console.log('aaaaa', index, arrayItems);
     if (arrayItems.length === 1) {
       setCartExperience([]);
     } else {
-      setCartExperience(arrayItems.splice(index - 1, 1));
+      setCartExperience(arrayItems.splice(item, 1));
     }
   }
 

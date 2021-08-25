@@ -12,7 +12,7 @@ function UserProfile() {
   const [file, setFile] = useState();
   const [error, setError] = useState();
   const { token, tokenContent, userInfo } = useContext(UserContext);
-
+  console.log(file);
   const INITIAL_USERINFO = {
     name: userInfo?.nombre,
     last: userInfo?.apellidos,
@@ -41,6 +41,8 @@ function UserProfile() {
     cp: dataUser.postalCode,
     email: dataUser.email,
   };
+  let photo = new FormData();
+  photo.append('avatar', file);
 
   async function updateUser(e) {
       try {
