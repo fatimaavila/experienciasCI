@@ -38,11 +38,10 @@ function UserProfile() {
     cp: dataUser.postalCode,
     email: dataUser.email,
   };
+  let photo = new FormData();
+  photo.append('avatar', file);
 
   async function updateUser(e) {
-    let photo = new FormData();
-    photo.append('avatar', file);
-    console.log(photo);
     if (changeChecked === false) {
       try {
         const { data } = await putAxios(
@@ -59,6 +58,7 @@ function UserProfile() {
           photo,
           token
         );
+
         console.log(response);
         const avatarUrl = response.data;
 
