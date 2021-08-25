@@ -12,8 +12,6 @@ export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
 
   const [cartExperience, setCartExperience] = useLocalStorageCart('infoCart');
-  // const [errorToken,setErrorToken] = useState('');
-  console.log('cart', cartExperience);
 
   const logout = useCallback(() => {
     setToken(null);
@@ -21,21 +19,18 @@ export const UserProvider = ({ children }) => {
     setUserInfo(null);
     setCartExperience([]);
   }, [setToken, setTokenContent, setCartExperience]);
-  console.log(userInfo);
+
   useEffect(() => {
     const getUserInfo = async () => {
       try {
         const decoded = jwt_decode(token);
-        console.log(decoded);
         setTokenContent(decoded);
         const { data } = await getAxios(
           `http://localhost:8080/users/${decoded.idUser}`,
           token
         );
-        console.log(data);
         setUserInfo(data);
       } catch (error) {
-        // setErrorToken(error.response.data.message);
         logout();
       }
     };

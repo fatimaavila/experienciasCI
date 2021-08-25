@@ -168,5 +168,25 @@ const StyledUserProfile = styled.div`
       }
     }
   }
+
+  .errorForm {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    align-self: center;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+  }
+
+  .changePass {
+    align-self: center;
+    display: flex;
+    align-items:center;
+    gap: 1.5rem;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
 `;
 export default StyledUserProfile;

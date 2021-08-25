@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { putAxios } from '../../axiosCalls';
+import { BsBoxArrowInRight } from 'react-icons/bs';
+import ChangePassProfile from './ChangePassProfile';
 
 function UserProfile() {
-  const [password, setPassword] = useState('');
-
+  const [passChange, setPassChange] = useState(false);
   const [file, setFile] = useState();
   const [error, setError] = useState();
   const { token, tokenContent, userInfo } = useContext(UserContext);
@@ -26,8 +27,10 @@ function UserProfile() {
   };
 
   const [dataUser, setDataUser] = useState(INITIAL_USERINFO);
-  const [changeChecked, setChangeChecked] = useState(true);
-  console.log(changeChecked);
+  const [changeChecked, setChangeChecked] = useState({
+    checked: false,
+    error: '',
+  });
 
   const body = {
     name: dataUser.name,
@@ -40,36 +43,35 @@ function UserProfile() {
   };
 
   async function updateUser(e) {
-    if (changeChecked === false) {
       try {
-        const { data } = await putAxios(
-          `http://localhost:8080/users/${tokenContent?.idUser}`,
-          body,
-          token
-        );
+        e.preventDefault();
 
-        console.log(data);
-        setDataUser(data);
-        let photo = new FormData();
-        photo.append('avatar', file);
+        if (changeChecked.checked === false) {
+          setChangeChecked({...changeChecked, error: 'Debes aceptar la condiciones para actualizar tus datos'})
+        } else {
+          const { data } = await putAxios(
+            `http://localhost:8080/users/${tokenContent?.idUser}`,
+            body,
+            token
+          );
+  
+          setDataUser(data);
+          let photo = new FormData();
+          photo.append('avatar', file);
+  
+          const response = await putAxios(
+            `http://localhost:8080/users/${tokenContent?.idUser}`,
+            photo,
+            token
+          );
+          const avatarUrl = response.data;
+  
+          console.log(avatarUrl);
+        }
 
-        const response = await putAxios(
-          `http://localhost:8080/users/${tokenContent?.idUser}`,
-          photo,
-          token
-        );
-        console.log(response);
-        const avatarUrl = response.data;
-
-        console.log(avatarUrl);
       } catch (error) {
         setError(error.response.data.message);
-        console.log('error', error.response);
       }
-      console.log('error', error);
-    } else {
-      e.preventDefault();
-    }
   }
 
   const onFileChange = (e) => {
@@ -196,25 +198,21 @@ function UserProfile() {
             />
           </Form.Label>
         </Form.Group>
-        <Form.Group>
-          <Form.Label className="editInfoLabel">
-            <span>Introduce tu contraseña si deseas modificarla</span>
-            <Form.Control
-              type="password"
-              placeholder="Confirma tu Contraseña"
-            />
-          </Form.Label>
+        <Form.Group className='changePass'>
+          <span>Modificar contraseña</span>
+          <BsBoxArrowInRight size='1.5rem' color='#3aabfe' onClick={() => setPassChange(!passChange)}/>
+          {passChange && <ChangePassProfile activate={passChange} onHideActivate={() => setPassChange(!passChange)}/>}
         </Form.Group>
         <Form.Group>
           <Form.Label>
             <Form.Check
               type="checkbox"
-              onChange={() => setChangeChecked(!changeChecked)}
+              onChange={() => setChangeChecked({...changeChecked, checked: !changeChecked.checked})}
             />
             <span>Aceptar condiciones de actualizado de datos.</span>
           </Form.Label>
-          {changeChecked && (
-            <span>Debes aceptar la condiciones para actualizar tus datos</span>
+          {changeChecked.error && !changeChecked.checked && (
+            <div className='errorForm'>{changeChecked.error}</div>
           )}
           <Button blue className="editInfoButton">
             EDITAR INFORMACIÓN

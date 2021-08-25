@@ -41,7 +41,7 @@ function ItemShop({ name, description, photo, precio, date, remove, index }) {
           <span onClick={() => remove(cartExperience, index)}>Eliminar</span>
         </Form.Label>
         <div className="dateBooking">
-          <label>Fecha de Reserva:</label>
+          <span>Fecha de Reserva:</span>
           <span>{date}</span>
         </div>
         <span className="priceShop">

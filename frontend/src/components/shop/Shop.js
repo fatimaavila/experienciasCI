@@ -10,18 +10,16 @@ function Shop() {
   let history = useHistory();
   const [checked, setChecked] = useState();
   const [error, setError] = useState();
-  console.log('post', checked);
   const expInfo = useLocation();
 
   const { setCartExperience, cartExperience, token } = useContext(UserContext);
-  console.log(cartExperience);
-  console.log('shop', expInfo.data);
-  const itemsStorage = localStorage.getItem('infoCart');
-  const itemsMap = JSON.parse(itemsStorage);
-  console.log('st', itemsMap);
+  const updateCartStorageInfo = localStorage.getItem('infoCart');
+  const updateCartStorageMap = JSON.parse(updateCartStorageInfo);
+
   function goToHome() {
     history.push('/experiences');
   }
+  
   function isChecked(string) {
     if (string === 'email') {
       setChecked('Para continuar tu viaje, revisa tu email.');
@@ -34,8 +32,8 @@ function Shop() {
     }
   }
 
-  let mappedItems = cartExperience !== [] ? cartExperience : itemsMap;
-  console.log('mp', mappedItems);
+  let mappedItems = cartExperience !== [] ? cartExperience : updateCartStorageMap;
+
   useEffect(() => {
     if (cartExperience === []) {
       setCartExperience(expInfo?.data);
@@ -47,15 +45,14 @@ function Shop() {
       setCartExperience(item);
     }
   }, [expInfo.data, setCartExperience]);
+
   function removeItem(array, index) {
     let arrayItems = array;
-    console.log('aaaaa', index, arrayItems);
     if (arrayItems.length === 1) {
       setCartExperience([]);
     } else {
       setCartExperience(arrayItems.splice(index - 1, 1));
     }
-    /*  history.go(0); */
   }
 
   return (
