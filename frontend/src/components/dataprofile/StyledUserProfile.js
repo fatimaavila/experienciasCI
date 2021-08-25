@@ -187,6 +187,16 @@ const StyledUserProfile = styled.div`
     span {
       font-size: 1.5rem;
     }
+
+    .iconPass {
+      cursor: pointer;
+    }
+
+  }
+
+  .errorDelete {
+    color: var(--color-red);
+    font-weight: 500;
   }
 `;
 export default StyledUserProfile;

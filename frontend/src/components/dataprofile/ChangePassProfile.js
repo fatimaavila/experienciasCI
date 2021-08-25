@@ -14,22 +14,15 @@ function ChangePassProfile({activate, onHideActivate}) {
         oldPassword: '',
         newPassword: '',
     });
-    const [changeCheked,setChangeCheked] = ({
-        checked: '',
-        error: '',
-    });
+ 
     const [error, setError] = useState('');
 
     async function performPassword(e) {
         try {
             e.preventDefault();
 
-            if(changeCheked.checked === false) {
-                setChangeCheked({...changeCheked, error: 'Debes aceptar los cambios de contraseña'})
-            } else {
-                await putAxios(`http://localhost:8080/users/${tokenContent?.idUser}/password`, dataPass, token);
-                setError('');
-            }
+            await putAxios(`http://localhost:8080/users/${tokenContent?.idUser}/password`, dataPass, token);
+            setError('');
         } catch (error) {
             setError(error.response.data.message);
         }
@@ -45,23 +38,16 @@ function ChangePassProfile({activate, onHideActivate}) {
                     <Form.Group className="formElement">
                         <Form.Label>
                             <span>Contraseña Antigua</span>
-                            <Form.Control type='password' placeholder='Contraseña Antigua' onChange={(e) => setDataPass({...dataPass, oldPassword: e.target.value})}/>
+                            <Form.Control type='password' placeholder='Antigua Contraseña' onChange={(e) => setDataPass({...dataPass, oldPassword: e.target.value})}/>
                         </Form.Label>
                     </Form.Group>
                     <Form.Group className="formElement">
                         <Form.Label>
                             <span>Contraseña Nueva</span>
-                            <Form.Control type='password' placeholder='Contraseña Nueva' onChange={(e) => setDataPass({...dataPass, newPassword: e.target.value})}/>
+                            <Form.Control type='password' placeholder='Nueva Contraseña' onChange={(e) => setDataPass({...dataPass, newPassword: e.target.value})}/>
                         </Form.Label>
                     </Form.Group>
-                    <Form.Group className="formElement checkboxForm">
-                        <Form.Check 
-                            type="checkbox" 
-                            onChange={(e) => setChangeCheked({...changeCheked, cheked: e.target.checked})}/>
-                        <Form.Label>Aceptar cambio de contraseña</Form.Label>
-                    </Form.Group>
                     {error && <div className='errorForm'>{error}</div>}
-                    {changeCheked.error && !changeCheked.checked && <div>{changeCheked.error}</div>}
                     <Button white>Editar Contraseña</Button>
                 </Form>
             </StyledForm>

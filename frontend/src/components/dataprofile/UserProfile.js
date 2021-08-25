@@ -12,7 +12,6 @@ function UserProfile() {
   const [file, setFile] = useState();
   const [error, setError] = useState();
   const { token, tokenContent, userInfo } = useContext(UserContext);
-  console.log(file);
   const INITIAL_USERINFO = {
     name: userInfo?.nombre,
     last: userInfo?.apellidos,
@@ -202,7 +201,7 @@ function UserProfile() {
         </Form.Group>
         <Form.Group className='changePass'>
           <span>Modificar contraseña</span>
-          <BsBoxArrowInRight size='1.5rem' color='#3aabfe' onClick={() => setPassChange(!passChange)}/>
+          <BsBoxArrowInRight size='1.5rem' color='#3aabfe' className='iconPass' onClick={() => setPassChange(!passChange)}/>
           {passChange && <ChangePassProfile activate={passChange} onHideActivate={() => setPassChange(!passChange)}/>}
         </Form.Group>
         <Form.Group>
