@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
-import { sqlDateFormat } from '../../helpers';
 import { useState } from 'react';
 
 registerLocale('es', es);
@@ -17,19 +16,18 @@ registerLocale('es', es);
 function FullExperience({ data }) {
   const [bookingDate, setBookingDate] = useState('');
   let history = useHistory();
+
   const infoActive = data;
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
     year: 'numeric',
   };
+
   const dateNoFormat = new Date(bookingDate);
   const dateBooking = dateNoFormat.toLocaleDateString('es-ES', optionsDate);
   const [labelDate, setLabelDate] = useState('');
 
-  console.log(labelDate);
-
-  console.log(dateBooking);
   function goToCart() {
     history.push({
       pathname: '/shop',
@@ -84,7 +82,7 @@ function FullExperience({ data }) {
                   }
                 }}
               >
-                Comprar
+                Agregar al Carrito
               </Button>
             </div>
           </section>

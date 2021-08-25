@@ -5,6 +5,7 @@ import UserProfile from './UserProfile';
 import UserBookings from './UserBookings';
 import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { deleteAxios } from '../../axiosCalls';
 
 function UserProfileMain() {
   const infoActive = {
@@ -12,9 +13,25 @@ function UserProfileMain() {
   };
 
   const [showInfo, setShowInfo] = useState({ profile: true, bookings: false });
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, tokenContent, token } = useContext(UserContext);
   const userAvatar = userInfo?.avatar ? userInfo?.avatar : defaultAvatar;
   const completeName = `${userInfo?.nombre} ${userInfo?.apellidos}`;
+  const [changeChecked,setChangeChecked] = useState({checked: false, error: ''});
+  const [error,setError] = useState('');
+
+  async function performDelete() {
+    try {
+
+      if(changeChecked.checked === false) {
+        setChangeChecked({...changeChecked, error: 'Debes marcar la casilla para poder eliminar el usuario'});
+      } else {
+        await deleteAxios(`http://localhost:8080/users/${tokenContent?.idUser}`, token);
+        setError('');
+      }
+    } catch (error) {
+        setError(error.response.data.message);
+    }
+  }
 
   return (
     <StyledUserProfile>
@@ -39,13 +56,17 @@ function UserProfileMain() {
         </ul>
       </div>
       {showInfo.profile && (
-        <div className="userProfileDele">
-          <label>
-            <input type="checkbox" />
-            <span>Acepto eliminar mis datos</span>
-          </label>
-          <Button red>ELIMINAR MI CUENTA</Button>
-        </div>
+        < >
+          <div className="userProfileDele">
+            <label>
+              <input type="checkbox" onChange={() => setChangeChecked({...changeChecked, checked: true})}/>
+              <span>Acepto eliminar mis datos</span>
+            </label>
+            <Button red onClickButton={performDelete}>ELIMINAR MI CUENTA</Button>
+          {error && <div className='errorDelete'>{error}</div>}
+          {changeChecked.error && !changeChecked.checked && <div>{changeChecked.error}</div>}
+          </div>
+        </>
       )}
       <div className="userProfile_Bookings">
         {showInfo.bookings && <UserBookings />}

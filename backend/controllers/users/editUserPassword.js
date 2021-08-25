@@ -30,7 +30,7 @@ const editUserPassword = async (req, res, next) => {
             [idUser, oldPassword]
         );
 
-        if (user[0].length < 1) {
+        if (user.length < 1) {
             const error = new Error('Contraseña antigüa incorrecta');
             error.httpStatus = 401;
             throw error;
