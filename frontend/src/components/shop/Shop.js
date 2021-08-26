@@ -12,6 +12,8 @@ function Shop() {
   let history = useHistory();
   const [checked, setChecked] = useState();
   const [error, setError] = useState();
+  const [units, setUnits] = useState(1);
+
   const expInfo = useLocation();
 
   const { setCartExperience, cartExperience, token } = useContext(UserContext);
@@ -67,7 +69,7 @@ function Shop() {
           dateBooking: sqlDateFormat(item.date),
           price: item.exp.precio,
           idExp: item.exp.id,
-          units: 1,
+          units,
         };
         const { data } = await postAxios(
           'http://localhost:8080/bookings',
@@ -81,7 +83,7 @@ function Shop() {
     }
     console.log(error);
   }
-
+  console.log(units);
   return (
     <StyledShop>
       <section className="bookingInfo">
@@ -96,6 +98,8 @@ function Shop() {
               date={item?.date}
               remove={removeItem}
               index={index}
+              setUnits={(e) => setUnits(e.target.value)}
+              units={units}
             />
           ))}
       </section>

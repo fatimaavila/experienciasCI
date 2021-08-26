@@ -2,8 +2,17 @@ import { Form } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 
-function ItemShop({ name, description, photo, precio, date, remove, index }) {
-  const [units, setUnits] = useState(1);
+function ItemShop({
+  name,
+  description,
+  photo,
+  precio,
+  date,
+  remove,
+  index,
+  setUnits,
+  units,
+}) {
   const [showMore, setShowMore] = useState(false);
   const totalPrice = (a, b) => {
     return a * b;
@@ -36,7 +45,7 @@ function ItemShop({ name, description, photo, precio, date, remove, index }) {
             min="1"
             max="99"
             placeholder="1"
-            onChange={(e) => setUnits(e.target.value)}
+            onChange={setUnits}
           />
           <span onClick={() => remove(cartExperience, index)}>Eliminar</span>
         </Form.Label>
