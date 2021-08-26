@@ -9,6 +9,7 @@ const newBooking = async (req, res, next) => {
 
         let { units, dateBooking, price, idExp } = req.body;
         const { idUser } = req.userAuth;
+        console.log(req.body);
         const now = new Date();
         const datePurchase = formatDate(now);
         units = Number(units);

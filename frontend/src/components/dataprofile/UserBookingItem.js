@@ -11,7 +11,7 @@ function UserRatingBookingItem({ bookingInfo }) {
   useEffect(() => {
     const getUniqueExp = async () => {
       const { data } = await getAxios(
-        `http://localhost:8080/experiences/${Number(bookingInfo.id)}`
+        `http://localhost:8080/experiences/${Number(bookingInfo.id_experience)}`
       );
 
       setUniqueExp(data);
@@ -22,19 +22,23 @@ function UserRatingBookingItem({ bookingInfo }) {
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
-    year: 'numeric'
-  }
+    year: 'numeric',
+  };
   const dateFormat = new Date(bookingInfo.fecha_compra);
 
   return (
     <div className="userBookking">
       <div className="bookingHead">
-        <span className='idBooking'>ID: {bookingInfo.id}</span>
+        <span className="idBooking">ID: {bookingInfo.id}</span>
         <h3>{uniqueExp.nombre}</h3>
-        <span className='totalPriceBooking'>{bookingInfo.precio_total}&#8364;</span>
+        <span className="totalPriceBooking">
+          {bookingInfo.precio_total}&#8364;
+        </span>
       </div>
       <div className="bookingBody">
-        <span>Fecha de Compra: {dateFormat.toLocaleDateString('es-ES', optionsDate)}</span>
+        <span>
+          Fecha de Compra: {dateFormat.toLocaleDateString('es-ES', optionsDate)}
+        </span>
       </div>
       <div>
         <Button blue onClickButton={() => setShowRate(!showRate)}>
@@ -42,12 +46,12 @@ function UserRatingBookingItem({ bookingInfo }) {
         </Button>
       </div>
       {showRate && (
-        <div className='appreciations'>
-          <div className='bookingComments'>
+        <div className="appreciations">
+          <div className="bookingComments">
             <span>Comentario:</span>
             <UserComment />
           </div>
-          <div className='bookingRate'>
+          <div className="bookingRate">
             <span>Valoración:</span>
             <Rating
               name="rating-experience"
