@@ -6,6 +6,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { postAxios } from '../../axiosCalls';
+import { sqlDateFormat } from '../../helpers';
 function Shop() {
   let history = useHistory();
   const [checked, setChecked] = useState();
@@ -19,7 +21,7 @@ function Shop() {
   function goToHome() {
     history.push('/experiences');
   }
-  
+
   function isChecked(string) {
     if (string === 'email') {
       setChecked('Para continuar tu viaje, revisa tu email.');
@@ -32,7 +34,8 @@ function Shop() {
     }
   }
 
-  let mappedItems = cartExperience !== [] ? cartExperience : updateCartStorageMap;
+  let mappedItems =
+    cartExperience !== [] ? cartExperience : updateCartStorageMap;
 
   useEffect(() => {
     if (cartExperience === []) {
@@ -55,6 +58,28 @@ function Shop() {
     } else {
       setCartExperience(arrayItems.splice(item, 1));
     }
+  }
+
+  async function postItems() {
+    try {
+      for (const item of cartExperience) {
+        const booking = {
+          dateBooking: sqlDateFormat(item.date),
+          price: item.exp.precio,
+          idExp: item.exp.id,
+          units: 1,
+        };
+        const { data } = await postAxios(
+          'http://localhost:8080/bookings',
+          booking,
+          token
+        );
+        console.log(data);
+      }
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+    console.log(error);
   }
 
   return (
@@ -113,6 +138,7 @@ function Shop() {
                 e.preventDefault();
                 if (token && checked) {
                   alert(checked);
+                  postItems();
                   setError();
                   setCartExperience([]);
                   goToHome();
