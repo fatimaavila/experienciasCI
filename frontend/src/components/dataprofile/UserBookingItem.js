@@ -25,6 +25,7 @@ function UserRatingBookingItem({ bookingInfo }) {
     year: 'numeric',
   };
   const dateFormat = new Date(bookingInfo.fecha_compra);
+  const dateBooking = new Date(bookingInfo.fecha_reserva);
 
   return (
     <div className="userBookking">
@@ -38,6 +39,10 @@ function UserRatingBookingItem({ bookingInfo }) {
       <div className="bookingBody">
         <span>
           Fecha de Compra: {dateFormat.toLocaleDateString('es-ES', optionsDate)}
+        </span>
+        <span>
+          Fecha de Reserva:{' '}
+          {dateBooking.toLocaleDateString('es-ES', optionsDate)}
         </span>
       </div>
       <div>

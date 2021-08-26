@@ -1,5 +1,5 @@
-import { putAxios } from "../../axiosCalls";
-import { UserContext } from "../../context/UserContext";
+import { putAxios } from '../../axiosCalls';
+import { UserContext } from '../../context/UserContext';
 
 function AdminBookingsItem({ info }) {
   const used = info?.estado === 1 ? 'Disponible' : 'Disfrutada';
@@ -8,16 +8,16 @@ function AdminBookingsItem({ info }) {
     'es-ES',
     options
   );
-    const { token } = UserContext(UserContext);
+  const { token } = UserContext(UserContext);
 
-  async function performStateBooking() {
+  /*  async function performStateBooking() {
     try {
       const { data } = await putAxios(
-        `http://localhost:8080/bookings/${info?.id}/state`,
+        `http://localhost:8080/bookings/${info?.id}/state`,token)
     } catch (error) {
       console.log(error);
     }
-  }
+  } */
   return (
     <tr className="sectionData">
       <td>
