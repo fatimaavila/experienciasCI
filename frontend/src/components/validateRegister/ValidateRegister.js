@@ -9,12 +9,12 @@ function ValidateRegister({ email, name }) {
       </figure>
       <div className="emailVerify">
         <p>
-          El usuario <span class="outstanding">{name}</span> ha sido registrado
-          correctamente.
+          El usuario <span className="outstanding">{name}</span> ha sido
+          registrado correctamente.
         </p>
         <p>
-          Verifique su email: <span class="outstanding">{email}</span> , para
-          activar su cuenta.
+          Verifique su email: <span className="outstanding">{email}</span> ,
+          para activar su cuenta.
         </p>
       </div>
       <a href="/">

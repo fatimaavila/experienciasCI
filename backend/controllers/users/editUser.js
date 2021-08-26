@@ -112,12 +112,15 @@ const editUser = async (req, res, next) => {
             [address, bio, cp, formatDate(now), idUser]
         );
 
+        const [updatedUser] = await connection.query(
+            'SELECT * FROM users WHERE id = ?',
+            [idUser]
+        );
+
         res.send({
             status: 200,
             data: {
-                id: idUser,
-                ...req.body,
-                avatar: `${PUBLIC_HOST}${UPLOADS}${avatarName}`,
+                ...updatedUser[0],
                 modifiedAt: now,
             },
         });

@@ -8,10 +8,11 @@ import { BsBoxArrowInRight } from 'react-icons/bs';
 import ChangePassProfile from './ChangePassProfile';
 
 function UserProfile() {
+  const { token, tokenContent, userInfo, setUserInfo } =
+    useContext(UserContext);
   const [passChange, setPassChange] = useState(false);
   const [file, setFile] = useState();
   const [error, setError] = useState();
-  const { token, tokenContent, userInfo } = useContext(UserContext);
   const INITIAL_USERINFO = {
     name: userInfo?.nombre,
     last: userInfo?.apellidos,
@@ -31,54 +32,63 @@ function UserProfile() {
     error: '',
   });
 
-  const body = {
-    name: dataUser.name,
-    dni: dataUser.dni,
-    phone: dataUser.phone,
-    address: dataUser.address,
-    bio: dataUser.bio,
-    cp: dataUser.postalCode,
-    email: dataUser.email,
-  };
-  let photo = new FormData();
-  photo.append('avatar', file);
-
   async function updateUser(e) {
-      try {
-        e.preventDefault();
+    try {
+      e.preventDefault();
 
-        if (changeChecked.checked === false) {
-          setChangeChecked({...changeChecked, error: 'Debes aceptar la condiciones para actualizar tus datos'})
-        } else {
-          const { data } = await putAxios(
-            `http://localhost:8080/users/${tokenContent?.idUser}`,
-            body,
-            token
-          );
-  
-          setDataUser(data);
+      if (changeChecked.checked === false) {
+        setChangeChecked({
+          ...changeChecked,
+          error: 'Debes aceptar la condiciones para actualizar tus datos',
+        });
+      } else {
+        const body = {
+          name: dataUser.name,
+          dni: dataUser.dni,
+          phone: dataUser.phone,
+          address: dataUser.address,
+          bio: dataUser.bio,
+          cp: dataUser.postalCode,
+          email: dataUser.email,
+        };
+
+        if (file) {
           let photo = new FormData();
           photo.append('avatar', file);
-  
-          const response = await putAxios(
+
+          await putAxios(
             `http://localhost:8080/users/${tokenContent?.idUser}`,
             photo,
             token
           );
-          const avatarUrl = response.data;
-  
-          console.log(avatarUrl);
         }
 
-      } catch (error) {
-        setError(error.response.data.message);
+        const { data } = await putAxios(
+          `http://localhost:8080/users/${tokenContent?.idUser}`,
+          body,
+          token
+        );
+
+        console.log(userInfo);
+        console.log(data);
+        setUserInfo({
+          ...data,
+          avatar: `http://localhost:8080/uploads/${data.avatar}`,
+        });
       }
+    } catch (error) {
+      setError(error.response.data.message);
+    }
   }
 
   const onFileChange = (e) => {
     const file = e.target.files[0];
 
     setFile(file);
+    setUserInfo({
+      ...userInfo,
+      avatar: URL.createObjectURL(e.target.files[0]),
+    });
   };
 
   return (
@@ -199,21 +209,36 @@ function UserProfile() {
             />
           </Form.Label>
         </Form.Group>
-        <Form.Group className='changePass'>
+        <Form.Group className="changePass">
           <span>Modificar contraseña</span>
-          <BsBoxArrowInRight size='1.5rem' color='#3aabfe' className='iconPass' onClick={() => setPassChange(!passChange)}/>
-          {passChange && <ChangePassProfile activate={passChange} onHideActivate={() => setPassChange(!passChange)}/>}
+          <BsBoxArrowInRight
+            size="1.5rem"
+            color="#3aabfe"
+            className="iconPass"
+            onClick={() => setPassChange(!passChange)}
+          />
+          {passChange && (
+            <ChangePassProfile
+              activate={passChange}
+              onHideActivate={() => setPassChange(!passChange)}
+            />
+          )}
         </Form.Group>
         <Form.Group>
           <Form.Label>
             <Form.Check
               type="checkbox"
-              onChange={() => setChangeChecked({...changeChecked, checked: !changeChecked.checked})}
+              onChange={() =>
+                setChangeChecked({
+                  ...changeChecked,
+                  checked: !changeChecked.checked,
+                })
+              }
             />
             <span>Aceptar condiciones de actualizado de datos.</span>
           </Form.Label>
           {changeChecked.error && !changeChecked.checked && (
-            <div className='errorForm'>{changeChecked.error}</div>
+            <div className="errorForm">{changeChecked.error}</div>
           )}
           <Button blue className="editInfoButton">
             EDITAR INFORMACIÓN

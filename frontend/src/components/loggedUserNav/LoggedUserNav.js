@@ -1,7 +1,7 @@
 import StyledLoggedUserNav from './StyledLoggedUserNav';
 import userAvatar from '../../assets/userdefaul.png';
 
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 function LoggedUserNav() {
@@ -16,6 +16,16 @@ function LoggedUserNav() {
   function redirectAdminMenu() {
     history.push({ pathname: '/adminmenu' });
   }
+
+  useEffect(() => {
+    window.addEventListener('click', (e) => {
+      console.log(e.target);
+
+      if (!e.target.matches('.imgAvatar')) {
+        setShowNavMenu(false);
+      }
+    });
+  }, []);
 
   /*   useEffect(() => {
     const handleUserKeyPress = (event) => {
@@ -37,6 +47,7 @@ function LoggedUserNav() {
             onClick={() => setShowNavMenu(!showNavMenu)}
             src={userInfo?.avatar !== null ? userInfo?.avatar : userAvatar}
             alt="avatarUser"
+            className="imgAvatar"
           />
         </div>
         {showNavMenu && (
