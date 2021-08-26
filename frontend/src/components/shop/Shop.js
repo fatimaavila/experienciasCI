@@ -2,7 +2,7 @@ import StyledShop from './StyledShop';
 import Button from '../button/Button';
 import ItemShop from './ItemShop';
 import { Form } from 'react-bootstrap';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';

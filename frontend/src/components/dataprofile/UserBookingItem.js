@@ -26,6 +26,7 @@ function UserRatingBookingItem({ bookingInfo }) {
   };
   const dateFormat = new Date(bookingInfo.fecha_compra);
   const dateBooking = new Date(bookingInfo.fecha_reserva);
+  const dateToday = new Date();
 
   return (
     <div className="userBookking">

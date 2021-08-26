@@ -8,7 +8,7 @@ function AdminBookingsItem({ info }) {
     'es-ES',
     options
   );
-  const { token } = UserContext(UserContext);
+  //const { token } = UserContext(UserContext);
 
   /*  async function performStateBooking() {
     try {
