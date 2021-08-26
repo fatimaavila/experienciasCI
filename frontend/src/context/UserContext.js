@@ -29,7 +29,10 @@ export const UserProvider = ({ children }) => {
           `http://localhost:8080/users/${decoded.idUser}`,
           token
         );
-        setUserInfo(data);
+        setUserInfo({
+          ...data,
+          avatar: `http://localhost:8080/uploads/${data.avatar}`,
+        });
       } catch (error) {
         logout();
       }
@@ -41,6 +44,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         userInfo,
+        setUserInfo,
         token,
         setToken,
         logout,

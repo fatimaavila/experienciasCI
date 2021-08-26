@@ -26,11 +26,16 @@ function App() {
           {home && <Home />}
         </Switch>
         <Footer />
-        <ScrollToTop showUnder={200} duration={150} easing={'easeInOutQuart'}>
-          <div className="scrollUp_Box">
-            <BsArrowUpShort size="50px" color="#FFF" />
-          </div>
-        </ScrollToTop>
+        <div
+          className="scrollUp_Box"
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+            });
+          }}
+        >
+          <BsArrowUpShort size="50px" color="#FFF" />
+        </div>
       </div>
     </Router>
   );

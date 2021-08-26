@@ -4,7 +4,7 @@ import ItemShop from './ItemShop';
 import { Form } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { postAxios } from '../../axiosCalls';
 import { sqlDateFormat } from '../../helpers';
@@ -13,8 +13,6 @@ function Shop() {
   const [checked, setChecked] = useState();
   const [error, setError] = useState();
   const [units, setUnits] = useState(1);
-
-  const expInfo = useLocation();
 
   const { setCartExperience, cartExperience, token } = useContext(UserContext);
   const updateCartStorageInfo = localStorage.getItem('infoCart');
@@ -37,29 +35,13 @@ function Shop() {
   }
 
   let mappedItems =
-    cartExperience !== [] ? cartExperience : updateCartStorageMap;
+    cartExperience.length > 0 ? cartExperience : updateCartStorageMap;
 
-  useEffect(() => {
-    if (cartExperience === []) {
-      setCartExperience(expInfo?.data);
-    } else if (
-      expInfo?.data !== undefined &&
-      cartExperience !== expInfo?.data
-    ) {
-      const item = [...cartExperience, expInfo?.data];
-      setCartExperience(item);
-    }
-  }, [expInfo.data, setCartExperience]);
-
-  function removeItem(array, index) {
-    let arrayItems = array;
-    const item = index - 1;
-    console.log('aaaaa', index, arrayItems);
-    if (arrayItems.length === 1) {
-      setCartExperience([]);
-    } else {
-      setCartExperience(arrayItems.splice(item, 1));
-    }
+  function removeItem(index) {
+    console.log(index);
+    const items = [...cartExperience];
+    items.splice(index, 1);
+    setCartExperience(items);
   }
 
   async function postItems() {
@@ -96,7 +78,7 @@ function Shop() {
               photo={item?.exp.photos[0].photo}
               precio={item?.exp.precio}
               date={item?.date}
-              remove={removeItem}
+              remove={() => removeItem(index)}
               index={index}
               setUnits={(e) => setUnits(e.target.value)}
               units={units}

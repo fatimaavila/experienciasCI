@@ -16,22 +16,32 @@ function UserProfileMain() {
   const { userInfo, tokenContent, token } = useContext(UserContext);
   const userAvatar = userInfo?.avatar ? userInfo?.avatar : defaultAvatar;
   const completeName = `${userInfo?.nombre} ${userInfo?.apellidos}`;
-  const [changeChecked,setChangeChecked] = useState({checked: false, error: ''});
-  const [error,setError] = useState('');
+  const [changeChecked, setChangeChecked] = useState({
+    checked: false,
+    error: '',
+  });
+  const [error, setError] = useState('');
 
   async function performDelete() {
     try {
-
-      if(changeChecked.checked === false) {
-        setChangeChecked({...changeChecked, error: 'Debes marcar la casilla para poder eliminar el usuario'});
+      if (changeChecked.checked === false) {
+        setChangeChecked({
+          ...changeChecked,
+          error: 'Debes marcar la casilla para poder eliminar el usuario',
+        });
       } else {
-        await deleteAxios(`http://localhost:8080/users/${tokenContent?.idUser}`, token);
+        await deleteAxios(
+          `http://localhost:8080/users/${tokenContent?.idUser}`,
+          token
+        );
         setError('');
       }
     } catch (error) {
-        setError(error.response.data.message);
+      setError(error.response.data.message);
     }
   }
+
+  console.log(userAvatar);
 
   return (
     <StyledUserProfile>
@@ -56,15 +66,24 @@ function UserProfileMain() {
         </ul>
       </div>
       {showInfo.profile && (
-        < >
+        <>
           <div className="userProfileDele">
             <label>
-              <input type="checkbox" onChange={() => setChangeChecked({...changeChecked, checked: true})}/>
+              <input
+                type="checkbox"
+                onChange={() =>
+                  setChangeChecked({ ...changeChecked, checked: true })
+                }
+              />
               <span>Acepto eliminar mis datos</span>
             </label>
-            <Button red onClickButton={performDelete}>ELIMINAR MI CUENTA</Button>
-          {error && <div className='errorDelete'>{error}</div>}
-          {changeChecked.error && !changeChecked.checked && <div>{changeChecked.error}</div>}
+            <Button red onClickButton={performDelete}>
+              ELIMINAR MI CUENTA
+            </Button>
+            {error && <div className="errorDelete">{error}</div>}
+            {changeChecked.error && !changeChecked.checked && (
+              <div>{changeChecked.error}</div>
+            )}
           </div>
         </>
       )}

@@ -9,11 +9,13 @@ import { useHistory } from 'react-router-dom';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 registerLocale('es', es);
 
 function FullExperience({ data }) {
+  const { setCartExperience, cartExperience } = useContext(UserContext);
   const [bookingDate, setBookingDate] = useState('');
   let history = useHistory();
 
@@ -28,11 +30,9 @@ function FullExperience({ data }) {
   const dateBooking = dateNoFormat.toLocaleDateString('es-ES', optionsDate);
   const [labelDate, setLabelDate] = useState('');
 
-  function goToCart() {
-    history.push({
-      pathname: '/shop',
-      data: { exp: infoActive, date: dateBooking },
-    });
+  function addToCart(item, date) {
+    setCartExperience([...cartExperience, { exp: item, date: date }]);
+    history.push('/shop');
   }
 
   const defaultRating = 3.5;
@@ -76,7 +76,7 @@ function FullExperience({ data }) {
                 blue
                 onClickButton={() => {
                   if (bookingDate) {
-                    goToCart();
+                    addToCart(infoActive, dateBooking);
                   } else {
                     setLabelDate('Debes seleccionar una fecha para tu reserva');
                   }

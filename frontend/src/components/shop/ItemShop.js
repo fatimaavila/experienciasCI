@@ -17,6 +17,7 @@ function ItemShop({
   const totalPrice = (a, b) => {
     return a * b;
   };
+
   const { cartExperience } = useContext(UserContext);
 
   const price = totalPrice(units, Number(precio));
@@ -47,7 +48,7 @@ function ItemShop({
             placeholder="1"
             onChange={setUnits}
           />
-          <span onClick={() => remove(cartExperience, index)}>Eliminar</span>
+          <span onClick={() => remove()}>Eliminar</span>
         </Form.Label>
         <div className="dateBooking">
           <span>Fecha de Reserva:</span>

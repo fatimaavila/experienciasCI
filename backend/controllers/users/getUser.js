@@ -16,7 +16,7 @@ const getUser = async (req, res, next) => {
 
         const userInfo = {
             username: user[0].username,
-            avatar: user[0].avatar ? `${PUBLIC_HOST}${UPLOADS}${user[0].avatar}` : null,
+            avatar: user[0].avatar ? `${user[0].avatar}` : null,
         };
         console.log(user[0].id, req.userAuth.idUser);
         if (
