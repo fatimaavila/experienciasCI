@@ -1,19 +1,18 @@
 const getDB = require('../../bbdd/db');
 const { formatDate } = require('../../helpers');
 
-
 const newBooking = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
 
-        let { units, dateBooking, totalPrice, idExp } = req.body;
+        let { units, dateBooking, price, idExp } = req.body;
         const { idUser } = req.userAuth;
         const now = new Date();
         const datePurchase = formatDate(now);
         units = Number(units);
-        totalPrice = Number(totalPrice);
+        totalPrice = Number(units * price);
         idExp = Number(idExp);
         const [newBooking] = await connection.query(
             `
