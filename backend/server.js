@@ -53,6 +53,7 @@ const {
     newBooking,
     newComment,
     newRating,
+    putBookingState,
 } = require('./controllers/bookings');
 
 // ###############################################
@@ -106,7 +107,7 @@ app.post('/bookings', authUser, newBooking); //newBooking
 app.put('/bookings/:idBooking/comments', authUser, newComment); //newComment
 app.put('/bookings/:idBooking/rating', authUser, newRating); //newRating
 app.delete('/bookings/:idBooking', authUser, deleteBooking); //deleteBooking
-
+app.put('/bookings/:idBooking/state', authUser, putBookingState);
 // ########################
 // ## ENDPOINTS DE ERROR ##
 // ########################

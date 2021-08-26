@@ -10,7 +10,6 @@ const authUser = async (req, res, next) => {
         connection = await getDB();
 
         const { authorization } = req.headers;
-        console.log('auth', authorization);
 
         if (!authorization) {
             const error = new Error('Faltan la autorización en la cabecera');

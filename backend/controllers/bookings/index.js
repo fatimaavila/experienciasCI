@@ -7,6 +7,7 @@ const getUserBookings = require('./getUserBookings');
 const newBooking = require('./newBooking');
 const newComment = require('./newComment');
 const newRating = require('./newRating');
+const putBookingState = require('./putBookingState');
 
 module.exports = {
     deleteBooking,
@@ -17,4 +18,5 @@ module.exports = {
     newComment,
     newRating,
     getUserBookings,
+    putBookingState,
 };
