@@ -19,8 +19,6 @@ function LoggedUserNav() {
 
   useEffect(() => {
     window.addEventListener('click', (e) => {
-      console.log(e.target);
-
       if (!e.target.matches('.imgAvatar')) {
         setShowNavMenu(false);
       }

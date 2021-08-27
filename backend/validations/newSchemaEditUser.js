@@ -51,16 +51,6 @@ const newSchemaEditUser = Joi.object().keys({
                     return new Error('El teléfono no es válido.');
             }
         }),
-
-    /* avatar: Joi.object({
-                filename: Joi.string().required(),
-                path: Joi.string().required(),
-                headers: Joi.object({
-                    'content-disposition' : Joi.string().required(),
-                    'content-type' : Joi.string().valid('image/jpeg','image/png').required(),
-                }).required(),
-                bytes: Joi.number().required()
-                }) */
 });
 
 module.exports = { newSchemaEditUser };

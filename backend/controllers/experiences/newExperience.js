@@ -21,9 +21,8 @@ const newExperience = async (req, res, next) => {
             dStart,
             dStop,
         } = req.body;
-
+        console.log(req.files);
         await validate(newSchemaExperience, req.body);
-
         if (req.userAuth.rol !== 'admin') {
             const error = new Error(
                 'El usuario no tiene permisos para crear una nueva experiencia'

@@ -22,10 +22,10 @@ const editUser = async (req, res, next) => {
         let { email, address, phone, bio, cp } = req.body;
         let avatar = req.files;
         console.log(avatar);
-        /*  console.log(idUser, req.files, avatar); */
+
         const now = new Date();
 
-        /* await validate(newSchemaEditUser, req.body); */
+        await validate(newSchemaEditUser, req.body);
 
         if (req.userAuth.idUser !== Number(idUser)) {
             const error = new Error(
