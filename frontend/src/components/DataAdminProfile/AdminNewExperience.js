@@ -53,7 +53,8 @@ function AdminNeWExperience() {
 
   function onSubmitNewExperience(event) {
     event.preventDefault();
-
+    let photo = new FormData();
+    files?.map((file) => photo.append('photo', file));
     async function performNewExperience() {
       try {
         const body = {
@@ -68,8 +69,6 @@ function AdminNeWExperience() {
         };
         await postAxios('http://localhost:8080/experiences', body, token);
         if (files.length > 0) {
-          let photo = new FormData();
-          files?.map((file) => photo.append('photo', file));
           console.log(photo);
           await postAxios('http://localhost:8080/experiences', photo, token);
         }

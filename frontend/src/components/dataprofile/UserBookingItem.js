@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { getAxios } from '../../axiosCalls';
 import Button from '../button/Button';
 import UserComment from './UserComment';
+import { compareAsc } from 'date-fns';
 function UserRatingBookingItem({ bookingInfo }) {
   const [showRate, setShowRate] = useState(false);
   const [uniqueExp, setUniqueExp] = useState([]);
+
   const value = 4.5;
 
   useEffect(() => {
@@ -24,9 +26,25 @@ function UserRatingBookingItem({ bookingInfo }) {
     month: 'numeric',
     year: 'numeric',
   };
-  const dateFormat = new Date(bookingInfo.fecha_compra);
-  const dateBooking = new Date(bookingInfo.fecha_reserva);
-  const dateToday = new Date();
+  const dateFormat = new Date(bookingInfo.fecha_compra).toLocaleDateString(
+    'es-ES',
+    optionsDate
+  );
+  const dateBooking = new Date(bookingInfo.fecha_reserva).toLocaleDateString(
+    'es-ES',
+    optionsDate
+  );
+  const dateToday = new Date().toLocaleDateString('es-ES', optionsDate);
+  console.log('dates', dateBooking, dateToday);
+  const date1 = dateBooking.split('/').reverse();
+  const date2 = dateToday.split('/').reverse();
+
+  const state = compareAsc(
+    new Date(date1[0], date1[1], date1[2]),
+    new Date(date2[0], date2[1], date2[2])
+  );
+  console.log('state', state);
+  const resultUsedExp = state === -1 ? false : true;
 
   return (
     <div className="userBookking">
@@ -38,16 +56,15 @@ function UserRatingBookingItem({ bookingInfo }) {
         </span>
       </div>
       <div className="bookingBody">
-        <span>
-          Fecha de Compra: {dateFormat.toLocaleDateString('es-ES', optionsDate)}
-        </span>
-        <span>
-          Fecha de Reserva:{' '}
-          {dateBooking.toLocaleDateString('es-ES', optionsDate)}
-        </span>
+        <span>Fecha de Compra: {dateFormat}</span>
+        <span>Fecha de Reserva: {dateBooking}</span>
       </div>
       <div>
-        <Button blue onClickButton={() => setShowRate(!showRate)}>
+        <Button
+          blue
+          disabled={resultUsedExp}
+          onClickButton={() => setShowRate(!showRate)}
+        >
           Valora tu Experiencia
         </Button>
       </div>
