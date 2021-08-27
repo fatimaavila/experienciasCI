@@ -23,9 +23,10 @@ function AdminNeWExperience() {
   const [dStart, setDStart] = useState('');
   const [dStop, setDStop] = useState('');
   const [error, setError] = useState('');
+  const [files, setFiles] = useState([]);
 
   let history = useHistory();
-
+  console.log(description);
   const dateStart = new Date(dStart).toLocaleDateString('es-ES', {
     year: 'numeric',
     month: 'numeric',
@@ -36,6 +37,12 @@ function AdminNeWExperience() {
     month: 'numeric',
     day: 'numeric',
   });
+
+  const onFileChange = (e) => {
+    const file = e.target.files;
+    setFiles([...file]);
+    console.log(files);
+  };
 
   async function getCategories() {
     const { data } = await getAxios('http://localhost:8080/experiences');
@@ -59,8 +66,14 @@ function AdminNeWExperience() {
           dStart: sqlDateFormat(dateStart),
           dStop: sqlDateFormat(dateStop),
         };
-        
         await postAxios('http://localhost:8080/experiences', body, token);
+        if (files.length > 0) {
+          let photo = new FormData();
+          files?.map((file) => photo.append('photo', file));
+          console.log(photo);
+          await postAxios('http://localhost:8080/experiences', photo, token);
+        }
+
         history.go(0);
       } catch (error) {
         setError(error.response);
@@ -71,7 +84,7 @@ function AdminNeWExperience() {
 
   useEffect(() => {
     getCategories();
-  },[]);
+  }, []);
 
   return (
     <div>
@@ -181,14 +194,20 @@ function AdminNeWExperience() {
             <Form.Group className="formElement">
               <Form.Label>
                 Imagen
-                <Form.Control type="file" />
+                <Form.Control
+                  type="file"
+                  multiple="multiple"
+                  onChange={onFileChange}
+                />
               </Form.Label>
             </Form.Group>
             <Form.Group className="formElement checkboxForm">
               <Form.Check type="checkbox" />
               <Form.Label>Aceptar condiciones de uso</Form.Label>
             </Form.Group>
-            {error?.data?.message && <div className='errorForm'>{error?.data?.message}</div>}
+            {error?.data?.message && (
+              <div className="errorForm">{error?.data?.message}</div>
+            )}
             <Button white>ENVIAR</Button>
           </Form>
         </StyledForm>
