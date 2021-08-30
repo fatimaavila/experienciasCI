@@ -25,7 +25,7 @@ function MainHeader() {
   const categorySelected = {
     backgroundColor: '#3aabfe',
     color: '#FFF',
-  }
+  };
 
   return (
     <>
@@ -37,10 +37,10 @@ function MainHeader() {
             </a>
           </div>
           <div className="logIn_shopCart">
-            <div className='posRel'>
+            <div className="posRel">
               <FaShoppingCart
                 className="cartIcon"
-                color='white'
+                color="white"
                 size="2.4rem"
                 onClick={() => redirectshop()}
               />
@@ -60,7 +60,12 @@ function MainHeader() {
           <ul className="mainMenu">
             {categories.map(({ path, label }) => (
               <li key={uuidv4()}>
-                <Link to={path} style={categoryParam === path ? categorySelected : null}>{label.toUpperCase()}</Link>
+                <Link
+                  to={path}
+                  style={categoryParam === path ? categorySelected : null}
+                >
+                  {label.toUpperCase()}
+                </Link>
               </li>
             ))}
           </ul>
