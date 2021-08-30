@@ -13,7 +13,7 @@ function UserProfileMain() {
   };
 
   const [showInfo, setShowInfo] = useState({ profile: true, bookings: false });
-  const { userInfo, tokenContent, token } = useContext(UserContext);
+  const { userInfo, tokenContent, token, logout } = useContext(UserContext);
   const userAvatar = userInfo?.avatar ? userInfo?.avatar : defaultAvatar;
   const completeName = `${userInfo?.nombre} ${userInfo?.apellidos}`;
   const [changeChecked, setChangeChecked] = useState({
@@ -35,6 +35,7 @@ function UserProfileMain() {
           token
         );
         setError('');
+        logout();
       }
     } catch (error) {
       setError(error.response.data.message);

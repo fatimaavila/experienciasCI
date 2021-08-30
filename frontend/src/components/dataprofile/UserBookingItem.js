@@ -8,7 +8,7 @@ function UserRatingBookingItem({ bookingInfo }) {
   const [showRate, setShowRate] = useState(false);
   const [uniqueExp, setUniqueExp] = useState([]);
 
-  const value = 4.5;
+  const value = 0;
 
   useEffect(() => {
     const getUniqueExp = async () => {
@@ -60,19 +60,25 @@ function UserRatingBookingItem({ bookingInfo }) {
         <span>Fecha de Reserva: {dateBooking}</span>
       </div>
       <div>
-        <Button
-          blue
-          disabled={resultUsedExp}
-          onClickButton={() => setShowRate(!showRate)}
-        >
-          Valora tu Experiencia
-        </Button>
+        {resultUsedExp ? (
+          <Button red disabled={resultUsedExp}>
+            Valora tu Experiencia
+          </Button>
+        ) : (
+          <Button blue onClickButton={() => setShowRate(!showRate)}>
+            Valora tu Experiencia
+          </Button>
+        )}
       </div>
       {showRate && (
         <div className="appreciations">
           <div className="bookingComments">
             <span>Comentario:</span>
-            <UserComment />
+            {bookingInfo?.comentario ? (
+              bookingInfo?.comentario
+            ) : (
+              <UserComment idBooking={bookingInfo.id} />
+            )}
           </div>
           <div className="bookingRate">
             <span>Valoración:</span>

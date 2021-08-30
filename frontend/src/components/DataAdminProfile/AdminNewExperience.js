@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import StyledForm from '../RegisterUser/StyledForm';
 import DatePicker from 'react-datepicker';
 import { useHistory } from 'react-router-dom';
