@@ -22,15 +22,18 @@ function App() {
 
     if (scrolled > 90) {
       const header = document.querySelector('header');
+      const { body } = document;
+      body.style.cssText = `margin-top: 300px;`;
       header.style.cssText = `
         position: fixed;
         top: 0;
         box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
-        margin-bottom: 300px;
-        z-index: 9999;
+        z-index: 999;
       `;
     } else if (scrolled <= 90) {
       const header = document.querySelector('header');
+      const { body } = document;
+      body.style.cssText = `margin-top: 0px;`;
       header.style.cssText = `
         position: static;
       `;

@@ -170,11 +170,10 @@ function AdminExperiencesItem({ experience }) {
                     >
                       {category &&
                         category.map((category) => {
-                          console.log(experience.categoria === category);
                           return (
                             <option
                               key={uuidv4()}
-                              selected={experience.categoria === category}
+                              defaultValue={experience.categoria === category}
                             >
                               {category}
                             </option>

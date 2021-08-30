@@ -45,19 +45,13 @@ function Filters({
           city.map((city) => {
             return (
               <>
-                {cityActive ? (
-                  <li
-                    key={uuidv4()}
-                    onClick={onClickCity}
-                    style={city === cityFilterSelected ? cityActive : {}}
-                  >
-                    {city}
-                  </li>
-                ) : (
-                  <li key={uuidv4()} onClick={onClickCity}>
-                    {city}
-                  </li>
-                )}
+                <li
+                  key={uuidv4()}
+                  onClick={onClickCity}
+                  style={city === cityFilterSelected ? cityActive : null}
+                >
+                  {city}
+                </li>
               </>
             );
           })}
