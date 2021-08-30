@@ -1,0 +1,26 @@
+.scrollUp_Box {
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  background-color: var(--color-blue-dark);
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation-name: opacityScrollBtnVisible;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+
+@keyframes opacityScrollBtnVisible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
