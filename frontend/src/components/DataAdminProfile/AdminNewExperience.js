@@ -54,25 +54,31 @@ function AdminNeWExperience() {
 
   function onSubmitNewExperience(event) {
     event.preventDefault();
-    let photo = new FormData();
-    files?.map((file) => photo.append('photo', file));
+    let payload = new FormData();
+
+    //primero metemos las fotos
+    files?.map((file) => payload.append('photo', file));
+
+    const body = {
+      name,
+      description,
+      category: section,
+      city,
+      price,
+      participants,
+      dStart: sqlDateFormat(dateStart),
+      dStop: sqlDateFormat(dateStop),
+    };
+
+    //despues metemos los datos
+
+    for (const prop of Object.keys(body)) {
+      payload.append(prop, body[prop]);
+    }
+
     async function performNewExperience() {
       try {
-        const body = {
-          name,
-          description,
-          category: section,
-          city,
-          price,
-          participants,
-          dStart: sqlDateFormat(dateStart),
-          dStop: sqlDateFormat(dateStop),
-        };
-        await postAxios('http://localhost:8080/experiences', body, token);
-        if (files.length > 0) {
-          console.log(photo);
-          await postAxios('http://localhost:8080/experiences', photo, token);
-        }
+        await postAxios('http://localhost:8080/experiences', payload, token);
 
         history.go(0);
       } catch (error) {

@@ -31,7 +31,9 @@ export const UserProvider = ({ children }) => {
         );
         setUserInfo({
           ...data,
-          avatar: `http://localhost:8080/uploads/${data.avatar}`,
+          avatar: data.avatar
+            ? `http://localhost:8080/uploads/${data.avatar}`
+            : null,
         });
       } catch (error) {
         logout();

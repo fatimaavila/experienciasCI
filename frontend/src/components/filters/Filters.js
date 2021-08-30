@@ -44,15 +44,13 @@ function Filters({
         {city &&
           city.map((city) => {
             return (
-              <>
-                <li
-                  key={uuidv4()}
-                  onClick={onClickCity}
-                  style={city === cityFilterSelected ? cityActive : null}
-                >
-                  {city}
-                </li>
-              </>
+              <li
+                key={uuidv4()}
+                onClick={onClickCity}
+                style={city === cityFilterSelected ? cityActive : null}
+              >
+                {city}
+              </li>
             );
           })}
       </ul>

@@ -70,11 +70,13 @@ const routes = [
     path: '/usermenu',
     Page: UserMenu,
     label: 'UserMenu',
+    private: true,
   },
   {
     path: '/adminmenu',
     Page: AdminMenu,
     label: 'AdminMenu',
+    private: true,
   },
   {
     path: '/shop',
