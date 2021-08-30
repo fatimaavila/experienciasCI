@@ -8,7 +8,7 @@ function LoggedUserNav() {
   const { userInfo, logout, tokenContent } = useContext(UserContext);
   const [showNavMenu, setShowNavMenu] = useState(false);
   let history = useHistory();
-  const isAdmin = tokenContent.rol === 'admin' ? true : false;
+  const isAdmin = tokenContent?.rol === 'admin' ? true : false;
 
   function redirectUserMenu() {
     history.push({ pathname: '/usermenu' });
@@ -25,20 +25,12 @@ function LoggedUserNav() {
     });
   }, []);
 
-  /*   useEffect(() => {
-    const handleUserKeyPress = (event) => {
-      event = setShowNavMenu(!showNavMenu);
-    };
-    window.addEventListener('click', handleUserKeyPress);
+  console.log(userInfo);
 
-    return () => {
-      window.removeEventListener('click', handleUserKeyPress);
-    };
-  }, [showNavMenu]); */
   return (
     <StyledLoggedUserNav>
       <div className="loggedUserNav posRel">
-        <span>Bienvenido, {userInfo.username}</span>
+        <span>Bienvenido, {userInfo?.username}</span>
 
         <div className="avatarUser">
           <img

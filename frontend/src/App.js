@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import { useState } from 'react';
 import ScrollToTopRouter from './components/ScrollTopRouter/ScrollTopRouter';
 import AutoScrollToTop from './components/AutoScrollToTop/AutoScrollToTop';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   const [home] = useState();
@@ -50,7 +51,13 @@ function App() {
         <Switch>
           {routes.map((route) => (
             <Route key={route.path} path={route.path}>
-              <route.Page />
+              {route.private ? (
+                <PrivateRoute>
+                  <route.Page />
+                </PrivateRoute>
+              ) : (
+                <route.Page />
+              )}
             </Route>
           ))}
           {home && <Home />}

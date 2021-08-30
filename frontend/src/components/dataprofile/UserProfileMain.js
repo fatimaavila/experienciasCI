@@ -34,10 +34,10 @@ function UserProfileMain() {
           `http://localhost:8080/users/${tokenContent?.idUser}`,
           token
         );
-        setError('');
         logout();
       }
     } catch (error) {
+      console.log(error);
       setError(error.response.data.message);
     }
   }
