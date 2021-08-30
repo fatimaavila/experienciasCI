@@ -43,7 +43,6 @@ function UserProfile() {
         });
       } else {
         const body = {
-          name: dataUser.name,
           dni: dataUser.dni,
           phone: dataUser.phone,
           address: dataUser.address,
@@ -90,6 +89,7 @@ function UserProfile() {
       avatar: URL.createObjectURL(e.target.files[0]),
     });
   };
+  const userDNI = userInfo?.dni.length > 5 ? true : false;
 
   return (
     <>
@@ -129,10 +129,10 @@ function UserProfile() {
             <Form.Control
               type="text"
               placeholder={userInfo?.dni ? userInfo?.dni : 'DNI'}
-              /* onChange={(e) =>
+              onChange={(e) =>
                 setDataUser({ ...dataUser, dni: e.target.value })
-              } */
-              disabled
+              }
+              disabled={userDNI}
             />
           </Form.Label>
         </Form.Group>
