@@ -28,9 +28,9 @@ function UserBookings() {
   return (
     <>
       {userBookings &&
-        userBookings?.map((booking) => 
+        userBookings?.map((booking) => (
           <UserRatingBookingItem key={booking.id} bookingInfo={booking} />
-        )}
+        ))}
     </>
   );
 }

@@ -16,9 +16,13 @@ function UserComment({ idBooking }) {
     try {
       e.preventDefault();
 
+      const body = {
+        comment,
+      };
+
       await putAxios(
         `http://localhost:8080/bookings/${idBooking}/comments`,
-        comment,
+        body,
         token
       );
       setFormActivate(!formActivate);
@@ -26,8 +30,6 @@ function UserComment({ idBooking }) {
       setError(error.response.data.message);
     }
   }
-
-  console.log(comment);
 
   return (
     <>
@@ -52,7 +54,7 @@ function UserComment({ idBooking }) {
                 />
               </Form.Label>
             </Form.Group>
-            {error && <div class="errorForm">{error}</div>}
+            {error && <div className="errorForm">{error}</div>}
             <Button white>Añadir Comentario</Button>
           </Form>
         </StyledForm>
