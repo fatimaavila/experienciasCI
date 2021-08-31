@@ -1,6 +1,8 @@
 const getDB = require('../../bbdd/db');
 const { formatDate, validate } = require('../../helpers');
-const { newSchemaExperience } = require('../../validations/newSchemaExperience');
+const {
+    newSchemaExperience,
+} = require('../../validations/newSchemaExperience');
 
 const editExperience = async (req, res, next) => {
     let connection;
@@ -9,10 +11,12 @@ const editExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp } = req.params;
-        await validate(newSchemaExperience, req.body);
+        /*   await validate(newSchemaExperience, req.body); */
 
-        if(req.userAuth.rol !== 'admin') {
-            const error = new Error('No tienes permisos para editar la experiencia');
+        if (req.userAuth.rol !== 'admin') {
+            const error = new Error(
+                'No tienes permisos para editar la experiencia'
+            );
             error.httpStatus = 401;
             throw error;
         }

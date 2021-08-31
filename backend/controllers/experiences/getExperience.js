@@ -32,9 +32,10 @@ const getExperience = async (req, res, next) => {
 
         const photosExperience = photos.map((photo) => {
             return {
-                photo: `${PUBLIC_HOST}${UPLOADS}${photo.url}`
-            }
-        })
+                photo: `${PUBLIC_HOST}${UPLOADS}${photo.url}`,
+                id: photo.id,
+            };
+        });
 
         const [comment] = await connection.query(
             `SELECT comentario FROM bookings WHERE id_experience = ?`,

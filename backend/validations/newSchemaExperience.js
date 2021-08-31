@@ -4,7 +4,7 @@ const newSchemaExperience = Joi.object().keys({
     description: Joi.string()
         .required()
         .min(50)
-        .max(1000)
+        .max(2000)
         .error((errors) => {
             switch (errors[0].code) {
                 case 'any.required':
