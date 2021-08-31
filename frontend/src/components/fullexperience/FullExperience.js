@@ -9,17 +9,23 @@ import { useHistory } from 'react-router-dom';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
+
+import { sqlDateFormat } from '../../helpers';
+import axios from 'axios';
 
 registerLocale('es', es);
 
 function FullExperience({ data }) {
   const { setCartExperience, cartExperience } = useContext(UserContext);
   const [bookingDate, setBookingDate] = useState('');
+  const [bookingParticipants, setBookingParticipants] = useState();
+  console.log(bookingParticipants);
   let history = useHistory();
 
   const infoActive = data;
+  console.log(infoActive);
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
@@ -27,13 +33,36 @@ function FullExperience({ data }) {
   };
 
   const dateNoFormat = new Date(bookingDate);
+  const dateClientSelect = new Date(bookingDate).toLocaleDateString(
+    'es-ES',
+    optionsDate
+  );
   const dateBooking = dateNoFormat.toLocaleDateString('es-ES', optionsDate);
   const [labelDate, setLabelDate] = useState('');
+  console.log('dataaaa', sqlDateFormat(dateBooking));
+  useEffect(() => {
+    if (bookingDate !== '') {
+      async function getParticipants() {
+        const { data } = await axios.get(
+          `http://localhost:8080/bookings/state/${
+            infoActive?.id
+          }/${sqlDateFormat(dateClientSelect)}`
+        );
+        console.log(data);
+        setBookingParticipants(data);
+      }
+      getParticipants();
+    }
+  }, [bookingDate, dateBooking, infoActive.id, dateClientSelect]);
 
   function addToCart(item, date) {
     setCartExperience([...cartExperience, { exp: item, date: date }]);
     history.push('/shop');
   }
+
+  const peopleHasBooking = bookingParticipants?.data.length;
+  console.log('people', peopleHasBooking);
+  const bookingPeople = data.num_participantes - peopleHasBooking;
 
   const defaultRating = 3.5;
   const rating = Number(data.rating);
@@ -90,11 +119,12 @@ function FullExperience({ data }) {
             <div className="includes_freePlaces">
               <h4>Incluye:</h4>
               <span>Bono de acceso a la actividad</span>
+              <span>Disponibilidad :</span>
               <span className="participants">
                 <FaUser size="1.5rem" color="#3aabfe" />
-                {data.num_participantes > 1
-                  ? `${data.num_participantes} personas`
-                  : `${data.num_participantes} persona`}
+                {bookingPeople > 0
+                  ? `${bookingPeople} Plazas disponibles`
+                  : `Selecciona una fecha para ver disponibilidad`}
               </span>
             </div>
             <h4>Condiciones de uso:</h4>
