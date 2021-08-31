@@ -301,7 +301,13 @@ function AdminExperiencesItem({ experience }) {
                   <ul>
                     {expPhoto?.map((photo, index) => (
                       <li key={index}>
-                        <span>{`Foto : ${photo.id}`}</span>
+                        <span>{`Foto : ${photo.id}        `}</span>
+                        <img
+                          width="20%"
+                          height="20%"
+                          src={photo.photo}
+                          alt={photo.id}
+                        />
 
                         <GoTrashcan
                           onClick={() => deletePhoto(experience?.id, photo.id)}
