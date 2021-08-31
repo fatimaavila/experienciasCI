@@ -29,21 +29,24 @@ const addPhotoExperience = async (req, res, next) => {
             throw error;
         }
 
-        let photoName;
+        const photos = [];
 
-        if (req.files && req.files.photo) {
-            photoName = await savePhoto(req.files.photo);
+        if (req.files.photo) {
+            for (const photo of Object.values(req.files.photo).slice(0, 5)) {
+                const photoName = await savePhoto(photo);
 
-            await connection.query(
-                `INSERT INTO photos (url, id_experience) VALUES (?, ?);`,
-                [photoName, idExp]
-            );
+                photos.push(photoName);
+
+                await connection.query(
+                    `INSERT INTO photos (url, id_experience, alt) VALUES (?, ?,?);`,
+                    [photoName, idExp, photoName]
+                );
+            }
         }
-
         res.send({
             status: 200,
             data: {
-                photo: photoName,
+                photo: photos,
             },
         });
     } catch (error) {
