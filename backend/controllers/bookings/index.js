@@ -8,6 +8,7 @@ const newBooking = require('./newBooking');
 const newComment = require('./newComment');
 const newRating = require('./newRating');
 const putBookingState = require('./putBookingState');
+const getFinalStateBooking = require('./getFinalStateBooking');
 
 module.exports = {
     deleteBooking,
@@ -19,4 +20,5 @@ module.exports = {
     newRating,
     getUserBookings,
     putBookingState,
+    getFinalStateBooking,
 };

@@ -54,6 +54,7 @@ const {
     newComment,
     newRating,
     putBookingState,
+    getFinalStateBooking,
 } = require('./controllers/bookings');
 
 // ###############################################
@@ -99,6 +100,7 @@ app.delete('/users/:idUser', authUser, userExists, deleteUser); // deleteUser
 // ###########################
 // ## ENDPOINTS DE RESERVAS ##
 // ###########################
+app.get('/bookings/state/:idExp/:dateBooking', getFinalStateBooking); //getStateParticipants
 app.get('/bookings', authUser, getAllBookings); //getAllBookings
 app.get('/bookings/:idBooking', authUser, getBooking); //getBooking
 app.get('/bookings/comments-ratings/:idExp', getCommentsRatings);
