@@ -9,7 +9,7 @@ import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 import { v4 as uuidv4 } from 'uuid';
 import es from 'date-fns/locale/es';
-import { deleteAxios, putAxios } from '../../axiosCalls';
+import { deleteAxios, getAxios, postAxios, putAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 
@@ -42,7 +42,10 @@ function AdminExperiencesItem({ experience }) {
   const [editDataForm, setEditDataForm] = useState(INITIAL_VALUES);
   const [error, setError] = useState('');
   const [errorDel, setErrorDel] = useState();
+  const [expPhoto, setExpPhoto] = useState();
+  const [files, setFiles] = useState();
 
+  console.log(expPhoto);
   const history = useHistory();
 
   async function getCategories() {
@@ -54,32 +57,70 @@ function AdminExperiencesItem({ experience }) {
 
   useEffect(() => {
     getCategories();
-  }, []);
+    async function getPhotos() {
+      const { data } = await getAxios(
+        `http://localhost:8080/experiences/${experience?.id}`
+      );
+      setExpPhoto(data.photos);
+    }
+    getPhotos();
+  }, [experience?.id]);
+
+  const onFileChange = (e) => {
+    const file = e.target.files;
+    setFiles([...file]);
+    console.log('filessssss', files);
+  };
+
+  let payload = new FormData();
+  files?.map((file) => payload.append('photo', file));
+
+  async function updatePhotos() {
+    const { data } = await postAxios(
+      `http://localhost:8080/experiences/${experience.id}/photo`,
+      payload,
+      token
+    );
+    console.log(data);
+  }
 
   async function putEditInfo(e) {
     e.preventDefault();
-
+    const body = {
+      ...editDataForm,
+      sDate: sqlDateFormat(
+        editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
+      ),
+      fDate: sqlDateFormat(
+        editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
+      ),
+    };
     try {
       await putAxios(
         `http://localhost:8080/experiences/${experience.id}`,
-        {
-          ...editDataForm,
-          sDate: sqlDateFormat(
-            editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
-          ),
-          fDate: sqlDateFormat(
-            editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
-          ),
-        },
+        body,
         token
       );
+      if (files?.length > 0) {
+        updatePhotos();
+      }
       history.go(0);
     } catch (error) {
       setError(error.response.data.message);
     }
   }
+  async function deletePhoto(idExp, idPhoto) {
+    try {
+      await deleteAxios(
+        `http://localhost:8080/experiences/${idExp}/photo/${idPhoto}`,
+        token
+      );
+    } catch (error) {
+      setErrorDel(error.response.data.message);
+    }
+  }
 
-  async function deleteExpeience() {
+  async function deleteExperience() {
     try {
       const doYouDelete = window.confirm(
         'Estás seguro de que quieres borrar esta experiencia?'
@@ -257,9 +298,24 @@ function AdminExperiencesItem({ experience }) {
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement">
+                  <ul>
+                    {expPhoto?.map((photo, index) => (
+                      <li key={index}>
+                        <span>{`Foto : ${photo.id}`}</span>
+
+                        <GoTrashcan
+                          onClick={() => deletePhoto(experience?.id, photo.id)}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                   <Form.Label>
                     Imagen
-                    <Form.Control type="file" />
+                    <Form.Control
+                      type="file"
+                      multiple
+                      onChange={onFileChange}
+                    />
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement checkboxForm">
@@ -272,7 +328,7 @@ function AdminExperiencesItem({ experience }) {
             </StyledForm>
           </Modal>
 
-          <GoTrashcan onClick={() => deleteExpeience()} />
+          <GoTrashcan onClick={() => deleteExperience()} />
         </td>
       </tr>
       {errorDel && <div className="errorForm">{errorDel}</div>}
