@@ -19,7 +19,7 @@ const editUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
-        let { email, address, phone, bio, cp } = req.body;
+        let { email, address, phone, bio, cp, dni } = req.body;
         let avatar = req.files;
         console.log(avatar);
 
@@ -48,6 +48,7 @@ const editUser = async (req, res, next) => {
         phone = !phone ? user[0].telefono : phone;
         bio = !bio ? user[0].bio : bio;
         cp = !cp ? user[0].cp : cp;
+        dni = !dni ? user[0].dni : dni;
         avatar = !avatar ? user[0].avatar : avatar;
 
         if (email && email !== user[0].email) {
@@ -107,9 +108,9 @@ const editUser = async (req, res, next) => {
 
         await connection.query(
             `
-            UPDATE users SET direccion = ?, bio = ?, cp = ?, modifiedAt = ? WHERE id = ?;
+            UPDATE users SET direccion = ?, bio = ?, cp = ?, dni= ?, modifiedAt = ? WHERE id = ?;
         `,
-            [address, bio, cp, formatDate(now), idUser]
+            [address, bio, cp, dni, formatDate(now), idUser]
         );
 
         const [updatedUser] = await connection.query(

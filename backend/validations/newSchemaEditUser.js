@@ -51,6 +51,18 @@ const newSchemaEditUser = Joi.object().keys({
                     return new Error('El teléfono no es válido.');
             }
         }),
+    dni: Joi.string()
+        .min(9)
+        .error((error) => {
+            switch (error[0].code) {
+                case 'any.required':
+                    return new Error('Se requiere un DNI');
+                default:
+                    return new Error(
+                        'El DNI debe contener minimo 9 caracteres.'
+                    );
+            }
+        }),
 });
 
 module.exports = { newSchemaEditUser };
