@@ -1,6 +1,7 @@
 const getDB = require('../../bbdd/db');
 
 const { deletePhoto } = require('../../helpers');
+const { PUBLIC_HOST, UPLOADS } = process.env;
 
 const deletePhotoExperience = async (req, res, next) => {
     let connection;
@@ -32,10 +33,21 @@ const deletePhotoExperience = async (req, res, next) => {
             `DELETE FROM photos WHERE id = ? AND id_experience = ?;`,
             [idPhoto, idExp]
         );
+        const [photos] = await connection.query(
+            `SELECT id, url, alt FROM photos WHERE id_experience = ?`,
+            [idExp]
+        );
+        const photosExperience = photos.map((photo) => {
+            return {
+                photo: `${PUBLIC_HOST}${UPLOADS}${photo.url}`,
+                id: photo.id,
+            };
+        });
 
         res.send({
             status: 200,
             message: 'Foto eliminada',
+            data: { photos: photosExperience },
         });
     } catch (error) {
         next(error);

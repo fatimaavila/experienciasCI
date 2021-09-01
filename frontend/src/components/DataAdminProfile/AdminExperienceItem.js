@@ -111,10 +111,12 @@ function AdminExperiencesItem({ experience }) {
   }
   async function deletePhoto(idExp, idPhoto) {
     try {
-      await deleteAxios(
+      const { data } = await deleteAxios(
         `http://localhost:8080/experiences/${idExp}/photo/${idPhoto}`,
         token
       );
+      setExpPhoto(data.photos);
+      console.log('dataaaaaPHODEL', data);
     } catch (error) {
       setErrorDel(error.response.data.message);
     }
