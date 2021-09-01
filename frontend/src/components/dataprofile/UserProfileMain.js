@@ -37,12 +37,9 @@ function UserProfileMain() {
         logout();
       }
     } catch (error) {
-      console.log(error);
       setError(error.response.data.message);
     }
   }
-
-  console.log(userAvatar);
 
   return (
     <StyledUserProfile>

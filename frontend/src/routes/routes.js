@@ -67,15 +67,15 @@ const routes = [
     label: 'RegisterValidate',
   },
   {
-    path: '/usermenu',
+    path: '/profile',
     Page: UserMenu,
-    label: 'UserMenu',
+    label: 'Profile',
     private: true,
   },
   {
-    path: '/adminmenu',
+    path: '/admin',
     Page: AdminMenu,
-    label: 'AdminMenu',
+    label: 'Admin',
     private: true,
   },
   {

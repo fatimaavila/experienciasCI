@@ -5,8 +5,8 @@ import UserRatingBookingItem from './UserBookingItem';
 
 function UserBookings() {
   const { tokenContent, token } = useContext(UserContext);
-  console.log('userBook', tokenContent);
   const [userBookings, setUserBookings] = useState([]);
+
   useEffect(() => {
     async function getUserBookings() {
       try {
@@ -14,7 +14,6 @@ function UserBookings() {
           `http://localhost:8080/bookings/${tokenContent.idUser}/bookings`,
           token
         );
-        console.log(data);
         setUserBookings(data);
       } catch (error) {
         console.log('ERROR: ', error);
@@ -23,13 +22,15 @@ function UserBookings() {
     getUserBookings();
   }, [token, tokenContent]);
 
-  console.log('userBookings', userBookings);
-
   return (
     <>
       {userBookings &&
         userBookings?.map((booking) => (
-          <UserRatingBookingItem key={booking.id} bookingInfo={booking} />
+          <UserRatingBookingItem
+            key={booking.id}
+            bookingInfo={booking}
+            updateDataBooking={setUserBookings}
+          />
         ))}
     </>
   );

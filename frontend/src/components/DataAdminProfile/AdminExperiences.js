@@ -3,25 +3,27 @@ import { getAxios } from '../../axiosCalls';
 import AdminExperiencesItem from './AdminExperienceItem';
 
 function AdminExperiences() {
-
-  const [experienceInfo,setExperienceInfo] = useState();
+  const [experienceInfo, setExperienceInfo] = useState();
 
   useEffect(() => {
-
     async function getInfoExperiences() {
-
-      const { data } = await getAxios('http://localhost:8080/experiences');
-      setExperienceInfo(data);
+      try {
+        const { data } = await getAxios('http://localhost:8080/experiences');
+        setExperienceInfo(data);
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
     }
 
     getInfoExperiences();
-
-  },[])
+  }, []);
 
   return (
-    <table className='tableData'>
+    <table className="tableData">
       <tbody>
-        {experienceInfo && experienceInfo.map((experience) => <AdminExperiencesItem key={experience.id} experience={experience}/>)}
+        {experienceInfo?.map((experience) => (
+          <AdminExperiencesItem key={experience.id} experience={experience} />
+        ))}
       </tbody>
     </table>
   );

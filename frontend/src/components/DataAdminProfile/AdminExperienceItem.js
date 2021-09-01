@@ -149,7 +149,7 @@ function AdminExperiencesItem({ experience }) {
             <span>Ciudad: {experience?.ciudad}</span>
             <span>Categoría: {experience?.categoria}</span>
             <span>
-              {experience?.num_participantes}{' '}
+              {experience?.num_participantes}
               {experience?.num_participantes === 1 ? 'persona' : 'personas'}
             </span>
             <div className="dataInfoRow">
