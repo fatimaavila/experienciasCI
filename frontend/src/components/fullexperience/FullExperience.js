@@ -63,9 +63,11 @@ function FullExperience({ data }) {
   const peopleHasBooking = bookingParticipants?.data.length;
   console.log('people', peopleHasBooking);
   const bookingPeople = data.num_participantes - peopleHasBooking;
+  console.log('people2', bookingPeople);
 
   const defaultRating = 3.5;
   const rating = Number(data.rating);
+  const outOfStock = bookingPeople === 0 ? true : false;
 
   return (
     <StyledFullExperience>
@@ -110,6 +112,7 @@ function FullExperience({ data }) {
                     setLabelDate('Debes seleccionar una fecha para tu reserva');
                   }
                 }}
+                disabled={outOfStock}
               >
                 Agregar al Carrito
               </Button>
@@ -121,10 +124,16 @@ function FullExperience({ data }) {
               <span>Bono de acceso a la actividad</span>
               <span>Disponibilidad :</span>
               <span className="participants">
-                <FaUser size="1.5rem" color="#3aabfe" />
-                {bookingPeople !== undefined
-                  ? `${bookingPeople} Plazas disponibles`
-                  : `${data.num_participantes} Plazas disponibles `}
+                {bookingDate === '' ? (
+                  <span>Selecciona una fecha para ver disponibilidad</span>
+                ) : (
+                  <span>
+                    <FaUser size="1.5rem" color="#3aabfe" />
+                    {bookingPeople !== undefined
+                      ? `${bookingPeople} Plazas disponibles`
+                      : `${data.num_participantes} Plazas disponibles `}
+                  </span>
+                )}
               </span>
             </div>
             <h4>Condiciones de uso:</h4>
