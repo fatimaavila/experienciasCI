@@ -68,8 +68,6 @@ function UserProfile() {
           token
         );
 
-        console.log(userInfo);
-        console.log(data);
         setUserInfo({
           ...data,
           avatar: `http://localhost:8080/uploads/${data.avatar}`,

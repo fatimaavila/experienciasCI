@@ -1,4 +1,5 @@
-import { putAxios } from '../../axiosCalls';
+import { useContext, useEffect, useState } from 'react';
+import { getAxios, putAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
 
 function AdminBookingsItem({ info }) {
@@ -8,29 +9,39 @@ function AdminBookingsItem({ info }) {
     'es-ES',
     options
   );
-  //const { token } = UserContext(UserContext);
+  // const [userName, setUserName] = useState();
+  // const { token } = useContext(UserContext);
 
-  /*  async function performStateBooking() {
-    try {
-      const { data } = await putAxios(
-        `http://localhost:8080/bookings/${info?.id}/state`,token)
-    } catch (error) {
-      console.log(error);
-    }
-  } */
+  // useEffect(() => {
+  //   async function getUserInfo() {
+  //     try {
+  //       const { data } = await getAxios(
+  //         `http://localhost:8080/users/${info?.id_user}`,
+  //         token
+  //       );
+  //       setUserName(data);
+  //     } catch (error) {
+  //       console.error(error.response.data.message);
+  //     }
+  //   }
+
+  //   getUserInfo();
+  // }, [info?.id_user]);
+
   return (
     <tr className="sectionData">
-      <td>
-        <h3>
-          <span>Reserva: </span>
-          {info?.id}
-        </h3>
-        <span>Exp: {info?.id_experience}</span>
-        <span>Cantidad: {info?.cantidad}</span>
-        <span>Precio: {info?.precio_total}</span>
-        <span>Usuario: {info?.id_user}</span>
-        <span>Fecha de compra: {dateFormat}</span>
-        <span>Estado: {used}</span>
+      <td className="dataInfo">
+        <ul>
+          <li>
+            <h3>Reserva: {info?.id}</h3>
+          </li>
+          <li>Experiencia: {info?.id_experience}</li>
+          <li>Cantidad: {info?.cantidad}</li>
+          <li>Precio Total: {info?.precio_total} &#8364;</li>
+          <li>Usuario: {info?.id_user}</li>
+          <li>Fecha de compra: {dateFormat}</li>
+        </ul>
+        <span>{used}</span>
       </td>
       <td className="buttonsAdmin"></td>
     </tr>

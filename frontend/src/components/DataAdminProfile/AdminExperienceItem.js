@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { GoTrashcan } from 'react-icons/go';
+import { BsX } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
 import { onlyUnique, sqlDateFormat } from '../../helpers';
 import Button from '../button/Button';
@@ -15,7 +16,7 @@ import { useHistory } from 'react-router-dom';
 
 registerLocale('es', es);
 
-function AdminExperiencesItem({ experience }) {
+function AdminExperiencesItem({ experience, updateDataExp }) {
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
@@ -44,8 +45,11 @@ function AdminExperiencesItem({ experience }) {
   const [errorDel, setErrorDel] = useState();
   const [expPhoto, setExpPhoto] = useState();
   const [files, setFiles] = useState();
+  const [changeChecked, setChangeChecked] = useState({
+    checked: false,
+    error: '',
+  });
 
-  console.log(error);
   const history = useHistory();
 
   async function getCategories() {
@@ -70,45 +74,59 @@ function AdminExperiencesItem({ experience }) {
     const file = e.target.files;
     setFiles([...file]);
   };
-  console.log('filessssss', files);
 
   let payload = new FormData();
   files?.map((file) => payload.append('photo', file));
 
   async function updatePhotos() {
-    const { data } = await postAxios(
+    await postAxios(
       `http://localhost:8080/experiences/${experience.id}/photo`,
       payload,
       token
     );
-    console.log(data);
   }
 
   async function putEditInfo(e) {
     e.preventDefault();
-    const body = {
-      ...editDataForm,
-      sDate: sqlDateFormat(
-        editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
-      ),
-      fDate: sqlDateFormat(
-        editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
-      ),
-    };
-    try {
-      await putAxios(
-        `http://localhost:8080/experiences/${experience.id}`,
-        body,
-        token
-      );
-      if (files?.length > 0) {
-        updatePhotos();
+
+    if (changeChecked.checked === false) {
+      setChangeChecked({
+        ...changeChecked,
+        error:
+          'Debes aceptar la condiciones para actualizar los datos de la experiencia',
+      });
+    } else {
+      const body = {
+        ...editDataForm,
+        sDate: sqlDateFormat(
+          editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
+        ),
+        fDate: sqlDateFormat(
+          editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
+        ),
+      };
+      try {
+        const { status } = await putAxios(
+          `http://localhost:8080/experiences/${experience.id}`,
+          body,
+          token
+        );
+
+        if (files?.length > 0) {
+          updatePhotos();
+        }
+
+        if (status === 200) {
+          const { data } = await getAxios('http://localhost:8080/experiences');
+          updateDataExp(data);
+        }
+        setFormActivate(!formActivate);
+      } catch (error) {
+        setError(error.response.data.message);
       }
-      history.go(0);
-    } catch (error) {
-      setError(error.response.data.message);
     }
   }
+
   async function deletePhoto(idExp, idPhoto) {
     try {
       const { data } = await deleteAxios(
@@ -116,7 +134,6 @@ function AdminExperiencesItem({ experience }) {
         token
       );
       setExpPhoto(data.photos);
-      console.log('dataaaaaPHODEL', data);
     } catch (error) {
       setErrorDel(error.response.data.message);
     }
@@ -129,11 +146,15 @@ function AdminExperiencesItem({ experience }) {
       );
 
       if (doYouDelete) {
-        await deleteAxios(
+        const { status } = await deleteAxios(
           `http://localhost:8080/experiences/${experience.id}`,
           token
         );
-        history.go(0);
+
+        if (status === 200) {
+          const { data } = await getAxios('http://localhost:8080/experiences');
+          updateDataExp(data);
+        }
       }
     } catch (error) {
       setErrorDel(error.response.data.message);
@@ -144,19 +165,23 @@ function AdminExperiencesItem({ experience }) {
     <>
       <tr className="sectionData">
         <td className="dataInfo">
-          <div>
-            <h3>{experience?.nombre}</h3>
-            <span>Ciudad: {experience?.ciudad}</span>
-            <span>Categoría: {experience?.categoria}</span>
-            <span>
-              {experience?.num_participantes}
-              {experience?.num_participantes === 1 ? 'persona' : 'personas'}
-            </span>
-            <div className="dataInfoRow">
+          <ul>
+            <li>
+              <h3>{experience?.nombre}</h3>
+            </li>
+            <li>Ciudad: {experience?.ciudad}</li>
+            <li>Categoría: {experience?.categoria}</li>
+            <li className="avaliable">
+              <span>{experience?.num_participantes}</span>
+              <span>
+                {experience?.num_participantes === 1 ? 'Plaza' : 'Plazas'}
+              </span>
+            </li>
+            <li className="dataInfoRow">
               <span>{dateInit.toLocaleDateString('es-ES', optionsDate)}</span>
               <span>{dateFinal.toLocaleDateString('es-ES', optionsDate)}</span>
-            </div>
-          </div>
+            </li>
+          </ul>
           <span>{experience?.disp === 1 ? 'Disponible' : 'No disponible'}</span>
         </td>
         <td className="buttonsAdmin">
@@ -300,25 +325,22 @@ function AdminExperiencesItem({ experience }) {
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement">
-                  <ul>
+                  <span className="labelForm">Foto/s de la experiencia</span>
+                  <ul className="photoAdminEdit">
                     {expPhoto?.map((photo, index) => (
                       <li key={index}>
-                        <span>{`Foto : ${photo.id}        `}</span>
-                        <img
-                          width="20%"
-                          height="20%"
-                          src={photo.photo}
-                          alt={photo.id}
-                        />
-
-                        <GoTrashcan
+                        <img src={photo.photo} alt={photo.id} />
+                        <BsX
                           onClick={() => deletePhoto(experience?.id, photo.id)}
+                          className="btnDel"
+                          size="1.5rem"
+                          color="#FFF"
                         />
                       </li>
                     ))}
                   </ul>
                   <Form.Label>
-                    Imagen
+                    Añadir Foto/s
                     <Form.Control
                       type="file"
                       multiple
@@ -327,9 +349,20 @@ function AdminExperiencesItem({ experience }) {
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement checkboxForm">
-                  <Form.Check type="checkbox" />
+                  <Form.Check
+                    type="checkbox"
+                    onChange={() =>
+                      setChangeChecked({
+                        ...changeChecked,
+                        checked: !changeChecked.checked,
+                      })
+                    }
+                  />
                   <Form.Label>Aceptar condiciones de uso</Form.Label>
                 </Form.Group>
+                {changeChecked.error && !changeChecked.checked && (
+                  <div className="errorForm">{changeChecked.error}</div>
+                )}
                 {error && <div className="errorForm">{error}</div>}
                 <Button white>ENVIAR</Button>
               </Form>
