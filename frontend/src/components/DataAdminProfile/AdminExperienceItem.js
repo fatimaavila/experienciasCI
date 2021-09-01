@@ -45,7 +45,7 @@ function AdminExperiencesItem({ experience }) {
   const [expPhoto, setExpPhoto] = useState();
   const [files, setFiles] = useState();
 
-  console.log(expPhoto);
+  console.log(error);
   const history = useHistory();
 
   async function getCategories() {
@@ -69,8 +69,8 @@ function AdminExperiencesItem({ experience }) {
   const onFileChange = (e) => {
     const file = e.target.files;
     setFiles([...file]);
-    console.log('filessssss', files);
   };
+  console.log('filessssss', files);
 
   let payload = new FormData();
   files?.map((file) => payload.append('photo', file));

@@ -89,7 +89,7 @@ function UserProfile() {
       avatar: URL.createObjectURL(e.target.files[0]),
     });
   };
-  const userDNI = userInfo?.dni.length > 5 ? true : false;
+  const userDNI = userInfo?.dni !== null ? true : false;
 
   return (
     <>
@@ -225,6 +225,7 @@ function UserProfile() {
           )}
         </Form.Group>
         <Form.Group>
+          {error && <div className="errorForm">{error}</div>}
           <Form.Label>
             <Form.Check
               type="checkbox"
