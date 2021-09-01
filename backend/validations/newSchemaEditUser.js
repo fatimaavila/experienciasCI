@@ -43,6 +43,7 @@ const newSchemaEditUser = Joi.object().keys({
     }),
     phone: Joi.number()
         .integer()
+        .min(9)
         .error((error) => {
             switch (error[0].code) {
                 case 'number.base':

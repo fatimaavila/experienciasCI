@@ -68,23 +68,27 @@ function Shop() {
   console.log(units);
   return (
     <StyledShop>
-      <section className="bookingInfo">
-        {mappedItems &&
-          mappedItems?.map((item, index) => (
-            <ItemShop
-              key={index}
-              name={item?.exp.nombre}
-              description={item?.exp.descripcion}
-              photo={item?.exp.photos[0].photo}
-              precio={item?.exp.precio}
-              date={item?.date}
-              remove={() => removeItem(index)}
-              index={index}
-              setUnits={(e) => setUnits(e.target.value)}
-              units={units}
-            />
-          ))}
-      </section>
+      {cartExperience.length !== 0 ? (
+        <section className="bookingInfo">
+          {mappedItems &&
+            mappedItems?.map((item, index) => (
+              <ItemShop
+                key={index}
+                name={item?.exp.nombre}
+                description={item?.exp.descripcion}
+                photo={item?.exp.photos[0].photo}
+                precio={item?.exp.precio}
+                date={item?.date}
+                remove={() => removeItem(index)}
+                index={index}
+                setUnits={(e) => setUnits(e.target.value)}
+                units={units}
+              />
+            ))}
+        </section>
+      ) : (
+        <span>Aún no hay experiencias en tu carrito</span>
+      )}
 
       <section className="searchShop">
         <h4>Por favor seleccione el metodo de envio:</h4>
