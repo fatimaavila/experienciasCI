@@ -53,14 +53,33 @@ const StyledAdminProfile = styled.div`
       width: 80%;
     }
 
-    & .dataInfo > div:first-child {
+    & .dataInfo > ul {
       display: flex;
       flex-direction: column;
-    }
-      & .dataInfoRow {
-        display: flex;
-        gap: 1rem;
+
+      li {
+        margin-bottom: 0.5rem;
       }
+
+      .avaliable {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        span {
+          margin-left: 0px;
+        }
+      }
+    }
+
+    & .dataInfoRow {
+      display: flex;
+      gap: 1rem;
+
+      span {
+        margin-left: 0px;
+      }
+    }
   }
 
   .sectionData:nth-child(odd) {

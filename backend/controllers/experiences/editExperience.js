@@ -11,7 +11,7 @@ const editExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp } = req.params;
-        /*   await validate(newSchemaExperience, req.body); */
+        await validate(newSchemaExperience, req.body);
 
         if (req.userAuth.rol !== 'admin') {
             const error = new Error(

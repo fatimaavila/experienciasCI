@@ -22,7 +22,11 @@ function AdminExperiences() {
     <table className="tableData">
       <tbody>
         {experienceInfo?.map((experience) => (
-          <AdminExperiencesItem key={experience.id} experience={experience} />
+          <AdminExperiencesItem
+            key={experience.id}
+            experience={experience}
+            updateDataExp={setExperienceInfo}
+          />
         ))}
       </tbody>
     </table>
