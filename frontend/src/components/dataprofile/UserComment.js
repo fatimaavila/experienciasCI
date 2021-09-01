@@ -3,12 +3,12 @@ import { useContext, useState } from 'react';
 import Button from '../button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StyledForm from '../RegisterUser/StyledForm';
-import { putAxios } from '../../axiosCalls';
+import { getAxios, putAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
 
-function UserComment({ idBooking }) {
+function UserComment({ idBooking, updateDataBooking }) {
   const [formActivate, setFormActivate] = useState(false);
-  const { token } = useContext(UserContext);
+  const { token, tokenContent } = useContext(UserContext);
   const [comment, setComment] = useState('');
   const [error, setError] = useState();
 
@@ -20,11 +20,19 @@ function UserComment({ idBooking }) {
         comment,
       };
 
-      await putAxios(
+      const { status } = await putAxios(
         `http://localhost:8080/bookings/${idBooking}/comments`,
         body,
         token
       );
+
+      if (status === 200) {
+        const { data } = await getAxios(
+          `http://localhost:8080/bookings/${tokenContent.idUser}/bookings`,
+          token
+        );
+        updateDataBooking(data);
+      }
       setFormActivate(!formActivate);
     } catch (error) {
       setError(error.response.data.message);

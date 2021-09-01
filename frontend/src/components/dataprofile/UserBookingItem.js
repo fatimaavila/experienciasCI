@@ -1,14 +1,15 @@
 import { Rating } from '@material-ui/lab';
-import { useEffect, useState } from 'react';
-import { getAxios } from '../../axiosCalls';
+import { useContext, useEffect, useState } from 'react';
+import { getAxios, putAxios } from '../../axiosCalls';
 import Button from '../button/Button';
 import UserComment from './UserComment';
 import { compareAsc } from 'date-fns';
-function UserRatingBookingItem({ bookingInfo }) {
+import { UserContext } from '../../context/UserContext';
+function UserRatingBookingItem({ bookingInfo, updateDataBooking }) {
   const [showRate, setShowRate] = useState(false);
   const [uniqueExp, setUniqueExp] = useState([]);
-
-  const value = 0;
+  const [rating, setRating] = useState(bookingInfo.valoracion);
+  const { token, tokenContent } = useContext(UserContext);
 
   useEffect(() => {
     const getUniqueExp = async () => {
@@ -34,8 +35,8 @@ function UserRatingBookingItem({ bookingInfo }) {
     'es-ES',
     optionsDate
   );
+
   const dateToday = new Date().toLocaleDateString('es-ES', optionsDate);
-  console.log('dates', dateBooking, dateToday);
   const date1 = dateBooking.split('/').reverse();
   const date2 = dateToday.split('/').reverse();
 
@@ -43,8 +44,31 @@ function UserRatingBookingItem({ bookingInfo }) {
     new Date(date1[0], date1[1], date1[2]),
     new Date(date2[0], date2[1], date2[2])
   );
-  console.log('state', state);
   const resultUsedExp = state === -1 ? false : true;
+
+  async function updateRating() {
+    try {
+      const body = {
+        vote: rating,
+      };
+
+      const { status } = await putAxios(
+        `http://localhost:8080/bookings/${bookingInfo?.id}/rating`,
+        body,
+        token
+      );
+
+      if (status === 200) {
+        const { data } = await getAxios(
+          `http://localhost:8080/bookings/${tokenContent.idUser}/bookings`,
+          token
+        );
+        updateDataBooking(data);
+      }
+    } catch (error) {
+      console.error(error.response.data.message);
+    }
+  }
 
   return (
     <div className="userBookking">
@@ -77,17 +101,30 @@ function UserRatingBookingItem({ bookingInfo }) {
             {bookingInfo?.comentario ? (
               bookingInfo?.comentario
             ) : (
-              <UserComment idBooking={bookingInfo.id} />
+              <UserComment
+                idBooking={bookingInfo.id}
+                updateDataBooking={updateDataBooking}
+              />
             )}
           </div>
           <div className="bookingRate">
             <span>Valoración:</span>
-            <Rating
-              name="rating-experience"
-              value={value}
-              precision={0.5}
-              // onChange={(e,newRating) => setRating(newRating)}
-            />
+            {bookingInfo?.valoracion ? (
+              <Rating
+                name="rating-experience"
+                value={Number(rating)}
+                precision={1}
+                readOnly
+              />
+            ) : (
+              <Rating
+                name="rating-experience"
+                value={Number(rating)}
+                precision={1}
+                onChange={(e, rating) => setRating(rating)}
+                onClick={rating > 0 ? updateRating() : null}
+              />
+            )}
           </div>
         </div>
       )}

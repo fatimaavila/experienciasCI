@@ -11,10 +11,10 @@ function LoggedUserNav() {
   const isAdmin = tokenContent?.rol === 'admin' ? true : false;
 
   function redirectUserMenu() {
-    history.push({ pathname: '/usermenu' });
+    history.push({ pathname: '/profile' });
   }
   function redirectAdminMenu() {
-    history.push({ pathname: '/adminmenu' });
+    history.push({ pathname: '/admin' });
   }
 
   useEffect(() => {
@@ -24,8 +24,6 @@ function LoggedUserNav() {
       }
     });
   }, []);
-
-  console.log(userInfo);
 
   return (
     <StyledLoggedUserNav>

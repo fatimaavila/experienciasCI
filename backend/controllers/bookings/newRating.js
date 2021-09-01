@@ -39,20 +39,18 @@ const voteBooking = async (req, res, next) => {
             [vote, booking[0].id_user, booking[0].id_experience, idBooking]
         );
 
-        const [newAvg] = await connection.query(
-            `
-                SELECT AVG(valoracion) AS votes
-                FROM bookings                
-                WHERE id_experience = ?;
-            `,
-            [booking[0].id_experience]
-        );
+        // const [newAvg] = await connection.query(
+        //     `
+        //         SELECT AVG(valoracion) AS votes
+        //         FROM bookings
+        //         WHERE id_experience = ?;
+        //     `,
+        //     [booking[0].id_experience]
+        // );
 
         res.send({
             status: 200,
-            data: {
-                votes: newAvg[0].votes,
-            },
+            message: 'El voto ha sido realizado',
         });
     } catch (error) {
         next(error);
