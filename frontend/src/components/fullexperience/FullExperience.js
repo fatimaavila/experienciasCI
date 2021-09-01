@@ -122,9 +122,9 @@ function FullExperience({ data }) {
               <span>Disponibilidad :</span>
               <span className="participants">
                 <FaUser size="1.5rem" color="#3aabfe" />
-                {bookingPeople > 0
+                {bookingPeople !== undefined
                   ? `${bookingPeople} Plazas disponibles`
-                  : `Selecciona una fecha para ver disponibilidad`}
+                  : `${data.num_participantes} Plazas disponibles `}
               </span>
             </div>
             <h4>Condiciones de uso:</h4>
