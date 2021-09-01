@@ -9,7 +9,7 @@ const addPhotoExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp } = req.params;
-
+        console.log(req.files);
         if (req.userAuth.rol !== 'admin') {
             const error = new Error('No tienes permisos para añadir fotos');
             error.httpStatus = 401;
