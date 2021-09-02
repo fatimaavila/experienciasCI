@@ -18,6 +18,7 @@ const StyledUserProfile = styled.div`
       border: 3px solid var(--color-cyan);
       width: 180px;
       height: 180px;
+      object-fit: cover;
     }
   }
 
@@ -181,7 +182,7 @@ const StyledUserProfile = styled.div`
   .changePass {
     align-self: center;
     display: flex;
-    align-items:center;
+    align-items: center;
     gap: 1.5rem;
 
     span {
@@ -191,7 +192,6 @@ const StyledUserProfile = styled.div`
     .iconPass {
       cursor: pointer;
     }
-
   }
 
   .errorDelete {

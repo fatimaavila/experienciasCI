@@ -3,11 +3,11 @@ import Button from '../button/Button';
 import ItemShop from './ItemShop';
 import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-
 import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { postAxios } from '../../axiosCalls';
 import { sqlDateFormat } from '../../helpers';
+
 function Shop() {
   let history = useHistory();
   const [checked, setChecked] = useState();
@@ -38,7 +38,6 @@ function Shop() {
     cartExperience.length > 0 ? cartExperience : updateCartStorageMap;
 
   function removeItem(index) {
-    console.log(index);
     const items = [...cartExperience];
     items.splice(index, 1);
     setCartExperience(items);
@@ -87,7 +86,9 @@ function Shop() {
             ))}
         </section>
       ) : (
-        <span>Aún no hay experiencias en tu carrito</span>
+        <div className="emptyCart">
+          <h3>El carrito está vacío</h3>
+        </div>
       )}
 
       <section className="searchShop">

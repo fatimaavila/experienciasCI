@@ -24,7 +24,7 @@ function Experience({ id, name, city, price }) {
     };
     getUniqueExp();
   }, [id]);
-  const defaultRating = 3.5;
+  const defaultRating = 0;
   const rating = Number(uniqueExp.rating);
 
   const imgBackground = {

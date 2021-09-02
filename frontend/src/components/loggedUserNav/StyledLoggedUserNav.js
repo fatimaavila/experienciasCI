@@ -25,6 +25,7 @@ const StyledLoggedUserNav = styled.div`
     height: 70px;
     cursor: pointer;
     display: block;
+    object-fit: cover;
   }
 
   .dropNav {
