@@ -9,24 +9,30 @@ function AdminBookingsItem({ info }) {
     'es-ES',
     options
   );
-  // const [userName, setUserName] = useState();
-  // const { token } = useContext(UserContext);
+  const bookingDate = new Date(info?.fecha_reserva).toLocaleDateString(
+    'es-ES',
+    options
+  );
+  console.log(info);
+  const [userName, setUserName] = useState();
+  const { token } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   async function getUserInfo() {
-  //     try {
-  //       const { data } = await getAxios(
-  //         `http://localhost:8080/users/${info?.id_user}`,
-  //         token
-  //       );
-  //       setUserName(data);
-  //     } catch (error) {
-  //       console.error(error.response.data.message);
-  //     }
-  //   }
+  useEffect(() => {
+    async function getUserInfo() {
+      try {
+        const { data } = await getAxios(
+          `http://localhost:8080/users/${info?.id_user}`,
+          token
+        );
+        console.log(data.email);
+        setUserName(data);
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    }
 
-  //   getUserInfo();
-  // }, [info?.id_user]);
+    getUserInfo();
+  }, [info?.id_user, token]);
 
   return (
     <tr className="sectionData">
@@ -38,8 +44,10 @@ function AdminBookingsItem({ info }) {
           <li>Experiencia: {info?.id_experience}</li>
           <li>Cantidad: {info?.cantidad}</li>
           <li>Precio Total: {info?.precio_total} &#8364;</li>
-          <li>Usuario: {info?.id_user}</li>
+          <li>Usuario: {userName?.username}</li>
+          <li>Email: {userName?.email}</li>
           <li>Fecha de compra: {dateFormat}</li>
+          <li>Fecha de reserva: {bookingDate}</li>
         </ul>
         <span>{used}</span>
       </td>
