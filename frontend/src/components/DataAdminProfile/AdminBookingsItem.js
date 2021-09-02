@@ -14,6 +14,9 @@ function AdminBookingsItem({ info }) {
     options
   );
   console.log(info);
+  const commented = info?.comentario === null ? 'Pendiente' : 'Comentada';
+  const voted = info?.valoracion === null ? 'Pendiente' : 'Valorada';
+
   const [userName, setUserName] = useState();
   const { token } = useContext(UserContext);
 
@@ -24,7 +27,7 @@ function AdminBookingsItem({ info }) {
           `http://localhost:8080/users/${info?.id_user}`,
           token
         );
-        console.log(data.email);
+
         setUserName(data);
       } catch (error) {
         console.error(error.response.data.message);
@@ -49,7 +52,11 @@ function AdminBookingsItem({ info }) {
           <li>Fecha de compra: {dateFormat}</li>
           <li>Fecha de reserva: {bookingDate}</li>
         </ul>
-        <span>{used}</span>
+        <ul>
+          <li>{used}</li>
+          <li>Comentada: {commented}</li>
+          <li>Valorada: {voted}</li>
+        </ul>
       </td>
       <td className="buttonsAdmin"></td>
     </tr>
