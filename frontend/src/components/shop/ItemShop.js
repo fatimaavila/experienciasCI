@@ -17,7 +17,7 @@ function ItemShop({
   const totalPrice = (a, b) => {
     return a * b;
   };
-
+  // eslint-disable-next-line
   const { cartExperience } = useContext(UserContext);
 
   const price = totalPrice(units, Number(precio));

@@ -40,6 +40,7 @@ function LoginUser() {
     performLogin();
   }
   function isValidEmail(mail) {
+    // eslint-disable-next-line
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
   }
 
@@ -79,8 +80,10 @@ function LoginUser() {
                 />
               </Form.Label>
             </Form.Group>
-            <Link className='forgetPass' to='/recover-pass'>Olvidaste tu contraseña?</Link>
-            {error && <div className='errorForm'>{error}</div>}
+            <Link className="forgetPass" to="/recover-pass">
+              Olvidaste tu contraseña?
+            </Link>
+            {error && <div className="errorForm">{error}</div>}
             <Button
               white
               type="submit"

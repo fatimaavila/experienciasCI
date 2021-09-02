@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Form, Modal } from 'react-bootstrap';
 import { putAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
