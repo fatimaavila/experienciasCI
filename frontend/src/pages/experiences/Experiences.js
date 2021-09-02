@@ -17,7 +17,7 @@ function Experiences() {
   const [dateFilter, setDateFilter] = useState({ dateStart: '', dateEnd: '' });
 
   const location = useLocation();
-
+  // eslint-disable-next-line
   const searchParams = new URLSearchParams(location.search);
 
   console.log(location.search, searchParams.get('searchExp'));
@@ -82,6 +82,7 @@ function Experiences() {
     cityFilter,
     priceFilter,
     dateFilter,
+    searchParams,
   ]);
 
   return (
@@ -97,12 +98,11 @@ function Experiences() {
           <AllExperiences
             data={experienceSearch}
             order={selectFilter}
-            filterNull={
-              () => 
-                setSelectFilter('') &
-                setCityFilter('') &
-                setPriceFilter({ checked: false, value: '' }) &
-                setDateFilter({ dateStart: '', dateEnd: '' })
+            filterNull={() =>
+              setSelectFilter('') &
+              setCityFilter('') &
+              setPriceFilter({ checked: false, value: '' }) &
+              setDateFilter({ dateStart: '', dateEnd: '' })
             }
             onChangeSelect={(e) => setSelectFilter(e.target.value)}
             onClickCity={(e) => setCityFilter(e.target.innerHTML)}

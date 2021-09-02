@@ -1,6 +1,6 @@
 import { compareAsc } from 'date-fns';
 import { useContext, useEffect, useState } from 'react';
-import { getAxios, putAxios } from '../../axiosCalls';
+import { getAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
 
 function AdminBookingsItem({ info }) {
