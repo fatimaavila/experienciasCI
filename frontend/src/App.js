@@ -8,6 +8,7 @@ import { useState } from 'react';
 import ScrollToTopRouter from './components/ScrollTopRouter/ScrollTopRouter';
 import AutoScrollToTop from './components/AutoScrollToTop/AutoScrollToTop';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ErrorBoundary from './components/errorBoundaries/ErrorBoundaries';
 
 function App() {
   const [home] = useState();
@@ -44,28 +45,30 @@ function App() {
   window.addEventListener('scroll', handleScroll);
 
   return (
-    <Router>
-      <div className="App posRel">
-        <ScrollToTopRouter />
-        <MainHeader />
-        <Switch>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path}>
-              {route.private ? (
-                <PrivateRoute>
+    <ErrorBoundary>
+      <Router>
+        <div className="App posRel">
+          <ScrollToTopRouter />
+          <MainHeader />
+          <Switch>
+            {routes.map((route) => (
+              <Route key={route.path} path={route.path}>
+                {route.private ? (
+                  <PrivateRoute>
+                    <route.Page />
+                  </PrivateRoute>
+                ) : (
                   <route.Page />
-                </PrivateRoute>
-              ) : (
-                <route.Page />
-              )}
-            </Route>
-          ))}
-          {home && <Home />}
-        </Switch>
-        <Footer />
-        {scrollBtn && <AutoScrollToTop />}
-      </div>
-    </Router>
+                )}
+              </Route>
+            ))}
+            {home && <Home />}
+          </Switch>
+          <Footer />
+          {scrollBtn && <AutoScrollToTop />}
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
