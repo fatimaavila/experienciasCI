@@ -37,7 +37,9 @@ input {
 .cityFilter,
 .adminProfileNav ul,
 .dropNav ul,
-.useConditionsExp {
+.useConditionsExp,
+.photoAdminEdit,
+.dataInfo > ul {
   padding-left: 0rem;
   margin-top: 0;
   margin-bottom: 0rem;

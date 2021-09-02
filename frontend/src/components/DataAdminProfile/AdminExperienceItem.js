@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { GoTrashcan } from 'react-icons/go';
+import { BsX } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
 import { onlyUnique, sqlDateFormat } from '../../helpers';
 import Button from '../button/Button';
@@ -15,7 +16,7 @@ import { useHistory } from 'react-router-dom';
 import ErrorBoundary from '../../components/errorBoundaries/ErrorBoundaries';
 registerLocale('es', es);
 
-function AdminExperiencesItem({ experience }) {
+function AdminExperiencesItem({ experience, updateDataExp }) {
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
@@ -44,8 +45,11 @@ function AdminExperiencesItem({ experience }) {
   const [errorDel, setErrorDel] = useState();
   const [expPhoto, setExpPhoto] = useState();
   const [files, setFiles] = useState();
+  const [changeChecked, setChangeChecked] = useState({
+    checked: false,
+    error: '',
+  });
 
-  console.log(expPhoto);
   const history = useHistory();
 
   async function getCategories() {
@@ -69,46 +73,60 @@ function AdminExperiencesItem({ experience }) {
   const onFileChange = (e) => {
     const file = e.target.files;
     setFiles([...file]);
-    console.log('filessssss', files);
   };
 
   let payload = new FormData();
   files?.map((file) => payload.append('photo', file));
 
   async function updatePhotos() {
-    const { data } = await postAxios(
+    await postAxios(
       `http://localhost:8080/experiences/${experience.id}/photo`,
       payload,
       token
     );
-    console.log(data);
   }
 
   async function putEditInfo(e) {
     e.preventDefault();
-    const body = {
-      ...editDataForm,
-      sDate: sqlDateFormat(
-        editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
-      ),
-      fDate: sqlDateFormat(
-        editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
-      ),
-    };
-    try {
-      await putAxios(
-        `http://localhost:8080/experiences/${experience.id}`,
-        body,
-        token
-      );
-      if (files?.length > 0) {
-        updatePhotos();
+
+    if (changeChecked.checked === false) {
+      setChangeChecked({
+        ...changeChecked,
+        error:
+          'Debes aceptar la condiciones para actualizar los datos de la experiencia',
+      });
+    } else {
+      const body = {
+        ...editDataForm,
+        sDate: sqlDateFormat(
+          editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
+        ),
+        fDate: sqlDateFormat(
+          editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
+        ),
+      };
+      try {
+        const { status } = await putAxios(
+          `http://localhost:8080/experiences/${experience.id}`,
+          body,
+          token
+        );
+
+        if (files?.length > 0) {
+          updatePhotos();
+        }
+
+        if (status === 200) {
+          const { data } = await getAxios('http://localhost:8080/experiences');
+          updateDataExp(data);
+        }
+        setFormActivate(!formActivate);
+      } catch (error) {
+        setError(error.response.data.message);
       }
-      history.go(0);
-    } catch (error) {
-      setError(error.response.data.message);
     }
   }
+
   async function deletePhoto(idExp, idPhoto) {
     try {
       const { data } = await deleteAxios(
@@ -116,7 +134,6 @@ function AdminExperiencesItem({ experience }) {
         token
       );
       setExpPhoto(data.photos);
-      console.log('dataaaaaPHODEL', data);
     } catch (error) {
       setErrorDel(error.response.data.message);
     }
@@ -129,11 +146,15 @@ function AdminExperiencesItem({ experience }) {
       );
 
       if (doYouDelete) {
-        await deleteAxios(
+        const { status } = await deleteAxios(
           `http://localhost:8080/experiences/${experience.id}`,
           token
         );
-        history.go(0);
+
+        if (status === 200) {
+          const { data } = await getAxios('http://localhost:8080/experiences');
+          updateDataExp(data);
+        }
       }
     } catch (error) {
       setErrorDel(error.response.data.message);
@@ -142,6 +163,7 @@ function AdminExperiencesItem({ experience }) {
 
   return (
     <>
+
       <ErrorBoundary>
         <tr className="sectionData">
           <td className="dataInfo">
@@ -342,6 +364,213 @@ function AdminExperiencesItem({ experience }) {
                 </Form>
               </StyledForm>
             </Modal>
+=======
+      <tr className="sectionData">
+        <td className="dataInfo">
+          <ul>
+            <li>
+              <h3>{experience?.nombre}</h3>
+            </li>
+            <li>Ciudad: {experience?.ciudad}</li>
+            <li>Categoría: {experience?.categoria}</li>
+            <li className="avaliable">
+              <span>{experience?.num_participantes}</span>
+              <span>
+                {experience?.num_participantes === 1 ? 'Plaza' : 'Plazas'}
+              </span>
+            </li>
+            <li className="dataInfoRow">
+              <span>{dateInit.toLocaleDateString('es-ES', optionsDate)}</span>
+              <span>{dateFinal.toLocaleDateString('es-ES', optionsDate)}</span>
+            </li>
+          </ul>
+          <span>{experience?.disp === 1 ? 'Disponible' : 'No disponible'}</span>
+        </td>
+        <td className="buttonsAdmin">
+          <MdEdit onClick={() => setFormActivate(!formActivate)} />
+          <Modal
+            show={formActivate}
+            onHide={() => setFormActivate(!formActivate)}
+          >
+            <StyledForm>
+              <Modal.Header closeButton>
+                <Modal.Title>Edita la experiencia</Modal.Title>
+              </Modal.Header>
+              <Form className="modalBody" onSubmit={putEditInfo}>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Nombre experiencia
+                    <Form.Control
+                      type="text"
+                      placeholder={experience?.nombre}
+                      onChange={(e) =>
+                        setEditDataForm({
+                          ...editDataForm,
+                          name: e.target.value,
+                        })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Ubicación
+                    <Form.Control
+                      type="text"
+                      placeholder={experience?.ciudad}
+                      onChange={(e) =>
+                        setEditDataForm({
+                          ...editDataForm,
+                          city: e.target.value,
+                        })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Categoria
+                    <Form.Select
+                      onChange={(e) =>
+                        setEditDataForm({
+                          ...editDataForm,
+                          category: e.target.value,
+                        })
+                      }
+                    >
+                      {category &&
+                        category.map((category) => {
+                          return (
+                            <option
+                              key={uuidv4()}
+                              defaultValue={experience.categoria === category}
+                            >
+                              {category}
+                            </option>
+                          );
+                        })}
+                    </Form.Select>
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Precio
+                    <Form.Control
+                      type="text"
+                      placeholder={experience?.precio + ' €'}
+                      onChange={(e) =>
+                        setEditDataForm({
+                          ...editDataForm,
+                          price: e.target.value,
+                        })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Nº Participantes
+                    <Form.Control
+                      type="number"
+                      placeholder={experience?.num_participantes}
+                      onChange={(e) =>
+                        setEditDataForm({
+                          ...editDataForm,
+                          participants: e.target.value,
+                        })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Fecha de Inicio
+                    <DatePicker
+                      locale="es"
+                      dateFormat="dd/MM/yyyy"
+                      className="date-picker"
+                      selected={editDataForm.sDate}
+                      onChange={(date) =>
+                        setEditDataForm({ ...editDataForm, sDate: date })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Fecha Fin
+                    <DatePicker
+                      locale="es"
+                      dateFormat="dd/MM/yyyy"
+                      className="date-picker"
+                      selected={editDataForm.fDate}
+                      onChange={(date) =>
+                        setEditDataForm({ ...editDataForm, fDate: date })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <Form.Label>
+                    Descripcion
+                    <Form.Control
+                      as="textarea"
+                      style={{ height: 100 + 'px' }}
+                      placeholder={experience?.descripcion}
+                      onChange={(e) =>
+                        setEditDataForm({
+                          ...editDataForm,
+                          description: e.target.value,
+                        })
+                      }
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement">
+                  <span className="labelForm">Foto/s de la experiencia</span>
+                  <ul className="photoAdminEdit">
+                    {expPhoto?.map((photo, index) => (
+                      <li key={index}>
+                        <img src={photo.photo} alt={photo.id} />
+                        <BsX
+                          onClick={() => deletePhoto(experience?.id, photo.id)}
+                          className="btnDel"
+                          size="1.5rem"
+                          color="#FFF"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                  <Form.Label>
+                    Añadir Foto/s
+                    <Form.Control
+                      type="file"
+                      multiple
+                      onChange={onFileChange}
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group className="formElement checkboxForm">
+                  <Form.Check
+                    type="checkbox"
+                    onChange={() =>
+                      setChangeChecked({
+                        ...changeChecked,
+                        checked: !changeChecked.checked,
+                      })
+                    }
+                  />
+                  <Form.Label>Aceptar condiciones de uso</Form.Label>
+                </Form.Group>
+                {changeChecked.error && !changeChecked.checked && (
+                  <div className="errorForm">{changeChecked.error}</div>
+                )}
+                {error && <div className="errorForm">{error}</div>}
+                <Button white>ENVIAR</Button>
+              </Form>
+            </StyledForm>
+          </Modal>
+
 
             <GoTrashcan onClick={() => deleteExperience()} />
           </td>
