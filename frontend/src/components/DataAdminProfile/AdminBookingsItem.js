@@ -1,18 +1,28 @@
+import { compareAsc } from 'date-fns';
 import { useContext, useEffect, useState } from 'react';
 import { getAxios, putAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
 
 function AdminBookingsItem({ info }) {
-  const used = info?.estado === 1 ? 'Disponible' : 'Disfrutada';
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
   const dateFormat = new Date(info?.fecha_compra).toLocaleDateString(
     'es-ES',
     options
   );
+  const today = new Date().toLocaleDateString('es-ES', options);
   const bookingDate = new Date(info?.fecha_reserva).toLocaleDateString(
     'es-ES',
     options
   );
+  const date1 = bookingDate.split('/').reverse();
+  const date2 = today.split('/').reverse();
+
+  const state = compareAsc(
+    new Date(date1[0], date1[1], date1[2]),
+    new Date(date2[0], date2[1], date2[2])
+  );
+  const used = state === 1 ? 'Disponible' : 'Disfrutada';
+
   console.log(info);
   const commented = info?.comentario === null ? 'Pendiente' : 'Comentada';
   const voted = info?.valoracion === null ? 'Pendiente' : 'Valorada';
