@@ -14,34 +14,38 @@ const newSchemaEditUser = Joi.object().keys({
             }
         }),
     cp: Joi.number()
-        .integer()
+        .allow(null, '')
         .error((error) => {
             switch (error[0].code) {
                 case 'any.required':
                     return new Error('Se requiere un código postal.');
-                case 'number.base':
-                    return new Error('Sólo números enteros permitidos.');
+
                 default:
                     return new Error('El código postal no es válido.');
             }
         }),
-    address: Joi.string().error((error) => {
-        switch (error[0].code) {
-            case 'any.required':
-                return new Error('Se requiere una dirección.');
-            default:
-                return new Error('La dirección no es válida.');
-        }
-    }),
-    bio: Joi.string().error((error) => {
-        switch (error[0].code) {
-            case 'any.required':
-                return new Error('Se requiere una biografía.');
-            default:
-                return new Error('La biografía no es válida.');
-        }
-    }),
+    address: Joi.string()
+        .allow(null, '')
+        .error((error) => {
+            switch (error[0].code) {
+                case 'any.required':
+                    return new Error('Se requiere una dirección.');
+                default:
+                    return new Error('La dirección no es válida.');
+            }
+        }),
+    bio: Joi.string()
+        .allow(null, '')
+        .error((error) => {
+            switch (error[0].code) {
+                case 'any.required':
+                    return new Error('Se requiere una biografía.');
+                default:
+                    return new Error('La biografía no es válida.');
+            }
+        }),
     phone: Joi.number()
+        .allow(null, '')
         .integer()
         .min(9)
         .error((error) => {
@@ -53,6 +57,7 @@ const newSchemaEditUser = Joi.object().keys({
             }
         }),
     dni: Joi.string()
+        .allow(null, '')
         .min(9)
         .error((error) => {
             switch (error[0].code) {
