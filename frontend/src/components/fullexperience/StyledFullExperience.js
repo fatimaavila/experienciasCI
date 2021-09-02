@@ -83,7 +83,6 @@ const StyledFullExperience = styled.div`
 
         & > section .priceLabel {
           font-size: 1.3rem;
-
         }
         & > section .priceNumber {
           font-size: 2rem;
@@ -124,12 +123,21 @@ const StyledFullExperience = styled.div`
     flex-direction: column;
 
     & > section {
-      margin-bottom: 3rem
+      margin-bottom: 3rem;
     }
 
     & > section > h3 {
       margin-bottom: 1.5rem;
     }
+  }
+
+  .errorForm {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    align-self: center;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
   }
 `;
 

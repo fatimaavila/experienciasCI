@@ -13,6 +13,18 @@ const StyledShop = styled.div`
     width: 65%;
   }
 
+  .emptyCart {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & h3 {
+      font-wieght: 600;
+      font-size: 2.5rem;
+    }
+  }
+
   .bookingItemInfo {
     display: flex;
     gap: 2rem;

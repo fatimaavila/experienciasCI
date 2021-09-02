@@ -14,6 +14,7 @@ import { UserContext } from '../../context/UserContext';
 
 import { sqlDateFormat } from '../../helpers';
 import axios from 'axios';
+import { compareAsc } from 'date-fns';
 
 registerLocale('es', es);
 
@@ -21,11 +22,10 @@ function FullExperience({ data }) {
   const { setCartExperience, cartExperience } = useContext(UserContext);
   const [bookingDate, setBookingDate] = useState('');
   const [bookingParticipants, setBookingParticipants] = useState();
-  console.log(bookingParticipants);
+  const [errorOldDate, setErrorOldDate] = useState('');
   let history = useHistory();
 
   const infoActive = data;
-  console.log(infoActive);
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
@@ -37,9 +37,11 @@ function FullExperience({ data }) {
     'es-ES',
     optionsDate
   );
+
+  const now = new Date().toLocaleDateString('es-ES', optionsDate);
   const dateBooking = dateNoFormat.toLocaleDateString('es-ES', optionsDate);
   const [labelDate, setLabelDate] = useState('');
-  console.log('dataaaa', sqlDateFormat(dateBooking));
+
   useEffect(() => {
     if (bookingDate !== '') {
       async function getParticipants() {
@@ -48,7 +50,6 @@ function FullExperience({ data }) {
             infoActive?.id
           }/${sqlDateFormat(dateClientSelect)}`
         );
-        console.log(data);
         setBookingParticipants(data);
       }
       getParticipants();
@@ -61,13 +62,18 @@ function FullExperience({ data }) {
   }
 
   const peopleHasBooking = bookingParticipants?.data.length;
-  console.log('people', peopleHasBooking);
   const bookingPeople = data.num_participantes - peopleHasBooking;
-  console.log('people2', bookingPeople);
 
-  const defaultRating = 3.5;
+  const defaultRating = 0;
   const rating = Number(data.rating);
   const outOfStock = bookingPeople === 0 ? true : false;
+
+  const firstDate = dateBooking.split('/').reverse();
+  const secondDate = now.split('/').reverse();
+  const dateCompare = compareAsc(
+    new Date(firstDate[0], firstDate[1], firstDate[2]),
+    new Date(secondDate[0], secondDate[1], secondDate[2])
+  );
 
   return (
     <StyledFullExperience>
@@ -94,8 +100,11 @@ function FullExperience({ data }) {
                   selected={bookingDate}
                   onChange={(date) => setBookingDate(date)}
                 />
+                {errorOldDate && (
+                  <div className="errorForm">{errorOldDate}</div>
+                )}
               </div>
-              {labelDate && <span>{labelDate}</span>}
+              {labelDate && <div className="errorForm">{labelDate}</div>}
             </div>
 
             <div className="experiencePrice_Buy">
@@ -107,7 +116,14 @@ function FullExperience({ data }) {
                 blue
                 onClickButton={() => {
                   if (bookingDate) {
-                    addToCart(infoActive, dateBooking);
+                    if (dateCompare === -1) {
+                      setLabelDate('');
+                      setErrorOldDate(
+                        'No se puede realizar la reserva en una fecha anterior'
+                      );
+                    } else {
+                      addToCart(infoActive, dateBooking);
+                    }
                   } else {
                     setLabelDate('Debes seleccionar una fecha para tu reserva');
                   }

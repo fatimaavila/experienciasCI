@@ -8,13 +8,10 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Actualiza el estado para que el siguiente renderizado muestre la interfaz de repuesto
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // También puedes ejecutar codigo  cuando hay un error
-
     console.log('ERROR: ', error);
   }
 
@@ -23,7 +20,7 @@ class ErrorBoundary extends React.Component {
       return (
         <>
           <h1>Ha habido un error en la App</h1>
-          <img src="https://www.googleapis.com/" alt="error"></img>;
+          <img src="https://www.googleapis.com/" alt="error" />
         </>
       );
     }

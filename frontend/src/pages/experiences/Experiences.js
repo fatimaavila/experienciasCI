@@ -20,8 +20,6 @@ function Experiences() {
   // eslint-disable-next-line
   const searchParams = new URLSearchParams(location.search);
 
-  console.log(location.search, searchParams.get('searchExp'));
-
   const orderType = selectFilter.split('-').splice(0, 1).join('');
   const orderDirection = selectFilter.split('-').splice(1, 1).join('');
 
