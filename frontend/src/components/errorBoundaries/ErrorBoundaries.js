@@ -20,9 +20,13 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Ha habido un error en la App</h1>;
+      return (
+        <>
+          <h1>Ha habido un error en la App</h1>
+          <img src="https://www.googleapis.com/" alt="error"></img>;
+        </>
+      );
     }
-
     return this.props.children;
   }
 }

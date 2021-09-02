@@ -64,7 +64,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
       setExpPhoto(data.photos);
     }
     getPhotos();
-  }, [experience?.id]);
+  }, [experiednce?.id]);
 
   const onFileChange = (e) => {
     const file = e.target.files;
