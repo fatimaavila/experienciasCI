@@ -162,23 +162,19 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
     <>
       <tr className="sectionData">
         <td className="dataInfo">
-          <ul>
-            <li>
-              <h3>{experience?.nombre}</h3>
-            </li>
-            <li>Ciudad: {experience?.ciudad}</li>
-            <li>Categoría: {experience?.categoria}</li>
-            <li className="avaliable">
-              <span>{experience?.num_participantes}</span>
-              <span>
-                {experience?.num_participantes === 1 ? 'Plaza' : 'Plazas'}
-              </span>
-            </li>
-            <li className="dataInfoRow">
+          <div>
+            <h3>{experience?.nombre}</h3>
+            <span>Ciudad: {experience?.ciudad}</span>
+            <span>Categoría: {experience?.categoria}</span>
+            <span>
+              {experience?.num_participantes}
+              {experience?.num_participantes === 1 ? 'persona' : 'personas'}
+            </span>
+            <div className="dataInfoRow">
               <span>{dateInit.toLocaleDateString('es-ES', optionsDate)}</span>
               <span>{dateFinal.toLocaleDateString('es-ES', optionsDate)}</span>
-            </li>
-          </ul>
+            </div>
+          </div>
           <span>{experience?.disp === 1 ? 'Disponible' : 'No disponible'}</span>
         </td>
         <td className="buttonsAdmin">
@@ -322,22 +318,25 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement">
-                  <span className="labelForm">Foto/s de la experiencia</span>
-                  <ul className="photoAdminEdit">
+                  <ul>
                     {expPhoto?.map((photo, index) => (
                       <li key={index}>
-                        <img src={photo.photo} alt={photo.id} />
-                        <BsX
+                        <span>{`Foto : ${photo.id}        `}</span>
+                        <img
+                          width="20%"
+                          height="20%"
+                          src={photo.photo}
+                          alt={photo.id}
+                        />
+
+                        <GoTrashcan
                           onClick={() => deletePhoto(experience?.id, photo.id)}
-                          className="btnDel"
-                          size="1.5rem"
-                          color="#FFF"
                         />
                       </li>
                     ))}
                   </ul>
                   <Form.Label>
-                    Añadir Foto/s
+                    Imagen
                     <Form.Control
                       type="file"
                       multiple
@@ -346,20 +345,9 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement checkboxForm">
-                  <Form.Check
-                    type="checkbox"
-                    onChange={() =>
-                      setChangeChecked({
-                        ...changeChecked,
-                        checked: !changeChecked.checked,
-                      })
-                    }
-                  />
+                  <Form.Check type="checkbox" />
                   <Form.Label>Aceptar condiciones de uso</Form.Label>
                 </Form.Group>
-                {changeChecked.error && !changeChecked.checked && (
-                  <div className="errorForm">{changeChecked.error}</div>
-                )}
                 {error && <div className="errorForm">{error}</div>}
                 <Button white>ENVIAR</Button>
               </Form>
