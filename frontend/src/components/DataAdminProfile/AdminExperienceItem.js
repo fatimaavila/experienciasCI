@@ -25,21 +25,20 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
   const dateInit = new Date(experience?.fecha_inicio);
   const dateFinal = new Date(experience?.fecha_fin);
 
-  const INITIAL_VALUES = {
-    name: experience?.nombre,
-    city: experience?.ciudad,
-    category: experience?.categoria,
-    price: experience?.precio,
-    participants: experience?.num_participantes,
-    sDate: dateInit,
-    fDate: dateFinal,
-    description: experience?.descripcion,
-  };
-
   const [formActivate, setFormActivate] = useState(false);
   const [category, setCategory] = useState([]);
   const { token } = useContext(UserContext);
-  const [editDataForm, setEditDataForm] = useState(INITIAL_VALUES);
+
+  const [name, setName] = useState(null);
+  const [city, setCity] = useState(null);
+  const [cat, setCat] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [participants, setParticipants] = useState(null);
+  const [initDate, setInitDate] = useState('');
+  const [finishDate, setFinishDate] = useState('');
+  const [description, setDescription] = useState(null);
+
+  console.log(dateInit, dateFinal, initDate, finishDate);
   const [error, setError] = useState('');
   const [errorDel, setErrorDel] = useState();
   const [expPhoto, setExpPhoto] = useState();
@@ -74,15 +73,32 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
 
   let payload = new FormData();
   files?.map((file) => payload.append('photo', file));
+  const oldInitDate = new Date(experience?.fecha_inicio).toLocaleDateString(
+    'es-ES',
+    optionsDate
+  );
+  const oldFinishDate = new Date(experience?.fecha_fin).toLocaleDateString(
+    'es-ES',
+    optionsDate
+  );
 
-  async function updatePhotos() {
-    await postAxios(
-      `http://localhost:8080/experiences/${experience.id}/photo`,
-      payload,
-      token
-    );
-  }
-
+  const body = {
+    name: name !== null ? name : experience?.nombre,
+    city: city !== null ? city : experience?.ciudad,
+    category: cat !== null ? cat : experience?.categoria,
+    price: price !== null ? price : experience?.precio,
+    participants:
+      participants !== null ? participants : experience?.num_participantes,
+    sDate:
+      initDate !== ''
+        ? sqlDateFormat(initDate.toLocaleDateString('es-ES', optionsDate))
+        : sqlDateFormat(oldInitDate),
+    fDate:
+      finishDate !== ''
+        ? sqlDateFormat(finishDate.toLocaleDateString('es-ES', optionsDate))
+        : sqlDateFormat(oldFinishDate),
+    description: description !== null ? description : experience?.descripcion,
+  };
   async function putEditInfo(e) {
     e.preventDefault();
 
@@ -92,26 +108,20 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
         error:
           'Debes aceptar la condiciones para actualizar los datos de la experiencia',
       });
-    } else {
-      const body = {
-        ...editDataForm,
-        sDate: sqlDateFormat(
-          editDataForm.sDate.toLocaleDateString('es-ES', optionsDate)
-        ),
-        fDate: sqlDateFormat(
-          editDataForm.fDate.toLocaleDateString('es-ES', optionsDate)
-        ),
-      };
+    } else if (changeChecked.checked === true) {
       try {
+        if (files?.length > 0) {
+          await postAxios(
+            `http://localhost:8080/experiences/${experience.id}/photo`,
+            payload,
+            token
+          );
+        }
         const { status } = await putAxios(
           `http://localhost:8080/experiences/${experience.id}`,
           body,
           token
         );
-
-        if (files?.length > 0) {
-          updatePhotos();
-        }
 
         if (status === 200) {
           const { data } = await getAxios('http://localhost:8080/experiences');
@@ -198,12 +208,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     <Form.Control
                       type="text"
                       placeholder={experience?.nombre}
-                      onChange={(e) =>
-                        setEditDataForm({
-                          ...editDataForm,
-                          name: e.target.value,
-                        })
-                      }
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </Form.Label>
                 </Form.Group>
@@ -213,26 +218,14 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     <Form.Control
                       type="text"
                       placeholder={experience?.ciudad}
-                      onChange={(e) =>
-                        setEditDataForm({
-                          ...editDataForm,
-                          city: e.target.value,
-                        })
-                      }
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="formElement">
                   <Form.Label>
                     Categoria
-                    <Form.Select
-                      onChange={(e) =>
-                        setEditDataForm({
-                          ...editDataForm,
-                          category: e.target.value,
-                        })
-                      }
-                    >
+                    <Form.Select onChange={(e) => setCat(e.target.value)}>
                       {category &&
                         category.map((category) => {
                           return (
@@ -253,12 +246,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     <Form.Control
                       type="text"
                       placeholder={experience?.precio + ' €'}
-                      onChange={(e) =>
-                        setEditDataForm({
-                          ...editDataForm,
-                          price: e.target.value,
-                        })
-                      }
+                      onChange={(e) => setPrice(e.target.value)}
                     />
                   </Form.Label>
                 </Form.Group>
@@ -268,12 +256,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     <Form.Control
                       type="number"
                       placeholder={experience?.num_participantes}
-                      onChange={(e) =>
-                        setEditDataForm({
-                          ...editDataForm,
-                          participants: e.target.value,
-                        })
-                      }
+                      onChange={(e) => setParticipants(e.target.value)}
                     />
                   </Form.Label>
                 </Form.Group>
@@ -284,10 +267,8 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                       locale="es"
                       dateFormat="dd/MM/yyyy"
                       className="date-picker"
-                      selected={editDataForm.sDate}
-                      onChange={(date) =>
-                        setEditDataForm({ ...editDataForm, sDate: date })
-                      }
+                      selected={initDate ? initDate : dateInit}
+                      onChange={(date) => setInitDate(date)}
                     />
                   </Form.Label>
                 </Form.Group>
@@ -298,10 +279,8 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                       locale="es"
                       dateFormat="dd/MM/yyyy"
                       className="date-picker"
-                      selected={editDataForm.fDate}
-                      onChange={(date) =>
-                        setEditDataForm({ ...editDataForm, fDate: date })
-                      }
+                      selected={finishDate ? finishDate : dateFinal}
+                      onChange={(date) => setFinishDate(date)}
                     />
                   </Form.Label>
                 </Form.Group>
@@ -312,12 +291,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                       as="textarea"
                       style={{ height: 100 + 'px' }}
                       placeholder={experience?.descripcion}
-                      onChange={(e) =>
-                        setEditDataForm({
-                          ...editDataForm,
-                          description: e.target.value,
-                        })
-                      }
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </Form.Label>
                 </Form.Group>
@@ -351,7 +325,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     onChange={() =>
                       setChangeChecked({
                         ...changeChecked,
-                        checked: !changeChecked.checked,
+                        checked: true,
                       })
                     }
                   />

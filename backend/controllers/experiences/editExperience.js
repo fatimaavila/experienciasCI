@@ -1,8 +1,8 @@
 const getDB = require('../../bbdd/db');
 const { formatDate, validate } = require('../../helpers');
 const {
-    newSchemaExperience,
-} = require('../../validations/newSchemaExperience');
+    newSchemaEditExperience,
+} = require('../../validations/newSchemaEditExperience');
 
 const editExperience = async (req, res, next) => {
     let connection;
@@ -11,7 +11,7 @@ const editExperience = async (req, res, next) => {
         connection = await getDB();
 
         const { idExp } = req.params;
-        await validate(newSchemaExperience, req.body);
+        await validate(newSchemaEditExperience, req.body);
 
         if (req.userAuth.rol !== 'admin') {
             const error = new Error(
