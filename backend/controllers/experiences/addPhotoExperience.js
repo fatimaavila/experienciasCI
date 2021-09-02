@@ -43,6 +43,7 @@ const addPhotoExperience = async (req, res, next) => {
                 );
             }
         }
+
         res.send({
             status: 200,
             data: {
