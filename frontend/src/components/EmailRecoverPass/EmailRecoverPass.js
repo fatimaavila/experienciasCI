@@ -1,60 +1,60 @@
-import { useState } from "react";
-import { Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import { putAxios } from "../../axiosCalls";
-import Button from "../button/Button";
-import StyledEmailRecoverPass from "./StyledEmailRecoverPass";
+import { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { putAxios } from '../../axiosCalls';
+import Button from '../button/Button';
+import StyledEmailRecoverPass from './StyledEmailRecoverPass';
 
 function EmailRecoverPass() {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [content, setContent] = useState(true);
 
-    const [email,setEmail] = useState('');
-    const [error,setError] = useState('');
+  const body = {
+    email,
+  };
 
-    const history = useHistory();
+  async function recoverPass(e) {
+    try {
+      e.preventDefault();
 
-    const body = {
-        email,
+      await putAxios('http://localhost:8080/users/password/recover', body);
+
+      setContent(!content);
+    } catch (error) {
+      setError(error.response.data.message);
     }
+  }
 
-    async function recoverPass(e) {
-        try {
-
-            e.preventDefault();
-
-            const data = await putAxios('http://localhost:8080/users/password/recover',body);
-
-            console.log(data);
-
-            if (error === 'Error enviando email') {
-                history.push({
-                  pathname: '/reset-pass',
-                  recoverCode: data,
-                });
-            }
-
-        } catch (error) {
-            setError(error.response.data.message);
-        }
-    }
-
-    console.log(email, error);
-
-    return (
-        <StyledEmailRecoverPass>
-            <div className='verifyEmail_Pass'>
-                <h2>Introduce tu email</h2>
-                <Form>
-                    <Form.Control 
-                        type='email' 
-                        placeholder='tuemail@email.com'
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {error && <div className='errorForm'>{error}</div>}
-                    <Button blue onClickButton={recoverPass}>Enviar</Button>
-                </Form>
-            </div>
-        </StyledEmailRecoverPass>
-    )
+  return (
+    <StyledEmailRecoverPass>
+      <div className="verifyEmail_Pass">
+        {content && (
+          <>
+            <h2>Introduce tu email</h2>
+            <Form>
+              <Form.Control
+                type="email"
+                placeholder="tuemail@email.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {error && <div className="errorForm">{error}</div>}
+              <Button blue onClickButton={recoverPass}>
+                Enviar
+              </Button>
+            </Form>
+          </>
+        )}
+        {!content && (
+          <h2>
+            Se ha enviado un email de verificación a la cuenta de correo {email}{' '}
+            para poder recordar la contraseña. Por favor, haga click en el
+            enlace que se le proporciona en el correo electrónico para poder
+            cambiar la contraseña
+          </h2>
+        )}
+      </div>
+    </StyledEmailRecoverPass>
+  );
 }
 
 export default EmailRecoverPass;
