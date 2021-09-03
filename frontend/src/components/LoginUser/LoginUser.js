@@ -80,7 +80,11 @@ function LoginUser() {
                 />
               </Form.Label>
             </Form.Group>
-            <Link className="forgetPass" to="/recover-pass">
+            <Link
+              className="forgetPass"
+              to="/recover-pass"
+              onClick={() => setFormActivate(!formActivate)}
+            >
               Olvidaste tu contraseña?
             </Link>
             {error && <div className="errorForm">{error}</div>}
