@@ -27,7 +27,6 @@ function AdminNeWExperience() {
   const [files, setFiles] = useState([]);
 
   let history = useHistory();
-  console.log(description);
   const dateStart = new Date(dStart).toLocaleDateString('es-ES', {
     year: 'numeric',
     month: 'numeric',
@@ -42,7 +41,6 @@ function AdminNeWExperience() {
   const onFileChange = (e) => {
     const file = e.target.files;
     setFiles([...file]);
-    console.log(files);
   };
 
   async function getCategories() {
@@ -56,7 +54,6 @@ function AdminNeWExperience() {
     event.preventDefault();
     let payload = new FormData();
 
-    //primero metemos las fotos
     files?.map((file) => payload.append('photo', file));
 
     const body = {
@@ -69,8 +66,6 @@ function AdminNeWExperience() {
       dStart: sqlDateFormat(dateStart),
       dStop: sqlDateFormat(dateStop),
     };
-
-    //despues metemos los datos
 
     for (const prop of Object.keys(body)) {
       payload.append(prop, body[prop]);
@@ -200,11 +195,7 @@ function AdminNeWExperience() {
             <Form.Group className="formElement">
               <Form.Label>
                 Imagen
-                <Form.Control
-                  type="file"
-                  multiple="multiple"
-                  onChange={onFileChange}
-                />
+                <Form.Control type="file" multiple onChange={onFileChange} />
               </Form.Label>
             </Form.Group>
             <Form.Group className="formElement checkboxForm">
