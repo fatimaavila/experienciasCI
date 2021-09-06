@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { GoTrashcan } from 'react-icons/go';

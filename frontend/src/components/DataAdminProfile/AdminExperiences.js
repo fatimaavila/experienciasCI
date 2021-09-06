@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { getAxios } from '../../axiosCalls';
 import AdminExperiencesItem from './AdminExperienceItem';
@@ -9,8 +8,6 @@ function AdminExperiences() {
   const [categories, setCategories] = useState();
 
   useEffect(() => {
-    console.log('ola');
-
     async function getInfoExperiences() {
       try {
         const { data } = await getAxios('http://localhost:8080/experiences');
