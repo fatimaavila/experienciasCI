@@ -1,4 +1,6 @@
 import React from 'react';
+import StyledValidateRegister from '../validateRegister/StyledValidateRegister';
+import LOGOICON from '../../assets/LOGOICONfondo.png';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -18,10 +20,14 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <>
-          <h1>Ha habido un error en la App</h1>
-          <img src="https://www.googleapis.com/" alt="error" />
-        </>
+        <StyledValidateRegister>
+          <figure>
+            <img src={LOGOICON} alt="Logo" className="icon" />
+          </figure>
+          <div className="emailVerify"></div>
+          <h2>Ha ocurrido un error...</h2>
+          <p>Prueba nuevamente </p>
+        </StyledValidateRegister>
       );
     }
     return this.props.children;

@@ -45,11 +45,11 @@ function App() {
   window.addEventListener('scroll', handleScroll);
 
   return (
-    <ErrorBoundary>
-      <Router>
-        <div className="App posRel">
-          <ScrollToTopRouter />
-          <MainHeader />
+    <Router>
+      <div className="App posRel">
+        <ScrollToTopRouter />
+        <MainHeader />
+        <ErrorBoundary>
           <Switch>
             {routes.map((route) => (
               <Route key={route.path} path={route.path} exact>
@@ -64,11 +64,11 @@ function App() {
             ))}
             {home && <Home />}
           </Switch>
-          <Footer />
-          {scrollBtn && <AutoScrollToTop />}
-        </div>
-      </Router>
-    </ErrorBoundary>
+        </ErrorBoundary>
+        <Footer />
+        {scrollBtn && <AutoScrollToTop />}
+      </div>
+    </Router>
   );
 }
 
