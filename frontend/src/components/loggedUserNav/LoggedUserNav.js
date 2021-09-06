@@ -18,11 +18,18 @@ function LoggedUserNav() {
   }
 
   useEffect(() => {
-    window.addEventListener('click', (e) => {
-      if (!e.target.matches('.imgAvatar')) {
-        setShowNavMenu(false);
-      }
-    });
+    let mounted = true;
+    if (mounted) {
+      window.addEventListener('click', (e) => {
+        if (!e.target.matches('.imgAvatar')) {
+          setShowNavMenu(false);
+        }
+      });
+    }
+
+    return function cleanUp() {
+      mounted = false;
+    };
   }, []);
 
   return (
