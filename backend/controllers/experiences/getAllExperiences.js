@@ -1,3 +1,5 @@
+const { PUBLIC_HOST, UPLOADS } = process.env;
+
 const getDB = require('../../bbdd/db');
 const { priceQuery } = require('../../helpers');
 const getAllExperiences = async (req, res, next) => {
@@ -188,9 +190,25 @@ const getAllExperiences = async (req, res, next) => {
             );
         }
 
+        const experiencesWithPhotos = await Promise.all(
+            result.map(async (experience) => {
+                const [photos] = await connection.query(
+                    `SELECT * FROM photos WHERE id_experience=?`,
+                    [experience.id]
+                );
+                return {
+                    ...experience,
+                    photos: photos.map((photo) => ({
+                        photo: `${PUBLIC_HOST}${UPLOADS}${photo.url}`,
+                        id: photo.id,
+                    })),
+                };
+            })
+        );
+
         res.send({
             status: 200,
-            data: result,
+            data: experiencesWithPhotos,
         });
     } catch (error) {
         next(error);

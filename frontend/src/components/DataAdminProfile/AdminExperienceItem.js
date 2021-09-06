@@ -5,7 +5,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import { GoTrashcan } from 'react-icons/go';
 import { BsX } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
-import { onlyUnique, sqlDateFormat } from '../../helpers';
+import { sqlDateFormat } from '../../helpers';
 import Button from '../button/Button';
 import StyledForm from '../RegisterUser/StyledForm';
 import { v4 as uuidv4 } from 'uuid';
@@ -15,7 +15,7 @@ import { UserContext } from '../../context/UserContext';
 
 registerLocale('es', es);
 
-function AdminExperiencesItem({ experience, updateDataExp }) {
+function AdminExperiencesItem({ experience, updateDataExp, categories }) {
   const optionsDate = {
     day: 'numeric',
     month: 'numeric',
@@ -26,89 +26,65 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
   const dateFinal = new Date(experience?.fecha_fin);
 
   const [formActivate, setFormActivate] = useState(false);
-  const [category, setCategory] = useState([]);
   const { token } = useContext(UserContext);
 
-  const [name, setName] = useState(null);
-  const [city, setCity] = useState(null);
-  const [cat, setCat] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [participants, setParticipants] = useState(null);
-  const [initDate, setInitDate] = useState('');
-  const [finishDate, setFinishDate] = useState('');
-  const [description, setDescription] = useState(null);
-
-  console.log(dateInit, dateFinal, initDate, finishDate);
+  const [name, setName] = useState(experience?.nombre);
+  const [city, setCity] = useState(experience?.ciudad);
+  const [cat, setCat] = useState(experience?.categoria);
+  const [price, setPrice] = useState(experience?.precio);
+  const [participants, setParticipants] = useState(
+    experience?.num_participantes
+  );
+  const [initDate, setInitDate] = useState(dateInit);
+  const [finishDate, setFinishDate] = useState(dateFinal);
+  const [description, setDescription] = useState(experience?.descripcion);
   const [error, setError] = useState('');
   const [errorDel, setErrorDel] = useState();
-  const [expPhoto, setExpPhoto] = useState();
+  const [expPhoto, setExpPhoto] = useState(experience?.photos);
   const [files, setFiles] = useState();
   const [changeChecked, setChangeChecked] = useState({
     checked: false,
     error: '',
   });
 
-  async function getCategories() {
-    const { data } = await axios.get('http://localhost:8080/experiences');
-    const categories = data.data.map((category) => category.categoria);
-    const allCategories = categories.filter(onlyUnique);
-    setCategory(allCategories);
-  }
-
-  useEffect(() => {
-    getCategories();
-    async function getPhotos() {
-      const { data } = await getAxios(
-        `http://localhost:8080/experiences/${experience?.id}`
-      );
-      setExpPhoto(data.photos);
-    }
-    getPhotos();
-  }, [experience?.id]);
+  // useEffect(() => {
+  //   async function getPhotos() {
+  //     const { data } = await getAxios(
+  //       `http://localhost:8080/experiences/${experience?.id}`
+  //     );
+  //     setExpPhoto(data.photos);
+  //   }
+  //   getPhotos();
+  // }, [experience?.id]);
 
   const onFileChange = (e) => {
-    const file = e.target.files;
-    setFiles([...file]);
+    setFiles([...e.target.files]);
   };
 
-  let payload = new FormData();
-  files?.map((file) => payload.append('photo', file));
-  const oldInitDate = new Date(experience?.fecha_inicio).toLocaleDateString(
-    'es-ES',
-    optionsDate
-  );
-  const oldFinishDate = new Date(experience?.fecha_fin).toLocaleDateString(
-    'es-ES',
-    optionsDate
-  );
-
-  const body = {
-    name: name !== null ? name : experience?.nombre,
-    city: city !== null ? city : experience?.ciudad,
-    category: cat !== null ? cat : experience?.categoria,
-    price: price !== null ? price : experience?.precio,
-    participants:
-      participants !== null ? participants : experience?.num_participantes,
-    sDate:
-      initDate !== ''
-        ? sqlDateFormat(initDate.toLocaleDateString('es-ES', optionsDate))
-        : sqlDateFormat(oldInitDate),
-    fDate:
-      finishDate !== ''
-        ? sqlDateFormat(finishDate.toLocaleDateString('es-ES', optionsDate))
-        : sqlDateFormat(oldFinishDate),
-    description: description !== null ? description : experience?.descripcion,
-  };
   async function putEditInfo(e) {
     e.preventDefault();
 
-    if (changeChecked.checked === false) {
+    let payload = new FormData();
+    files?.map((file) => payload.append('photo', file));
+
+    const body = {
+      name,
+      city,
+      category: cat,
+      price,
+      participants,
+      sDate: sqlDateFormat(initDate.toLocaleDateString('es-ES', optionsDate)),
+      fDate: sqlDateFormat(finishDate.toLocaleDateString('es-ES', optionsDate)),
+      description,
+    };
+
+    if (!changeChecked.checked) {
       setChangeChecked({
         ...changeChecked,
         error:
           'Debes aceptar la condiciones para actualizar los datos de la experiencia',
       });
-    } else if (changeChecked.checked === true) {
+    } else {
       try {
         if (files?.length > 0) {
           await postAxios(
@@ -207,7 +183,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     Nombre experiencia
                     <Form.Control
                       type="text"
-                      placeholder={experience?.nombre}
+                      value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </Form.Label>
@@ -217,7 +193,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     Ubicación
                     <Form.Control
                       type="text"
-                      placeholder={experience?.ciudad}
+                      value={city}
                       onChange={(e) => setCity(e.target.value)}
                     />
                   </Form.Label>
@@ -225,18 +201,17 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                 <Form.Group className="formElement">
                   <Form.Label>
                     Categoria
-                    <Form.Select onChange={(e) => setCat(e.target.value)}>
-                      {category &&
-                        category.map((category) => {
-                          return (
-                            <option
-                              key={uuidv4()}
-                              defaultValue={experience.categoria === category}
-                            >
-                              {category}
-                            </option>
-                          );
-                        })}
+                    <Form.Select
+                      onChange={(e) => setCat(e.target.value)}
+                      value={cat}
+                    >
+                      {categories.map((category) => {
+                        return (
+                          <option key={uuidv4()} defaultValue={category}>
+                            {category}
+                          </option>
+                        );
+                      })}
                     </Form.Select>
                   </Form.Label>
                 </Form.Group>
@@ -245,8 +220,10 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     Precio
                     <Form.Control
                       type="text"
-                      placeholder={experience?.precio + ' €'}
-                      onChange={(e) => setPrice(e.target.value)}
+                      value={price + '€'}
+                      onChange={(e) =>
+                        setPrice(Number(e.target.value.replace('€', '')))
+                      }
                     />
                   </Form.Label>
                 </Form.Group>
@@ -255,7 +232,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     Nº Participantes
                     <Form.Control
                       type="number"
-                      placeholder={experience?.num_participantes}
+                      value={participants}
                       onChange={(e) => setParticipants(e.target.value)}
                     />
                   </Form.Label>
@@ -267,7 +244,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                       locale="es"
                       dateFormat="dd/MM/yyyy"
                       className="date-picker"
-                      selected={initDate ? initDate : dateInit}
+                      selected={initDate}
                       onChange={(date) => setInitDate(date)}
                     />
                   </Form.Label>
@@ -279,7 +256,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                       locale="es"
                       dateFormat="dd/MM/yyyy"
                       className="date-picker"
-                      selected={finishDate ? finishDate : dateFinal}
+                      selected={finishDate}
                       onChange={(date) => setFinishDate(date)}
                     />
                   </Form.Label>
@@ -290,7 +267,7 @@ function AdminExperiencesItem({ experience, updateDataExp }) {
                     <Form.Control
                       as="textarea"
                       style={{ height: 100 + 'px' }}
-                      placeholder={experience?.descripcion}
+                      value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </Form.Label>
