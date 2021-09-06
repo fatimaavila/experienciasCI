@@ -57,7 +57,7 @@ const newUserSchema = Joi.object().keys({
         }),
 
     name: Joi.string()
-        .pattern(/^[a-zA-Z]+$/)
+        .pattern(/^[A-Za-z]([\w ]+)+$/)
         .error((error) => {
             switch (error[0].code) {
                 default:
@@ -65,7 +65,9 @@ const newUserSchema = Joi.object().keys({
             }
         }),
     last: Joi.string()
-        .pattern(/^[a-zA-Z]+$/)
+        .allow(null, '')
+        .trim()
+        .pattern(/^[A-Za-z]([\w ]+)+$/)
         .error((error) => {
             switch (error[0].code) {
                 default:

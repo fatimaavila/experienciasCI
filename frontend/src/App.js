@@ -52,7 +52,7 @@ function App() {
           <MainHeader />
           <Switch>
             {routes.map((route) => (
-              <Route key={route.path} path={route.path}>
+              <Route key={route.path} path={route.path} exact>
                 {route.private ? (
                   <PrivateRoute>
                     <route.Page />

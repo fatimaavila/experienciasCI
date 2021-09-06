@@ -33,8 +33,6 @@ function ChangePassword() {
     }
   }
 
-  console.log(recoverCode[2]);
-
   return (
     <StyledChangedPassword>
       <div className="resetPass_Box">

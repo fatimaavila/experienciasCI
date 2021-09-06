@@ -76,6 +76,7 @@ function LoginUser() {
                 <Form.Control
                   onChange={(event) => setPassword(event.target.value)}
                   value={password}
+                  placeholder="Contraseña"
                   type="password"
                 />
               </Form.Label>

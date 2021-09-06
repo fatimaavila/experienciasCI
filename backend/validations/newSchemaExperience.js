@@ -27,6 +27,7 @@ const newSchemaExperience = Joi.object().keys({
 
     name: Joi.string()
         .required()
+        .allow(null, '')
         .min(5)
         .max(50)
         .error((errors) => {
