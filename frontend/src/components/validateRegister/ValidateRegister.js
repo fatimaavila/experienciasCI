@@ -18,7 +18,7 @@ function ValidateRegister({ email, name }) {
         </p>
       </div>
       <a href="/">
-        <Button blue>Home</Button>
+        <Button blue>Volver a la página principal</Button>
       </a>
     </StyledValidateRegister>
   );

@@ -38,7 +38,7 @@ const newUser = async (req, res, next) => {
             <p>Te acabas de registrar en Van Experiences.</p>
             <span class="mainEmail">${email}</span>
             <p>Pulsa en este link para verificar tu cuenta:<p>
-            <a href="${process.env.PUBLIC_HOST}users/validate/${registrationCode}" target="_blank">Verifica tu email</a> 
+            <a href="http://localhost:3000/register-validate/${registrationCode}" target="_blank">Verifica tu email</a> 
         `;
 
         await sendMail({

@@ -16,40 +16,34 @@ function RegisterUser() {
   const [name, setName] = useState('');
   const [last, setLast] = useState('');
   const [error, setError] = useState('');
-  let history = useHistory();
+  const history = useHistory();
 
-  function onSubmitRegister(event) {
-    event.preventDefault();
+  async function performLogin(e) {
+    try {
+      e.preventDefault();
 
-    async function performLogin() {
-      try {
-        const body = {
-          username,
-          email,
-          password,
-          name,
-          last,
-        };
+      const body = {
+        username,
+        email,
+        password,
+        name,
+        last,
+      };
 
+      if (password === password2) {
         await postAxios('http://localhost:8080/users', body);
-      } catch (error) {
-        setError(error.response);
+        history.push({
+          pathname: '/register-validate',
+          email,
+          username,
+        });
+        setFormActivate(!formActivate);
       }
-    }
-
-    if (password === password2) {
-      performLogin();
-    }
-
-    if (error?.data?.message === 'Error enviando email') {
-      history.push({
-        pathname: '/registervalidate',
-        email: email,
-        username: username,
-      });
-      setFormActivate(!formActivate);
+    } catch (error) {
+      setError(error.response.data.message);
     }
   }
+
   return (
     <>
       <Button white onClickButton={() => setFormActivate(!formActivate)}>
@@ -57,11 +51,11 @@ function RegisterUser() {
       </Button>
 
       <Modal show={formActivate} onHide={() => setFormActivate(!formActivate)}>
-        <StyledForm onSubmit={onSubmitRegister}>
+        <StyledForm>
           <Modal.Header closeButton>
             <Modal.Title>Registro de Usuario</Modal.Title>
           </Modal.Header>
-          <Form className="modalBody">
+          <Form className="modalBody" onSubmit={performLogin}>
             <Form.Group className="formElement">
               <Form.Label>
                 Nombre
@@ -112,6 +106,7 @@ function RegisterUser() {
                 <Form.Control
                   type="password"
                   value={password}
+                  placeholder="Contraseña"
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </Form.Label>
@@ -122,16 +117,26 @@ function RegisterUser() {
                 <Form.Control
                   type="password"
                   value={password2}
+                  placeholder="Confirmar Contraseña"
                   onChange={(event) => setPassword2(event.target.value)}
                 />
               </Form.Label>
             </Form.Group>
-            <Form.Group className="formElement checkboxForm">
-              <Form.Check type="checkbox" />
-              <Form.Label>Aceptar condiciones de uso</Form.Label>
-            </Form.Group>
-            {error?.data?.message && <div className='errorForm'>{error?.data?.message}</div>}
-            <Button white>ENVIAR</Button>
+            {error && <div className="errorForm">{error}</div>}
+            <Button
+              white
+              onClickButton={() => {
+                if (password !== password2) {
+                  setError('Las contraseñas no coinciden');
+                }
+
+                if (password2 === '') {
+                  setError('Debes confirmar la contraseña');
+                }
+              }}
+            >
+              Registrarse
+            </Button>
           </Form>
         </StyledForm>
       </Modal>

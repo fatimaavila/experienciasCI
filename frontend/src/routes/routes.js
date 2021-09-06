@@ -14,6 +14,7 @@ import AdminMenu from '../pages/adminMenu/AdminMenu';
 import Shop from '../components/shop/Shop';
 import RecoverPass from '../pages/recoverPass/recoverPass';
 import ResetPass from '../pages/resetPass/resetPass';
+import VerifyPage from '../pages/verifyUserRegistered/verifyUserRegistered';
 
 const routes = [
   {
@@ -62,7 +63,12 @@ const routes = [
     label: 'UniqueExperiece',
   },
   {
-    path: '/registervalidate',
+    path: '/register-validate/:verifyCode',
+    Page: VerifyPage,
+    label: 'VerifyUser',
+  },
+  {
+    path: '/register-validate',
     Page: RegisterValidate,
     label: 'RegisterValidate',
   },
