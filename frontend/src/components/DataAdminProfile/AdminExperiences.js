@@ -1,14 +1,22 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { getAxios } from '../../axiosCalls';
 import AdminExperiencesItem from './AdminExperienceItem';
+import { onlyUnique } from '../../helpers';
 
 function AdminExperiences() {
   const [experienceInfo, setExperienceInfo] = useState();
+  const [categories, setCategories] = useState();
 
   useEffect(() => {
+    console.log('ola');
+
     async function getInfoExperiences() {
       try {
         const { data } = await getAxios('http://localhost:8080/experiences');
+        const categories = data.map((category) => category.categoria);
+        const allCategories = categories.filter(onlyUnique);
+        setCategories(allCategories);
         setExperienceInfo(data);
       } catch (error) {
         console.error(error.response.data.message);
@@ -24,6 +32,7 @@ function AdminExperiences() {
         {experienceInfo?.map((experience) => (
           <AdminExperiencesItem
             key={experience.id}
+            categories={categories}
             experience={experience}
             updateDataExp={setExperienceInfo}
           />

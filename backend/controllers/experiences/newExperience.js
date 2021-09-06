@@ -52,8 +52,11 @@ const newExperience = async (req, res, next) => {
 
         const photos = [];
 
-        if (req.files) {
-            for (const photo of Object.values(req.files.photo).slice(0, 3)) {
+        if (req.files && req.files.photo) {
+            const photoList = Array.isArray(req.files.photo)
+                ? req.files.photo
+                : [req.files.photo];
+            for (const photo of photoList) {
                 const photoName = await savePhoto(photo);
 
                 photos.push(photoName);
