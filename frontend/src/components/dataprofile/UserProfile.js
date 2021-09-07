@@ -74,7 +74,7 @@ function UserProfile() {
         });
       }
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response?.data?.message);
     }
   }
 
