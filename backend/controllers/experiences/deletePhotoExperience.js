@@ -20,7 +20,6 @@ const deletePhotoExperience = async (req, res, next) => {
             `SELECT url FROM photos WHERE id = ? AND id_experience = ?;`,
             [idPhoto, idExp]
         );
-        console.log(idExp);
         if (photo.length < 1) {
             const error = new Error('La foto no existe');
             error.httpStatus = 404;

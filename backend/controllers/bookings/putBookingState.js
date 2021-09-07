@@ -50,7 +50,6 @@ const putBookingState = async (req, res, next) => {
                 estado: newState[0].estado === 0 ? 'Disfrutada' : 'Disponible',
             },
         });
-        console.log(newState);
     } catch (error) {
         next(error);
     } finally {

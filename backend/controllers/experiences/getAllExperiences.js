@@ -170,8 +170,6 @@ const getAllExperiences = async (req, res, next) => {
             throw error;
         }
 
-        console.log(sqlExperience);
-
         if (
             !searchExp &&
             !city &&

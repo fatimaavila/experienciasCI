@@ -18,7 +18,6 @@ const getUser = async (req, res, next) => {
             username: user[0].username,
             avatar: user[0].avatar ? `${user[0].avatar}` : null,
         };
-        console.log(user[0].id, req.userAuth.idUser);
         if (
             user[0].id === req.userAuth.idUser ||
             req.userAuth.rol === 'admin'

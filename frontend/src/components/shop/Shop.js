@@ -57,14 +57,11 @@ function Shop() {
           booking,
           token
         );
-        console.log(data);
       }
     } catch (error) {
       setError(error.response.data.message);
     }
-    console.log(error);
   }
-  console.log(units);
   return (
     <StyledShop>
       {cartExperience.length !== 0 ? (

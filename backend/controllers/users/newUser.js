@@ -17,7 +17,6 @@ const newUser = async (req, res, next) => {
         connection = await getDB();
         await validate(newUserSchema, req.body);
         const { username, email, password, last, name } = req.body;
-        console.log(req.body);
 
         const [user] = await connection.query(
             `SELECT id FROM users WHERE email = ? OR username = ?;`,
@@ -46,7 +45,6 @@ const newUser = async (req, res, next) => {
             subject: `<h1>Activa tu cuenta en VAN Experiences</h1>`,
             body: emailBody,
         });
-        console.log(req.files);
         if (req.files && req.files.avatar) {
             const avatarName = await savePhoto(req.files.avatar);
 

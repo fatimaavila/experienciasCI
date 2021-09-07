@@ -10,24 +10,12 @@ const Landing = styled.div`
 `;
 
 function Home() {
-  /* const images = [
-    {
-      id: uuidv4(),
-      title: 'globos',
-      image: fondoSearch,
-    },
-    {
-      id: uuidv4(),
-      title: 'palemeras',
-      image: fondoSearch2,
-    },
-  ]; */
   return (
     <Landing>
       <Search />
-      <Carousel/>
-      <LandingCategories/>
-      <AboutUs/>
+      <Carousel />
+      <LandingCategories />
+      <AboutUs />
     </Landing>
   );
 }

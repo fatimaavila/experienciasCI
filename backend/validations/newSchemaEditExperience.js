@@ -30,7 +30,6 @@ const newSchemaEditExperience = Joi.object().keys({
         .min(5)
         .max(50)
         .error((errors) => {
-            console.log(errors[0]);
             switch (errors[0].code) {
                 case 'any.required':
                     return new Error(
