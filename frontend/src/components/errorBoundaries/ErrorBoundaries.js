@@ -1,6 +1,7 @@
 import React from 'react';
 import StyledValidateRegister from '../validateRegister/StyledValidateRegister';
 import LOGOICON from '../../assets/LOGOICONfondo.png';
+import Button from '../button/Button';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -26,7 +27,9 @@ class ErrorBoundary extends React.Component {
           </figure>
           <div className="emailVerify"></div>
           <h2>Ha ocurrido un error...</h2>
-          <p>Prueba nuevamente </p>
+          <a href="/">
+            <Button blue>Volver a la página principal</Button>
+          </a>
         </StyledValidateRegister>
       );
     }
