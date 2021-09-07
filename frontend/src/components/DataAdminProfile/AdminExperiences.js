@@ -16,7 +16,7 @@ function AdminExperiences() {
         setCategories(allCategories);
         setExperienceInfo(data);
       } catch (error) {
-        console.error(error.response.data.message);
+        console.error(error.response?.data?.message);
       }
     }
 

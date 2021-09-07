@@ -77,7 +77,7 @@ function AdminNeWExperience() {
 
         history.go(0);
       } catch (error) {
-        setError(error.response);
+        setError(error?.response);
       }
     }
     performNewExperience();
