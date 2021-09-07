@@ -103,7 +103,7 @@ function UserProfile() {
             <span>Nombre</span>
             <Form.Control
               type="text"
-              placeholder={userInfo?.nombre ? userInfo?.nombre : 'Nombre'}
+              value={dataUser.name}
               onChange={(e) =>
                 setDataUser({ ...dataUser, name: e.target.value })
               }
@@ -114,11 +114,7 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Apellidos</span>
-            <Form.Control
-              type="text"
-              placeholder={userInfo?.apellidos}
-              disabled
-            />
+            <Form.Control type="text" value={dataUser.last} disabled />
           </Form.Label>
         </Form.Group>
         <Form.Group>
@@ -126,7 +122,8 @@ function UserProfile() {
             <span>DNI</span>
             <Form.Control
               type="text"
-              placeholder={userInfo?.dni ? userInfo?.dni : 'DNI'}
+              placeholder={!dataUser.dni && 'DNI'}
+              value={dataUser.dni}
               onChange={(e) =>
                 setDataUser({ ...dataUser, dni: e.target.value })
               }
@@ -140,7 +137,8 @@ function UserProfile() {
             <Form.Control
               as="textarea"
               style={{ height: '200px' }}
-              placeholder={userInfo?.bio ? userInfo?.bio : 'Biografía'}
+              placeholder={!dataUser.bio && 'Biografía'}
+              value={dataUser.bio}
               onChange={(e) =>
                 setDataUser({ ...dataUser, bio: e.target.value })
               }
@@ -152,7 +150,8 @@ function UserProfile() {
             <span>Teléfono</span>
             <Form.Control
               type="text"
-              placeholder={userInfo?.telefono ? userInfo?.telefono : 'Teléfono'}
+              placeholder={!dataUser.phone && 'Teléfono'}
+              value={dataUser.phone}
               onChange={(e) =>
                 setDataUser({ ...dataUser, phone: e.target.value })
               }
@@ -164,9 +163,8 @@ function UserProfile() {
             <span>Dirección</span>
             <Form.Control
               type="text"
-              placeholder={
-                userInfo?.direccion ? userInfo?.direccion : 'Dirección'
-              }
+              placeholder={!dataUser.address && 'Dirección'}
+              value={dataUser.address}
               onChange={(e) =>
                 setDataUser({ ...dataUser, address: e.target.value })
               }
@@ -178,7 +176,8 @@ function UserProfile() {
             <span>Código Postal</span>
             <Form.Control
               type="text"
-              placeholder={userInfo?.cp ? userInfo?.cp : 'Código Postal'}
+              placeholder={!dataUser.postalCode && 'Código Postal'}
+              value={dataUser.postalCode}
               onChange={(e) =>
                 setDataUser({ ...dataUser, postalCode: e.target.value })
               }
@@ -188,11 +187,7 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>Nombre de Usuario</span>
-            <Form.Control
-              type="text"
-              placeholder={userInfo?.username}
-              disabled
-            />
+            <Form.Control type="text" value={dataUser.username} disabled />
           </Form.Label>
         </Form.Group>
         <Form.Group>
@@ -200,7 +195,7 @@ function UserProfile() {
             <span>Email</span>
             <Form.Control
               type="email"
-              placeholder={userInfo?.email ? userInfo?.email : 'Email'}
+              value={dataUser.email}
               onChange={(e) =>
                 setDataUser({ ...dataUser, email: e.target.value })
               }
