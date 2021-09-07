@@ -7,7 +7,6 @@ const getFinalStateBooking = async (req, res, next) => {
     try {
         connection = await getDB();
         const { idExp, dateBooking } = req.params;
-        console.log(idExp, dateBooking);
 
         const [booking] = await connection.query(
             `SELECT * FROM bookings WHERE id_experience = ? AND fecha_reserva = ?;`,

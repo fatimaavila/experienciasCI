@@ -23,7 +23,6 @@ function AdminBookingsItem({ info }) {
   );
   const used = state === 1 ? 'Disponible' : 'Disfrutada';
 
-  console.log(info);
   const commented =
     info?.comentario === null
       ? 'Pendiente de comentar'

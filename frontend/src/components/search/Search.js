@@ -17,8 +17,21 @@ function Search() {
   return (
     <StyledLandingSearch className="posRel searchHome">
       <BlackTransparentBox>
-        <Input type='text' placeholder="Introduce una experiencia" querySearch={search} value={search} onChange={(e) => setSearch(e.target.value)}/>
-        <Button blue onClickButton={searchData}>BUSCAR</Button>
+        <Input
+          type="text"
+          placeholder="Introduce una experiencia"
+          querySearch={search}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              searchData();
+            }
+          }}
+        />
+        <Button blue onClickButton={searchData}>
+          BUSCAR
+        </Button>
       </BlackTransparentBox>
     </StyledLandingSearch>
   );

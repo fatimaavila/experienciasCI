@@ -46,16 +46,6 @@ function AdminExperiencesItem({ experience, updateDataExp, categories }) {
     error: '',
   });
 
-  // useEffect(() => {
-  //   async function getPhotos() {
-  //     const { data } = await getAxios(
-  //       `http://localhost:8080/experiences/${experience?.id}`
-  //     );
-  //     setExpPhoto(data.photos);
-  //   }
-  //   getPhotos();
-  // }, [experience?.id]);
-
   const onFileChange = (e) => {
     setFiles([...e.target.files]);
   };

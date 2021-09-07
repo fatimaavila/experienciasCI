@@ -21,7 +21,6 @@ const editUser = async (req, res, next) => {
         const { idUser } = req.params;
         let { email, address, phone, bio, cp, dni } = req.body;
         let avatar = req.files;
-        console.log(avatar);
 
         const now = new Date();
 
@@ -97,7 +96,6 @@ const editUser = async (req, res, next) => {
             }
 
             avatarName = await savePhoto(avatar.avatar);
-            console.log('avatarName', avatarName);
             await connection.query(
                 `
                 UPDATE users SET avatar = ?, modifiedAt = ? WHERE id = ?;

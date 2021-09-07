@@ -44,7 +44,7 @@ function Experiences() {
         day: 'numeric',
       });
 
-    const urlFiltered = queryString.stringifyUrl({
+    let urlFiltered = queryString.stringifyUrl({
       url: 'http://localhost:8080/experiences',
       query: {
         searchExp: `${
