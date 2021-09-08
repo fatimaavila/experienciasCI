@@ -1,12 +1,11 @@
 import StyledFilters from './StyledFilters';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import axios from 'axios';
-import { onlyUnique } from '../../helpers';
 import { Form } from 'react-bootstrap';
 import es from 'date-fns/locale/es';
 import { v4 as uuidv4 } from 'uuid';
+import { FilterContext } from '../../context/FilterContext';
 
 registerLocale('es', es);
 
@@ -21,28 +20,13 @@ function Filters({
   changeDatePickerStart,
   changeDatePickerEnd,
 }) {
-  const [city, setCity] = useState([]);
-
-  async function getCities() {
-    try {
-      const { data } = await axios.get('http://localhost:8080/experiences');
-      const allCities = data.data.map((city) => city.ciudad);
-      const cities = allCities.filter(onlyUnique);
-      setCity(cities.sort());
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
-
-  useEffect(() => {
-    getCities();
-  }, []);
+  const { cities } = useContext(FilterContext);
 
   return (
     <StyledFilters>
       <ul className="cityFilter">
-        {city &&
-          city.map((city) => {
+        {cities &&
+          cities.map((city) => {
             return (
               <li
                 key={uuidv4()}

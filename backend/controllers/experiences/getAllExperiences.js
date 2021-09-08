@@ -1,9 +1,11 @@
 const { PUBLIC_HOST, UPLOADS } = process.env;
 
+const { sampleSize } = require('lodash');
 const getDB = require('../../bbdd/db');
 const { priceQuery } = require('../../helpers');
 const getAllExperiences = async (req, res, next) => {
     let connection;
+    const { random } = req.query;
 
     try {
         connection = await getDB();
@@ -188,14 +190,29 @@ const getAllExperiences = async (req, res, next) => {
             );
         }
 
+        const finalExperiences = random
+            ? sampleSize(result, Number(random))
+            : result;
+
         const experiencesWithPhotos = await Promise.all(
-            result.map(async (experience) => {
+            finalExperiences.map(async (experience) => {
                 const [photos] = await connection.query(
                     `SELECT * FROM photos WHERE id_experience=?`,
                     [experience.id]
                 );
+
+                const [rating] = await connection.query(
+                    `
+                    SELECT ROUND(IFNULL(AVG(book.valoracion),0),1) AS rating 
+                    FROM bookings book 
+                    WHERE book.id_experience = ?;
+                `,
+                    [experience.id]
+                );
+
                 return {
                     ...experience,
+                    rating: Number(rating[0].rating),
                     photos: photos.map((photo) => ({
                         photo: `${PUBLIC_HOST}${UPLOADS}${photo.url}`,
                         id: photo.id,

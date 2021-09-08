@@ -1,31 +1,16 @@
 import StyledExperience from './StyledExperience';
-
 import { Rating } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getAxios } from '../../axiosCalls';
 
-function Experience({ id, name, city, price }) {
+function Experience({
+  experience: { id, nombre: name, precio: price, ciudad: city, photos, rating },
+}) {
   const history = useHistory();
 
   const routeChange = () => {
     let path = `/experience/${id}`;
     history.push(path);
   };
-  const [uniqueExp, setUniqueExp] = useState([]);
-
-  useEffect(() => {
-    const getUniqueExp = async () => {
-      const { data } = await getAxios(
-        `http://localhost:8080/experiences/${id}`
-      );
-
-      setUniqueExp(data);
-    };
-    getUniqueExp();
-  }, [id]);
-  const defaultRating = 0;
-  const rating = Number(uniqueExp.rating);
 
   const imgBackground = {
     backgroundSize: 'cover',
@@ -35,11 +20,11 @@ function Experience({ id, name, city, price }) {
 
   return (
     <StyledExperience onClick={routeChange}>
-      {uniqueExp?.photos && (
+      {photos && (
         <div
           className="fotoExperience"
           style={{
-            backgroundImage: `url('${uniqueExp?.photos[0]?.photo}')`,
+            backgroundImage: `url('${photos[0]?.photo}')`,
             ...imgBackground,
           }}
         ></div>
@@ -48,7 +33,7 @@ function Experience({ id, name, city, price }) {
       <span className="cityExperience">{city}</span>
       <Rating
         name="rating-experience"
-        value={rating !== 0.0 ? rating : defaultRating}
+        value={rating}
         precision={0.5}
         readOnly
       />
