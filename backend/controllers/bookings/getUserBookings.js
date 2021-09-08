@@ -21,10 +21,24 @@ const getUserBookings = async (req, res, next) => {
             `,
             [idUser]
         );
+        const experience = await Promise.all(
+            booking.map(async (exp) => {
+                const [infoExperience] = await connection.query(
+                    `SELECT nombre
+                    FROM experiences
+                    WHERE id = ?;`,
+                    [exp.id_experience]
+                );
+                return {
+                    ...exp,
+                    experience: infoExperience.map((nombre) => nombre),
+                };
+            })
+        );
 
         res.send({
             status: 200,
-            data: [...booking],
+            data: experience,
         });
     } catch (error) {
         next(error);

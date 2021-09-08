@@ -30,6 +30,7 @@ function UserBookings() {
             key={booking.id}
             bookingInfo={booking}
             updateDataBooking={setUserBookings}
+            labelName={booking.experience[0].nombre}
           />
         ))}
     </>
