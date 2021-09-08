@@ -5,6 +5,7 @@ import StyledAliceCarousel from './StyledAliceCarousel';
 import { useEffect, useState } from 'react';
 import { getAxios } from '../../axiosCalls';
 import { useHistory } from 'react-router-dom';
+import palm from '../../assets/Palmeras.jpg';
 
 const responsive = {
   0: { items: 1 },
@@ -12,23 +13,6 @@ const responsive = {
   780: { items: 3 },
   1024: { items: 4 },
 };
-function random() {
-  let randomNumber = Math.floor(Math.random() * 35) + 1;
-  return randomNumber;
-}
-
-const betterExperiences = [
-  random(),
-  random(),
-  random(),
-  random(),
-  random(),
-  random(),
-  random(),
-  random(),
-  random(),
-  random(),
-];
 
 function Carousel() {
   const history = useHistory();
@@ -36,25 +20,24 @@ function Carousel() {
   const [allExperiences, setAllExperiences] = useState([]);
 
   useEffect(() => {
-    const carouselExperiences = [];
-    async function getExperience(array) {
+    async function getExperience() {
       try {
-        for (const number of array) {
-          const { data } = await getAxios(
-            `http://localhost:8080/experiences/${number}`
-          );
+        const { data } = await getAxios(
+          `http://localhost:8080/experiences?random=10`
+        );
 
-          carouselExperiences.push(data);
-        }
-        setAllExperiences(carouselExperiences);
+        setAllExperiences(data);
       } catch (error) {}
     }
-    getExperience(betterExperiences);
+    getExperience();
   }, []);
+
   function routeChange(id) {
     let path = `/experience/${id}`;
     history.push(path);
   }
+
+  console.log(allExperiences);
 
   return (
     <StyledAliceCarousel>
@@ -70,6 +53,7 @@ function Carousel() {
         disableDotsControls
         mouseTracking
         items={allExperiences?.map((data, index) => {
+          console.log(data);
           return (
             <div
               key={data?.id}
@@ -77,8 +61,12 @@ function Carousel() {
               className="item"
               data-value={index}
             >
-              <div className='posRel'>
-                <img width="100%" src={data?.photos[0].photo} alt="category" />
+              <div className="posRel">
+                <img
+                  width="100%"
+                  src={data.photos.length ? data?.photos[0].photo : palm}
+                  alt="category"
+                />
                 <span className="titlePopularExperience">{data?.nombre}</span>
               </div>
             </div>

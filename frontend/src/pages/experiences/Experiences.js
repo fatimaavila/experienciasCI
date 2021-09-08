@@ -18,10 +18,6 @@ function Experiences() {
 
   const location = useLocation();
   // eslint-disable-next-line
-  const searchParams = new URLSearchParams(location.search);
-
-  const orderType = selectFilter.split('-').splice(0, 1).join('');
-  const orderDirection = selectFilter.split('-').splice(1, 1).join('');
 
   const cityActive = {
     textDecoration: 'underline',
@@ -29,6 +25,11 @@ function Experiences() {
   };
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+
+    const orderType = selectFilter.split('-').splice(0, 1).join('');
+    const orderDirection = selectFilter.split('-').splice(1, 1).join('');
+
     const newDateStart =
       dateFilter.dateStart &&
       dateFilter.dateStart.toLocaleDateString('es-ES', {
@@ -64,6 +65,7 @@ function Experiences() {
 
     async function getExperiencesFiltered() {
       try {
+        console.log(urlFiltered);
         const { data } = await getAxios(urlFiltered);
 
         setExperienceSearch(data);
@@ -73,15 +75,7 @@ function Experiences() {
     }
 
     getExperiencesFiltered();
-  }, [
-    selectFilter,
-    orderType,
-    orderDirection,
-    cityFilter,
-    priceFilter,
-    dateFilter,
-    searchParams,
-  ]);
+  }, [selectFilter, cityFilter, priceFilter, dateFilter, location]);
 
   return (
     <>
