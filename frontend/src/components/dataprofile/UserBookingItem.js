@@ -1,26 +1,15 @@
 import { Rating } from '@material-ui/lab';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { getAxios, putAxios } from '../../axiosCalls';
 import Button from '../button/Button';
 import UserComment from './UserComment';
 import { compareAsc } from 'date-fns';
 import { UserContext } from '../../context/UserContext';
-function UserRatingBookingItem({ bookingInfo, updateDataBooking }) {
+function UserRatingBookingItem({ bookingInfo, updateDataBooking, labelName }) {
   const [showRate, setShowRate] = useState(false);
-  const [uniqueExp, setUniqueExp] = useState([]);
+
   const [rating, setRating] = useState(bookingInfo.valoracion);
   const { token, tokenContent } = useContext(UserContext);
-
-  useEffect(() => {
-    const getUniqueExp = async () => {
-      const { data } = await getAxios(
-        `http://localhost:8080/experiences/${Number(bookingInfo.id_experience)}`
-      );
-
-      setUniqueExp(data);
-    };
-    getUniqueExp();
-  }, [bookingInfo]);
 
   const optionsDate = {
     day: 'numeric',
@@ -74,7 +63,7 @@ function UserRatingBookingItem({ bookingInfo, updateDataBooking }) {
     <div className="userBookking">
       <div className="bookingHead">
         <span className="idBooking">ID: {bookingInfo.id}</span>
-        <h3>{uniqueExp.nombre}</h3>
+        <h3>{labelName}</h3>
         <span className="totalPriceBooking">
           {bookingInfo.precio_total}&#8364;
         </span>

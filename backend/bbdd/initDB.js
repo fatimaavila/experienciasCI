@@ -605,7 +605,7 @@ const initDB = async () => {
 
         await connection.query(`
           INSERT INTO bookings (id, cantidad, fecha_reserva,fecha_compra, precio_total, estado, valoracion, comentario, id_user, id_experience) VALUES 
-          (1,1,'2021-07-16','2021-03-25',108.00,true,4,'Muy malo',3,16),
+          (1,1,'2021-07-16','2021-03-25',108.00,true,4,'Muy divertido, me lo pase genial, repetiria.',3,16),
           (2,2,'2021-08-10','2021-02-25',170.00,true,4,'Me ha encantado',2,1),
           (3,1,'2021-07-16','2021-01-20',179.00,true,5,'Estupendo, buen trato, repetiría',2,26),
           (4,2,'2021-08-15','2021-05-14',120.00,true,3,'Una pasada, pero se quedo un poco corto',1,7),
