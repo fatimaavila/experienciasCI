@@ -20,11 +20,28 @@ const getAllBookings = async (req, res, next) => {
             SELECT * FROM bookings;
         `);
 
+        const infoUserBooking = await Promise.all(
+            booking.map(async (info) => {
+                const [userInfo] = await connection.query(
+                    `
+                    SELECT username, email FROM users WHERE id = ?
+                `,
+                    [info.id_user]
+                );
+
+                return {
+                    ...info,
+                    userInfo: userInfo.map((data) => ({
+                        username: data.username,
+                        email: data.email,
+                    })),
+                };
+            })
+        );
+
         res.status(200).send({
             status: 200,
-            data: {
-                booking: booking,
-            },
+            data: infoUserBooking,
         });
     } catch (error) {
         next(error);

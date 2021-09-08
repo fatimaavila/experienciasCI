@@ -22,10 +22,11 @@ function AdminBookings() {
     }
     getAllBookings();
   }, [token]);
+
   return (
     <table className="tableData">
       <tbody>
-        {allBookings?.booking?.map((booking) => (
+        {allBookings?.map((booking) => (
           <AdminBookingsItem key={booking.id} info={booking} />
         ))}
       </tbody>

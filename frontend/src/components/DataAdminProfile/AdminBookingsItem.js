@@ -1,7 +1,4 @@
 import { compareAsc } from 'date-fns';
-import { useContext, useEffect, useState } from 'react';
-import { getAxios } from '../../axiosCalls';
-import { UserContext } from '../../context/UserContext';
 
 function AdminBookingsItem({ info }) {
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
@@ -32,26 +29,6 @@ function AdminBookingsItem({ info }) {
       ? 'Pendiente de valorar'
       : 'El usuario ha valorado';
 
-  const [userName, setUserName] = useState();
-  const { token } = useContext(UserContext);
-
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        const { data } = await getAxios(
-          `http://localhost:8080/users/${info?.id_user}`,
-          token
-        );
-
-        setUserName(data);
-      } catch (error) {
-        console.error(error.response.data.message);
-      }
-    }
-
-    getUserInfo();
-  }, [info?.id_user, token]);
-
   return (
     <tr className="sectionData">
       <td className="dataInfo">
@@ -62,8 +39,8 @@ function AdminBookingsItem({ info }) {
           <li>Experiencia: {info?.id_experience}</li>
           <li>Cantidad: {info?.cantidad}</li>
           <li>Precio Total: {info?.precio_total} &#8364;</li>
-          <li>Usuario: {userName?.username}</li>
-          <li>Email: {userName?.email}</li>
+          <li>Usuario: {info?.userInfo[0].username}</li>
+          <li>Email: {info?.userInfo[0].email}</li>
           <li>Fecha de compra: {dateFormat}</li>
           <li>Fecha de reserva: {bookingDate}</li>
         </ul>
