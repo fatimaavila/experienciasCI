@@ -1,4 +1,3 @@
-import { onlyUnique } from '../../helpers';
 import Experience from '../experience/Experience';
 import Filters from '../filters/Filters';
 import OrderExperiences from '../OrderExperiences/OrderExperiences';
@@ -43,7 +42,7 @@ function AllExperiences({
             {data && (
               <div className="experiences">
                 {data.map((experience) => (
-                  <Experience experience={experience} />
+                  <Experience key={experience.id} experience={experience} />
                 ))}
               </div>
             )}
