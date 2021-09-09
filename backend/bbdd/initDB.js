@@ -606,15 +606,15 @@ const initDB = async () => {
         await connection.query(`
           INSERT INTO bookings (id, cantidad, fecha_reserva,fecha_compra, precio_total, estado, valoracion, comentario, id_user, id_experience) VALUES 
           (1,1,'2021-07-16','2021-03-25',80.00,true,4,'Muy divertido, me lo pase genial, repetiria.',3,1),
-          (2,2,'2021-03-10','2021-02-25',160.00,true,2,null,2,1),
+          (2,2,'2021-03-10','2021-02-25',160.00,true,null,null,2,1),
           (3,1,'2021-07-16','2021-01-20',80.00,true,5,'Estupendo, buen trato, repetiría',1,1),
           (4,2,'2021-10-15','2021-05-14',170.00,true,null,null,1,2),
           (5,1,'2021-11-10','2021-05-25',85.00,true,null,null,3,2),
           (6,2,'2021-12-16','2021-03-25',170.00,true,null,null,4,2),
-          (7,2,'2021-04-16','2021-03-25',100.00,true,4,null,5,3),
+          (7,2,'2021-04-16','2021-03-25',100.00,true,null,null,5,3),
           (8,2,'2021-04-16','2021-03-25',100.00,true,null,'Estupendo, buen trato, repetiría',2,3),
           (9,2,'2021-04-16','2021-03-25',100.00,true,4,'Me ha gustado mucho',1,3),
-          (10,1,'2021-04-16','2021-03-25',160.00,true,null,'Ha estado genial',3,4),
+          (10,1,'2021-04-16','2021-03-25',160.00,true,null,null,3,4),
           (11,1,'2021-04-16','2021-03-25',160.00,true,1,'No me gusto nada',5,4),
           (12,1,'2021-04-16','2021-03-25',160.00,true,3,null,2,4),
           (13,1,'2021-04-16','2021-03-25',150.00,true,null,null,1,5),
