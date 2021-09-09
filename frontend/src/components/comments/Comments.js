@@ -4,22 +4,22 @@ import { useEffect, useState } from 'react';
 import { getAxios } from '../../axiosCalls';
 
 function Comments({ comment }) {
-
-  const [appreciationComment,setAppreciationComment] = useState([]);
+  const [appreciationComment, setAppreciationComment] = useState([]);
 
   useEffect(() => {
     async function getComment_Rating() {
       try {
-        const { data } = await getAxios(`http://localhost:8080/bookings/comments-ratings/${comment.id}`);
+        const { data } = await getAxios(
+          `http://localhost:8080/bookings/comments-ratings/${comment.id}`
+        );
         setAppreciationComment(data);
       } catch (error) {
-        console.error(error.message)
+        console.error(error.message);
       }
     }
 
     getComment_Rating();
-  },[comment.id]);
-
+  }, [comment.id]);
 
   return (
     <StyledComments>
@@ -27,8 +27,8 @@ function Comments({ comment }) {
       <section>
         {appreciationComment.appreciations_comments &&
           appreciationComment.appreciations_comments.map((data) => (
-            <CommentUser key={data.comentario} appreciationComment={data}/>
-            ))}
+            <CommentUser key={data.id} appreciationComment={data} />
+          ))}
       </section>
     </StyledComments>
   );
