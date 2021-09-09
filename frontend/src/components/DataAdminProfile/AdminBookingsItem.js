@@ -21,13 +21,11 @@ function AdminBookingsItem({ info }) {
   const used = state === 1 ? 'Disponible' : 'Disfrutada';
 
   const commented =
-    info?.comentario === null
+    info?.comentario.length < 5
       ? 'Pendiente de comentar'
       : 'El usuario ha comentado';
   const voted =
-    info?.valoracion === null
-      ? 'Pendiente de valorar'
-      : 'El usuario ha valorado';
+    info?.valoracion < 1 ? 'Pendiente de valorar' : 'El usuario ha valorado';
 
   return (
     <tr className="sectionData">
