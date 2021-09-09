@@ -20,10 +20,9 @@ function AdminBookingsItem({ info }) {
   );
   const used = state === 1 ? 'Disponible' : 'Disfrutada';
 
-  const commented =
-    info?.comentario.length < 5
-      ? 'Pendiente de comentar'
-      : 'El usuario ha comentado';
+  const commented = !info?.comentario
+    ? 'Pendiente de comentar'
+    : 'El usuario ha comentado';
   const voted =
     info?.valoracion < 1 ? 'Pendiente de valorar' : 'El usuario ha valorado';
 

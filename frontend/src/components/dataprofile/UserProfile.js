@@ -87,7 +87,7 @@ function UserProfile() {
       avatar: URL.createObjectURL(e.target.files[0]),
     });
   };
-  const userDNI = userInfo?.dni !== null ? true : false;
+  const userDNI = userInfo?.dni ? true : false;
 
   return (
     <>
