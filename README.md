@@ -5,16 +5,23 @@
 ### Backend
 
 -   Se trata de una API con arquitectura REST creada en Node.js, junto con Mysql y Express.
-    donde se utilizan diversas dependencias como: Joi, Dotenv, Jsonwebtoken, Sendgrid, Date-fns, FS-Extra, Sharp, Uuid, Mysql2 y Express-Fileupload.
+    Donde se utilizan diversas dependencias como: Joi, Dotenv, Jsonwebtoken, Sendgrid, Date-fns, FS-Extra, Sharp, Uuid, Mysql2 y Express-Fileupload.
 
 ### Frontend
 
--   Creado en React.js....
+-   Creado en React.js, hemos usado algunas dependencias como:
+
+*   Styled-components: Como base para la creación y estilado de la aplicación.
+*   Material-ui: Para el rating de las experiencias.
+*   Bootstrap: Para la generación de los fomularios.
+*   React-Datepicker: Para los calendarios.
+*   React-Alice-Carousel: Para los sliders.
+*   Ademas un conjunto añadido para gestion de la aplicación: Axios,React-Router,Query-String,Date-Fns,JWT-Decode,UUID.
 
 ## Configuración inicial
 
--   Disponen de un documento ".env.example" el cual debe ser rellenado en los campos libres,
-    segun los datos propios de Mysql. Y guardado en la raiz del bakend como ".env"
+-   Disponen de un documento ".env.example" en la carpeta de backend y frontend, el cual debe ser rellenado en los campos libres,
+    segun los datos propios de Mysql. Y guardado en la raiz del directorio en cuestión como ".env"
     -   Las variables SG_API_KEY y SENDGRID_FROM indicar los facilitados por http://sendgrid.com para tu
         propio usuario registrado.
     -   La variable SECRET debe ser un string alfanumerico aleatorio.
@@ -25,15 +32,14 @@
 
     -   [npm install] Instala todas las dependencias necesarias para el correcto funcionamiento del sitio.
     -   [npm run sql] Ejecuta el script que crea la base de datos, las tablas, y los datos necesarios.
-    -   [npm run dev] Ejecuta el servidor para poder trabajar, http://localhost:PORT
+    -   [npm run dev] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 8080
 
 ### Ejecución del Frontend
 
--   Para iniciar el frontend, nos situaremos en la raiz de frondtend y ejecutaremos en un terminal los siguientes comandos:
+-   Para iniciar el frontend necesitamos tener como gestor de dependencias "yarn", nos situaremos en la raiz de frondtend y ejecutaremos en un terminal los siguientes comandos:
 
-    -   [xxxxx] xxxxxxxxxx.
-    -   [xxxxx] xxxxxxxxxx.
-    -   [xxxxx] xxxxxxxxxx.
+    -   [yarn] Para instalar todo lo necesario para poder probar la aplicación.
+    -   [yarn start] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 3000
 
 ## Composición del Backend
 
@@ -150,7 +156,3 @@
 -   **PUT** - [/bookings/:idBooking/rating] - Agregar una Valoración sobre la reserva.
 
 -   **DELETE** - [/bookings/:idBooking] - Cancelar una reserva.
-
-## Composición del Frontend
-
-### XXXXXXX
