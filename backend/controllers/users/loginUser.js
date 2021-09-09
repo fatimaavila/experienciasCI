@@ -18,23 +18,28 @@ const loginUser = async (req, res, next) => {
 
         const [userEmail] = await connection.query(
             `
-            SELECT id, rol FROM users WHERE email = ? AND pwd = SHA2(?,512);
+            SELECT id, rol, active FROM users WHERE email = ? AND pwd = SHA2(?,512);
         `,
             [email, password]
         );
 
         const [userName] = await connection.query(
             `    
-            SELECT id, rol FROM users WHERE username = ? AND pwd = SHA2(?,512);
+            SELECT id, rol, active FROM users WHERE username = ? AND pwd = SHA2(?,512);
         `,
             [username, password]
         );
-
+        if (userEmail[0]?.active === 0 || userName[0]?.active === 0) {
+            const error = new Error('Usuario pendiente de validar');
+            error.httpStatus = 402;
+            throw error;
+        }
         if (userEmail.length < 1 && userName.length < 1) {
             const error = new Error('Usuario/Email o contraseña incorrectos');
             error.httpStatus = 401;
             throw error;
         }
+        console.log(userName[0]);
 
         let tokenInfo;
 
