@@ -55,7 +55,7 @@ function ItemShop({
           <span>{date}</span>
         </div>
         <span className="priceShop">
-          Total: {price ? `${price}.00 ` : '0.00 '}€
+          Total: {price ? `${Math.ceil(price)}.00 ` : '0.00 '}€
         </span>
       </div>
     </div>
