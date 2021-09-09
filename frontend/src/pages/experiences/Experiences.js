@@ -65,7 +65,6 @@ function Experiences() {
 
     async function getExperiencesFiltered() {
       try {
-        console.log(urlFiltered);
         const { data } = await getAxios(urlFiltered);
 
         setExperienceSearch(data);
