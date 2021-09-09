@@ -9,37 +9,40 @@
 
 ### Frontend
 
--   Creado en React.js, hemos usado algunas dependencias como:
+Creado en React.js, hemos usado algunas dependencias como:
 
-*   Styled-components: Como base para la creación y estilado de la aplicación.
-*   Material-ui: Para el rating de las experiencias.
-*   Bootstrap: Para la generación de los fomularios.
-*   React-Datepicker: Para los calendarios.
-*   React-Alice-Carousel: Para los sliders.
-*   Ademas un conjunto añadido para gestion de la aplicación: Axios,React-Router,Query-String,Date-Fns,JWT-Decode,UUID.
+-   Styled-components: Como base para la creación y estilado de la aplicación.
+-   Material-ui: Para el rating de las experiencias.
+-   Bootstrap: Para la generación de los formularios.
+-   React-Datepicker: Para los calendarios.
+-   React-Alice-Carousel: Para los sliders.
+-   Ademas un conjunto añadido para gestión de la aplicación: Axios,React-Router,Query-String,Date-Fns,JWT-Decode,UUID.
 
 ## Configuración inicial
 
--   Disponen de un documento ".env.example" en la carpeta de backend y frontend, el cual debe ser rellenado en los campos libres,
-    segun los datos propios de Mysql. Y guardado en la raiz del directorio en cuestión como ".env"
-    -   Las variables SG_API_KEY y SENDGRID_FROM indicar los facilitados por http://sendgrid.com para tu
-        propio usuario registrado.
-    -   La variable SECRET debe ser un string alfanumerico aleatorio.
+-   Disponen de un documento ".env.example" en la carpeta de backend y frontend, el cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
+
+*   Según los datos propios de Mysql para el backend.
+*   Para el front solo debemos cambiar el nombre a ".env" si hemos configurado el puerto recomendado, en caso contrario cambiar el puerto.
+
+-   Las variables SG_API_KEY y SENDGRID_FROM indicar los facilitados por http://sendgrid.com para tu
+    propio usuario registrado.
+-   La variable SECRET debe ser un string alfanumerico aleatorio.
 
 ### Ejecución del Backend
 
--   Para iniciar el bakend, nos situaremos en la raiz de backend y ejecutaremos en un terminal los siguientes comandos:
+-   Para iniciar el backend, nos situaremos en la raíz de backend y ejecutaremos en un terminal los siguientes comandos:
 
-    -   [npm install] Instala todas las dependencias necesarias para el correcto funcionamiento del sitio.
-    -   [npm run sql] Ejecuta el script que crea la base de datos, las tablas, y los datos necesarios.
-    -   [npm run dev] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 8080
+-   [npm install] Instala todas las dependencias necesarias para el correcto funcionamiento del sitio.
+-   [npm run sql] Ejecuta el script que crea la base de datos, las tablas, y los datos necesarios.
+-   [npm run dev] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 8080
 
 ### Ejecución del Frontend
 
--   Para iniciar el frontend necesitamos tener como gestor de dependencias "yarn", nos situaremos en la raiz de frondtend y ejecutaremos en un terminal los siguientes comandos:
+-   Para iniciar el frontend necesitamos tener como gestor de dependencias "yarn", nos situaremos en la raiz de frontend y ejecutaremos en un terminal los siguientes comandos:
 
-    -   [yarn] Para instalar todo lo necesario para poder probar la aplicación.
-    -   [yarn start] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 3000
+-   [yarn] Para instalar todo lo necesario para poder probar la aplicación.
+-   [yarn start] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 3000
 
 ## Composición del Backend
 
