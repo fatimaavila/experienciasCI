@@ -52,11 +52,7 @@ function Shop() {
           idExp: item.exp.id,
           units,
         };
-        const { data } = await postAxios(
-          'http://localhost:8080/bookings',
-          booking,
-          token
-        );
+        await postAxios('http://localhost:8080/bookings', booking, token);
       }
     } catch (error) {
       setError(error.response.data.message);

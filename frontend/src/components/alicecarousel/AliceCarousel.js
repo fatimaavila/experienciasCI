@@ -37,8 +37,6 @@ function Carousel() {
     history.push(path);
   }
 
-  console.log(allExperiences);
-
   return (
     <StyledAliceCarousel>
       <h2>Experiencias más destacadas</h2>
@@ -53,7 +51,6 @@ function Carousel() {
         disableDotsControls
         mouseTracking
         items={allExperiences?.map((data, index) => {
-          console.log(data);
           return (
             <div
               key={data?.id}

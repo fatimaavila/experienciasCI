@@ -122,8 +122,7 @@ function UserProfile() {
             <span>DNI</span>
             <Form.Control
               type="text"
-              placeholder={!dataUser.dni && 'DNI'}
-              value={dataUser.dni}
+              value={dataUser.dni || 'DNI'}
               onChange={(e) =>
                 setDataUser({ ...dataUser, dni: e.target.value })
               }
@@ -137,8 +136,7 @@ function UserProfile() {
             <Form.Control
               as="textarea"
               style={{ height: '200px' }}
-              placeholder={!dataUser.bio && 'Biografía'}
-              value={dataUser.bio}
+              value={dataUser.bio || 'Biografía'}
               onChange={(e) =>
                 setDataUser({ ...dataUser, bio: e.target.value })
               }
@@ -150,8 +148,7 @@ function UserProfile() {
             <span>Teléfono</span>
             <Form.Control
               type="text"
-              placeholder={!dataUser.phone && 'Teléfono'}
-              value={dataUser.phone}
+              value={dataUser.phone || 'Teléfono'}
               onChange={(e) =>
                 setDataUser({ ...dataUser, phone: e.target.value })
               }
@@ -163,8 +160,7 @@ function UserProfile() {
             <span>Dirección</span>
             <Form.Control
               type="text"
-              placeholder={!dataUser.address && 'Dirección'}
-              value={dataUser.address}
+              value={dataUser.address || 'Dirección'}
               onChange={(e) =>
                 setDataUser({ ...dataUser, address: e.target.value })
               }
@@ -176,8 +172,7 @@ function UserProfile() {
             <span>Código Postal</span>
             <Form.Control
               type="text"
-              placeholder={!dataUser.postalCode && 'Código Postal'}
-              value={dataUser.postalCode}
+              value={dataUser.postalCode || 'Código Postal'}
               onChange={(e) =>
                 setDataUser({ ...dataUser, postalCode: e.target.value })
               }
