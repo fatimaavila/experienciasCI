@@ -16,11 +16,11 @@ function UserProfile() {
   const INITIAL_USERINFO = {
     name: userInfo?.nombre,
     last: userInfo?.apellidos,
-    dni: userInfo?.dni,
-    phone: userInfo?.telefono,
-    bio: userInfo?.bio,
-    address: userInfo?.direccion,
-    postalCode: userInfo?.cp,
+    dni: userInfo?.dni || '',
+    phone: userInfo?.telefono || '',
+    bio: userInfo?.bio || '',
+    address: userInfo?.direccion || '',
+    postalCode: userInfo?.cp || '',
     username: userInfo?.username,
     email: userInfo?.email,
     avatar: userInfo?.avatar,
@@ -87,7 +87,6 @@ function UserProfile() {
       avatar: URL.createObjectURL(e.target.files[0]),
     });
   };
-  const userDNI = userInfo?.dni ? true : false;
 
   return (
     <>
@@ -120,15 +119,26 @@ function UserProfile() {
         <Form.Group>
           <Form.Label className="editInfoLabel">
             <span>DNI</span>
-            <Form.Control
-              type="text"
-              placeholder="DNI"
-              value={dataUser.dni}
-              onChange={(e) =>
-                setDataUser({ ...dataUser, dni: e.target.value })
-              }
-              disabled={userDNI}
-            />
+            {userInfo?.dni ? (
+              <Form.Control
+                type="text"
+                placeholder="DNI"
+                value={dataUser.dni}
+                onChange={(e) =>
+                  setDataUser({ ...dataUser, dni: e.target.value })
+                }
+                disabled
+              />
+            ) : (
+              <Form.Control
+                type="text"
+                placeholder="DNI"
+                value={dataUser.dni}
+                onChange={(e) =>
+                  setDataUser({ ...dataUser, dni: e.target.value })
+                }
+              />
+            )}
           </Form.Label>
         </Form.Group>
         <Form.Group className="textareaBox">
