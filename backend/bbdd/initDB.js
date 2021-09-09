@@ -304,7 +304,7 @@ const initDB = async () => {
 
     El relax os está llamando. ¿Os apetece?',
     'Circuito Spa y Masaje para dos en Hotel Catalonia Donosti 4*',
-    'San Sebastián',148.00,'Relax', 2,true,'2021-01-20','2021-12-20'),
+    'San Sebastian',148.00,'Relax', 2,true,'2021-01-20','2021-12-20'),
     (20,
     'No te pierdas esta chocolaterapia si eres una auténtica chocoadicta. Todos los beneficios del chocolate sin ningún remordimiento en Valladolid. Y después, un relajante baño en el jacuzzi. ¡Saldrás como nueva!
 
@@ -337,7 +337,7 @@ const initDB = async () => {
 
     Vivid un momento mágico ¡No os defraudará!',
     'Visita a las Bodegas Muñana y Degustación de vino',
-    'Granada',28.50,'Gastronomia',20,true,'2021-02-01','2021-11-30'),
+    'Granada',29.00,'Gastronomia',20,true,'2021-02-01','2021-11-30'),
     (23, 
     '¿Queréis descubrir la primera almazara turística de la provincia de Jaén? Haced una Visita con Cata de Aceites a Oleícola San Francisco.
 
@@ -367,7 +367,7 @@ const initDB = async () => {
 
     Disfrutad y sacadle el máximo provecho a esta actividad de enoturismo. ¿Preparados?',
     'Enoturismo: Visita a Viñedos y Bodega, Cata de Vinos, Almuerzo y Actividades de Vinicultura',
-    'Álava',65.00,'Gastronomia',20,true,'2021-02-15','2021-06-30'),
+    'Alava',65.00,'Gastronomia',20,true,'2021-02-15','2021-06-30'),
     (26,
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Formula 2.0.
 
