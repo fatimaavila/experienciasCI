@@ -122,7 +122,8 @@ function UserProfile() {
             <span>DNI</span>
             <Form.Control
               type="text"
-              value={dataUser.dni || 'DNI'}
+              placeholder="DNI"
+              value={dataUser.dni}
               onChange={(e) =>
                 setDataUser({ ...dataUser, dni: e.target.value })
               }
