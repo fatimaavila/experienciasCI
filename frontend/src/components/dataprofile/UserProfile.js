@@ -151,7 +151,7 @@ function UserProfile() {
             <Form.Control
               type="text"
               value={dataUser.phone}
-              placeholder="Telefono"
+              placeholder="Teléfono"
               onChange={(e) =>
                 setDataUser({ ...dataUser, phone: e.target.value })
               }
@@ -177,7 +177,7 @@ function UserProfile() {
             <Form.Control
               type="text"
               value={dataUser.postalCode}
-              placeholder="Codigo Postal"
+              placeholder="Código Postal"
               onChange={(e) =>
                 setDataUser({ ...dataUser, postalCode: e.target.value })
               }
