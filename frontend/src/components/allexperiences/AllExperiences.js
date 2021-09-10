@@ -21,7 +21,7 @@ function AllExperiences({
   changeDatePickerStart,
   changeDatePickerEnd,
 }) {
-  const [experiencesAvtive, setExperiencesActive] = useState([]);
+  const [experiencesActive, setExperiencesActive] = useState([]);
 
   useEffect(() => {
     const optionsDate = {
@@ -73,9 +73,9 @@ function AllExperiences({
               onChangeSelect={onChangeSelect}
               filterNull={filterNull}
             />
-            {experiencesAvtive && (
+            {experiencesActive && (
               <div className="experiences">
-                {experiencesAvtive.map((experience) => (
+                {experiencesActive.map((experience) => (
                   <Experience key={experience.id} experience={experience} />
                 ))}
               </div>
