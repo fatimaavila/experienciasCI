@@ -115,7 +115,7 @@ const initDB = async () => {
 
     No dejes escapar esta oportunidad única. ¡Sé piloto por un día en Madrid!',
     'Piloto por un Día',
-    'Madrid',80.00,'Vuelo',1,true,'2022-01-01','2022-12-31'),
+    'Madrid',80.00,'Vuelo',1,true,'2021-01-01','2022-12-31'),
     (2, 
     'Seguro que alguna vez has soñado que volabas... ¿es cierto, verdad? Pues deja ya de soñar y conviértelo en realidad con este vuelo en parapente biplaza en Miraflores de la Sierra, Madrid.
 
@@ -129,7 +129,7 @@ const initDB = async () => {
 
     ¡Vive esta gran experiencia!',
     'Vuelo en Parapente Biplaza',
-    'Aviles',85.00,'Vuelo',2,true,'2022-05-01','2022-10-31'),
+    'Aviles',85.00,'Vuelo',2,true,'2021-05-01','2022-10-31'),
     (3, 
     'Vive una experiencia inolvidable volando en el Túnel de Viento de Windobona, frente al Centro Comercial Islazul en Madrid.
 
@@ -139,7 +139,7 @@ const initDB = async () => {
 
     ¡Atrévete a volar!',
     'Alas para Uno: Túnel de Viento',
-    'A Coruña',50.00,'Vuelo',1,true,'2022-02-01','2022-09-30'),
+    'A Coruña',50.00,'Vuelo',1,true,'2021-02-01','2022-09-30'),
     (4, 
     'Vuela en globo con un grupo de entre 7 y 10 personas por encima del Parque Regional del Río de Guadarrama. ¡Vive una experiencia única desde las alturas con este paseo en globo! Disfruta de esta experiencia en la zona de vuelo más cercana a Madrid, a tan sólo 20 minutos de la capital
 
@@ -149,7 +149,7 @@ const initDB = async () => {
 
     ¡No te lo pienses más!',
     'Vuelo en Globo, Fotos, Vídeo, Almuerzo y Cava',
-    'San Sebastian',160.00,'Vuelo',4,true,'2022-04-01','2022-09-30'),
+    'San Sebastian',160.00,'Vuelo',4,true,'2021-04-01','2022-09-30'),
     (5, 
     'Experimentad la sensación de volar con este vuelo en paramotor para dos personas. Una experiencia, en Guadalix de la Sierra (Madrid), gracias al cual podréis ver el mundo a vista de pájaro.
 
@@ -161,7 +161,7 @@ const initDB = async () => {
 
     Tengáis o no experiencia y, sea cual sea vuestra edad, ¡volad!',
     'Vuelo Paramotor para dos',
-    'Valencia',150.00,'Vuelo',2,false,'2022-02-15','2022-06-30'),
+    'Valencia',150.00,'Vuelo',2,false,'2021-02-15','2022-06-30'),
     (6,
     '¿Quieres disfrutar de un día lleno de emociones? Diviértete con una Excursión en Moto Acuática por la Catedral de Palma o en la Reserva Natural "Los Deltas" de Mallorca.
 
@@ -171,7 +171,7 @@ const initDB = async () => {
 
     ¿A qué estás esperando?',
     'Excursión en Moto Acuática',
-    'Palma de Mallorca',75.00,'Acuática',2,true,'2022-06-10','2022-10-02'),
+    'Palma de Mallorca',75.00,'Acuática',2,true,'2021-06-10','2022-10-02'),
     (7,
     'Vive una nueva aventura con esta experiencia de Bautismo de Buceo con Fotos y Vídeos en Vilagarcía de Arousa, Pontevedra.
 
@@ -181,7 +181,7 @@ const initDB = async () => {
 
     ¡Equípate y lánzate al agua!',
     'Bautismo de Buceo',
-    'Vilagarcía de Arousa', 60.00,'Acuática',4,true,'2022-06-15','2022-09-20'),
+    'Vilagarcía de Arousa', 60.00,'Acuática',4,true,'2021-06-15','2022-09-20'),
     (8,
     'Disfruta de una auténtica aventura con una jornada de Rafting en Cantabria, una oportunidad única para sentir la emoción y la adrenalina en tu cuerpo practicando un auténtico deporte.
 
@@ -190,7 +190,7 @@ const initDB = async () => {
     Además, el nivel de la actividad se adapta a las características del grupo, por lo que tanto debutantes como practicantes pueden gozar de una jornada única. Con el descenso disfrutarás de los rápidos más fuertes del río Ebro.
 
     ¡No te lo pienses más y atrévete con esta divertida aventura!',
-    'Rafting (Arroyo, Cantabria)','Arroyo', 35.00, 'Acuática',6,true,'2022-06-20','2022-09-15'),
+    'Rafting (Arroyo, Cantabria)','Arroyo', 35.00, 'Acuática',6,true,'2021-06-20','2022-09-15'),
     (9,
     'Vive un día diferente en la isla con esta Excursión en Barco y Avistamiento de Cetáceos en Tenerife.
 
@@ -200,7 +200,7 @@ const initDB = async () => {
 
     ¡La diversión está asegurada! ¿Te apuntas?',
     'Excursión en Barco y Avistamiento de Cetáceos',
-    'Los Cristianos',25.00,'Acuática',12, true, '2022-06-15','2022-08-27'),
+    'Los Cristianos',25.00,'Acuática',12, true, '2021-06-15','2022-08-27'),
     (10,
     'Si estás pensando en pasar un día diferente y no sabes que hacer, esta experiencia de excursión en barco con comida en Valencia es la opción perfecta.
 
@@ -210,7 +210,7 @@ const initDB = async () => {
 
     ¡Vive una experiencia inolvidable con esta excursión al mar!',
     'Excursión en Catamarán',
-    'Valencia',42.00,'Acuática',4,true,'2022-06-20','2022-07-30'),
+    'Valencia',42.00,'Acuática',4,true,'2021-06-20','2022-07-30'),
     (11, 
     'Apúntate a la Ruta en Segway por Santa Pau y conoce la zona volcánica de La Garrotxa de una forma diferente en Girona.
 
@@ -220,7 +220,7 @@ const initDB = async () => {
 
     ¡Disfruta de una nueva forma de hacer turismo en una hermosa zona del Pirineo Oriental!',
     'Tour en Segway por los volcanes de la Garrotxa',
-    'Girona',30.00,'Aventura',10,true,'2022-01-01','2022-12-31'),
+    'Girona',30.00,'Aventura',10,true,'2021-01-01','2022-12-31'),
     (12, 
     'Descubre de lo que eres capaz haciendo un salto de Puenting en Monistrol de Montserrat. ¡La adrenalina estará asegurada!
 
@@ -230,7 +230,7 @@ const initDB = async () => {
 
     ¡Seguro que lo recordarás toda la vida!',
     'Puenting',
-    'Barcelona',35.00,'Aventura',12,true,'2022-02-01','2022-11-30'),
+    'Barcelona',35.00,'Aventura',12,true,'2021-02-01','2022-11-30'),
     (13, 
     'Este Paseo a Caballo por el Montseny os hará sentir totalmente libres. Un plan ideal si siempre habíais querido aprender a montar a caballo.
 
@@ -242,7 +242,7 @@ const initDB = async () => {
 
     ¡Un paseo para recordar!',
     'Paseo a Caballo por la montaña',
-    'Tarragona',60.00,'Aventura',15,true,'2022-03-01','2022-09-30'),
+    'Tarragona',60.00,'Aventura',15,true,'2021-03-01','2022-09-30'),
     (14, 
     '¿Quieres introducirte en un nuevo deporte de aventura? Con este barranquismo en Sadernes (Huesca) descubrirás una de las experiencias más divertidas que existen.
 
@@ -254,7 +254,7 @@ const initDB = async () => {
 
     ¡Descubre uno de los mejores lugares para iniciarte en esta actividad',
     'Iniciación al Barranquismo',
-    'Huesca',40.00,'Aventura',8,true,'2022-05-15','2022-10-11'),
+    'Huesca',40.00,'Aventura',8,true,'2021-05-15','2022-10-11'),
     (15, 
     'Conoce un lugar muy especial en la isla de Mallorca. Descubre uno de sus principales atractivos turísticos con esta Entrada a las Cuevas dels Hams, situadas en Porto Cristo.
 
@@ -264,7 +264,7 @@ const initDB = async () => {
 
     Déjate llevar por la magia de estas cuevas de Mallorca. ¡Visítalas!',
     'Entrada a Cuevas dels Hams',
-    'Palma de Mallorca',20.00,'Aventura',20,false,'2022-02-15','2022-05-30'),
+    'Palma de Mallorca',20.00,'Aventura',20,false,'2021-02-15','2022-05-30'),
     (16,
     'Adentraos en un spa japonés en pleno centro de Madrid: Esenzias Spa. Cuidad vuestro bienestar de una forma original y que os dejará totalmente renovados.
 
@@ -274,7 +274,7 @@ const initDB = async () => {
 
     ¡Elegid esta experiencia de relax diferente y especial!',
     'Circuito Onsen Spa y Masaje para dos en Esenzias',
-    'Madrid', 108.00, 'Relax', 2,true,'2022-02-10','2022-05-30'),
+    'Madrid', 108.00, 'Relax', 2,true,'2021-02-10','2022-05-30'),
     (17,
     'Si queréis pasar un rato relajados y disfrutar en pareja de un masaje estad atentos a esta experiencia que os proponemos. Alejaos del estrés con estos Baños Termales y Masaje Relajante en Aire Ancient Baths Barcelona.
 
@@ -284,7 +284,7 @@ const initDB = async () => {
 
     Disfrutad con vuestra pareja de una sesión de relax y sentíos mejor.',
     'Baños Termales con Aromaterapia y Masaje Relajante',
-    'Barcelona',134.00,'Relax',2,true,'2022-01-13','2022-11-30'),
+    'Barcelona',134.00,'Relax',2,true,'2021-01-13','2022-11-30'),
     (18,
     '¿Buscáis alejaros de la rutina y vivir un momento de paz y tranquilidad? Entonces haced un hueco en la agenda y relajaos con un Circuito Spa en Estepona . Una experiencia ideal para desconectar y alcanzar el bienestar total de vuestro cuerpo y mente.
 
@@ -294,7 +294,7 @@ const initDB = async () => {
 
     No os lo penséis más y animaos a vivir un momento de bienestar total.',
     'Circuito Spa para dos en Elba Estepona Gran Hotel 5*',
-    'Málaga',60.00,'Relax',3,true,'2022-01-15','2022-10-20'),
+    'Málaga',60.00,'Relax',3,true,'2021-01-15','2022-10-20'),
     (19,
     'Dejad que la calma os invada con una experiencia de bienestar que os encantará. Disfrutad de un Circuito Spa con Masaje para dos en San Sebastián, Guipúzcoa y olvidaos del estrés diario.
 
@@ -304,7 +304,7 @@ const initDB = async () => {
 
     El relax os está llamando. ¿Os apetece?',
     'Circuito Spa y Masaje para dos en Hotel Catalonia Donosti 4*',
-    'San Sebastian',148.00,'Relax', 2,true,'2022-01-20','2022-12-20'),
+    'San Sebastian',148.00,'Relax', 2,true,'2021-01-20','2022-12-20'),
     (20,
     'No te pierdas esta chocolaterapia si eres una auténtica chocoadicta. Todos los beneficios del chocolate sin ningún remordimiento en Valladolid. Y después, un relajante baño en el jacuzzi. ¡Saldrás como nueva!
 
@@ -316,7 +316,7 @@ const initDB = async () => {
 
     ¡Ven a mimarte! ¡Te lo mereces!',
     'Chocolaterapia y Jacuzzi',
-    'Arroyo de la Encomienda',45.00,'Relax',1,true,'2022-02-02','2022-11-25'),
+    'Arroyo de la Encomienda',45.00,'Relax',1,true,'2021-02-02','2022-11-25'),
     (21, 
     'Adéntrate de una forma entretenida en el fascinante mundo de la Ribera del Duero con esta Jornada Enológica en Aranda.
 
@@ -327,7 +327,7 @@ const initDB = async () => {
 
     Si eres amante del mundo de la enología, ¡no dejes escapar esta oportunidad!',
     'Jornada Enológica: Visita Bodega, Curso de Cata de Vino y Comida en Asador Castellano',
-    'Burgos',65.00,'Gastronomia',16,true,'2022-05-01','2022-09-30'),
+    'Burgos',65.00,'Gastronomia',16,true,'2021-05-01','2022-09-30'),
     (22, 
     'Sentid la pasión por el vino con la Visita a las Bodegas Muñana y Degustación de Vino en Granada.
 
@@ -337,7 +337,7 @@ const initDB = async () => {
 
     Vivid un momento mágico ¡No os defraudará!',
     'Visita a las Bodegas Muñana y Degustación de vino',
-    'Granada',29.00,'Gastronomia',20,true,'2022-02-01','2022-11-30'),
+    'Granada',29.00,'Gastronomia',20,true,'2021-02-01','2022-11-30'),
     (23, 
     '¿Queréis descubrir la primera almazara turística de la provincia de Jaén? Haced una Visita con Cata de Aceites a Oleícola San Francisco.
 
@@ -347,7 +347,7 @@ const initDB = async () => {
 
     Disfrutad de la gastronomía andaluza y de sus mejores aceites de oliva. ¡Merece la pena probarlo!',
     'Visita Guiada con Cata de Aceites, Aperitivo y Porrón de Vino para dos en Oleícola San Francisco',
-    'Jaén',36.00,'Gastronomia',10,true,'2022-03-01','2022-09-30'),
+    'Jaén',36.00,'Gastronomia',10,true,'2021-03-01','2022-09-30'),
     (24, 
     '¿Os gusta la cerveza? Ahora tenéis la oportunidad de visitar la Fábrica Mond y hacer una Cata de Cerveza y Maridaje en Sevilla.
 
@@ -357,7 +357,7 @@ const initDB = async () => {
 
     ¡No os lo penséis más!',
     'Visita a Fábrica Mond con Cata de Cerveza y Maridaje',
-    'Sevilla',18.00,'Gastronomia',8,true,'2022-05-15','2022-08-11'),
+    'Sevilla',18.00,'Gastronomia',8,true,'2021-05-15','2022-08-11'),
     (25, 
     '¿Os gusta el mundo de los vinos? Os recomendamos esta experiencia de Enoturismo en Rioja Alavesa.
 
@@ -367,7 +367,7 @@ const initDB = async () => {
 
     Disfrutad y sacadle el máximo provecho a esta actividad de enoturismo. ¿Preparados?',
     'Enoturismo: Visita a Viñedos y Bodega, Cata de Vinos, Almuerzo y Actividades de Vinicultura',
-    'Alava',65.00,'Gastronomia',20,true,'2022-02-15','2022-06-30'),
+    'Alava',65.00,'Gastronomia',20,true,'2021-02-15','2022-06-30'),
     (26,
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Formula 2.0.
 
@@ -381,7 +381,7 @@ const initDB = async () => {
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.',
     'Ferrari F430 F1 y Formula 2.0',
-    'Valencia',179.00,'Motor',1,true,'2022-01-01','2022-08-30'),
+    'Valencia',179.00,'Motor',1,true,'2021-01-01','2022-08-30'),
     (27, 
     'Si siempre has querido sentir la velocidad, ahora puedes hacerlo con esta experiencia. Disfruta de un día en uno de los circuitos más rápidos de España: conducir un Ferrari F430 y un Lamborghini Gallardo.
 
@@ -394,7 +394,7 @@ const initDB = async () => {
 
     Adrenalina en estado puro en un jornada que nunca olvidarás.', 
     'Ferrari F430 F1 y Lamborghini Gallardo ', 
-    'Navarra',179.00,'Motor',1,true,'2022-01-01','2022-12-30'),
+    'Navarra',179.00,'Motor',1,true,'2021-01-01','2022-12-30'),
     (28,
     '¡Conduce tres coches! Ponte a los mandos de un Ferrari, un Lamborghini y un Porsche en esta experiencia sin igual.
 
@@ -405,7 +405,7 @@ const initDB = async () => {
   
     Adrenalina en estado puro. ¿¡Te quedarás sin probarlo!?',
     'Trío de Coches: Ferrari, Lamborghini y Porsche',
-    'Madrid',249.00,'Motor',1,true,'2022-01-01','2022-12-30'),
+    'Madrid',249.00,'Motor',1,true,'2021-01-01','2022-12-30'),
     (29,
     'Déjate sorprender por un día lleno de emoción y adrenalina. Disfruta de un Vuelo en Avioneta y conduce un Ferrari en Carretera por Barcelona.
 
@@ -415,7 +415,7 @@ const initDB = async () => {
 
     ¿Te vas a perder vivir el día con el que todo el mundo sueña?',
     'Vuelo en Avioneta y Conducción de Ferrari en Carretera',
-    'Sabadell',119.00,'Motor',1,true,'2022-01-01','2022-12-30'),
+    'Sabadell',119.00,'Motor',1,true,'2021-01-01','2022-12-30'),
     (30,
     'Si te gustan las emociones fuertes y los deportes de riesgo, libera toda tu adrenalina aprendiendo a derrapar con este Curso de Drift en Madrid.
 
@@ -425,7 +425,7 @@ const initDB = async () => {
 
     ¡Dale al gas! Y anímate a vivir una experiencia inolvidable llena de sensaciones fuertes.',
     'Curso de Drift en Asfalto (Madrid)', 
-    'Leganés', 49.00, 'Motor', 1, true, '2022-01-01', '2022-12-30'),
+    'Leganés', 49.00, 'Motor', 1, true, '2021-01-01', '2022-12-30'),
     (31, 
     '¿Te gusta el mar y te gustaría explorar sus profundidades? No te pierdas esta oportunidad y disfruta del Pack de Bautismo de Buceo en diferentes zonas de España. ¿A qué esperas?
 
@@ -435,7 +435,7 @@ const initDB = async () => {
 
     ¡Sumérgete en esta aventura!',
     'Pack Bautismo de Buceo',
-    'Lanzarote',49.00,'Pareja',2,true,'2022-01-01','2022-12-31'),
+    'Lanzarote',49.00,'Pareja',2,true,'2021-01-01','2022-12-31'),
     (32, 
     'El globo, el viento ¡y vosotros! Ahora podéis vivir esta experiencia: vuelo romántico en globo. Un vuelo especial que os llevará a vivir momentos increíbles.
 
@@ -445,7 +445,7 @@ const initDB = async () => {
 
     ¿A qué esperáis?',
     'Vuelo Romántico en Globo con Cava, Almuerzo y Reportaje Fotos y Vídeo HD',
-    'Segovia',880.00,'Pareja',2,true,'2022-04-01','2022-09-30'),
+    'Segovia',880.00,'Pareja',2,true,'2021-04-01','2022-09-30'),
     (33, 
     '¿Te atreves a volar? Realiza ya tu Salto en Paracaídas en Castellón y no esperes más. Podrás surcar el cielo y contemplar el mundo tal y como lo ven los pájaros.
 
@@ -455,7 +455,7 @@ const initDB = async () => {
 
     Atrévete a dar el paso y lánzate al vacío. ¡No esperes más!',
     'Salto en Paracaídas',
-    'Castellón',230.00,'Pareja',2,true,'2022-3-01','2022-08-31'),
+    'Castellón',230.00,'Pareja',2,true,'2021-3-01','2022-08-31'),
     (34, 
     '¿Queréis desconectar del ajetreo del día a día y disfrutar de una experiencia relax en pareja? De vez en cuando es necesario tomarse unos instantes de descanso y para ello os ofrecemos esta escapada romántica con spa en Toledo.
 
@@ -465,7 +465,7 @@ const initDB = async () => {
 
     ¿A qué estáis esperando para vivir esta experiencia?',
     'Escapada Romántica con Circuito Spa en Hotel Beatriz Toledo Auditorium & Spa 4*',
-    'Toledo',110.00,'Pareja',2,true,'2022-01-01','2022-12-31'),
+    'Toledo',110.00,'Pareja',2,true,'2021-01-01','2022-12-31'),
     (35, 
     '¡Esta escapada romántica en un Hotel con Spa en Albacete es el plan ideal si no encontráis ningún momento para estar solos! En el Hotel Beatriz Albacete & Spa podréis vivir una noche muy especial.
 
@@ -475,7 +475,7 @@ const initDB = async () => {
 
     ¡Regalaos una experiencia que no querréis que termine!',
     'Escapada Romántica con Circuito Spa, Hotel y Cena en Hotel Beatriz Albacete & Spa 4*',
-    'Albacete',120.00,'Pareja',2,true,'2022-01-31','2022-12-31');
+    'Albacete',120.00,'Pareja',2,true,'2021-01-31','2022-12-31');
      
      `);
 
