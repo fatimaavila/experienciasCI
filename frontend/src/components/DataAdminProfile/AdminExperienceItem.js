@@ -154,20 +154,22 @@ function AdminExperiencesItem({ experience, updateDataExp, categories }) {
             <li>
               <h3>{experience?.nombre}</h3>
             </li>
-            <li>Ciudad: {experience?.ciudad}</li>
+            <li>Ubicación: {experience?.ciudad}</li>
             <li>Categoría: {experience?.categoria}</li>
             <li className="avaliable">
-              <span>{experience?.num_participantes}</span>
-              <span>
-                {experience?.num_participantes === 1 ? 'Plaza' : 'Plazas'}
-              </span>
+              <span>Plazas por día: {experience?.num_participantes}</span>
+              <span></span>
             </li>
             <li className="dataInfoRow">
-              <span>{dateInit.toLocaleDateString('es-ES', optionsDate)}</span>
-              <span>{dateFinal.toLocaleDateString('es-ES', optionsDate)}</span>
+              <span>
+                Desde: {dateInit.toLocaleDateString('es-ES', optionsDate)}
+              </span>
+              <span>
+                Hasta: {dateFinal.toLocaleDateString('es-ES', optionsDate)}
+              </span>
             </li>
           </ul>
-          <span>{stateExperience}</span>
+          <span>Estado: {stateExperience}</span>
         </td>
         <td className="buttonsAdmin">
           <MdEdit onClick={() => setFormActivate(!formActivate)} />
