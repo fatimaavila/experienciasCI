@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import es from 'date-fns/locale/es';
 import { deleteAxios, getAxios, postAxios, putAxios } from '../../axiosCalls';
 import { UserContext } from '../../context/UserContext';
+import { compareAsc } from 'date-fns';
 
 registerLocale('es', es);
 
@@ -133,6 +134,18 @@ function AdminExperiencesItem({ experience, updateDataExp, categories }) {
     }
   }
 
+  const dateExperience = new Date(experience.fecha_fin).toLocaleDateString(
+    'es-ES',
+    optionsDate
+  );
+  const today = new Date().toLocaleDateString('es-ES', optionsDate);
+  const date1 = dateExperience.split('/').reverse();
+  const date2 = today.split('/').reverse();
+  const state = compareAsc(
+    new Date(date1[0], date1[1], date1[2]),
+    new Date(date2[0], date2[1], date2[2])
+  );
+  const stateExperience = state === 1 ? 'Activa' : 'No activa';
   return (
     <>
       <tr className="sectionData">
@@ -154,7 +167,7 @@ function AdminExperiencesItem({ experience, updateDataExp, categories }) {
               <span>{dateFinal.toLocaleDateString('es-ES', optionsDate)}</span>
             </li>
           </ul>
-          <span>{experience?.disp === 1 ? 'Disponible' : 'No disponible'}</span>
+          <span>{stateExperience}</span>
         </td>
         <td className="buttonsAdmin">
           <MdEdit onClick={() => setFormActivate(!formActivate)} />
