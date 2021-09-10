@@ -45,7 +45,7 @@ function ItemShop({
             type="number"
             min="1"
             max="99"
-            placeholder="1"
+            value={units > 0 ? units : 1}
             onChange={setUnits}
           />
           <span onClick={() => remove()}>Eliminar</span>
