@@ -44,8 +44,8 @@ Creado en React.js, hemos usado algunas dependencias como:
 -   [yarn] Para instalar todo lo necesario para poder probar la aplicación.
 -   [yarn start] Ejecuta el servidor para poder trabajar, http://localhost:PORT con el fin de que cors funcione correctamente recomendamos el puerto: 3000
 
-· Usuarios admin: 'admin1', 'admin2', 'admin3'. Password: 123456 o lo que configuren en su ".env"
-· Usuarios regular: 'vmcauliffe3', 'mdwyer4'. Password: 12345678 o lo que configuren en su ".env"
+*   Usuarios admin: 'admin1', 'admin2', 'admin3'. Password: 123456 o lo que configuren en su ".env"
+*   Usuarios regular: 'vmcauliffe3', 'mdwyer4'. Password: 12345678 o lo que configuren en su ".env"
 
 ## Composición del Backend
 
