@@ -1,5 +1,7 @@
 # VAN_Experiences
 
+Modificado por Fatima para proyecto AWS
+
 -   Se trata de una web de gestión y venta de experiencias dónde los usuarios podrán adquirir paquetes de distintos tipos y en distintas localizaciones.
 
 ### Backend
