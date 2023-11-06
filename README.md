@@ -20,9 +20,10 @@ Requisitos: Necesitas una instancia que pueda correr node y npm, ya que el backe
 - O un contenedor Docker 🐳
 
 Además requieres de una base de datos MySQL 🐬, esta puede ser:
-- Una base de datos local
-- Una instancia RDS en AWS (compatible con MySQL) 
-- O un MySQL instalado en tu EC2
+
+- Una base de datos local llamada VAN_Experience
+- Una instancia RDS en AWS (compatible con MySQL)
+- O un MySQL instalado en tu EC2 - Debes crear una base de datos con el nombre VAN_Experience
 
 ## A continuación los pasos utilizando los servicios de AWS 📦
 
