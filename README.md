@@ -1,13 +1,22 @@
 # VAN_Experiences
 
-Modificado por Fatima para proyecto AWS - nuevo front
 
--   Se trata de una web de gestión y venta de experiencias dónde los usuarios podrán adquirir paquetes de distintos tipos y en distintas localizaciones.
+-   Se trata de una web de catálogo de experiencias dónde los usuarios podrán ver e investigar de las experiencias en cada ciudad para todos los viajeros. 
 
 ### Backend
 
 -   Se trata de una API con arquitectura REST creada en Node.js, junto con Mysql y Express.
     Donde se utilizan diversas dependencias como: Joi, Dotenv, Jsonwebtoken, Sendgrid, Date-fns, FS-Extra, Sharp, Uuid, Mysql2 y Express-Fileupload.
+
+### Frontend
+
+- Se creó un catálogo simple basado en una plantilla con HTML5 y JavaScript, para que esta consuma la API del backend que se encuentra en EC2, lo único que requiere es un servidor http para poder probarlo localmente, pero se utiliza el servicio de Amplify para poder consumirlo. 
+
+## Pasos para construirlo en tu 🧑🏻‍💻
+
+1. Crea una instancia de EC2 para la aplicación
+2. Crea una instancia RDS de MySQL que tenga conexión a la EC2 del paso 1, para que se puedan "ver" una con la otra dentro del ambiente AWS.
+3. Sigue los pasos de instalación del backend que están descritos más abajo 👇🏻
 
 ### Frontend
 
