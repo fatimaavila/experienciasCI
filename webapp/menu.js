@@ -11,7 +11,8 @@ function injectMenuHTML() {
             <li><a href="categoria.html?categoria=Aventura">Aventura</a></li>
             <li><a href="categoria.html?categoria=Relax">Relax</a></li>
             <li><a href="categoria.html?categoria=Gastronomia">Gastronomía</a></li>
-            <li><a href="categoria.html?categoria=Pareja">Pareja</a></li>          
+            <li><a href="categoria.html?categoria=Pareja">Pareja</a></li>       
+               
         </ul>
     `;
 
