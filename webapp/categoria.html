@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Elements - Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<style>
+			/* CSS to align text at the top within table cells */
+			table {
+			  width: 100%;
+			  border-collapse: collapse;
+			}
+		  
+			th, td {
+			  vertical-align: top; /* Set vertical alignment to top */
+			  padding: 8px;
+			  border: 1px solid #ddd;
+			  text-align: left; /* Optional: Left-align text */
+			}
+		  </style>
+		  
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">🐶TATICU Viajes</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+					<!-- Menu -->
+					<div id="menu"></div>
+					<script src="menu.js"></script>
+					<script>
+						// Call the function to inject the menu HTML
+						injectMenuHTML();
+					</script>
+					
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Image -->
+						<section>
+							<!-- <h2>Image</h2> -->
+							<!-- <h3>Fit</h3> -->
+							<div class="box alt">
+								<div class="row gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images/mapa.jpg" alt="" /></span></div>
+								</div>
+							</div>
+					</section>
+						<div class="inner">
+							<h1 id="city-title"></h1>
+
+
+									<h3>Experiencias disponibles</h3>
+									<div class="table-wrapper">
+										<table class="alt" id="experience-table">
+											<thead>
+												<tr>
+													<th width="200px;">Nombre</th>
+													<th>Ciudad</th>
+													<th>Descripción</th>
+													<th>Precio</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</section>
+
+							
+							
+
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+			<script src="config.js?231105"></script>
+
+<script>
+    // Function to fetch data from the API and populate the table and title
+    function populateTableAndTitle() {
+        // Get the value of 'ciudad' from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoria = urlParams.get('categoria');
+
+        if (!categoria) {
+            console.error('No category found.');
+            return;
+        }
+
+        // Set the title to the value of 'ciudad'
+        document.getElementById('city-title').textContent = categoria;
+
+        // Get the API URL from the config object
+        const apiUrl = `${config.apiUrl}/experiences?cat=${categoria}`;
+		console.log('apiUrl incluido',apiUrl);
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#experience-table tbody');
+
+                data.data.forEach(experience => {
+                    const row = document.createElement('tr');
+					//replace url base path of photo with config.imageUrl
+					console.log('Config.imageUrl->',config.imageUrl,'experience.photos[0].photo->',experience.photos[0].photo);
+					const photoUrl = experience.photos[0].photo.replace('http://localhost:8080', config.imageUrl);
+                    row.innerHTML = `
+					<td>${experience.nombre}</td>
+					<td>${experience.ciudad}</td>
+                        <td><img src="${photoUrl}" width="100%"/></br>${experience.descripcion}</td>
+                        <td>${experience.precio}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data: ', error);
+            });
+    }
+
+    // Call the populateTableAndTitle function to populate the title and the table
+    populateTableAndTitle();
+</script>
+
+			
+			
+
+	</body>
+</html>

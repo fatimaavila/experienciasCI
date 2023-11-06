@@ -6,11 +6,12 @@ function injectMenuHTML() {
         <h2>Menu</h2>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="generic.html">Aventura</a></li>
-            <li><a href="generic.html">Gastronomía</a></li>
-            <li><a href="generic.html">Salud</a></li>
-            <li><a href="elements.html">Elements</a></li>
-            <li><a href="ciudad.html">Lista Ciudad</a></li>
+            <li><a href="categoria.html?categoria=Vuelo">Vuelo</a></li>
+            <li><a href="categoria.html?categoria=Acuática">Acuática</a></li>
+            <li><a href="categoria.html?categoria=Aventura">Aventura</a></li>
+            <li><a href="categoria.html?categoria=Relax">Relax</a></li>
+            <li><a href="categoria.html?categoria=Gastronomia">Gastronomía</a></li>
+            <li><a href="categoria.html?categoria=Pareja">Pareja</a></li>          
         </ul>
     `;
 
