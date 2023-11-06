@@ -16,7 +16,7 @@
 
 1. Crea una instancia de EC2 para la aplicación
 2. Crea una instancia RDS de MySQL que tenga conexión a la EC2 del paso 1, para que se puedan "ver" una con la otra dentro del ambiente AWS.
-3. Sigue los pasos de instalación del backend que están descritos más abajo 👇🏻 [en la configuración inicial] (https://github.com/fatimaavila/experienciasCI#configuraci%C3%B3n-inicial)
+3. Sigue los pasos de instalación del backend que están descritos más abajo 👇🏻 [en la configuración inicial](https://github.com/fatimaavila/experienciasCI#configuraci%C3%B3n-inicial)
 
 ### Frontend
 
