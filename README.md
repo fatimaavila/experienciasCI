@@ -59,10 +59,7 @@ Además requieres de una base de datos MySQL 🐬, esta puede ser:
 - El cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
 - Según los datos propios de Mysql para el backend - *mira el ejemplo que ya funciona para mi instancia AWS-RDS.*
 
-- Si quieres probar con la base de datos que se usó para el proyecto
-    - Server host: experienciasdb.cqzp6lr9urkp.us-east-1.rds.amazonaws.com
-    - Port: 3306
-    - 
+
 
 ### Ejemplo del archivo env 
 
