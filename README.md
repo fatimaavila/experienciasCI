@@ -1,6 +1,6 @@
 # VAN_Experiences
 
-Modificado por Fatima para proyecto AWS
+Modificado por Fatima para proyecto AWS - nuevo front
 
 -   Se trata de una web de gestión y venta de experiencias dónde los usuarios podrán adquirir paquetes de distintos tipos y en distintas localizaciones.
 
