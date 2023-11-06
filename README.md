@@ -31,8 +31,8 @@ Además requieres una base de datos MySQL 🐬, esta puede ser:
 3. Asegurate que tu EC2 tenga instalado node y todos sus paquetes estén actualizados.
 4. Clonar el repositorio 🐱
 5. Sigue los pasos de [la configuración inicial](https://github.com/fatimaavila/experienciasCI#configuraci%C3%B3n-inicial) 👇🏻
-6. Sigue los pasos de [ejecución del backend](https://github.com/fatimaavila/experienciasCI#ejecuci%C3%B3n-del-backend) pero antes asegúrate de configurar las credenciales para la conexión de la base de datos del paso 2. Mira ejemplo de archivo de configuración en la imagen [aquí](https://github.com/fatimaavila/experienciasCI/edit/master/README.md#ejemplo-del-archivo-env)
-8. Si todo está correcto deberías de tener tu base de datos poblada, puedes probar hacer consultas en un cliente de sql, con la configuración correcta.
+6. Sigue los pasos de [ejecución del backend](https://github.com/fatimaavila/experienciasCI#ejecuci%C3%B3n-del-backend) pero antes asegúrate de configurar las credenciales para la conexión de la base de datos del paso 2. Mira ejemplo de archivo de configuración en la imagen [aquí](https://github.com/fatimaavila/experienciasCI/tree/master#ejemplo-del-archivo-env)
+8. Si todo está correcto deberías de tener tu base de datos poblada y tus servidores escuchando en algun puerto. Puedes probar hacer consultas en un cliente de sql, con la configuración correcta.
 9. 
 
 
