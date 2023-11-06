@@ -182,7 +182,7 @@
 					console.log('Config.imageUrl->',config.imageUrl,'experience.photos[0].photo->',experience.photos[0].photo);
 					const photoUrl = experience.photos[0].photo.replace('http://localhost:8080', config.imageUrl);
                     row.innerHTML = `
-					<td>${experience.nombre}</td>
+					<td><a href="experiencia.html?id=${experience.id}">${experience.nombre}</a></td> 
 					<td>${experience.ciudad}</td>
                         <td><img src="${photoUrl}" width="100%"/></br>${experience.descripcion}</td>
                         <td>${experience.precio}</td>
