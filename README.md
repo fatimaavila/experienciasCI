@@ -53,8 +53,16 @@ Además requieres de una base de datos MySQL 🐬, esta puede ser:
 
 ## Configuración inicial
 
--   Disponen de un documento ".env.example" en la carpeta de backend, el cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
--   Según los datos propios de Mysql para el backend - *mira el ejemplo que ya funciona para mi instancia AWS-RDS.*
+
+- Ubicate en la carpeta de `backend` dentro de `experienciasCI`
+- Dispones de un documento ".env.example" en la carpeta de backend, está escondido, pon el comando `cp .env.example .env` así no tocas el ejemplo
+- El cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
+- Según los datos propios de Mysql para el backend - *mira el ejemplo que ya funciona para mi instancia AWS-RDS.*
+
+- Si quieres probar con la base de datos que se usó para el proyecto
+    - Server host: experienciasdb.cqzp6lr9urkp.us-east-1.rds.amazonaws.com
+    - Port: 3306
+    - 
 
 ### Ejemplo del archivo env 
 
