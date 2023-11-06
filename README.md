@@ -1,4 +1,4 @@
-# VAN_Experiences
+# VAN_Experiences 🛩️
 
 
 -   Se trata de una web de catálogo de experiencias dónde los usuarios podrán ver e investigar de las experiencias en cada ciudad para todos los viajeros. 
@@ -10,24 +10,45 @@
 
 ### Frontend
 
-- Se creó un catálogo simple basado en una plantilla con HTML5 y JavaScript, para que esta consuma la API del backend que se encuentra en EC2, lo único que requiere es un servidor http para poder probarlo localmente, pero se utiliza el servicio de Amplify para poder consumirlo. 
+- Se creó un catálogo simple basado en una plantilla con HTML5 y JavaScript, para que esta consuma la API del backend que se encuentra en EC2, lo único que requiere es un servidor http para poder probarlo localmente, pero se utiliza el servicio de Amplify para poder consumirlo. Toma en cuenta que si utilizas un servicio de https, tienes que crear un API Gateway.
 
 ## Pasos para construirlo en tu 🧑🏻‍💻
 
+Requisitos: Necesitas una instancia que pueda correr node npm, ya que el backend está desarrollado en Express, esta puede ser 
+- Tu máquina local
+- Una EC2 en la nube (de preferencia Ubuntu)
+- O un contenedor Docker 🐳
+
+Además requieres una base de datos MySQL 🐬, esta puede ser:
+- Una base de datos local
+- Una instancia RDS en AWS (compatible con MySQL
+- O un MySQL instalado en tu EC2
+
+## A continuación los pasos utilizando los servicios de AWS 📦
+
 1. Crea una instancia de EC2 para la aplicación
 2. Crea una instancia RDS de MySQL que tenga conexión a la EC2 del paso 1, para que se puedan "ver" una con la otra dentro del ambiente AWS.
-3. Clonar el repositorio 🐱
-4. Sigue los pasos de [ejecución del backend](https://github.com/fatimaavila/experienciasCI#ejecuci%C3%B3n-del-backend) pero antes asegúrate de configurar las credenciales para la conexión de la base de datos del paso 2, esto lo chequeas [en la configuración inicial](https://github.com/fatimaavila/experienciasCI#configuraci%C3%B3n-inicial) 👇🏻
-5. Si todo está correcto deberías de tener tu base de datos poblada, puedes probar hacer consultas en un cliente de sql, con la configuración correcta.
-6. 
+3. Asegurate que tu EC2 tenga instalado node y todos sus paquetes estén actualizados.
+4. Clonar el repositorio 🐱
+5. Sigue los pasos de [la configuración inicial](https://github.com/fatimaavila/experienciasCI#configuraci%C3%B3n-inicial) 👇🏻
+6. Sigue los pasos de [ejecución del backend](https://github.com/fatimaavila/experienciasCI#ejecuci%C3%B3n-del-backend) pero antes asegúrate de configurar las credenciales para la conexión de la base de datos del paso 2. Mira ejemplo de archivo de configuración en la imagen [aquí](https://github.com/fatimaavila/experienciasCI/edit/master/README.md#ejemplo-del-archivo-env)
+8. Si todo está correcto deberías de tener tu base de datos poblada, puedes probar hacer consultas en un cliente de sql, con la configuración correcta.
+9. 
 
 
 ## Configuración inicial
 
--   Disponen de un documento ".env.example" en la carpeta de backend y frontend, el cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
+-   Disponen de un documento ".env.example" en la carpeta de backend, el cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
+-   Según los datos propios de Mysql para el backend.
 
-*   Según los datos propios de Mysql para el backend.
-*   Para el front solo debemos cambiar el nombre a ".env" si hemos configurado el puerto recomendado, en caso contrario cambiar el puerto.
+### Ejemplo del archivo env 
+
+  ![image](https://github.com/fatimaavila/experienciasCI/assets/69205813/2975f603-db10-4da8-9a29-99014e1c6c88)
+
+Para el frontend solo se requiere un servidor http, toma en cuenta que si tu servicio tiene SSL, deberás hacer un API Gateway
+
+
+
 
 
 ### Ejecución del Backend
