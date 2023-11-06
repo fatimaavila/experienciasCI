@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">🐶TATICU Viajes</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<!-- Menu -->
+					<div id="menu"></div>
+					<script src="menu.js"></script>
+					<script>
+						// Call the function to inject the menu HTML
+						injectMenuHTML();
+					</script>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<span id="rating"></span><h1 id="nombre"></h1>
+							<a id="WAlink" target=_blank href="https://wa.me/+50231221825?text=I%20want%20more%20information%20about%20this%20product" style="text-decoration: none;">
+								<button style="background-color: #25d366; color: #fff; padding: 10px 20px; border: none; cursor: pointer;">
+									Me interesa esta experiencia
+								</button>
+							</a>
+							<h3><span id="ciudad"></span> :: <span id="categoria" style="color:darkgray"></span> :: <span id="precio" style="color: red; font-size: 30px;"></span></h3>
+							<span class="image main"><img id="image" src="images/pic13.jpg" alt="" /></span>
+							<p id="descripcion"></p>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+			<script src="config.js?231105"></script>
+
+			<script>
+				// Create an SVG element with a yellow star and text
+				function addStar(p_rating){
+				const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+				svg.setAttribute("width", "100");
+				svg.setAttribute("height", "100");
+			
+				const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+				polygon.setAttribute("points", "50,10 61.803,43.301 95,50 61.803,56.699 50,90 38.197,56.699 5,50 38.197,43.301");
+				polygon.setAttribute("fill", "yellow");
+			
+				const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+				text.setAttribute("x", "50");
+				text.setAttribute("y", "60");
+				text.setAttribute("text-anchor", "middle");
+				text.setAttribute("font-size", "20");
+				text.setAttribute("fill", "black");
+				text.textContent = p_rating;
+			
+				svg.appendChild(polygon);
+				svg.appendChild(text);
+			
+				// Append the SVG to the span
+				const starContainer = document.getElementById("rating");
+				starContainer.appendChild(svg);
+				} //add star
+			  </script>
+			
+			<script>
+				// Function to fetch data from the API and populate the table and title
+				function populateData() {
+					// Get the value of 'ciudad' from the URL query parameters
+					const urlParams = new URLSearchParams(window.location.search);
+					const id = urlParams.get('id');
+			
+					if (!id) {
+						console.error('No existe parámetro ID');
+						return;
+					}
+			
+					// Set the title to the value of 'ciudad'
+					//document.getElementById('city-title').textContent = ciudad;
+			
+					// Get the API URL from the config object
+					const apiUrl = `${config.apiUrl}/experiences/${id}`;
+					console.log('apiUrl incluido',apiUrl);
+			
+					fetch(apiUrl)
+						.then(response => response.json())
+						.then(datos => {
+							console.log('Success:', datos);
+							console.log('nombre:', datos.data.nombre);
+							document.getElementById('nombre').textContent = datos.data.nombre;
+							const photoUrl = datos.data.photos[0].photo.replace('http://localhost:8080', config.imageUrl);
+							document.getElementById('ciudad').textContent = datos.data.ciudad;
+							document.getElementById('categoria').textContent = datos.data.categoria;
+							document.getElementById('image').src = photoUrl;
+							//document.getElementById('rating').textContent = datos.data.rating;
+							addStar(datos.data.rating);
+							document.getElementById('descripcion').textContent = datos.data.descripcion;
+							document.getElementById('precio').textContent = +datos.data.precio + "€";
+							var WAtext = encodeURIComponent("Hola, me interesa esta experiencia en "+ datos.data.ciudad+" :: "+datos.data.nombre);
+							document.getElementById('WAlink').href = "https://wa.me/+50231221825?text=" + WAtext;
+							
+						}) //econtró data
+						.catch(error => {
+							console.error('Error fetching data: ', error);
+						});
+				}
+			
+				// Call the populateTableAndTitle function to populate the title and the table
+				populateData();
+			</script>
+			
+
+	</body>
+</html>
