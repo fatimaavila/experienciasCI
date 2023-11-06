@@ -9,7 +9,7 @@ const path = require('path');
 const { PORT } = process.env;
 
 const corsOptions = {
-    origin: 'http://'*':3000',
+    origin: '*',
 };
 
 // ##################
