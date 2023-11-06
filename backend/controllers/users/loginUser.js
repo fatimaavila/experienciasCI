@@ -31,11 +31,13 @@ const loginUser = async (req, res, next) => {
         );
 
         if (userEmail.length < 1 && userName.length < 1) {
+            
             const error = new Error('Usuario/Email o contraseña incorrectos');
             error.httpStatus = 401;
             throw error;
         }
-        if (userEmail[0]?.active === 0 || userName[0]?.active === 0) {
+         // por versiones error if (userEmail[0]?.active === 0 || userName[0]?.active === 0) {
+        if ((userEmail[0] && userEmail[0].active === 0) || (userName[0] && userName[0].active === 0)) {
             const error = new Error('Usuario pendiente de validar');
             error.httpStatus = 402;
             throw error;
