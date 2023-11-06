@@ -19,17 +19,6 @@
 3. Sigue los pasos de [ejecución del backend](https://github.com/fatimaavila/experienciasCI#ejecuci%C3%B3n-del-backend) pero antes asegúrate de configurar las credenciales para la conexión de la base de datos del paso 2, esto lo chequeas [en la configuración inicial](https://github.com/fatimaavila/experienciasCI#configuraci%C3%B3n-inicial) 👇🏻
 4. Si todo está correcto deberías de tener tu base de datos poblada, puedes probar hacer consultas en un cliente de sql, con la configuración correcta.
 
-### Frontend
-
-Creado en React.js, hemos usado algunas dependencias como:
-
--   Styled-components: Como base para la creación y estilado de la aplicación.
--   Material-ui: Para el rating de las experiencias.
--   Bootstrap: Para la generación de los formularios.
--   React-Datepicker: Para los calendarios.
--   React-Alice-Carousel: Para los sliders.
--   Ademas un conjunto añadido para gestión de la aplicación: Axios,React-Router,Query-String,Date-Fns,JWT-Decode,UUID.
-
 ## Configuración inicial
 
 -   Disponen de un documento ".env.example" en la carpeta de backend y frontend, el cual debe ser rellenado en los campos libres y guardado en la raíz del directorio en cuestión como ".env"
